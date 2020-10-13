@@ -3,17 +3,14 @@ import configparser
 import datetime
 import logging
 import logging.handlers
-import time
 import os
+import time
 from pathlib import PurePath
 
 import pandas as pd
 import requests
+import databases
 from tqdm import tqdm
-
-
-from textron.util.helpers import function_timer
-from textron.util import databases
 
 # ---------- GLOBAL SETTINGS ---------- #
 
@@ -30,7 +27,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 formatter = logging.Formatter(
     '%(asctime)s:%(name)s:%(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
-file_handler = logging.handlers.RotatingFileHandler(filename=f'{LOGS_DIR}scraper.log',
+file_handler = logging.handlers.RotatingFileHandler(filename='scraper.log',
                                                     maxBytes=10_000_000, backupCount=10)
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
@@ -205,15 +202,15 @@ class RedditScraper:
         return (posts_df, None)
 
     def save_to_csv(self, df, table_name, subreddit):
-        save_dir = SCRAPED_DIR / self.project_name
+        save_dir = SCRAPED_DIR / subreddit
         if not os.path.exists(save_dir):
-            os.mkdir(save_dir)
-        df.to_csv(f'{save_dir}/{self.date}_{subreddit}_{table_name}.csv', index=False)
+            os.makedirs(save_dir)
+        df.to_csv(f'{save_dir}/{self.date}_{table_name}.csv', index=False)
 
     def save_to_sqlite(self, df, table_name, subreddit):
         db = databases.Sqlite()
         connection = db.create_connection(
-            f'{DATABASE_DIR / self.project_name}.sqlite')
+            f'{DATABASE_DIR}/{self.project_name}.sqlite')
         cursor = connection.cursor()
 
         if table_name == 'posts':
@@ -257,33 +254,38 @@ class RedditScraper:
 
     def save_to_postgres(self, df, table_name):
         return 'save to postgres'
-        # YEAH
+        # not implemented
 
     def save_to_mongo(self, df, table_name):
         return 'save to mongo'
-        # definitely a FUTURE addition
+        # not implemented
 
     def save_to_mysql(self, df, table_name):
         return 'save to mysql'
-        # for django or something
+        # not implemented
+        
+    def save_to_s3(self, df, table_name):
+        return 'save to S3'
+        # not implemented
 
     def save_choice(self, df, choice, table_name, subreddit):
         '''
         Choice to save the scraped dataframe.
         Choices:
-        'csv', 'sqlite', 'postgres', 'mongo', 'mysql'
+        'csv', 'sqlite', 'postgres', 'mongo', 'mysql', 's3'
         '''
         save_options = {
             'csv': self.save_to_csv,
             'sqlite': self.save_to_sqlite,
             'postgres': self.save_to_postgres,
             'mongo': self.save_to_mongo,
-            'mysql': self.save_to_mysql
+            'mysql': self.save_to_mysql,
+            's3': self.save_to_s3
         }
         save_function = save_options.get(choice, self.save_to_csv)
         return save_function(df, table_name, subreddit)
 
-@function_timer
+
 def main():
     logger.info('PROGRAM STARTED')
     scraper = RedditScraper(project_name=project_name, sorting=sorting, include_comments=include_comments)
