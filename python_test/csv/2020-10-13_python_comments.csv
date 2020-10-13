@@ -1,25 +1,129 @@
 comment_id,post_id,comment,upvotes
-g8nw2f9,ja5y2m,You summon infinite homework familiars as a dark wizard of 3rd-5th grade mathematics automatons.,483
-g8nwwru,ja5y2m,Heh still learning how to support higher grade math,98
-g8o9ayl,ja5y2m,Cannot accept quest. Requires the +(5x+3) Staff of Mathematical Sorcery.,44
+g8pm2fn,jai0yr,"&gt;Turtle graphics is a popular way for introducing programming to kids.
+
+https://docs.python.org/3.3/library/turtle.html?highlight=turtle",1
+g8pm5hq,jai0yr,"People tend to learn better when they can get a visual feedback and turtle is quite good at visualizing the basic concepts like variables, loops, conditions etc.",1
+g8pn42l,jai0yr,"Thanks, that sounds like a viable idea.",1
+g8pl3yr,jahx5z,"tldrstory is a framework for building AI-powered applications that understand headlines and story text. tldrstory allows quickly scaffolding machine learning jobs, a backend API and front-end application to review/analyze the data.
+
+A zero-shot classifier, backed by a large general language model with no labeled data, is used to label data. Additionally, a txtai index enables ad hoc similarity searches against the data.
+
+tldrstory is built on the following stack:
+
+\- txtai  
+\- Transformers  
+\- Sentence Transformers  
+\- Streamlit  
+\- FastAPI
+
+Example application that uses the tldrstory framework to explore objectivity and bias in recent news headlines related to the 2020 US Presidential Election shown in video above. 
+
+Live demo: [https://tldrstory.com/election-2020](https://tldrstory.com/election-2020)
+
+Github repo: [https://github.com/neuml/tldrstory](https://github.com/neuml/tldrstory)",1
+g8p5b69,jaf51g,Wow. Amazing.,1
+g8pmbwz,jaeyo9,"I don't see the point of this video. 5 minutes for 10 lines of code, with barely any commentary? IMHO a gist or a pastebin of this code, with comments, would do a better job.",1
+g8p3uns,jaednq,"For starter, you have four, almost identical functions , the only difference between them is the file type. This is clearly a violation of the  DRY (Don’t Repeat Yourself) principle, but it’s quite easy to fix.",3
+g8p4jod,jaednq,What is your suggestion to fix the DRY?,1
+g8p4s7h,jaednq,"Functions can have arguments, you know ;-)",4
+g8paykj,jaednq,"Thanks for the feedback, i updated the code and made what i thought was correct and better. Instead of functions now it calls the ""organizer"" function with different arguments.",2
+g8pc0c7,jaednq,"Cheers!
+
+It’s already looking better, but there’s still a lot of repetitions. I’d suggest to look into data structures (dictionary, for example) and loops, for more possible improvements.",2
+g8pc6qo,jaednq,"Yes, thank you. Will look into that and improve it.",1
+g8p1ecl,jadzdq,"Hello,
+
+Reddit appears to be having some trouble with the scheduled submissions today. We are removing some of the duplicate scheduled submissions as a result. There will probably be a lot more copies of this submission that appear and get removed as a result. I imagine in sson it should be resolved and whatever tuesday megathread remains live will be the remaining one. Until then, while you're free to ask questions, we may be removing the threads they're in.",1
+g8pbooa,jadzdq,"I asked [this question](https://www.reddit.com/r/MLQuestions/comments/ivmdb0/whats_the_best_library_to_tune_a_strategy_ai_with/) a few weeks ago in /r/MLQuestions:
+
+&gt;What's the best library to tune a strategy AI with a very slow cost function?
+
+but didn't get any responses. I think Python likely has something for me, but I'm surprised that everything I've seen so far is pretty wonky, or unpythonic.",2
+g8oi880,jaaqza,"Hello! I'm a bot!
+
+It looks to me like your post might be better suited for r/learnpython, 
+a sub geared towards questions and learning more about python **regardless of how advanced your question might be**. 
+That said, I am a bot and it is hard to tell.
+Please follow the subs rules and guidelines when you do post there, it'll help you get better answers faster.
+
+Show /r/learnpython **the code you have tried and describe in detail where you are stuck.** 
+If you are getting an error message, include the full block of text it spits out.
+Quality answers take time to write out, and many times other users will need to ask clarifying questions. Be patient and help them help you. 
+**[Here is HOW TO FORMAT YOUR CODE For Reddit](https://www.reddit.com/r/learnpython/wiki/faq#wiki_how_do_i_format_code.3F)** 
+and be sure to include which version of python and what OS you are using.
+
+
+You can also ask this question in the [Python discord](https://discord.gg/3Abzge7), 
+a large, friendly community focused around the Python programming language, open to those who wish to learn the language 
+or improve their skills, as well as those looking to help others. 
+
+
+
+***
+
+[^(README)](https://github.com/CrakeNotSnowman/redditPythonHelper) 
+^(|)
+[^(FAQ)](https://github.com/CrakeNotSnowman/redditPythonHelper/blob/master/FAQ.md) 
+^(|)
+^(this bot is written and managed by /u/IAmKindOfCreative) 
+
+
+
+^(This bot is currently under development and experiencing changes to improve its usefulness)",2
+g8pe4jl,jaaqza,Could probably be solved pretty quickly with [boolean indexing](https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#boolean-indexing).,1
+g8p22vx,ja8yjn,What is fuzzing?,1
+g8p3s1k,ja8yjn,"Fuzz Testing, that a method to find bugs in software",1
+g8p7epy,ja8h2j,"Hello! I'm a bot!
+
+It looks to me like your post might be better suited for r/learnpython, 
+a sub geared towards questions and learning more about python **regardless of how advanced your question might be**. 
+That said, I am a bot and it is hard to tell.
+Please follow the subs rules and guidelines when you do post there, it'll help you get better answers faster.
+
+Show /r/learnpython **the code you have tried and describe in detail where you are stuck.** 
+If you are getting an error message, include the full block of text it spits out.
+Quality answers take time to write out, and many times other users will need to ask clarifying questions. Be patient and help them help you. 
+
+You can also ask this question in the [Python discord](https://discord.gg/3Abzge7), 
+a large, friendly community focused around the Python programming language, open to those who wish to learn the language 
+or improve their skills, as well as those looking to help others. 
+
+
+
+***
+
+[^(README)](https://github.com/CrakeNotSnowman/redditPythonHelper) 
+^(|)
+[^(FAQ)](https://github.com/CrakeNotSnowman/redditPythonHelper/blob/master/FAQ.md) 
+^(|)
+^(this bot is written and managed by /u/IAmKindOfCreative) 
+
+
+
+^(This bot is currently under development and experiencing changes to improve its usefulness)",1
+g8o11uc,ja6fvp,I'm not a fan of pyinstaller anymore. It seems with every new python version it stops working or has some sort of problem.,3
+g8ojvmd,ja6fvp,This has helpedme create dumb reports for clients that would otherwise be complex Excel macros.,2
+g8nw2f9,ja5y2m,You summon infinite homework familiars as a dark wizard of 3rd-5th grade mathematics automatons.,520
+g8nwwru,ja5y2m,Heh still learning how to support higher grade math,108
+g8o9ayl,ja5y2m,Cannot accept quest. Requires the +(5x+3) Staff of Mathematical Sorcery.,50
 g8p4ras,ja5y2m,"Libraries like sympy and relevant latex-based printouts are your friend here. Though you'll have to dig into the internals and create an expression tree for some more complex things, unfortunately (I know this from painful experience).
 
 E: albeit not in Python, there are also some C++ symbolic math libraries that might work out better for you, that worst case you can wrap in Python.
 
-E: spelling",5
+E: spelling",7
 g8pa0io,ja5y2m,Thanks for the tip. I will definitely check out sympy!,1
-g8nupea,ja5y2m,"Wow... I had done this in LaTeX for my niece at one point, and can't find the code anymore. :(",103
+g8nupea,ja5y2m,"Wow... I had done this in LaTeX for my niece at one point, and can't find the code anymore. :(",110
 g8nvoua,ja5y2m,"&gt;LaTeX
 
-Did your niece hate you too :) ?",118
-g8nvu0q,ja5y2m,"At first, but then she got quite adept at the sheets and we bonded over it. Short-term pain for long-term gain is the story of academics, for me, anyway.",79
+Did your niece hate you too :) ?",128
+g8nvu0q,ja5y2m,"At first, but then she got quite adept at the sheets and we bonded over it. Short-term pain for long-term gain is the story of academics, for me, anyway.",86
 g8o9jbo,ja5y2m,"&gt;Short-term pain for long-term gain is the story of academics
 
-Thought it was ""short-term pain for long-term pain as well""...",58
+Thought it was ""short-term pain for long-term pain as well""...",61
 g8ofpu7,ja5y2m,"Long term pain that is supposed to pay well but doesn't.
 
-.",25
-g8p61lt,ja5y2m,That’s why I want to study math. So that when I’m finished I can do the calculations and find that my degree was too expensive,1
+.",26
+g8p61lt,ja5y2m,That’s why I want to study math. So that when I’m finished I can do the calculations and find that my degree was too expensive,4
 g8nwonq,ja5y2m,I would like to ask for some suggestion since you have done it before. What would you do to make it better?,12
 g8ol70c,ja5y2m,"Done things that get overlooked (at least in my country) but really helps worth analytic thinking: 
 
@@ -53,8 +157,8 @@ g8ol70c,ja5y2m,"Done things that get overlooked (at least in my country) but rea
 
 - others numerals, binary, ternary, octal, hexadecimal.  Conversion between them. Operations in each system (not making conversion from every side) 
 
-Take 2 or 3 Martin Gardner books and pick the exercises at his level.",8
-g8pa9wm,ja5y2m,Thanks mate. I thought about 'the clock' too. Roman numerals seems like a easy to do project that I will work on next (if no one has done it in a worksheet style yet).,1
+Take 2 or 3 Martin Gardner books and pick the exercises at his level.",10
+g8pa9wm,ja5y2m,Thanks mate. I thought about 'the clock' too. Roman numerals seems like a easy to do project that I will work on next (if no one has done it in a worksheet style yet).,2
 g8o78g2,ja5y2m,"Depends on your ""use case"". What's your son's math ability? Where is he running into difficulty?",4
 g8pamuv,ja5y2m,Trying to do it in general and not just for my son. I am overwhelmed that this post got that many responses and love for now (I am new with reddit and personal GitHub).,1
 g8o3mt4,ja5y2m,"Great idea and nice code!
@@ -67,11 +171,11 @@ a = b
 b = c  
 (around line 35)
 
-But all in all,  I would be happy if my coworkers wrote only such a readable code.",79
-g8o4ynq,ja5y2m,Thanks mate this is a great compliment!,26
+But all in all,  I would be happy if my coworkers wrote only such a readable code.",85
+g8o4ynq,ja5y2m,Thanks mate this is a great compliment!,27
 g8o6lip,ja5y2m,Any idea what this kind of assignment is called? I never knew that and have no idea what to google to find out more.,12
-g8o7evi,ja5y2m,Multiple assignment or tuple unpacking,16
-g8oxihl,ja5y2m,Thanks!,3
+g8o7evi,ja5y2m,Multiple assignment or tuple unpacking,19
+g8oxihl,ja5y2m,Thanks!,4
 g8oz5yu,ja5y2m,"You can also use * to unpack things.
 
 Like:
@@ -90,20 +194,22 @@ The *args part (when as a parameter) allow you to take any number of arguments a
 
 And as an argument unpack the tuple and pass then separately. I.e. add(item_1, item_2, item_3, ...)
 
-Edit: how the fuck I format this?",3
+Edit: how the fuck I format this?",4
 g8oaqbh,ja5y2m,"I don't use python a lot, I mostly use Java because it's what I'm familiar with, and oh my lord that's the most beautiful thing I've ever seen",8
-g8oskfp,ja5y2m,You can also return values from a function like that.,3
+g8oskfp,ja5y2m,You can also return values from a function like that.,5
 g8owdkr,ja5y2m,"And in C, you write a page-long [generic swap function, a helper macro for memory allocation and a pseudo doxygen declaration](https://github.com/andyn/misc/blob/671559fb3f3a34952468d656a97bc0311697e322/include/swap.h) for it. In the final assembly code, the registers just swap place.
 
 Don't thank me, thank Jens Gustedt.",5
 g8o0xwn,ja5y2m,"Now he has to make a answer generator in python to get out of the endless question loop.
 
-Great python learning opportunity, I say.",78
+Great python learning opportunity, I say.",83
 g8o4pxf,ja5y2m,heh I will be so impressed if he does it,35
 g8nz6e9,ja5y2m,"Nice! This was one of the first project I ever did myself. I made one of these for my HS algebra teacher back when I was in 10th grade.
 
-Back then I ended up doing it in C because that was all I knew (I made lots of bad decisions back then).",18
+Back then I ended up doing it in C because that was all I knew (I made lots of bad decisions back then).",17
 g8o4stc,ja5y2m,Did you make something that my tool hasn't covered yet? I am looking for suggestion to improve it.,5
+g8o3ji1,ja5y2m,19+71 and 18x 87 are not on the same difficulty level. 😄,10
+g8o560e,ja5y2m,You can choose different level and limit to one type of calculation.,3
 g8nwwel,ja5y2m,Oh nice! You just motivated me to make something like this myself and try them with a soroban.,9
 g8nx5a3,ja5y2m,Thanks. Feel free to fork my project and make it better.,6
 g8nzx4o,ja5y2m,"Suffer/brave through it with him and show him the beauty of math by enjoying it. He’ll pick up on the subtle enjoyment notes and if it’s in him start enjoying it too. 
@@ -114,8 +220,6 @@ Still remember how my dad just used different symbols to do multiplication when 
 
 Add a simple, gentle note at the end how there’s always a way to solve math problems.",8
 g8o5s01,ja5y2m,I am glad that this brings you back the valuable memory. Thank you for sharing your story mate.,4
-g8o3ji1,ja5y2m,19+71 and 18x 87 are not on the same difficulty level. 😄,7
-g8o560e,ja5y2m,You can choose different level and limit to one type of calculation.,2
 g8nz8ue,ja5y2m,You did such a great job I’m scared of what my childhood would’ve been like if my parents had this.,6
 g8o4tk5,ja5y2m,thanks so much!,2
 g8o40rz,ja5y2m,"Oh my, what if your son gets fed up and ends up picking up Python instead ( ͡° ͜ʖ ͡°)",4
@@ -125,10 +229,23 @@ g8o5ut7,ja5y2m,Will give up my beer time to help him build a good math foundatio
 g8o6r2u,ja5y2m,then automate that too and have him take the test digitally :),3
 g8ny31w,ja5y2m,This made me laugh so much. Great post!,3
 g8o4u6i,ja5y2m,My pleasure. Cheers!,2
+g8o9p22,ja5y2m,"Daddy is lazy and made a Python tool to automate the parenting tasks of generating homework.
+
+Plot twist: Son inherits the laziness and made a Python tool to automate complete that worksheet.",3
+g8pbs79,ja5y2m,I've been working hard to be lazy :),1
+g8oxrit,ja5y2m,"Step 1: Child learns Python
+
+Step 2: Child learns to use Raspberry Pi + camera + OCR to read mathematical equations on printed pages
+
+Step 3: Child learns to use requests to submit queries to Wolfram|Alpha and get back responses
+
+Step 4: Child finds or writes printing libraries to spool print output to write answers at selected locations on printed sheets",3
+g8pcx67,ja5y2m,Wow and integrate everything with a 'google glass' and beat the test!,1
 g8o9dou,ja5y2m,"Super showcase! This is where Python shines.
 
 On the other  hand, I like tuxmath better: math and fun go well together!",2
 g8pav9w,ja5y2m,Thanks mate. Does it come with gcompris? Will check it out and show it to my son.,1
+g8pg946,ja5y2m,"Its thought like a game, separate from gcompis. Pretty configurable and flexible... My son still use it in the 3rd grade....",1
 g8oagm2,ja5y2m,Looks great!,2
 g8paw4h,ja5y2m,Thanks mate!,1
 g8oewo9,ja5y2m,Wow! Interesting 😂,2
@@ -148,7 +265,7 @@ One thing to be aware of is that you’ve declared attributes on the class, rath
 Instead, you should declare attributes for an instance of the class. This means initialize them in your class constructor, __init__().",2
 g8pbfye,ja5y2m,Thanks mate I will look into it.,1
 g8o0436,ja5y2m,You should teach your son python rather than math!!!,2
-g8o5e3r,ja5y2m,I will but a good math foundation is a must to learn programming!,5
+g8o5e3r,ja5y2m,I will but a good math foundation is a must to learn programming!,4
 g8nvsjc,ja5y2m,Haha nicely done!,1
 g8nwpr8,ja5y2m,Thanks so much cheers!,1
 g8nzd7n,ja5y2m,So useful! Thanks!,1
@@ -173,10 +290,6 @@ For division, you can just do multiplication with a different symbol (either '/'
 
 Edit: grammar",1
 g8pbqj6,ja5y2m,The thing that stops me from making division is to print out the long division format. Still looking into a good way to get it done.,1
-g8o9p22,ja5y2m,"Daddy is lazy and made a Python tool to automate the parenting tasks of generating homework.
-
-Plot twist: Son inherits the laziness and made a Python tool to automate complete that worksheet.",1
-g8pbs79,ja5y2m,I've been working hard to be lazy :),1
 g8oa2od,ja5y2m,Cheers son's crying. Nice one,1
 g8pbt4y,ja5y2m,Cheers mate.,1
 g8oc9it,ja5y2m,"if you want to improve on it, looks at Khan Academy and how they deal with progressive learning.
@@ -192,26 +305,26 @@ g8pc9z5,ja5y2m,My coworker actually patched it to have only positive number rang
 g8ofg4j,ja5y2m,Dev I work with did the same. Made me smile when I saw it.,1
 g8pcd1u,ja5y2m,Wonder if his/her kid hates him too :),1
 g8ofvoe,ja5y2m,what if you made this inti a board game? progress upon each correct answer? he could play with his friends.,1
+g8pclt0,ja5y2m,u/KripC2160 suggests using pygame. Will definitely check it out.,1
 g8oh5pl,ja5y2m,Turn this into a game using pygame &gt;:D,1
 g8oj34s,ja5y2m,Love it,1
+g8pcmy8,ja5y2m,Thanks mate,2
 g8oji43,ja5y2m,ah i had to do something like this for my final in computing. super cool,1
+g8pcowa,ja5y2m,Glad that it brings you back the good memory,1
 g8okn1w,ja5y2m,"Lol...
 Did something similar for my son,
 
 https://github.com/N0rimaki/dothemath",1
+g8pcr0n,ja5y2m,Did he hate you too?,1
+g8piaqj,ja5y2m,he wasn't happy about it but he accept his faith.,1
 g8orku7,ja5y2m,Useful!,1
-g8oxrit,ja5y2m,"Step 1: Child learns Python
-
-Step 2: Child learns to use Raspberry Pi + camera + OCR to read mathematical equations on printed pages
-
-Step 3: Child learns to use requests to submit queries to Wolfram|Alpha and get back responses
-
-Step 4: Child finds or writes printing libraries to spool print output to write answers at selected locations on printed sheets",1
+g8pcq3k,ja5y2m,Glad that you find it useful mate,1
 g8p0pex,ja5y2m,"the format of this reminds me chess position practice ... polgars 5000+ moves book if interested.
 
 I think you should time the response, and reveal questions one by one upon correct entries.   This way the limit to the question count is lifted and the timing of the questions can introduce a bit of gamification aspect.
 
 I will fork and try but not sure when, so let us know if you get around ot it.",1
+g8pcypu,ja5y2m,Nice look forward to it,1
 g8p8gx3,ja5y2m,"I was scrolling through my home page, and I assumed this was a r/AITA question at first.",1
 g8p9e6r,ja5y2m,"After years, your son might build a solver using image recognition lol.",1
 g8p9y5i,ja5y2m,This is so wholesome. Do you plan on increasing the question difficulty as your son grows up and takes more advanced courses?,1
@@ -220,93 +333,34 @@ g8pb7ic,ja5y2m,34x75? You monster!,1
 g8pbl6f,ja5y2m,"I hate you already and your not my father haha.
 All that coding make it fun make it a game or something interactive. 
 Just my 2cents i feel your sons pain",1
+g8pf45t,ja5y2m,This comes just in time! I started reminiscing and began a script for speed tables.,1
+g8pkbp4,ja5y2m,"16-1
+
+18*87
+
+Interesting range of difficulty lol",1
 g8o2160,ja5y2m,"Nice work, and thanks for sharing. I created something like this (in Excel) for my kids to learn times tables a couple of decades ago.
 
 I noticed that you have spelt ‘separator’ incorrectly in some of the functions; you might want to correct that, as it may cause difficulty for someone else who uses this code. It’s difficult to work with function names when they have typos.",1
 g8o53si,ja5y2m,Thanks mate I just fixed the typo :). Thanks for taking the time to help out.,1
 g8o8eh8,ja5y2m,Where's division? XD,1
+g8pd0sz,ja5y2m,Still looking for a way to display long division format nicely...,2
+g8pdkve,ja5y2m,"I miss that, please share after ^^",1
 g8o3t6i,ja5y2m,"Wonderful, although some pythonistic changes would make your code much more readable and reproducible",0
+g8pd79a,ja5y2m,Thanks mate. Fixed some typo already from other's suggestion and will definitely try to make it better.,1
 g8o91dh,ja5y2m,is it just calculator?,-1
+g8pd7zu,ja5y2m,no,1
 g8o724z,ja5y2m,"I hate to be *that* guy, but isn't this the polar opposite of what the ""new math"" of the common core is all about?  This is teaching the *process* in a terribly boring way and not the *intuitive understanding*. In fact, this *is* what will make somebody *hate* math. Remember, calculators and phone-apps are never going away now, so he'll never actually need to do long-multiplication on paper when he grows up.
 
-https://en.wikipedia.org/wiki/New_Math",-2
-g8o8c0n,ja5y2m,"No, it’s not. Common core, which is a very useful and innovative approach to teaching, doesn’t work without practice. Worksheets of raw calculations provide practice and the student can use whichever method is most intuitive to solve the problems. Word problems are better for critical thinking and computations are better for practicing algebraic manipulation of numbers. You need all of it for common core to work most effectively.",4
+https://en.wikipedia.org/wiki/New_Math",-3
+g8o8c0n,ja5y2m,"No, it’s not. Common core, which is a very useful and innovative approach to teaching, doesn’t work without practice. Worksheets of raw calculations provide practice and the student can use whichever method is most intuitive to solve the problems. Word problems are better for critical thinking and computations are better for practicing algebraic manipulation of numbers. You need all of it for common core to work most effectively.",5
 g8o97je,ja5y2m,"Within reason. Conside the OP's introductory paragraph in the link:
 
 &gt; My best friend tests his 5 year old basic math questions from store-bought material which is good for one time use (his son memorizes the answers) …. but he wants to give him more practice.
 
 If his 5 year old is memorizing the answers after one use, then he's probably ""got"" the process and accuracy already. We don't want an endless stream of practice of the same old process just to shut the kid up during the lockdown. I'm not saying that's happening here, just pointing out that the kid might well be ready to move on to learning  the next item in the math curriculum. I appreciate that's a whole lot of extra work for the parent, which might not be that welcome.
 
-Edit: I love math myself. (Look at my post history.) But I have to say that the OP's example of a long list of worksheets gave me a sinking stomach feeling that might well be felt by the kid.",-2
-g8ng1j6,ja3t58,"It's cool, but nothing beats `--headless` with selenium when I have to drive a web browser with JavaScript. 
+Edit: I love math myself. (Look at my post history.) But I have to say that the OP's example of a long list of worksheets gave me a sinking stomach feeling that might well be felt by the kid.",-3
+g8pdy3f,ja5y2m,"My friend actually is planning to let his kid to practice one sheet at a time only. I made it to print out multiple sheets to save him trip to the printer (save the beer time). 
 
-If not, `requests` and `bs4` is all you need.",18
-g8ntsc3,ja3t58,selenium ftw,5
-g8obc6o,ja3t58,"I like robobrowser[0] for stuff that doesn't need javascript.
-
-
-[0] https://robobrowser.readthedocs.io/en/latest/readme.html",1
-g8oxgun,ja3t58,"&gt; If not, requests and bs4 is all you need.
-
-For more serious crawling, scrapy is much more powerful.",1
-g8nwrjn,ja3t58,Puppeteer all the way,3
-g8o4mlj,ja4exn,Data classes were 3.7 I think,3
-g8o6agz,ja4exn,"They were added in 3.7, not 3.6.
-
-https://docs.python.org/3/library/dataclasses.html#module-dataclasses",2
-g8o9xp2,ja4exn,Sorry for the mistake!,1
-g8oar3a,ja4exn,"It's worth noting that dataclasses was back ported to 3.6. 
-
-https://pypi.org/project/dataclasses/",2
-g8p3uns,jaednq,"For starter, you have four, almost identical functions , the only difference between them is the file type. This is clearly a violation of the  DRY (Don’t Repeat Yourself) principle, but it’s quite easy to fix.",3
-g8p4jod,jaednq,What is your suggestion to fix the DRY?,1
-g8p4s7h,jaednq,"Functions can have arguments, you know ;-)",3
-g8paykj,jaednq,"Thanks for the feedback, i updated the code and made what i thought was correct and better. Instead of functions now it calls the ""organizer"" function with different arguments.",1
-g8pc0c7,jaednq,"Cheers!
-
-It’s already looking better, but there’s still a lot of repetitions. I’d suggest to look into data structures (dictionary, for example) and loops, for more possible improvements.",1
-g8pc6qo,jaednq,"Yes, thank you. Will look into that and improve it.",1
-g8ml52j,j9yz3x,"Twitter in has a developer friendly API, but there's a lot of rules that came up because of the 2016 US election. I haven't done anything with Facebook's API recently, because they keep changing stuff which is annoying to me.",3
-g8mlud1,j9yz3x,Does it mean what I am thinking is actually being done. And it's kind of getting obsolete now ? Cus I came across this just today while I started learning python. It seemed unrealistic at first but then I read on internet and at last though of askin experts.,1
-g8mo1go,j9yz3x,"If I understand your concept correctly, it is possible and people have done it. But there's still a lot of research potential and business opportunities in developing those tools IMHO. 
-For example, people know how to analyze the sentiment but more research on how sentiment impacts a platform is needed. 
-Also, there's a lot of companies willing to pay for custom social media automation. Just depends on the business case.",2
-g8p50f0,j9yz3x,Awesome .. exactly something I wanted to hear,1
-g8mkzlv,j9v5ex,Im sure one day this subreddit will help me find a gf with a script,3
-g8n4135,j9v5ex,Maybe this script can be helpful to you https://github.com/aj-4/tinder-swipe-bot (from this video https://youtu.be/lvFAuUcowT4 ),1
-g8mkd7a,j9v5ls,"I remember this, glad ur adding more to it",1
-g8muoyc,ja07mw,"This is silly. Python and Go could not be more different. One is an object oriented, dynamically typed and extremely readable multi purpose language that is used in almost any domain and even used to glue things together. The other is a functional, statically typed heavy duty language mostly used to build sturdy systems.
-I could see Go taking some (some at most) market share from Python in web development and maybe even machine learning in production, but go is not at all practical for many things that Python is used for.
-
-Go’s strengths are its technical merits and high brow features. Python’s strengths are its flexibility, massive standard library and even bigger eco system. These two languages will remain popular in there respective worlds.",8
-g8p02dr,ja07mw,Go is neither functional nor heavy duty.,2
-g8n09wz,ja07mw,"I’m with u/unltd_J here.
-
-The real takeaway hear is that programmers have opinions :tm: and  will always push whatever they think is best - even if that’s not actually the case, or even applicable. Consider the languages strengths and use them to solve problems they’re good at helping solve.
-
-It’s 2020, we can’t go six months without tripping over a new programming language or a major version update of an existing programming language that promises to *cHaNgE eVeRyThInG*.",1
-g8nfdds,ja07mw,"the author is an ""enthusiast"" and a ""blogger"", so take it with a big grain of salt",1
-g8oj2nd,ja07mw,"The two languages that I think will dominate the future is Python as a high level language where you will develop most of your programs in and Rust for low level language where you need performance.
-
-Go was interesting when it came out, but its selling point of goroutine concepts are hardly unique and it doesn't really solve a hard problem, and Python's native coroutines with async/await already pretty much does the same.
-
-Rust on the other hand has some interesting concepts that makes it quite unique. Unlike Go, Rust's selling point is the object ownership concept that makes safe concurrency in large, complex system easy, are hard to replicate in existing languages or in other languages that doesn't just basically become Rust with a different syntax.",1
-g8mryit,ja07mw,I like medium because they give a lot of great tutorials and such but it is also very weird in how one day it leans towards python and the next day against it.,-2
-g8oamnb,ja07mw,Almost as if there are multiple people publishing on medium,1
-g8m0oa2,j9tjsi,Is there any Desktop version? I don't have phone.,2
-g8mcptg,j9tjsi,"Unfortunately no, but you may be able to get it to work through an android emulator.",1
-g8maraa,j9tjsi,Cool im actually learning Python.,2
-g8mcrpw,j9tjsi,I hope you like it.  Let me know what you think.,1
-g8p5b69,jaf51g,Wow. Amazing.,1
-g8p1ecl,jadzdq,"Hello,
-
-Reddit appears to be having some trouble with the scheduled submissions today. We are removing some of the duplicate scheduled submissions as a result. There will probably be a lot more copies of this submission that appear and get removed as a result. I imagine in sson it should be resolved and whatever tuesday megathread remains live will be the remaining one. Until then, while you're free to ask questions, we may be removing the threads they're in.",1
-g8pbooa,jadzdq,"I asked [this question](https://www.reddit.com/r/MLQuestions/comments/ivmdb0/whats_the_best_library_to_tune_a_strategy_ai_with/) a few weeks ago in /r/MLQuestions:
-
-&gt;What's the best library to tune a strategy AI with a very slow cost function?
-
-but didn't get any responses. I think Python likely has something for me, but I'm surprised that everything I've seen so far is pretty wonky, or unpythonic.",1
-g8p22vx,ja8yjn,What is fuzzing?,1
-g8p3s1k,ja8yjn,"Fuzz Testing, that a method to find bugs in software",1
-g8o11uc,ja6fvp,I'm not a fan of pyinstaller anymore. It seems with every new python version it stops working or has some sort of problem.,3
-g8ojvmd,ja6fvp,This has helpedme create dumb reports for clients that would otherwise be complex Excel macros.,2
+You are right that forcing kid to do something that he doesn't find it interesting could be counter productive. Parent shall treat it as a supplementary materials if the kid wants to take more practice and challenge.",1

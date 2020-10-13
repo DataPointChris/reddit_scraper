@@ -1,36 +1,15 @@
 import argparse
 import configparser
 import datetime
-import logging
-import logging.handlers
 import os
 import time
 from pathlib import PurePath
 
 import pandas as pd
 import requests
-import databases
 from tqdm import tqdm
 
-# ---------- GLOBAL SETTINGS ---------- #
-
-FILENAME = PurePath(__file__).stem
-ROOT_DIR = PurePath(__file__).parent
-DATA_DIR = ROOT_DIR / 'data'
-DATABASE_DIR = DATA_DIR / 'databases'
-SCRAPED_DIR = DATA_DIR / 'scraped'
-LOGS_DIR = ROOT_DIR / 'logs'
-
-# ------------------------------------- #
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-formatter = logging.Formatter(
-    '%(asctime)s:%(name)s:%(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
-file_handler = logging.handlers.RotatingFileHandler(filename='scraper.log',
-                                                    maxBytes=10_000_000, backupCount=10)
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
+import databases
 
 headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
            'accept-encoding': 'gzip, deflate, sdch, br',
@@ -43,8 +22,7 @@ headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,imag
 class RedditScraper:
     """Scrapes one or many subreddits, with or without comments
 
-    Use config files in this directory to configure scraper options rather
-    than set them explicitely.
+    Use config files in 'scraper_configs' to configure scraper options.
     Documentation of the options is in the config files.
 
     Parameters
@@ -56,39 +34,26 @@ class RedditScraper:
     include_comments : bool, default=True
         Whether to include comments for each post
 
-    save_method: string, default='sqlite'
+    save_method: string, default='csv'
         Save location (and method)
-
-    Returns
-    -------
-    params : mapping of string to any
-        Parameter names mapped to their values.
     """
 
-    def __init__(self, project_name=None, sorting='new', 
+    def __init__(self, project_name=None, sorting='new',
                  include_comments=True, save_method='sqlite'):
         self.project_name = project_name
         self.sorting = sorting
         self.include_comments = include_comments
         self.save_method = save_method
         self.date = str(datetime.datetime.now().date())
+        self.project_directory = PurePath(__file__).parent / self.project_name
+        if not os.path.exists(self.project_directory):
+            os.makedirs(self.project_directory)
 
     def get_post_urls(self, sub_url):
-        """Get post URLs for a given subreddit
-
-        Parameters
-        ----------
-        sub_url : string
-            Sub
-
-        Returns
-        -------
-        params : mapping of string to any
-            Parameter names mapped to their values.
-        """
+        """Get post URLs for a given subreddit"""
         after = None
         posts_url_list = []
-        for _ in range(1):
+        for _ in range(40):
             if after is None:
                 params = {}
             else:
@@ -97,10 +62,10 @@ class RedditScraper:
                 response = requests.get(
                     sub_url, params=params, headers=headers, timeout=None)
             except(ConnectionError, ConnectionResetError) as e:
-                logger.exception(f'Error scraping {sub_url}: {e}')
+                print(f'Error scraping {sub_url}: {e}')
                 continue
             if response.status_code != 200:
-                logger.info(f'Error: {response.status_code}')
+                print(f'Error: {response.status_code}')
                 continue
 
             post_json = response.json()
@@ -116,6 +81,7 @@ class RedditScraper:
         return posts_url_list
 
     def jsonify_url(self, url):
+        '''Get json from url'''
         url = f'{url[:-1]}.json'
         return url
 
@@ -150,7 +116,8 @@ class RedditScraper:
 
         Returns
         -------
-        (posts_df, comments_df)
+        tuple: (posts_df, comments_df)
+        If 'include_comments' is set to False, comments_df will return None
         """
         # create URL from subreddit name
         sub_url = f'https://reddit.com/r/{subreddit}/{self.sorting}.json'
@@ -159,20 +126,20 @@ class RedditScraper:
 
         posts_df = pd.DataFrame()
         comments_df = pd.DataFrame()
-        for post_url in posts_url_list:
+        for post_url in tqdm(posts_url_list):
             post_url = self.jsonify_url(post_url)
             try:
                 response = requests.get(
                     post_url, params=None, headers=headers, timeout=None)
             except(ConnectionError, ConnectionResetError) as e:
-                logger.exception(f'Connection error scraping {sub_url}: {e}')
+                print(f'Connection error scraping {sub_url}: {e}')
                 continue
             except Exception as e:
-                logger.exception('Scraper Exception:', e)
-                logger.exception(f'Skipping this post: {sub_url}')
+                print('Scraper Exception:', e)
+                print(f'Skipping this post: {sub_url}')
                 continue
             if response.status_code != 200:
-                logger.info(f'Response Error: {response.status_code}')
+                print(f'Response Error: {response.status_code}')
                 continue
             post_json = response.json()
             post_id, post_title, post_body, upvotes = self.get_post(post_json)
@@ -196,21 +163,21 @@ class RedditScraper:
                 comments_df = pd.concat(
                     [comments_df, comments_data], ignore_index=True)
 
-        logger.info(f'{len(posts_df)} scraped for "{subreddit}"')
+        print(f'{len(posts_df)} scraped for "{subreddit}"')
         if self.include_comments:
             return (posts_df, comments_df)
         return (posts_df, None)
 
     def save_to_csv(self, df, table_name, subreddit):
-        save_dir = SCRAPED_DIR / subreddit
-        if not os.path.exists(save_dir):
-            os.makedirs(save_dir)
-        df.to_csv(f'{save_dir}/{self.date}_{table_name}.csv', index=False)
+        csv_path = self.project_directory / 'csv'
+        if not os.path.exists(csv_path):
+            os.makedirs(csv_path)
+        df.to_csv(f'{csv_path}/{self.date}_{subreddit}_{table_name}.csv', index=False)
 
     def save_to_sqlite(self, df, table_name, subreddit):
         db = databases.Sqlite()
         connection = db.create_connection(
-            f'{DATABASE_DIR}/{self.project_name}.sqlite')
+            f'{self.project_directory}/{self.project_name}.sqlite')
         cursor = connection.cursor()
 
         if table_name == 'posts':
@@ -228,9 +195,9 @@ class RedditScraper:
 
             for row in df.itertuples():
                 row_values = [row.post_id, row.post_title, row.post_body, row.upvotes, row.subreddit, row.date]
-                cursor.execute('''INSERT or REPLACE into posts (post_id, post_title, post_body, upvotes, subreddit, date) 
+                cursor.execute('''INSERT or REPLACE into posts (post_id, post_title, post_body, upvotes, subreddit, date)
                     values (?, ?, ?, ?, ?, ?)''', row_values)
-            
+
             connection.commit()
 
         if table_name == 'comments':
@@ -238,15 +205,15 @@ class RedditScraper:
             CREATE TABLE IF NOT EXISTS comments (
             comment_id TEXT PRIMARY KEY,
             post_id TEXT NOT NULL,
-            comment TEXT NOT NULL,
-            upvotes INTEGER NOT NULL
+            comment TEXT,
+            upvotes INTEGER
             );
             """
             cursor.execute(create_comments_table)
 
             for row in df.itertuples():
                 row_values = [row.comment_id, row.post_id, row.comment, row.upvotes]
-                cursor.execute('''INSERT or REPLACE into comments (comment_id, post_id, comment, upvotes) 
+                cursor.execute('''INSERT or REPLACE into comments (comment_id, post_id, comment, upvotes)
                 values (?, ?, ?, ?)''', row_values)
 
         print('Data saved to sqlite database successfully')
@@ -263,7 +230,7 @@ class RedditScraper:
     def save_to_mysql(self, df, table_name):
         return 'save to mysql'
         # not implemented
-        
+
     def save_to_s3(self, df, table_name):
         return 'save to S3'
         # not implemented
@@ -287,19 +254,19 @@ class RedditScraper:
 
 
 def main():
-    logger.info('PROGRAM STARTED')
+    print('PROGRAM STARTED')
     scraper = RedditScraper(project_name=project_name, sorting=sorting, include_comments=include_comments)
     if len(subreddit_list) > 1:
-        logger.info(f'{len(subreddit_list)} total subreddits to scrape.')
+        print(f'{len(subreddit_list)} total subreddits to scrape.')
     for i, sub in enumerate(tqdm(subreddit_list), start=1):
-        logger.info(f'Scraping "{sub}" subreddit')
+        print(f'Scraping "{sub}" subreddit')
         posts_df, comments_df = scraper.scrape_subreddit(sub)
-        logger.info(f'Saving {sub} posts data to {save_method}')
+        print(f'Saving {sub} posts data to {save_method}')
         scraper.save_choice(posts_df, save_method, table_name='posts', subreddit=sub)
         if include_comments:
-            logger.info(f'Saving {sub} comments data to {save_method}')
+            print(f'Saving {sub} comments data to {save_method}')
             scraper.save_choice(comments_df, save_method, table_name='comments', subreddit=sub)
-    logger.info('PROGRAM FINISHED')
+    print('PROGRAM FINISHED')
 
 
 if __name__ == '__main__':
