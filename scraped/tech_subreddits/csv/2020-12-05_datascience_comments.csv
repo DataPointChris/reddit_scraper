@@ -1,0 +1,598 @@
+comment_id,post_id,comment,upvotes
+geprsz4,k7bdib,10 hours seems excessive.  That's a quarter of a work week...,1
+gepsis0,k7bdib,"It’s crazy excessive. If you’re just starting out then you’ve got to do what you’ve got to do. If you’re an experienced DS I’d encourage you to push back on these things. Tell the recruiter you don’t do that much work for free. Tell your director that you won’t make every candidate take their stupid personality test. 
+
+At least in the US it’s very easy to have a good career without subjecting yourself or your potential employees to this garbage.",1
+gepqulj,k7bdib,"Data Science Interviews can be an extremely stressful experience. An unfair interview is a worrisome indicator about the position itself and you would probably not want to work there. A good interview should assess your skills and knowledge in a timely manner and make you comfortable with your future team and with the workload. Fortunately, there are many great data science job positions available and not every interview will be so stressful. Glassdoor reviews provide more information about the interview and work experience. The data science interview is the best way for you and your employer to decide if the job is for you so it is important to be well prepared. There are great resources to practice with including Kaggle ML competitions, Hackerrank SQL and Python, DataCamp, and [ML Interview Prep](https://www.aceainow.com).",1
+gepscy6,k7bdib,Jokes on you for spending 10hrs on an interview.,1
+gept87f,k7bdib,"Just don't spend 10 hours on it. If a company asked me to do that I'd ask for $500 pay for my time, or just back out of the interview process.",1
+geppmuq,k7azmq,"Find out what programming languages they're going to be teaching and start watching YouTube tutorials
+
+ If The teachers are anything like the teachers at my school, you'll have people who have no familiarity with those languages attempting to teach incredibly esoteric and non-practical concepts
+
+You will definitely be learning on your own
+
+Good luck homie",6
+geptciz,k7azmq,Thanks for the tip! I already started with python through solo learn and udemy. Hoping to at least become familiar with syntax and knock out some guided projects on my own. Then do the same for R before I get started with the classes itself. Any suggestions for online resources for stats? Last time I took stats was probably 11 years ago.,1
+geprbug,k7ailt,Awesome!! You have a new subscriber now :),1
+gepo8r6,k79o6m,check out kaggle,1
+gep9od1,k78iw0,"I can vouch for this laptop. A team I lead uses them, they’re solid.",3
+gep9t6k,k78iw0,"if you're going to use cloud computing, you can even go for a Chromebook. I generally recommend a used Mac for beginners just because of the ease of setup, but if you're OK with Windows, go for it. The one you linked should be more than capable.",3
+gepp1s5,k78iw0,What isn't easy to set up for windows? I have never used a Mac in my life and haven't ever had any issues with windows even though my PhD.,1
+gepsdmc,k78iw0,"Source: 23 years in analytics. While you say heavy lifting will be performed in the cloud there will in evitably come a time that you will be doing the heavy lifting locally. 16gb of RAM on a machine of a data scientist is not enough. I run 64gb of RAM and there are times even that gets tested. The max amount of RAM in a W530 is 32gb
+
+It looks like the W530 can be upgraded to that 32gb via an easily accessible panel on the bottom of the laptop. But this can only be done with two 8gb dimms. The other two 8gb dimms reside underneath the keyboard.
+
+Will this laptop work, yes. Would I immediately add 16gb more of RAM into it, yes.",1
+gepaexz,k77zuv,"Do them only if they are free or someone sponsors you e.g. a library/school/employer.
+
+These courses are not very good and even if they were, employers don't value them as much as you think. The names of big universities linked to these courses mean nothing.
+
+Python4Everybody is offered free of cost online by the same instructor.
+
+The excel course (I took that) teaches pivot tables, charts, lookup functions and formulae. It doesn't teach VBA and macros. You can probably finish the whole course within a couple of days. I haven't taken the entire specialization but i believe the courses are good.
+
+For SQL and Tableau, I would suggest looking towards other alternatives.
+
+Learn by doing is the best thing I can suggest. Learn enough through YouTube, Medium articles and tutorials and build small projects.
+
+Good Luck!",2
+gepafzh,k77zuv,"I took the python for everybody course and thought it was great. I only had about 2 weeks of self taught python experience beforehand. I'm currently doing the applied datascience with python specialization (also by university of michigan) and think its also pretty good, but it's definitely more focused on self teaching.",1
+geox8dg,k754dh,"\- Does ""without degree"" mean just degrees in CS fields, or without any degree at all? (e.g. I have a BA with a literature and economics double major, would I be counted as ""no degree""?)
+
+\- I'm not sure how much it matters in this field, but you have quite a few spelling, capitalization, and grammar issues, and some sentences seem unclear... 
+
+&amp;#x200B;
+
+But good luck with your project.",12
+geoxo6z,k754dh,I will correct those mistakes soon. Thanks for pointing out. Without university degree means without any formal education. They could have got professional certification or self thought.,-4
+geoxqnm,k754dh,"Yes, you will be counted",-5
+gep4m5c,k754dh,"In your above comment, you say “without university degree means no formal education”, and then go on to say that the previous poster with a degree in economics &amp; literature will be counted as “without degree”, even though they do have a formal education. I think you should explicitly say that you intend “without degree” to mean specifically “without degree in CS or data science related field.” But to be clear, is that what you mean?
+
+I only took a brief look at the project, though I do think it’s interesting. One thing I didn’t see (but perhaps missed), is where you compared the unemployment for those with coding experience &amp; those without (regardless of whether or not they have a degree). This could be interesting in figuring out if coding experience trumps having a degree when it comes to finding a job.",8
+gep45zk,k754dh,"You probably should fix your typos, such as the conclusion ""Getting univerisity Degree Neccesay in Data Scince?""",8
+geovm45,k74r59,It somewhat prepares you for writing an academic paper,1
+gep7agx,k74r59,"&gt; The higher the students are inspired to write, the higher they will  enhance their expertise later sometime. Therefore, the quality of  writing assignments in the department of special knowledge cannot be  viewed in either direction. 
+
+That's some quality gibberish right there.",1
+geob8tu,k71vhk,"Splitting a 3 or 4 credit course into 2 separate courses makes the program more flexible for people who are part time students
+
+You can see the places where they split it, for example
+
+&gt; STAA 551 Regression Models and Applications  
+&gt; STAA 552 Generalized Regression Models
+
+and
+
+&gt; STAA 555 Statistical Consulting Skills  
+&gt; STAA 556 Statistical Consulting",2
+geodfos,k71vhk,Thank you 🙏,2
+gepah3w,k71vhk,"Yeah, this is not a money grab, this is a 'let's teach you valuable skills for.the future.'",1
+gen7jy9,k6v9ve,"Sounds like you're interested in a Product Manager-like position for the data science team. PMs are typically not coding at all (or very little if they have the background, more querying than building) and manage the stakeholder needs and prioritization in order to deliver analysis or tooling or models. They also work with the tech team to explain what the needs are and collaborate on breaking it down into smaller pieces for project management purposes.",5
+gen9ny9,k6v9ve,That's interesting. But my concern is to narrow down too much by taking this position. Perhaps there is a role before PM which I could take and growth till I can take a PM position?,1
+gen7po2,k6v9ve,"This sounds like product management, specifically, being a technical PM for a team of data scientists or ML engineers.  Not a lot of those positions out there, to be fair, but that role would be incredibly valuable to the right company.",3
+gen9aaw,k6v9ve,"Interesting.
+
+""Not a lot of those positions out there, to be fair, but that role would be incredibly valuable to the right company.""
+
+That's my concern which I'm probably narrowing down too much on my career at the very beginning. What role could I take before PM? Guess I have the skill but have no uni background in Business/trainings/certifications",1
+genc557,k6v9ve,"You can be a PM for a regular software engineering team, the skills are pretty transferrable.  Lot of demand for good software PMs.  Doing that would take you away from thinking about data products and data science, however.  
+
+You already have some technical experience, you don't need to take any more roles before PM if your manager thinks you're ready, especially because it would probably be a pay cut (unless you switch to SWE yourself).",1
+geoj6c1,k6v9ve,"He said I can take a Project Manager role, not Product Manager, replacing one of my colleagues who will leave. Product Manager seems interesting but Project Manager seems boring to me. 
+
+Feels more right to me to have a role pre project, when you have to understand the problem, suggest solutions (and even test them), or post project when you meet some stakeholders which could potentially use the solution your team has built.",1
+genzjpf,k6v9ve,"&gt; connect with stakeholders, understand their problems related to data, suggest solutions and tests with proof of concepts and create roadmaps for future DS projects
+
+Assuming you're building the proofs of concepts yourself and creating data science products, I'd say that this potentially all falls under the remit of a data scientist, especially at a smaller company. The business has a problem, a data scientist talks with stakeholders to understand the problem, suggests a solution, then builds, tests and implements it. Some companies might have additional steps or layers in there so the data scientist ends up further away from the stakeholders but plenty of companies have data scientists disscussing problems directly with stakeholders.
+
+If you don't want to actually be doing the data science work then you effectively want to be one of those layers that sits between the data scientists and the stakeholders.",3
+geoix2n,k6v9ve,"And what could be a position in this layer between DS and stakeholders? I work in a big company and my team is quite big, hence this pressure to structure better the roles. 
+
+I had a talk with the Lead DS of my team and he suggested to take a Data Analyst position. But not entirely sure if this transition from DS to DA makes sense",1
+geo6ssm,k6v9ve,"I agree with above, you can be a data scientist (if you want to code ML), or a product manager in data science (if you don’t want to code and do more business). 
+DS has more jobs openings, more liberty, but can be too broad, hard to find the ideal position, need to learn a lot.
+PM has less jobs openings, but pays more, need to learn less, and is more about communicating.
+
+Both are interesting and good. It is a personal choice in the end.",1
+gen53l4,k6t3g7,"Yes we call it documentation. It’s a formal write up of the work and model build process. Define the project and motivation. Actions taken and justification for the action. Document variable transformations and treatment to variables. All that stuff we formally write up. That way anyone can read it and understand the project motivation and scope, steps taken, reasons for each step taken, and results. That makes your work replicable",5
+gengq8y,k6t3g7,"When I am allowed the luxury of completing a project in the manner I want, I tend to create an Rmarkdown document for the process. This allows extensive commentary without having to include extensive comments in the code itself. The extra detail is always nice when looking through my own past projects, and it's also beneficial when handing a project over to a colleague.
+
+As a rule, I want to be able to run my pipeline script from scratch, from accessing raw data, through all of the steps to completion, and get the same result (given same raw data), whenever I want. While I frequently save objects to save processing time as convenient, the only real dependency is the raw data.",2
+gep73l8,k6t3g7,"Check out Kedro, my life got so much better with it",2
+gendn77,k6t3g7,"Create a documentation template so everyone's documentation matches and it is more organized. We also created a model ID for each model so we could keep track of it. Deployments had an ID so that if you built and replaced a deployment with a new model, you could maintain that connection and have many models pointing to one deployment over a long period of time.",1
+gene4c5,k6t3g7,"I’ve heard this referred to as “data lineage” —- you want to know exactly the steps that happened between your input data and whatever your output is. This is an area that’s still maturing, so I doubt you’ll find a 100% perfect fit for your use-case, but there are some tools that might get you part-way.
+
+For Python, `sklearn` *pipelines* are kind of a solution, since they list a series of steps that your data goes through. The final step can even be fitting a model. Each transformer has fit and transform methods, but you can use an empty fit method for stateless transformers.
+
+On the R side of things, the `recipes` package lists preprocessing steps. You can even give your steps manual descriptions to keep track of what’s going on. Alternatively, the `tidylog` package patches common `dplyr` verbs to automatically print information about the transformations.
+
+If you actually want to capture the results of intermediate steps, and not just descriptions of what the code is doing, consider looking into *Metaflow*. This is an open-source tool from Netflix that breaks processes into steps, with the results of each step captured on S3. It has bindings for both R and Python.
+
+The simplest solution is to add some logging to your code if you haven’t already. It’s surprising how little logging there is in data science code, but I consider it mandatory for any serious project.",1
+genqclk,k6t3g7,"Beside the tools already mentioned in other answers, take a look at solutions for reproducible research.  However, I've found that the existing tools most often come handy when working on larger projects and established pipelines close to production, less in the research/experimentation phase in practice, as the pace and number of branches explored are high and there are lots of details to keep track of. 
+
+But despite the tools, what really makes a difference is having the culture and allocating time for doing this one way or another. Once the goal and value documentation is clear, you can even get things rolling with basic tools/setups for (1) capturing the main questions/ideas, lessons learned and choices made in modelling, and (2) a visual overview of the key steps in the modelling pipeline as some sort of graph. While automation and tools help with efficiency, taking time to create or at least review these documents is precious for both reflection on the work done as well as posterity.",1
+gepdbk8,k6t3g7,"Look into kedro or MLflow.
+
+Also parameterize your experiments using YAML/JSON, save artifacts in time stamped folders for each run with all the parameters, random seeds, logging output etc.
+
+Verbose logging helps as well to document exactly what's going on. Use python logging module.",1
+gem59jw,k6npmr,"As a general guide:
+
+1. Academics vastly overestimate how applicable their work is to industry.
+2. Practicioners vastly overestimate how complex their models are.
+
+With all that said: yes, there are companies where their data scientists are using math that is incredibly complex - maybe more so than what you're learning because they're wrinkles specific to their industry that requires what is essentially research work.
+
+However, those are going to be the vast minority. The majority of data science jobs aren't measured on the complexity of the models they use, but rather their ability to generate ROI. And really complex math is seldom the best path to good ROI (because the I is really high). 
+
+Having said that, what I've found is that someone that has more in-depth experience with math is more likely, at some point in their career, to flex a *little*  bit harder than colleagues who don't, and sometimes that little bit is enough to make a big, big difference.",10
+gelx8kn,k6npmr,"Obligatory caveat that the responses that you get on this will vary from responder to responder based on the particulars of their experience. That said, in my experience these types of courses are not at all *directly relevant*; that said I don’t have any regret about taking such courses as part of my undergraduate education. They often are required classes ofc and trying to excel at your degree experience is a good thing.  In addition one can make the whole ‘learning and practicing how to think analytically is a good thing’ argument. But again to answer your question directly in my experience these types of classes are typically not at all directly relevant (but still not necessarily a bad thing to have invested time into).",7
+gemln7z,k6npmr,"It's going to be a small minority of data science work that go deep into these topics. Consider this: 
+
+(1)  there's really not much time or reason (value) to develop new tools in a large majority of the cases. Except in a few large corporations data scientists are not advancing the sate of the art in a major way in terms of algorithms and methods. They're busy applying the tools in solving problems, which itself poses good challenges. 
+
+(2) You need certainty and reliability in practical applications, which means you want to minimize relying on your custom code and solutions. Specially for complex topics. If it's something only a few people understand, it's risky to rely on a home made solution by one of your data scientists in a critical product/solution. Also, if only a few understand that topic, it's a big liability to count on one person in your team to know it; bus factor risks alone make it undesirable.",2
+gem00mh,k6npmr,"Industry?  Find a description and courses of a degree in industrial engineering , operations research.  Lots of fun stuff.
+
+The courses you listed just give you the foundation to learn the real stuff.",1
+gent0q2,k6npmr,"It's not so much how relevant each individual class will be; it's how much those classes contribute to a deeper understanding of math. That deeper understanding of math will be helpful.
+
+For a lot of ML tasks, the most powerful tool at the data scientist's disposal is the ability to create a custom metric to minimize/maximize. A deeper understanding of mathematics can help one make sure their ML model identifies the best model based on criteria equivalent to what the business would use if they were evaluating outcomes manually.",1
+gem2e9c,k6npmr,If you use any of those listed I would be surprised. Those are all the theory behind the useful stuff and you really don’t need to know it.,1
+gelm91i,k6m7dh,"Linear regression is still ML. K-means clustering is also ML. A model in production that was trained once and isn't touched again is still ML in production.
+
+Start with a manual process and then add linear regression to it. The first iteration doesn't have to be automated or any sophisticated ML.",6
+gem6056,k6m7dh,"This is something that data scientists tend to struggle with, but really need to improve on.
+
+You are being asked to do something and your approach is ""no, because"", when instead you should be answering ""yes, but"". 
+
+There are always going to be a million reasons why you shouldn't do something. It's hard, you're not ready, you don't have the data, etc, etc, etc.
+
+So if the request is ""let's build a model that does X"", and your response is ""we can't"" *and you stop there*, then you're limiting yourself and your company.
+
+Instead, ask yourself what you *can* do.
+
+Or let me put this differently: if someone kidnapped your parents and said ""add a new feature for our customers to predict some outcomes for one of our apps or we kill your parents"", what would you do?
+
+Ok, now go and do *that*, and then work with your boss up front to establish what you will need, what are going to be the limitations, what are the things you don't know yet, etc. 
+
+Yes - you see people on this sub complaining about having to do more with less all the time. You know what else you see? People complaining that they're not getting to do enough. That they're stuck doing dashbaords and reports all day.",4
+gem8mvd,k6m7dh,Very helpful and thoughtful response. Thank you for helping me shift my perspective.,1
+gemn040,k6m7dh,"Perhaps you can approach the situation differently. Machine learning is jut another tool you can use to solve problems. Using it doesn't need to be a huge decision and a great commitment, at least in the beginning and until there's reason for that. Like other problems in the presence of uncertainty, you can approach it in iterations: take a small step, learn/evaluate, and repeat if it shows promise. Start with a small project, time-box it, and get some first results. You'll learn about the challenges, but also about the promise. Now you'll have more information and can decide better how to proceed: is there really room for ML in your org or is it too early, you'll have evidence and experiments instead of others' stories and complaints.",1
+genasp6,k6m7dh,"If you have clean, meaningful data, then it would not be very difficult to run it through some automl packages, e.g. TPOT. I would start very basic and experiment from there.
+
+Jumping straight into pytorch or hiring a bunch of expensive ML engineers without a clear (technically informed) strategy would be a mistake. 
+
+Word of warning. ML is a little like crack and management might not act rationally after they get a taste.",1
+gel5zmc,k6icwu,"I think an important thing to bear in mind is that you don't neglect the soft-skills elements of DS when self studying. Part of the advantage of a formal education is that you go through it with other people. You're therefore able to discuss/argue/explore ideas and develop good scientific communication skills along with the critical thinking faculties developed through debate and discussion.
+
+This is of course harder to achieve by yourself, certainly it's hard to develop these skills in a new field by purely working through solo project after solo project. I don't know if I have any practical suggestions, but worth bearing in mind. Maybe think about joining a study group or finding venues to present your work in.",214
+gel9e4v,k6icwu,"Critical, but constructive, discussion is essential for all data scientists to grow and learn to be more meaningful in their work product. At a minimum this requires the data scientist, implementation engineer and a stakeholder who can give feedback on applicable value provided to the customer. Most data scientists place far more weight on the academic merit of their algorithms and models rather than business value. Speaking as an executive and business owner, this imbalance in critical business judgement causes perfection to be the enemy of good.",45
+genfn8u,k6icwu,You can arguably get more feedback on your own if you are proactive about it. There's nothing about working on personal projects that prevents you from sharing them. You can also do freelance work to get professional-context feedback.,1
+gellz1a,k6icwu,"I say from experience that soft skills are transferable. If you have work experience in a professional setting, you can capitalize on that in a career switch to data science. My own background is formal CS and math through graduate level, but I've found good success in hiring people from unconventional backgrounds that are what I would call lifelong learners. They are also interested in coding.
+
+I wish formal school were less necessary because at least half the coursework is a valueless money grab, at least in the US. But that's a different post.
+
+Best of luck, OP.",18
+gela9g9,k6icwu,"I agree. Joining community either virtual or group of friends is really important. We need to discuss our questions and doubts. We need to share and learn when we are alone. I especially said this because many people waste years to go to college to have a proper degree; but the question is, are those degree really important? I think not always.",11
+gen2e8o,k6icwu,Now in corona time there is no other way than solo studying,3
+geoh26y,k6icwu,"Uni is more about how to learn, think, find information, solve problems &amp; get shit done, etc than it is about what you learn - which in my experience is often out of date and most is of little relevance (especially when most lecturers don't give a shit about teaching, they only do it on the side of their research).
+
+You are proving you can stick to something for 3-5 years and navigate or adapt your way through a system without anyone holding your hand. - to graduate with piece of paper or two (obviously some degrees are more valuable and necessary than others).
+
+You also make the beginnings of a network and develop some professional and social skills which are important especially early in your career (but this experience is less and less of a thing, especially post grad and external / online study) but once you get out in the real world - what you do there... practically - far outweighs anything you did or learnt at uni. You also now have much more easier ways of connecting with a far larger and more diverse group of people online.
+
+There is a limit to the benefit of time spent learning in formal institutions - to a large degree (pun intended) you are paying a huge amount of money (not to mention time) to effectively self learn for a large part anyway. You could gain social benefits and exposure to a lot more different opinions and ideas by say... 
+
+Joining a Reddit group on your topic of interest and collaborating on open source projects. :)",2
+geocj98,k6icwu,"Nqh, I disagree, and I'd argue my professors and myself would disagree.  Schooling makes your trainable.  There is significant resources given to training a new employee... the right mindset and they learn it quick,  if not you might have a dud.",1
+gel5r2j,k6icwu,"You can definitely learn, but is it enough to enter the job market without a more substantial proof of your learning?
+
+I wish you didn’t need an entire degree for entering data science if you already know it, but this is how it works in reality. Apart from some anecdotal experiences how realistic is it to enter the data science job realm without ‘proof’ of education?",39
+gelk7w7,k6icwu,"I agree. The problem with the “the sexiest job of the 21st century” is that it’s a beacon; there’s no shortage of interest. Add the explosion of affordable online learning to a quickly evolving industry without a well established core skill set, it’s insanely hard to pin down a decision criteria on who does/doesn’t get hired. Plus there’s a wealth of higher ed applicants in the pool to compete against. 
+
+Personally, I don’t think DIY is a viable option, not because you can’t teach yourself enough to be effective on the job, but simply because there’s no way to come across more qualified than someone who does have a masters in stats, CS, etc.",23
+geml0tq,k6icwu,"&gt; Personally, I don’t think DIY is a viable option, not because you can’t teach yourself enough to be effective on the job, but simply because there’s no way to come across more qualified than someone who does have a masters in stats, CS, etc.
+
+Also the two aren’t mutually exclusive and for the successful cases arent. The great folks are doing both where they have a grad degree and have done the online courses too",5
+gemmzkd,k6icwu,True!,3
+geo0qhr,k6icwu,"I had to learn on the job more or less. I worked in from the engineering side. I've found it's mostly that you have to get comfortable working as mid-level back-end or database developer of sorts. You just pair it with the math/stats so you can effectively model things with your software.
+
+There are really two rough kinds of data scientist. The majority of them are specialist software engineers, like algorithm developers at old school engineering firms, but some firms employ them more like a team of research scientists.
+
+The research scientist variety would be doing work more like a ""data analyst"" however they usually have a lot of scientific domain expertise they bring to the table. Those roles I've seen often require a PhD. They will say an MS is acceptable but a PhD that didn't make it in academia will apply and probably take the role.
+
+I do have the grad degree. It does make it far easier to get work I have found. PhDs often get more prestige and better leadership roles than I can seem to manage with a MS.",2
+geomaqh,k6icwu," I have an MS Physics and an undergrad Mechanical Engineering degree, I caught hold of a good Data Scientist role where I work on DL models, highly complex RL problems, do some research engineering,  with in-depth exposure to fields like CV/NLP as projects would keep rotating (it's a service based company, but also building AI products, so everything under the sun actually if I stay for 2+ years). 
+
+I wish to go for an MS in DS after a couple years of experience. This is mainly to change geography and gain international experience, and to set base with good education in the field I'd probably be pursuing for the rest of my life- a degree would probably get me much farther, especially as an international student in a country like US. 
+
+Sometimes I do feel overwhelmed and clueless and think I should switch to less technical roles, and go for MS Business Analytics etc. Life would be more chill, albeit less pay. Other times I seem ambitious and wish to pursue research frontiers and go for MS CS/ML etc. and work at openAI lol. 
+
+In any case, How much and what kind of work experience is optimal for getting Admits? Am I on the right path? Should I switch to research assistantships?",1
+geph7on,k6icwu,"Personally, DL and RL aren’t my cup of tea. The model architectures seem completely arbitrary and change every year with the new advancements. To me, they *are* super effective but little more than heuristic techniques. 
+
+If this is the sort of work you want to do, then work experience is the best way progress and taking an educational leave of absence is a poor choice (also, you’ll stop earning/assume debt.)
+
+However, given that you have an MS in physics, you’re a scientist by training. There are other areas of DS that are more proof, reason, and logic based than DL/RL. If this is the direction you want to go, I think you should explore probabilistic programming. The math would not be hard for you, so you might not even need another graduate degree. Check out the book statistical rethinking to see if this is for you. 
+
+Anyway, a degree in data science, business analytics, etc is just going to give you a broad overview of various model types, it won’t make you an expert at any one of them. Again, since you already have an MS in physics, I think you could self teach these models and save a bunch of cash.
+
+Bottom line, I don’t think going back to school will help you much. You just need to zero in on what you want to do and self teach a little. Playing around with APIs is not the hard part, the underlying math is- which you should already be good at.",1
+gemt1zh,k6icwu,What’s ironic is that even advanced degrees and 10 years of industry experience isn’t enough ‘proof’ for employers that insist on hours of technical interviews and take home projects.,4
+geo8n6f,k6icwu,"Those aren't employers you care about then.
+
+I got hired into a finance DS role without ""hours"" of tech interviews and no take home projects either.",1
+gel5xvf,k6icwu,"I would say, sure, for younger people. But it gets significantly harder when you work 40+ hours a week, have a family, hobbies, etc. I wish the DIY crowd would qualify their statements. You can teach yourself DS if you make time to teach yourself. It sounds redundant, but it's FAR from easy to do and it takes A LOT of time. This seems more for people who would be entering college to study full time, at which point, sure, it becomes way easier to teach yourself technical skills if you're doing them full time.",76
+gel7s1n,k6icwu,"I agree.
+
+It IS possible to teach yourself DS skills, yes. But like you said, as soon as real adult life kicks in (read: post-20s, mid-career, with family), it becomes SIGNIFICANTLY harder simply because there are only 24 hours in a day.
+
+OP makes it sound like all DS upskilling takes is a little grit and $50 on Udemy. But for most mid-career professionals, it also takes SIGNIFICANT lifestyle and familial sacrifices. If your goal is to help and advise people, these facts must also be acknowledged.",35
+gel8pyf,k6icwu,"There are other issues too with landing a job. Compare someone DIY who has a few projects to share on github vs someone coming from already being a DS for a number of years. All it takes is 1 applicant with slightly more perceived attractive qualifications than you to get the job, and the applicant pools for DS are huge. I can grind DIY DS for years after work and on weekends, sacrifice a ton of other things in life, and still not get a job because there's that one applicant, always, who either has a PhD, is easy to pay less, is coming from one DS role to another, or just hiring discrimination.  I really am not at all bullish on people trying to make a career change into DS in their 30s+.",21
+gelj6ri,k6icwu,"Think the best bet is trying to get involved within data science projects at your current job - if possible. Reach out to people in the business etc. 
+
+I'm currently self-teaching and planning on speaking to the DS team at my workplace next year. Hoping I can help them out in some way in my spare time.
+
+As far as just applying to jobs, it's never easy, even for those with PhDs. I think there's a lot of luck involved, and sometimes it just comes down to whether an interviewer likes you.
+
+Also I'm not sure how bad it actually is to get a DS job (assuming you're skilled). This sub I imagine isn't the best place to make judgements on this. Most people here are probably those that haven't yet succeeded in finding a job, and make it seem as though the problem is worse than it actually is. It's not easy by any means, but perhaps not the near impossible task some make it out to be. It's just another job at the end of the day.",6
+gemzgsn,k6icwu,"I have a psychology undergrad and basically went the ""personal upskill"" route. 
+
+&amp;#x200B;
+
+I managed to 'break-in' recently to a 6 figures DS job after building up through a series of related roles. It's hard, but it's not impossible- but you can anticipate a much harder job hunt, and you need to have a value proposition that compensates for a lack of traditional degree.",5
+genqbtg,k6icwu,@cactusonfire: how were you able to learn the math involved?,1
+geo2lw3,k6icwu,"I knew statistics from my psychology undergraduate, which helped me in that area.
+
+I feel like this is blasphemy in a lot of places, but my understanding of most algorithms is more heavily rooted in understanding when to use them, and the consequences of doing so than an underlying algebra-based understanding.
+
+But it's also worth noting that as a DS, I'm focused on database querying, applied stats/ML modelling, and presentation with BI tools/web front-end.
+
+I try to lean more into my business understanding, communication, and command over Python/Sql/AWS, especially when it comes to higher-level data modelling. This serves my company well as they want models that can be explained to the business, and deep learning solutions are becoming more focused around pre-trained neuralnets.",1
+genzw40,k6icwu,"&gt; I managed to 'break-in' recently to a 6 figures DS job after building up through a series of related roles.
+
+how long did that take you if you don't mind sharing.",1
+geo23df,k6icwu,"As a broad-strokes overview: 
+
+1. I spent a year and changedoing part-time work teaching Python + JS to kids, \~18/hr
+2. I took various part time analyst work one-off jobs for \~1 year, all below 20/hr   
+(This is roughly the time when I stopped casually dabbling in a career in data, and started getting serious. I studied \~2 hours a night most nights, and did mooc's/etc for knowledge.)  
+
+3. I was a paid TA for a data analytics bootcamp for 9 months @ 18/hr
+4. I leveraged contacts I made at the bootcamp to get into a data engineering consulting position, immediately making $50/hr \~1 year.
+5. Using the experiences from the last position, I applied as an Analytics consultant at a managed service provider. This was my first salaried position @ 90k a year. I was in that position for 4 months, then I got laid off due to Covid-19. 
+6. I spent the summer upskilling again, building a portfolio of projects and getting certs I felt would up my value. The entire summer was slim pickin's, but after 6 months of the most painful job search of my life, where I had refused to accept a lower salary than my last position, in Q4 fall, hiring opened up again and I was accepted for 4 different jobs, all of which were above 6 figures.",3
+geo3sxo,k6icwu,That's really impressive considering the fact that your BS was in psych and you don't have a MS. 3 to 4 is a massive jump. Congrats!,2
+geo569z,k6icwu,"Once I had the background of skills, it took someone really believing in my value to succeed. One of the people I met at the bootcamp I was working at provided me that opportunity because he was impressed with my work with the students.
+
+I was lucky, but I was only able to economize on that luck by having cultivated necessary skills when that opportunity arose.",1
+gelnw9i,k6icwu,"&gt; I'm currently self-teaching and planning on speaking to the DS team at my workplace next year.
+
+Good luck! That's pretty much what I am intending to do. I'm trying to take a crash-course in data analysis with dataquest and reach out to people in my corporation to see if there are ways to break into DS that way.",1
+gelpftf,k6icwu,"Thanks! I'm actually doing DataQuest as well, although I'm using it more as a supplement. 
+
+My advice for DataQuest is put most of your focus on the projects. Once you've worked through the steps, go above and beyond and think what else you can do to improve the project, or what else in the data can you analyse. I think this is where I find the most value.",2
+gelw1va,k6icwu,"Awesome thanks for the tips. I know the fundamental python stuff but I'm still going through all those early ""missions"" I think they call them: lists, dicts, functions, etc, things I already know but I'm just blasting through them. I will surely slow down when I get to that first project and then *really* slow down when I get into new material beyond the python fundamentals.",2
+gelhynj,k6icwu,"I'm 24, have a bs in cs/ee, master's in cs, additional focus on higher-level maths, and several years of ml and ds experience. Basically put, I have a fair amount of the traits hiring managers look for, at least during the initial screen.
+
+What a lot of people don't realize is despite the knowledge and experience, I spend upwards of 30-40 hours a week OUTSIDE of work just learning and staying abreast of the field, especially in ML where things move rather quickly. DS in general is not a field where you can ever put down the book and say ""ok, I'm done. I know DS."" They look at the initial investment of time (learn DS in 6 months!) as a sacrificial period, but one that will eventually end.
+
+Throw a family or other obligations into the mix, and transitioning into DS is hard. Really f\*\*\*ing hard. I've spent the past 5 years prepping for this pandemic (ie social isolation), and it doesn't look like that's going to be changing, the current global pandemic notwithstanding.
+
+People then make the argument that I shouldn't be spending that much time outside of work. But the honest truth of the matter is you will only fall behind other applicants if you don't. I'm not going to be the first one to put down the book. And, at the end of the day, I like it. It's what I'd do in my free time anyways.",5
+geljr9q,k6icwu,This sentiment of “you can never put the book down” I wish it was the poster child for DS. But somehow DS got the same digital nomad love of web dev (which has its own challenges no doubt). But you can’t master DS in 3-6 months then work odd jobs from Costa Rica while primarily investing your efforts in a food/travel blog.,11
+gelmb7k,k6icwu,"&gt;But you can’t master DS in 3-6 months then work odd jobs from Costa Rica while primarily investing your efforts in a food/travel blog.
+
+This. More people need to read this haha.",3
+geli0n0,k6icwu,"I'm 29, single, and working a full-time job. 
+
+I can confirm it takes a lot of sacrifice even for me. Almost as soon as I'm done working my job I jump into study mode.
+
+You also find yourself sacrificing weekends and holidays for study time, along with hobbies, friends, and dating!
+
+That said, I'm not the best at prioritising my time. If one goes down this path, you should first put a lot of focus on prioritisation and on what sacrifices can be made in your life.",6
+gelja3z,k6icwu,"Plus these online courses aren’t on the same page about what prerequisite knowledge you need. Before my MS, I took a number of classes on Udemy, the sentiment was always the same- “you don’t *need* to know calc or linear algebra, sklearn does that for you” 
+
+And so sometimes in an effort to market the content to a broader audience, these courses marginalize foundational material. You *can* teach yourself these things, but it gets harder when online classes pretend it’s unnecessary effort.
+
+Add that to working 40+ hrs/wk, taking kids from school to soccer practice, to home, making dinner, and house chores, I would be surprised if understanding the chain rule of calculus or eigen decomposition were high up on one’s priority list.",10
+gelkwex,k6icwu,"Yup, I just finished a ML course as part of my masters. Before we got to sklearn, my prof spent multiple lectures walking us through writing out various algos without any packages. Now I understand the math behind why they work. I appreciate that my masters doesn’t let me cut corners. If I was self-studying, would I be holding myself to the same standards as my prof? I doubt it.",8
+gelv39o,k6icwu,"I didn't even know about all those fancy schmancy libraries until probably my 2nd course? Maybe third, even. I still have my backprop code written in pure python. Same class I learned what currying was, and I can still derive backprop through time because of that class. The fundamentals are important.",3
+gen7hyj,k6icwu,"To retain that though you need to practice it, and so applying it on projects is important.
+
+I think the argument was that for the same time investment you can skip the cost and still attain the same mastery.",1
+gelx6fb,k6icwu,"My grad school class gave me a subscription to some sites like Datacamp and while they are fine little tidbits, I just don't see how those online boot camps can compare to an actual class. It was good to supplement my class like a sparksnotes of sorts, but no means a substitute. I had a really good Python instructor who was part of the math faculty so he was able to teach it effectively for DS purposes and he was extremely thorough in his approach to giving us a fundamental understanding of the language rather that some quick and dirty basics/tips.  I consider myself to be really good with Python after that one class and there's no way I could have gotten this level myself.",4
+gen1d2n,k6icwu,"&gt;Plus these online courses aren’t on the same page about what prerequisite knowledge you need. Before my MS, I took a number of classes on Udemy, the sentiment was always the same- “you don’t *need* to know calc or linear algebra, sklearn does that for you”
+
+I took a ton of Udemy/Coursera etc courses before enrolling in Master's program at Georgia Tech.  I feel like I know so much more having been forced to learn the math.  Generating output is fine, but math allows you to intelligently interpret the output and tweak things for different use cases.  It's a night and day difference, imo.",3
+genall4,k6icwu,"Are you saying it was Udemy that helped you understand the math prior to enrolling at GA Tech, or that the Udemy courses were actually not helpful and GA Tech is where you gained all the valuable math knowledge? The way you phrased your first two sentences, it’s ambiguous.
+
+BTW, was it the CS Master’s program? What’d you think? Also, any chance it was their online program? Have heard great things about that.",1
+genej2r,k6icwu,"I'm saying that many of the Udemy/Coursera courses I took didn't put enough of an emphasis on the math.  Some of the courses sorta touched on it, but my grad school courses go much, much deeper.  
+
+I'm currently halfway through the online analytics program.  In general, I am really enjoying the program.",4
+genighc,k6icwu,"I’m wrapping up the MIT Micromasters in Statistics and Data Science (4 semester courses, started in January and doubled up with my pandemic free time). Using this program as the centerpiece of a semi self guided transition into the data science field, after unsatisfying experiences with other, less serious Udemy type courses (Think, “plug into sklearn, take output - machin lern”). Probably 75% of the program has been purely theoretical, with heavy use of multivariable calc and linear algebra. The rigor of the theory in this program has been high caliber, and I am extremely happy with the theoretical foundation it has provided me as I continue my journey into the field.",2
+genjg72,k6icwu,I would expect no less from MIT.  I've taken a Python course from MIT as well as an analytics course called The Analytics Edge.  Both were excellent.,3
+gens192,k6icwu,Can you send the link for the same ?? I took andrew ngs deeplearning.ai course also is it similar to that ?,2
+genfip2,k6icwu,"Thanks. Very glad to hear you’re getting a lot out of the program.
+
+WRT the math you’re learning there, what is the balance of theoretical versus applied math topics you’ve encountered? For a random selection of the distinction I’m trying to draw, see [this reply to a different post](https://www.reddit.com/r/statistics/comments/k6a7eg/e_q_abstracttheoretical_linear_algebra_or_applied/gekh913/?utm_source=share&amp;utm_medium=ios_app&amp;utm_name=iossmf&amp;context=3).",1
+gengujr,k6icwu,"the GT program doesn't teach you math, per se.  you're expected to bring in pre-req knowledge of calc, lin alg etc.  instead, my classes have broken down analytical techniques and algorithms into the mathematical underpinnings and you sorta learn how to build the algorithms back up and what's taking place behind the scenes.  does that answer your question?",2
+genmzw4,k6icwu,"It *sort of* answers my question. More than that though, it suggests my question was misplaced to begin with, because it was premised on the assumption that you actually took Calc, Lin Alg, etc. as part of the program’s curriculum, which I guess was incorrect.
+
+That said, your reply is still useful info, and shows that in the theory-application dichotomy, your coursework is definitely more on the application side, which is ultimately was I was interested to know. Thanks!
+
+Edit: BTW, I was asking because I personally have a decent amount of Calc and Lin Alg knowledge already, but it’s definitely more on the applied side; the deep theory is still pretty above my head, esp. Lin Alg. So I was just wondering whether my current knowledge would already prepare me for a program like yours, versus whether I would immediately drown in theoretical math requirements.",1
+geo7jim,k6icwu,"so i'm not entirely sure where the bifurcation of applied and theory occurs. all I know is that my, admittedly, sketchy math background has been acceptable at my graduate program.  i've certainly had to do a lot of googling and I'm 100% certain that folks with better math backgrounds have reaped more from the course material, but I've managed to do well.  
+
+&amp;#x200B;
+
+if I had to make a suggestion: study linear algebra and statistics.  so much of the interpretation I've seen thus far is grounded in statistics and nearly all of the numpy I've employed is based in lin alg.  also, I think statistics is amazing because most of the calculations are relatively simple, but it's the interpretation which is difficult.",2
+genz1lk,k6icwu,"It’s tough to break it down into a definitive ratio. Two of the courses - Introduction to Probability Theory and Fundamentals of Statistics - heavily emphasized what you described as theoretical in your other post, but gave some applications as (abstract) motivators. One course - Data Analysis for Social Scientists - was essentially an econometrics course and focused exclusively on applications. The final course - Machine Learning - teaches applied methods by digging into the theoretical underpinnings, if that makes sense. The problem sets in ML alternate between theory focused problem sets and implementations of algs to make classifications/predictions on datasets.",1
+gelke2b,k6icwu,"Yup, this is why I went the masters route. I was in my mid-30s and pivoting away from a career in marketing. I was working 40 hours/week and knew I would never stick to a self-study routine. Plus given where I was in my career, a masters degree would be far more impactful than a bootcamp or Coursera.",5
+gelkv4g,k6icwu,"Just curious, did you move into marketing DS/analytics or something completely unrelated? 
+
+I ask because I’m a generic DS but want to move into a marketing specific capacity. We’ll see how that works out.",1
+gellbhi,k6icwu,I moved from a digital marketing content role into a digital marketing analytics role at the same company. Then I left for a product analytics role at a different company.,1
+gelz98k,k6icwu,"DUDE SERIOUSLY! This year I got married, moved out, and soon finishing my master, all while working a full time job!
+
+Elements of Statistical Learning can wait.",1
+gemgaxy,k6icwu,"I think what OP is saying is that if you’re considering an advanced degree in DS and already have some education plus can manage learning on your own, you could reasonably go the self-teaching path, not that it’s generally an easy thing to do. If you have a family and a job you must keep full time, learning on your own time at your own pace is still likely a more accesible option than getting a formal masters. The argument here is self taught + job experience vs formal education.",1
+gen77h9,k6icwu,"I think this is true whether you self-learn or pursue a second advanced degree, as OP was talking about.",1
+gemqsc5,k6icwu,"Took me 8 months of full-time studying to find an internship. 
+
+I think that's a realistic time frame.",0
+gel91r5,k6icwu,"Harvard Data Science: :
+
+[http://cs109.github.io/2015/pages/videos.html](http://cs109.github.io/2015/pages/videos.html)
+
+Free Open-Source DS Masters:
+
+[http://datasciencemasters.org/](http://datasciencemasters.org/)",29
+gen8eec,k6icwu,Good luck putting “open-source masters” on a resume,6
+gelw0fb,k6icwu,The harvard one is based on R or python?,0
+gemsiqg,k6icwu,Looks like python from the syllabus.,2
+gel5ne7,k6icwu,"Hi, do you know about the data science course of Michigan University on Coursera???  Is it worth it? 
+TIA",11
+gel6pqk,k6icwu,"It helped me a lot, at least the first three courses, with courses 1 and 3 weighted most heavily. I definitely recommend it if you’ll be using Python in your context.
+
+If you’ll be using R instead, probably not.",7
+gem1j8t,k6icwu,Johns Hopkins uses R.,2
+gelk571,k6icwu,"Theres so much information online but uni quality controls the syllabus, pressures you into learning things that you may procrastinate on or quit if left on your own and give you a peer group to compare your progress with.   
+A great uni would inspire you to think in ways you wouldn't have before and help you with job applications / career networking.",7
+gem5blm,k6icwu,"I think this depends on your learning style. Some enjoy the peer pressure, others rather be on their own.",2
+geot2ur,k6icwu,"Absolutely.
+For my personal learning style, if left alone I tend to think I'm going too slowly or I'm terrible, by default. This can lead to me psyching myself out and quitting. I need a peer group to give myself realistic judgements about my progress. Strangely, positive peer pressure as in healthy competition amongst friends works a treat for me.",1
+geln09d,k6icwu,Not to forget thousand of dollars extra expense for course and a year or two years of unemployment.,-1
+gelnsxi,k6icwu,Go to Germany. You can do a Masters for free there.,6
+gem67ob,k6icwu,Or in Canada where Canadians can get one for less than $10k CAD before scholarship and bursaries,2
+gemyhlq,k6icwu,Or do the degree part time while working for an employer that offers tuition assistance.,1
+gel529n,k6icwu,"Not that I disagree with your overall premise, but job experience is the end, not the means. People go to school to get the job.",23
+gemb15h,k6icwu,Totally. “Could have gotten the same thing from job experience and self study” is a bit of a paradox. Getting a job that is willing to work with you to learn stuff is the best of every option.,4
+gelte51,k6icwu,"I am finishing my master in Data Science and no, unless you are super strict and face very hard projects, online courses are good fundamentals but universities will challenge you much more and make you a competent Data Scientist un much less years than studying alone",7
+gelu2b5,k6icwu,"Yes. I didn't mean to not to go at all. If you have age and if you have money, and if you don't have any master yet, one may think to go, if it is feasible. But it is not possible for all. Doing another master degree just for data science degree with responsibility of families in the shoulder may not be the worth at all, especially on paid course.",1
+gelw59y,k6icwu,"Well yes but in general you can learn anything by your own. The fact that Data Science is very advertised is making it an ideal dream job and is spreading the idea that this is a easy science. As there are many good instruments online and courses sure you can get bases and learn a lot, but do not forget that the university' data scientist(that is a new course, before day scientists were people with stuff like 10 years of intradisciplinary experience) has a strong statistical and probabilistic foundation, and like me has taken more than 5 machine learning courses and worked on hard research papers with experts. So when in future someone with a self study, let's say 2 years, approach realizes he is not even near being qualified for some roles, the ""dream job"" could be worse than expected and even if there would be still many jobs most of them are really boring.
+The second best thing you can do after university is finding a data related job and mentored apply yourself in free time with courses and projects for some years.",1
+gem545j,k6icwu,"I think the main point here is that just online courses wouldn't be enough. However, Kaggle and similar platforms offer great ways of improving ones skill sets with though challenges. So, one doesn't really require a university for that. Moreover, one can also grow in the job. It's not uncommon to see data analysts becoming data scientist due to challenges they face during their work.",1
+gel9xea,k6icwu,True. The key is personal projects where you're taking raw data from the internet and doing cool things with it.,4
+gelujrj,k6icwu,"No offense but just about anything “can” be learned in your own, but that doesnt mean that it’s the best way. I could learn aerospace engineering through textbooks and problems as well.
+
+In my opinion, and from my experience, the biggest problem with self learning is maintaining the push to focus on things that are hard and then actually testing if you understand the concepts. It’s easy to watch a lecture on CNNs and pretend you know how they work, but it’s different than being forced to complete a project on it, applying knowledge, having a professor to answer questions in real time as they come up, and getting stuck but needing to persevere. 
+
+Not saying you can’t really focus and learn on your own but most people don’t have the mental stamina to sit there and focus on a concept for 8+ hours until you really get it when there’s 100s of other topics that would be more fun to learn 80-90% of the way vice getting to 99% on the one you’re stuck on.",7
+gell619,k6icwu,"Can you share examples of folks who went this route, what their previous degrees were in, what they studied for DS, and what job they landed? Genuinely curious what their path was.",3
+gem6314,k6icwu,"You can definitely learn data science on your own. However, an online certificate is not yet the equivalent of a degree from an accredited university. From an employer's perspective, a technical undergrad or masters degree and data science industry experience is very important. There are many great ways to self learn data science including online courses such as Coursera/Udacity/Udemy, books such as An Introduction To Statistical Learning With Applications in R, Kaggle ML competitions, and free practice for job [interviews](https://www.aceainow.com).",3
+gem9t73,k6icwu,"i don't doubt that you can learn the info, but without formal degree you will just get dropped at the resume round",3
+gema4b1,k6icwu,"Yes. What I meant is that if you already have a bachelor of master degree, then doing specific master degree is not required.",1
+gemei9d,k6icwu,"No I would disagree, the job market is looking for at least a Master's in Engineering/Math field.",2
+gemimo2,k6icwu,"I 100% disagree. I was a formerly self taught data scientist at a Fortune X. I thought I knew a lot about data science until I started my masters in it. I am doing stuff I never would have done otherwise. And a masters in data science is a necessary differentiator at the mid career level.
+
+Now the trend I’m seeing is to throw out resumes with Coursera courses listed on them..not the same thing as an AWS or Azure certification in data science.",3
+gemxg0q,k6icwu,"Are you seriously supposed to learn probability theory on your own? And don't give me the bullshit of ""it's not necessary"", how are you supposed to do statistics if you don't understand probability?",2
+gemy3ys,k6icwu,I think you already have courses of probability and statistics in bachelor level course. Or probably master level too.,0
+geolhm2,k6icwu,"Wow. I have an MS Physics and undergrad Mechanical Engineering degree, I caught hold of a good Data Scientist job where I work on DL models, highly complex RL problems, do some research, some engineering, everything under the sun actually. In-depth exposure to fields like CV/NLP as projects would keep rotating (it's a service based company, but also building AI products).
+
+So, what would you recommend? Should I go for an MS in DS after a couple years of experience? This is mainly to change geography and gain international experience, and to set base in good education in the field I'd probably be pursuing for the rest of my life.
+
+Sometimes I feel overwhelmed and think I should switch to less technical roles, and go for MS Business Analytics etc. Life would be more chill.
+Other times I seem ambitious and wish to pursue research frontiers and go for MS ML etc.
+
+How much and what kind of work experience is optimal for getting Admits?",2
+gepja8l,k6icwu,"I know it is hard for us who don't get proper job just because of nationality. We struggle in our place and dream of having foreign lifestyle; the only way is to have a foreign degree. Having understood your condition as I share similar to yours, I would suggest you to take a suitable degree. But before that try to have fullest knowledge on your own before getting any college and let the degree be only formalities. If you learn beforehand, who knows you may also get a good scholarship.",1
+gekzm89,k6icwu,Any online resources you'd suggest?,2
+gel4h6g,k6icwu,I recently compiled a list of course on a [Medium article](https://levelup.gitconnected.com/five-data-science-courses-to-study-if-you-want-to-be-data-scientist-in-2021-b81cbfe60623). This might help you.,8
+gel1wow,k6icwu,"Are there any resources that you find really helpful? But still, Thanks!",1
+gel2lmt,k6icwu,"Udemy courses are good to start, freecodecamp also have some basic and practical things... You can start small and thn set your own projects.",2
+gel4sbl,k6icwu,true.,3
+gelkkbx,k6icwu,"Depends on the class. Anything by Jose Portilla is a scam. No, knowing how to whip around pandas and sklearn on some kaggle dataset isn’t enough if you don’t understand the underlying math.
+
+But if you’re willing to take calc 1-3 and linear algebra on Udemy, first, then there’s a good chance you’ll be able to internalize the harder concepts. The problem is- nobody here has linked courses in fundamental math concepts; it’s all “buckle up- it’s data science time!” Material.",3
+gelwmtu,k6icwu,"&gt;The problem is- nobody here has linked courses in fundamental math concepts
+
+It's as easy as picking up Stewart Calculus textbooks and go through them. You can use 5 year old version to save money too!
+
+The problem is nobody here asking for fundamental math courses is going to actually do that. They want a 4-hour online course that covers what other spend 3 semesters on.
+
+To be more serious in my reply. Since it is true that not all calculus/lin alg concepts are needed to learn ML well, it is smart and practical for one to seek the minimum knowledge requirement. Hence the ""water down"" version of calculus all these online courses offer.",2
+gelpam4,k6icwu,That is true. But first everone should do some resrarch on those courses..have previrws and some opinions and thn decide on takin the course! else it is all waste!,1
+gel4ref,k6icwu,Start with solo learn. They have the most basic way to teach you. Coursera and YouTube too.,1
+gelk49d,k6icwu,Any recommendation for supplementing math/stats knowledge?,1
+gelot1h,k6icwu,"Depends on your level. I'm planning on making the first half of 2021 a time for ""Maths &amp; Stats"". Here's some suggestions:
+
+&amp;#x200B;
+
+1. [Descriptive Stats - Udacity](https://www.udacity.com/course/intro-to-descriptive-statistics--ud827) \- Can be done in like a week, even though it recommends 11 weeks. However spend some time making sure you really understand each concept (e.g. Central Limit Theorem). I'd advise testing yourself and doing a complete review of what you've learned each week.
+2. [Inferential Stats - Udacity](https://www.udacity.com/course/intro-to-inferential-statistics--ud201) \- Same as above.
+3. [StatsQuest - JoshStarmer YouTube](https://www.youtube.com/user/joshstarmer) \- This is a great resource for stats if you struggle with any concepts. Use it throughout your learning.
+4. [Statistics Course - FreeCodeCamp](https://www.youtube.com/watch?v=xxpc-HPKN28) \- Never done this, but it's a cool idea covering this much stuff in a single video.
+5. [Stats &amp; Probability - Khan](https://www.khanacademy.org/math/statistics-probability).  - Khan Academy is a really good resource for this kind of stuff. Once you've completed the above, trying blasting yourself through this course and testing yourself. Use other resources or courses for understanding probability if need be.
+6. [Essence of Linear Algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab) \- Watch this before learning Linear Algebra. Watch it again after.
+7. [Linear Algebra Course - Khan](https://www.khanacademy.org/math/linear-algebra) \- Plenty of online resources for learning LA, but this is often recommended.
+8. [PreCalculus - FreeCodeCamp](https://www.youtube.com/watch?v=eI4an8aSsgw) \- Depends on your knowledge, but you might want to blast through this course over a weekend or two before jumping into calculus.
+9. [Essence of Calculus](https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr) \- Watch this before learning Calculus. Watch it again after.
+10. [Calculus 1 ](https://www.khanacademy.org/math/calculus-1)[Course - Khan](https://www.khanacademy.org/math/calculus-1) \- This is Calc 1. You'll probably want to work your way up to multivariate. It's debatable how important this is for DS. Probably varies between jobs. I would get Calc 1 done - but don't stress too much about it.
+
+You don't need to do all of the above, and there's possibly some stuff I've missed.
+
+Before/During the above, read both ""The Art of Statistics"" and ""How to Lie with Statistics"". These will give you good, high-level overviews of stats. Also use [All of Statistics](https://www.ic.unicamp.br/~wainer/cursos/1s2013/ml/livro.pdf) (a textbook) to supplement your learning. In fact, in might be a good idea to read 1 chapter a week (preferably a chapter related to what you'll be learning that week).  Reading over what you'll be going on to learn is a great way to learn.
+
+Of course, this is all just covering some uni level stats. You'll want to eventually start focusing on machine learning and things like that. For this, use [Intro to Statistical Learning](https://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf). I don't know if I'd recommend reading page to page.  Just read a chapter on whatever topic you're currently learning, then use it as a reference point.
+
+If the prospect of learning all this is daunting, read ""A mind for numbers"". It'll help you learn how to learn.",5
+gelmudn,k6icwu,"As you noted, Math/stats is a must need. If you have some basic calculus and linear algebra knowledge, you can take courses of imperial college, JHU and even Andrew NG machine learning course for math and stats knowledge. I have tried to explain in one of my [article](https://levelup.gitconnected.com/five-data-science-courses-to-study-if-you-want-to-be-data-scientist-in-2021-b81cbfe60623) on Medium.",3
+gelmxtd,k6icwu,"Uh, except all the parts you can’t.",1
+gen8y7i,k6icwu,"Such as? All I can think of are
+
+* Expensive technologies (cloud computing, closed-source software suites)
+* People skills (that are learned through meetings and client consulting)",1
+gely0qw,k6icwu,"Graduated in 2019 with a degree in Business Admin, and have spent all my time since then to self teach myself data science skills. Started out with MOOCs, but none of them ever truly worked because I lacked fundamentals. I hadn’t taken a calculus course in 5 years, and it was only “business calc” at that. Not to mention I hadn’t done my one intro to stats class in even longer. 
+
+I finally read “The Art of Learning” by Josh Waitzkin about 8 months into my journey and everything finally clicked on why things were so hard, why i wasn’t learning successfully, why i had hit a wall after learning pandas and was moving on to simple ML concepts. Finally had to get down the basics. Thankfully i have a good situation where I can do gig work part time and dedicate the rest of my life to study but man, I can’t imagine doing this with a full time job even further removed from school. Even then im planning to take everything I’ve taught myself and apply to OMSA or UT to get a formal masters just because the self study route and the courses provided tend to be messy/extremely misleading with a lot of it is just brilliantly marketed to make one feel like they are prepared when really their hand has been held the entire way. 
+
+(btw if there are any other self studiers out there that wanna connect, feel free to hit me up. this journey is hard as shit lol)",1
+gembuia,k6icwu,"\+1 to this. I have friends in my corporate job that have never spent a day of their live formally learning data science, but their roles naturally required them to dig through big data sets, so they had to get smart and now do it full time. Eventually the company paid them for training courses I think. There are also tons of tools online like OP said for learning data science, for example I started playing around with [ulysses](https://vrulysses.com) cause I like VR, and Ive been using their demo version to comb through data sets in 3d/vr.",1
+gemldwh,k6icwu,I’m currently completing a commerce degree would it help my job prospects to do the coursera course offered by john Hopkins or would be a waste of time for me while trying to get a job in finance?,1
+gemsa2a,k6icwu,I've been in the field for awhile now and I feel if I had better math (statistics or something like that) I'd be doing much better. I don't get a lot of jobs because most of my background is in coding rather than stat analysis.,1
+gena2m0,k6icwu,I'm in the same spot right now. I have an MS but it's slim pickings for jobs and the data science is somewhat close to what I did in my science discipline. I just looked at the programs and realized what I thought said 3000$ per semester was actually 3000$ per course! Not sure if this is worth it anymore...,1
+genn6nj,k6icwu,"I think you have to define which role/profession youre referring to specifically. 
+
+You can become an analyst, but you'd be hard pressed getting a job as a machine learning engineer with zero college degree.",1
+gennksf,k6icwu,"I have a master degree in Data Mining. A completely waste of effort, time and money. Just go to coursera, edlx, platzi o any online school.
+They don't teach you how to really do thing, is just a general theoric approach.",1
+geoflut,k6icwu,"&gt;I came for an additional master after I already had one and I think I could have done better with job experience and self study.
+
+Probably especially the experience part. Hence why many say data science is not an entry level job.
+
+Issue is that the piece of paper proofing your education is relevant for applying because most companies nowadays have systems in place that automatically remove candidates and not having proper education is the most obvious filter.",1
+gekdzqb,k6co45,"In my  experience working in a non-tech large company, most business people do not understand stats beyond the basics. They know what correlation means on the surface, but if you show them to different correlations, few will interpret them correctly. I make it a point to assume they have no stats background when making presentations even if I have heard them use the terms and really explain the terms in simple terms. So far no has complained.",3
+gel731s,k6co45,"Working in consulting, something I’ve found is that non-technical stakeholders, management consultants and MBA-types fucking *love* R-squared For many it’s the only model accuracy metric they’re familiar with, and they aren’t comfortable interpreting analytics/modelling work through any other lens. Ultimately that’s kinda understandable, really — obviously non-technical folks won’t know anything about log-loss or AUC or whatever, so r-squared is likely the only metric they’ve been exposed to.
+
+On a number of occasions I’ve been asked to ‘translate’ whatever metric I’m using into some kind of r^2 like value, even when it’s wholly inappropriate to do so. I was working on a time series forecasting project recently and I was asked if I could convert the MAPE score into r-squared, because that’s what the client stakeholders were more familiar with :/",3
+gem2sne,k6co45,"I've found there are four types of business people as it relates to analytics in general:
+
+1. Those who have a decent understanding of analytics/stats/etc. Maybe they came from a technical background and pivoted mid-career, maybe they were just naturally drawn to math and so they've been able to always learn from their more technical directs, etc. Whatever it may be, these people are worth their weight in gold, because even if they don't understand a specific concept in detail, you can normally explain it to them in a couple of minutes.
+2. Those who are naturally very strong analytically but just haven't had the formal education. These are people that naturally understand things like correlation or causality, but they don't know any of the math behind it. These people are also great to work with, because even when they don't understand exactly what you're describing, they can understand the *spirit* of what you're describing quickly - and they're not going to argue about you on details they don't understand.
+3. Those who are naturally bad at math, but know they are. These people are fine to work with - it's tough to communicate with them because they often won't understand what you are saying or the spirit of what you're trying to say, but if they're competent otherwise they will probably be good about deferring/believing you if you've earned their trust.
+4. Those who are naturally bad at math, but think that because they're good at \_\_\_\_\_\_, they are also great at math. These people are the bane of my existence. They are the ones that know 3 words in stats, don't actually understand what they mean, but will smugly attack someone else's analysis because *in their made up world* there are flaws in their methodology (though really their issue is because the outcome is not what they wanted). These are people who think that numbers are just something you move around and fudge up until you get the answer you want. These are people who think that there should be 0 responsibility for them to actually learn anything - and that it's someone else's job to be able to always take a concept - no matter how complex - and puree it and serve it to them in a kiddie cup so they can digest it. They will kill projects because they're ""too complex"" even though it's just that it's too complex *for them to understand it*. 
+
+Sometimes these are cultural issues, i.e., some companies tend to promote people without any regards for their data literacy and in fact tend to not promote people whose strength is analytics.
+
+Generally, what tends to happen is that people who are strong analytically aren't as strong elsewhere, so the higher up you go, the less analytical people you see. 
+
+The best companies I've worked at are those who recognize that in this future we're building, understanding numbers and analytics is going to be key. So their leaders - though not in category 1, are at least category 2 people - super sharp people who truly understand numbers.",3
+gelst5f,k6co45,"Statistical literacy across our organization has been an ongoing personal battle of mine. I've been told I shouldn't use the word ""distribution"" because it was too much math. I've had several instances where various stakeholders have tried to draw causal conclusions from correlational data and was met with resistance when I tried to point out the error because it didn't match the story we were presenting the client.
+
+It is a gradual education process. The biggest takeaway I've learned from all this is how important it is to understand my audience and be empathetic to their views and background. Some people are excited to hear statistics terms even if they have a surface understanding because to them it feels like they are being let into an exclusive smart person club. Some are intimidated by these terms because they had a horrible experience with math classes in school. However, I've found most people are open to learning if you take the time to explain concepts with concrete opposed to theoretical examples. As always, a little patience with the learning process goes a long way to helping people understand things.",2
+gekxcx0,k6co45,"Lol in my experience most of the people on data science teams dont know what significance is, forget the business people.
+
+Strongly recommend you just avoid using any terms that have a precise technical meaning but also a meaning in everyday speech. Either use a more complicated term, so it's clear to people when they dont know what you mean, or just unpack the definition of the terms you use.",3
+genwwow,k6co45,"I'm not a data scientist, but I've found when presenting results people generally recognise terms like significance or P Values but don't really know how to think about them or what to do with them. 
+  
+For example, we were presenting some landing page test results that weren't significant, and everyone know roughly what that meant, but weren't sure what to do - let the test run longer or put the new page into production. 
+  
+We put the test into Bayesian terms and that made it much more intuitive for everyone to understand. I think that's probably the way to go because Frequentist statistics is a bit weird and hard for people to understand.",1
+gelzozq,k6co45,"The job of a data scientist is to do the interpretation for the stakeholder.  They don't have time to spend interpreting results or learning statistics, that is why data scientists are hired!
+
+Giving clear, digestible, and understandable summaries is one of the most important skills a data scientist can have.",0
+genboqt,k6co45,They don’t. They will know there head because they have heard the term a hundred times and once you leave they will all look at each other and go wtf did he just say????,0
+gek5e7l,k6c7du,Depends on context but for example in this Covid dataset (https://healthdata.gov/covid-19-reported-patient-impact-and-hospital-capacity-state-data-dictionary) coverage refers to the number of hospitals reporting.,1
+gek5w24,k6c7du,That dataset is very similar to the one I am working with but still kind of lost on its meaning. It gives a definition of what inpatient beds used means but under the coverage it says: number of states reporting “inpatient beds”. I don’t get how it’s a different metric.,1
+gek6rnp,k6c7du,Well in the context above it's how many hospitals in the state reported the metrics used in the other column. Without knowing anything about your dataset I would assume it's something similar.,2
+gek7rk6,k6c7du,"Oh, so if I'm understanding this correctly then that would mean the other column is determined by the coverage column. All in all it basically means that there is potential for bias in data due to possibility of not every hospital reporting?",1
+geka1zx,k6c7du,"The term data coverage often refers to how complete, or how representative of the whole the dataset is. For example, if I said I have medical claims data for only five states, we would say the data coverage is low, because it only accounts for a low percentage (five states out of 50) of all U.S. medical claims. Or if we had data regarding inpatient stays for 90% of all U.S. hospitals, we would probably say this is high coverage because 90% represents a large majority of the data we’re interested in.",1
+gekah1f,k6c7du,Now what I don’t have percentages to work with? Mine said 1032 inpatient beds for the state  of Alaska and the inpatient beds coverage was 34.,1
+gem6xcm,k6c7du,"Disclaimer: totally guessing here because I'm not a healthcare person
+
+I would interpret that to mean ""We know that Alaska has 1032 inpatient beds. However, the data that we were able to collect corresponds to hospitals that account for 34 inpatient beds only"".",1
+gem7wrn,k6c7du,"I looked at one of the other answers above and a link for a dictionary was provided. It makes more sense to me that ""Alaska has 1032 inpatient beds based on the 34 hospitals reporting"". But there could be 50 hospitals in Alaska total so 16 have not reported leading to bias.",1
+gekjx97,k6c7du,"I'm a data analyst in a hospital.  I've only ever seen coverage be used in reference to insurance.  However, I don't get into the weeds with inpatient beds very often.
+
+It sounds like you're working with integers.  Could they be a code for insurance category?  Or company?  
+
+For example:
+
+1 = Commercial
+
+2 = Medicaid
+
+3 = Medicare
+etc
+
+or
+
+00001 = Apple Health
+
+00002 = Premiera Plan Whatever
+
+00003 = &lt;some state&gt; Medicaid
+
+etc.
+
+I also wonder if it's something like the number of nurses assigned to the beds.  Say there's 10 beds and three nurses, so coverage would be three?  I've seen that sort of measure before, but only in passing.  
+
+If this is really important and you really don't have any clear documentation, trace it back to the source.  Pick up the phone and call the state, county local health juristictions or even the hospitals.  
+
+If they're all filling out the same request, ask to see the request.  Sometimes those are really vague, and some are really well made.  Who the heck knows.",1
+geljhva,k6c7du,"It’s definitely not to do with insurance, I know that much. Maybe I’ll leave it alone.",1
+gelgeeg,k6c7du,It may be referring to staffed beds.  I’d Google “HAvBED” and see if any of that documentation is helpful.,1
+gejt59u,k6a9rq,"Not understanding that nobody gives a fuck about your methods or your amazing results. They only care about value. If you cannot bring value (something actionable, some product etc.) then it doesn't matter if you have the best results on the planet using the fanciest method that you invented. The value is 0.
+
+So you better learn how to interpret your results and create advice/action plan based on your results or how to create products that deliver value based on your models.",22
+gek5168,k6a9rq,Doing what is asked of you while assuming that is what was wanted of you.,6
+gejvr2q,k6a9rq,That all you need to know is usage of software.,4
+gelglcd,k6a9rq,Thinking the most important skill is knowing all the ml algorithms in scikit-learn but not learning how to wrangle messy data.,2
+gelz4q6,k6a9rq,Not understanding the 80/20 rule.,2
+gemkcsf,k6a9rq,elaborate?,1
+gemrgz3,k6a9rq,"Most work follows the [Pareto Principle](https://en.wikipedia.org/wiki/Pareto_principle) where 20% of the effort can achieve 80% of the results.  Finishing something to the 80% level quickly will also allow for faster iteration with a stakeholder or a team.
+
+For example a simple SQL query can often get you 80% of the way to a perfect answer, and in most business cases this is good enough for the question be asked.  
+
+Or a logistic regression may be enough for the problem at hand compared to anything more complex.
+
+I have seen people spend way too long on covering the last 1% of edge cases in a problem which adds very little value.",3
+geln88y,k6a9rq,"Thinking data science = machine learning engineer 
+
+Thinking you will get a DS job out of school and not work as a DA for a bit
+
+Delaying getting a masters. The moment you graduate with a BS you should be in a masters program or even better working full time with a masters part time (experience + ms &gt; fresh ms)",1
+geo2s1i,k6a9rq,"Delaying getting the masters isn't necessarily a bad thing. Most of my coworkers really didn't start until 3-5 years inside a software engineering job. It really depends on data science vs ml engineer. I've gone about my work only to realize an open source project doesn't support what I need so it's a let me throw on my engineering hat, talk with some business stakeholders and see what we can do, so there is a level of flip-flopping back and forth based on circumstances of the work",1
+gejmgsa,k69dh0,Worry about it when you get the offer. The interview process should tell you whether the people there are desirable to work with. It sounds like a good opportunity as long as the job seems stable,5
+gektsvg,k69dh0,"The upgrade in job responsibilities/position more than makes up for a ""less prestigious"" name in my eyes. I'd be focussing on  questions like do the people seems competent and/or likable? How would my role/team fit in with the wider company? Especially if they are new to data science, they may not understand or care about the needs of data scientists/ or where they can provide value.",2
+gem6mfw,k69dh0,"&gt; However, I am hesitant to accept the offer because my current company (fortune 500 non-technology) has a better name in the field 
+
+In *their* field, or in DS? If they are a bigger name in, say, distribution then that doesn't do antyhing for you as a data scientist.
+
+If they are a bigger name in DS, then that's something to consider - but far from the only thing to consider.
+
+&gt;and much more job stability during the uncertainty of a pandemic. 
+
+This would be a much bigger concern for me. Until we're out of the woods, I would be very hesitant to take another job if that company had any reasonable amount of uncertainty in terms of their future under COVID. 
+
+&gt;The new job would be at another non-tech company that has no reputation for software development or data science. 
+
+So, here's the thing: the reputation of the company is important only in that you may be able to leverage eventually for a better paying job or more opportunities. If we forget about COVID, if this new company is offering you a promotion and considerably more money, then the only reason to stay and take advantage of your company's brand name is if you think that in 1,2,3 years someone is going to come along and offer you even more money *just because of the brand*. 
+
+I've generally found that not be the case unless you're talking about cream of the crop companies (FAANGMULAs, MBB, etc.).",2
+gephwkm,k69dh0,"They are both in different domains, but my company has a better established focus on tech as we are trying to be more like a tech company and our new hires have come from other well known tech companies.
+
+
+
+
+Not many people know about my current company, although it is fortune 500.  So I don't think I would benefit from name recognition.",1
+gejhc20,k68iii,"As an analyst, work with your ETL/api developers and business intelligence people so you can understand data development pipelines. You'll learn a lot. Maybe work as BI or senior analyst for a while, work towards leading either the BI or analyst side, and work towards a more senior strategic role where you can project manage taking the company's data strategy to the next level",2
+gejpe6o,k68iii,"Data analyst is a data position. What type of position do you want? Why do you want to move up? Like for a better title? More $$$, different responsibilities?",2
+gejp5kd,k68iii,"I'm a BI analyst myself. I worked for 3 years using SQL mostly. I never cared about the profession and my career though. 
+But recently Im wanting to embrace this career.
+What I'm going for is.
+Getting certified on a visualization tool.
+Learning python as an statistical data analyst language. I don't know if I want to take it as further as becoming a proefficient data scientist.
+Next would be learning an ETL tool.
+And then just learn on the job the more commercial view of things. Though on this side I have a marketing/business bachelor, so over there I think, for now I'm ok.
+
+It's going to take sometime though. But hey, patience.",1
+geiqdcq,k63l45,If you're already pretty invested in the Microsoft/Windows world then Power BI is worth a look. The desktop app is essentially Excel's Power Query and Power Pivot providing data to interactive charts.,3
+gekf2cf,k63l45,Tableau and Power BI are the most common tools used in the corporate world. I work with Tableau and has been extremely beneficial to my career. Python and related viz libraries are another option.,1
+gep4bk3,k63l45,PowerBI since it intergrates very well with MS SQL.,1

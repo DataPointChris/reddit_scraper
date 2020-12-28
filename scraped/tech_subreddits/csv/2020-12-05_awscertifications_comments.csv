@@ -1,0 +1,426 @@
+comment_id,post_id,comment,upvotes
+gepqc1d,k7aptn,"I recommend that everyone study for the Solutions Architect Associate first to give you an overview of the AWS ecosystem. Then probably the Sysops. From what I’ve seen mentioned here,  the certification is going to be a lot more hands on than it use to be. Then go for Devops. 
+
+Unless it’s changed, while the Devops Pro certification was exhausting, it still didn’t go deep enough into what people actually need to know to be good at Devops. 
+
+It doesn’t really go deep into CloudFormation or Docker. 
+
+It doesn’t touch EKS of course it doesn’t go into SAM. 
+
+I’m not trying to discourage you from going for the Devops certification, but if you are really concerned about learning modern Devops, dig into the Docker ecosystem and/or SAM.  I bought a separate 15 hour course when I was learning ClodFormation.",3
+gepr2iy,k7aptn,"Thanks for that clarification. I think when I looked at the learning path for the DevOps pro certification, before taking that I had to either take the developer Associate certification OR the SysOps certification, hence why I was wondering where I should be starting. I guess I could do both the SysOps and Solution architect certification since my knowledge is spread across both of these",1
+gepmwvk,k7aptn,Subb'd. Also will be doing this in a few months for the WGU program. Been debating on taking the CCP first.,1
+gepp5uz,k7aptn,I think the cloud practitioner it’s a pretty basic one. I’ve worked with AWS for more than a year so it makes sense for me to do this since am more of a devops guy.,1
+gepp801,k7aptn,"SysOps or Solutions Architect are both fine to start with. Just be aware SysOps is probably the hardest of the three associate exams. Jon Bono’s practice tests are very helpful though. I used Sam Alpati’s all-in-one guide too. For flexibility toss in a little Terraform, Docker, and Python/Boto3 learning on the side. That won’t come into play on the exam but will help you land the job.",1
+geppn6z,k7aptn,"Since I’ve worked with python , docker , cloud formation , lambdas , api gateaway , cloudwatch , Code pipeline , S3 , System Manager , parameter store , Automation am guessing the SysOps certification sounds more suitable.  Am not sure what the different is between the solution architect compared to the sysops certification",2
+gepqyy7,k7aptn,"SA focuses more on basics like S3/EC2/VPC/RDS. SysOps covers stuff like CodePipeline, Config, OpsWorks, CloudTrail, with a little of the basics mixed in.",2
+gepmr52,k7acpj,I was doing one an hour ago and within 5 minutes of my start and it got disconnected. No update from proctor. Very poor response from PSI. There is no where I can contact other than there ticket system to get this resolved .,1
+gepms0z,k7acpj,"Be prepared for the online proctor to be late. Also ensure that there's no writing in the room you take. No posters, no photos. It has to be empty. And nothing within arms reach. 
+
+My proctor literally wanted me to get rid of a bookshelf. It was easier to reschedule.",1
+gepp65e,k7acpj,PSI as a whole crashed today.  Multiple disconnects and restarts.  Proctor went MIA for over 30 minutes.,1
+georrkt,k73vll,"It won’t show up immediately as per the official AWS Certification FAQs:
+
+https://aws.amazon.com/certification/faqs/
+
+""When AWS releases a new product or service, how soon will it appear on the exam?
+
+A new product, service, or feature must be generally available (GA) for 6 months prior to it appearing on a certification exam. Note that this applies only to certification exams, not training: training will cover new services and features more quickly. The AWS Certification team wants to ensure candidates have enough time to work with new services and features before they are assessed against the new material.""",4
+geoo6u7,k73vll,"If you’re writing in a couple weeks, none. They usually amend the exams a little while later, after having a beta-exam run for a while with the new content.
+
+Edit: To be more specific, if you’ve already booked your exam then it will not change for you. The actual exam code changes when there’s a new version.",2
+geoux9l,k73vll,"Sorry for the stupid question, I'm just getting into Cloud&amp;AWS where/how do you get your notifications about AWS changes and updates",1
+geoxaa4,k73vll,"It’s Reinvent at the moment, so loads of changes",1
+gep9x06,k73vll,"You can follow them on various social media sites,
+There official blogs and site and yearly or twice a year they do this reinvent in which they do lots of updates and sessions and games annd more, you can register it is free.",1
+gepaxs0,k73vll,I’d suggest joining /r/aws,1
+gep6gz9,k73vll,nice,1
+georvl1,k73vll,"Old questions/answers that would now be wrong should be taken out immediately. It will take a few months until there are questions about new services or changed details. I think I read 6 months somewhere but I can't find the source anymore.
+New questions will first get tested/evaluated in the exams. This means that you get a few questions in each exam that do not affect your score.
+
+In general I would not worry about new or outdated information and just use a good training course for preparation. The good courses get updated about once a year, so they should always be enough for preparation.",1
+geoxd5b,k73vll,https://aws.amazon.com/blogs/training-and-certification/demystifying-your-aws-certification-exam-score/ is the page you're looking for.,2
+geoi8z6,k71xrq,will be participating in the EMEA one,1
+geol279,k71xrq,"View in your timezone:  
+[12/8 at 1pm EST][0]  
+
+[0]: https://timee.io/20201208T1800?tl=%F0%9F%A6%84The%20saga%20continues%2012%2F8%20at%201pm%20EST%20-%20AWS%20GameDay%20%40%20re%3AInvent%202020%F0%9F%A6%84",1
+geol2wz,k71xrq,"Hi view in your timezone:  
+[12/8 at 1pm est][0]  
+
+[0]: https://timee.io/20201208t1800?tl=%f0%9f%a6%84the%20saga%20continues%2012%2f8%20at%201pm%20est%20-%20aws%20gameday%20%40%20re%3ainvent%202020%f0%9f%a6%84, I'm dad.
+
+
+(Contact u/BadDadBotDad for suggestions to improve this bot)",1
+geob1gr,k7067i,"No idea about PCI but just did passed pearson proctor based yesterday and the experience was horrible until my exam started after waiting almost 1 hour
+Will do test center next time",2
+geocla3,k7067i,what exam? I used person for sec + in July and it was smooth .I've been googling it and PCi appears to have a bad rep. But you telling me you had a bad experience with Pearson. Damn,2
+geod1hh,k7067i,"CCP, just make sure online chat support page is open backgrounds so you can quickly alert them if no one shows up after 15 mins, in my case they asked me to restart my pc which I always close the lid and damn the mac started doing os updates showing 30 mins :) fortunately the lady was understanding and I kept him talking by asking silly questions:) they asked me to unlock something in mac system preferences then it was all smooth",2
+geoecr8,k7067i,damn macs and updates. talk about bad timing. so any details and advice you can give me for CCP. I am about to schedule for the 20th,2
+geojh1b,k7067i,"Just try to follow different sources as I just had Stephan’s udemy course and the real exam was much confusing and a couple of questions/concepts never mentioned in the course
+I’m sure you can handle given you have 2 weeks
+Good luck",1
+gensaag,k6ympt,"I don't know the course you're talking about nor did I take the CPP, but if you're nervous about your prep, dojo is the gold standard around here for exam practice https://portal.tutorialsdojo.com/courses/aws-certified-cloud-practitioner-practice-exams/ 
+
+If you've never taken a cert exam b4 I'd start by doing the review exams. Then do the timed exams to learn how to properly pace yourself and make use of the mark for review feature, so you don't blow your exam by spending too much time on a question you're unsure about. Then you can return to those questions once you've given every question an answer. Essentially I never spend more than 2 or 3 minutes on a question the first time I see it, but I will answer with my best guess. Then I'll go back to those questions and fix them later. It really helps with the early questions cause I'm usually still feeling the test anxiety.",3
+genu0d6,k6ympt,thanks for the tips. this is my first certification exam. if I can pass the timed test in the tutorial above would you say I am ready?,1
+genudvb,k6ympt,"Yeah. I'd imagine. I used his stuff for the SAA and Security exam. I scored better on the actual exams than I did his practice exams. That's not to say dojo exams will cover everything asked on the real thing. 
+
+Also, it might just be me, but I think it's normal to feel like you're failing the entire time. I've done really well on my certs and there's only been one exam I didn't feel like I was bombing. That also turned out to be my lowest score.",1
+genc2wt,k6v471,I thought the exam doesn't start until the verification is all done so it shouldn't have cost you time?,5
+genmswl,k6v471,"It does, but not when the session keeps getting thrown around to different proctors. Every like 20 min a new proctor would message me saying hi, asking if I'm in the middle of a test, and to please show them my desk and monitor cables",2
+geodhuy,k6v471,It just remove my 2 monitors and do it on a laptop with the only thing on the bench is my laptop.,2
+gen86ol,k6v471,That's horrible! You can reach them here: https://home.pearsonvue.com/Contact-Us.aspx,3
+gen6bz1,k6v471,"Wow that sucks. I've done 3 exams this year (sec+, SAA, scs-01) and their level of Paranoia has gone up each time. Like I was banned from wearing my hoodie yesterday. And he made me move all the picture frames this time. At least this dude didn't keep typing at me with a popup every time I mumbled to myself like the guy from 2 weeks ago.
+
+Are you out the money too? What I will say is that atleast you'll be familiar with the layout of the test and pace yourself better. If you didn't have everything answered with 20 min on the clock, I think you were spending too much time on certain questions and not flagging them. Although I imagine you were taken out of rhythm and the proper mindset with the extra hoops they were making you jump.",2
+gen81qq,k6u7fu,"Congratulations 🎉 for passing the CCP exam! Thanks as well for using our practice tests! All the best in your next AWS exam, you can check out out free AWS exam samplers here:
+
+https://portal.tutorialsdojo.com/product-category/aws/aws-practice-exams/free-aws-practice-test-sampler/",2
+gep3xuo,k6u7fu,could you share a link to the course.Thanks,1
+gephcg1,k6u7fu,"Sure. 
+
+https://aws.amazon.com/training/course-descriptions/cloud-practitioner-essentials/",1
+geml1d4,k6qe96,"It's really challenging to shift gears and move to a brand new industry but hey, you passed the SAA exam which means you got what it takes to succeed, and it's not too late. The only thing missing is your online portfolio, or pro bono projects. You can start off by creating your own website using S3 static web hosting, AWS LightSail or Elastic Beanstalk. I recommend that you start with LightSail as it is cheaper and easier. Try to talk to small businesses or non-profit organizations if you can create their simple website for free. Or just create projects that you are passionate about. 
+
+You can also try offering freelance services like Wordpress development/hosting or Plesk web hosting that can be done using Amazon LightSail or Elastic Beanstalk. Check out some available projects in UpWork or other freelance sites. If you’re already AWS certified, you can opt for the AWS IQ program offered by Amazon (only available to US-based folks). It’s like a freelance consulting for AWS customers. 
+
+You can also earn money online via the Amazon Mechanical Turk marketplace working on Human Intelligence Tasks (HITs)
+
+I hope that helps in building your portfolio!",8
+gemy1hv,k6qe96,Many thanks for that... Hadn't thought of reaching out to NPOs for work but that is a good avenue to explore.,2
+geoelgs,k6qe96,"hey /u/alias_rezistance im not sure which course you used for your study - some include more practical lessons than others. You should have picked up things along the way you can use on your CV. For my students I provide what I call 'advanced demos' [https://github.com/acantril/learn-cantrill-io-labs](https://github.com/acantril/learn-cantrill-io-labs) which are pretty complex scenario based practical lessons - I have students who've used these in interviews and they've helped them secure jobs.
+
+In terms of helping you get a role .. you should look at extending to SA Pro .. this will help build your confidence and capability .. which will further help in interviews. At the end of the day really though, its about putting things into action - demos demos demos and just get involved with others in the space
+
+I also recommend [https://techstudyslack.com](https://techstudyslack.com) ... its a great tech community and has community projects and a jobs channel where CIO's/hiring managers often interact directly with people when opportunities arise.",3
+gengtjm,k6qe96,"Think about going to a coding bootcamp. Some employers have a relationship with the bootcamp companies and set up interviews that way. Having the comsci degree, working experience and the SAA will certainly make you stand out from others new hire candidates.",2
+gem5x0n,k6p4nf,"You didn't mention anything on hands experience, certs don't guarantee a job unfortunately.
+
+Those projects you did with coding, learn to deploy them via a pipeline and automate tests, jenkins, terraform and aws is a great skillset. IaC requires yaml and json in some cases. Learn those, you should be able to pick it up in no time.
+Whatever pipelines you make, upload its code on github,  link your github to your linkedin. Brag about your projects. People will remember that.
+Also show how you used different aws tools in conjunction with eachother, you can do most of this in free tier account. Focus on lamda functions, api gateway and s3 buckets for code deployment.
+Hope this helps",5
+gem6j3u,k6p4nf,"Yeah, I have been keeping my accounting job.
+
+I have deployed a to Elastic Beanstalk using Travis CI.
+
+Also built a CI/CD using Code Pipeline and Code Build.
+
+The problem is actual 0 experience from a job.  
+
+
+I am currently building a serverless app using lambda, s3 and api gateway",2
+gem937z,k6p4nf,"You didn't mention anything about your github or linkedin, build your brand. Sell yourself and you'll make it work. Get your resume redone.
+When I started I used to do pull requests on github repos and deploy them over the cloud. Write about it on linkedin blog and connect with as many people as possible who work in the relevant field in your city or state.",2
+gemamq8,k6p4nf,"Thanks for the response :)
+
+I have all of this on github, and have a linkedIn profile.
+
+Though I admit, I haven't been doing much self-promotion.
+
+I have been thinking of starting a blog.
+
+Any ideas what should I blog about? Any hot tech that people really want on AWS? Maybe I'll learn that and implement it?  
+
+
+Serverless sounds promising though.",2
+gem5yj0,k6p4nf,"You didn't mention anything on hands experience, certs don't guarantee a job unfortunately.
+
+Those projects you did with coding, learn to deploy them via a pipeline and automate tests, jenkins, terraform and aws is a great skillset. IaC requires yaml and json in some cases. Learn those, you should be able to pick it up in no time.
+Whatever pipelines you make, upload its code on github,  link your github to your linkedin. Brag about your projects. People will remember that.
+Also show how you used different aws tools in conjunction with eachother, you can do most of this in free tier account. Focus on lamda functions, api gateway and s3 buckets for code deployment.
+Hope this helps",5
+gen1ae2,k6p4nf,"So I’m in accounting as well looking to make the switch as well. Very early on in the process. 
+
+Any advice you can give me? 
+
+Best of luck on your search for a job!",3
+geo9as9,k6p4nf,"Yeah a couple of things, tech is vast, you can do WebDev, DevOps, ML, but pick what really interests you, you will be spending hours on hours behind a comp screen. Internet is full of amazing learning resources, check our brad traversy channel or net ninja.  
+
+
+\- Whatever you do blog about it (This I should have done way earlier)  
+
+
+\- I guess grabbing a few certs like 1 or 2 would look good on your CV (AWS certs are hot right now, most in demand is Solutions Architect Associate)  
+
+
+\- Have your linkedIn and github in order  
+
+
+\- Freelancing counts as valid xp (I will do this if I don't get a job)",2
+gemmzga,k6p4nf,"First of all, congratulations for getting a PERFECT score on your Developer Associate exam! In my opinion, you have an ample amount of online projects that you can showcase to your soon-to-be employer. Check your local jobsite and look at the other skills needed on the posted DevOps jobs, then acquire those skills. It's just a matter of supply and demand, you supply the skill that companies demand.
+
+You can top it off with a DevOps Pro certification. There are a lot of OpsWorks in the DevOps exam and some Beanstalk questions. It is quite heavy on CI/CD, configuration and deployment management. Make sure that you know the advanced concepts such as Custom Actions in CodePipeline, Custom Layer/Cookbook in OpsWorks and Custom Resource in CloudFormation, plus various CodeDeploy types (Immutable, Blue/Green, Rolling etc)
+
+If you want to take a peek of what you’ll expect on the DevOps Engineer Pro exam, checkout this free AWS DevOps exam sampler as an additional resource: https://portal.tutorialsdojo.com/product-category/aws/aws-practice-exams/free-aws-practice-test-sampler/",2
+gemo40w,k6p4nf,"Thanks Jon, I am doing just that, BTW, thanks for liking my 1000 score post on LinkedIn, AWS Certified Community, you know who I am :)  
+
+
+Excellent practice exam questions for Developer Associate, really helped me. Thanks again :)",3
+gemoil6,k6p4nf,"Oh, it's you! Haha, yeah, I'm active on Linkedin and here in Reddit. Happy weekend and let's keep in touch!",2
+gemp4fw,k6p4nf,"I'll be giving a Intro to Cloud Computing talk to university level students soon, it will be up on YouTube by Sunday. I'll send you a link.  
+
+
+So maybe if you like how I teach, lol maybe you can hire me as a teacher :P",3
+gengpht,k6p4nf,"Good on you, man! That'll be amazing! 
+
+You can teach online bro, just create an awesome course in Udemy and you're good to go! Can't wait to see what you'll showcase on your course!",3
+geo9d30,k6p4nf,Thanks for the encouragement Jon :),1
+gemdw7l,k6o9l3,"Certified cloud practitioner is tough?!?
+I have 2 years of xp in it and I was planning on taking it before the year end.",2
+genmm05,k6o9l3,"IMO, CCP is what AWS calls as fundamental cert. The course from which you prepare matters a lot as well. Stephane's courses are generally good as I've personally taken his Solutions architect. 2 years experience in IT is more than enough to crack this bad boy. Because this is entry level test so it isn't bad in terms of what they ask in the test. CCP is mostly memory based test as they do not have lengthy questions as what they have in Solutions Architect where hands on experience is a must. You still have time to take it before the year end. I would recommend to go through the official AWS videos available for free - . [https://aws.amazon.com/training/course-descriptions/cloud-practitioner-essentials/](https://aws.amazon.com/training/course-descriptions/cloud-practitioner-essentials/). 
+
+Also, for Practice tests, check out these - [https://reviewnprep.com/marketplace/details/aws-cloud-practitioner/17/EXAM](https://reviewnprep.com/marketplace/details/aws-cloud-practitioner/17/EXAM).
+
+Good Luck!",5
+geo75hf,k6o9l3,"Thanks man, really appreciate it.",2
+gemiw3t,k6o9l3,"Can’t say tough but I see the way the questions are asked much different than the udemy course I took, which many said it is a go to course but I had questions never seen in the course for example aws sumerian",2
+genka0t,k6o9l3,"Just took the exam an hour ago and there were definitely questions worded much different than the practice exams, along with topics that don't usually come up in guides (AWS connect etc). I would definitely know the ""Overview of AWS"" whitepaper.",2
+gemn2z5,k6o9l3,Congratulations!,2
+genmeul,k6o9l3,Congrats on passing your CCP.,2
+geo7dmq,k6o9l3,"2 weeks of intense study? Wowza, I studied for about 12 hours, started this Monday and got certified this morning.
+
+What is ""intense"" from your perspective?",2
+geoa826,k6o9l3,1 hour a day :),2
+geoa9fd,k6o9l3,"Ah ok, not bad then heh.",2
+geoatem,k6o9l3,"Joke apart my point was to highlight the difference between real exam and the course material perhaps I’m new to cloud coming from SAP consulting and CCP is just for personal challenge
+
+And yes my next aim is SA since I loved this whole AWS while studying 
+
+Would be great tho if you recommend any good course for SA",2
+geob3jh,k6o9l3,"I'm just going through acloud guru for now, then I'll take some practice exams on udemy.
+
+Once we get into professional certs, that's where we need to get some real world experience to make quick on the answers.",3
+geob7w3,k6o9l3,"Thanks a lot, will definitely take a look",1
+geob9ij,k6o9l3,Yep good luck!,1
+geoabbm,k6o9l3,Going for SA associate? I'm studying for that now.,1
+gelrv1q,k6l0on,"Congrats! 
+
+I'm on the same boat, no previous AWS experience apart from a quick tests with Lambda/S3/Dynamo.
+
+I was a bit disheartened when I started doing mock exams because I was coming across features that I hadn't seen before in the courses that I followed. So I started using the exams as study material in order to fill my gaps.
+
+Your experience gives me hope!",5
+gemmvxs,k6l0on,The first practice exams are brutal. They are mentally taxing and emotionally draining 😂. Good luck with your studies!,3
+gemgyxj,k6l0on,"First, congratulations. Second, thank you for laying out your study path. I’m about to take the Sec+ and then start on AWS so your post is very helpful. 
+
+Good luck in your future endeavors.",2
+gemm2f3,k6l0on,"People posting their detailed study plan, Bonso test scores and result gave me a boost in confidence/motivation to continue through studying so I want to return the favor and get my experience posted on the subreddit.
+
+Thanks and good luck with your journey!",2
+gemkdxp,k6l0on,Woah! Congratulations!!,2
+gemmwbe,k6l0on,Ty!,1
+gemnhb1,k6l0on,"Congratulations and thanks for using our CDA practice tests! All the best as well on your SA Pro exam next year!
+
+The SA Pro exam has a lot of questions about advanced networking, architecture, migration, configuration and other advanced topics. You should familiarize yourself about specific topics like longest prefix match for VPC Peering, AWS Organizations + SCP setup, Mechanical Turk and many more. There were a lot of migration scenarios too so make sure that you know the 6 Strategies for Migrating Applications to the Cloud.
+
+For the exam prep materials, I highly recommend that Official SA Pro Exam Readiness digital course that is provided for free by AWS:
+https://www.aws.training/Details/eLearning?id=34737
+
+You can also check out this free SA Pro sampler test as an additional resource. 
+https://portal.tutorialsdojo.com/product-category/free-practice-exams/
+
+I co-authored an eBook that discusses the various topics in SA Pro exam. You might want to give this a try. 
+https://portal.tutorialsdojo.com/product/tutorials-dojo-study-guide-ebook-aws-certified-solutions-architect-professional/",2
+gekqrth,k6eoja,I contacted them about a month ago and they said they are currently none.,2
+gelmpkf,k6eoja,That’s too bad !,1
+gempxqy,k6eoja,It’s only 75 dollars?,1
+genej1f,k6eoja,"Its 100$ for foundation, and more for Associate and professional level",1
+gekjy7q,k6efbo,"You are right in that the cloud doesn't provide very many entry level positions. Most people will repeat the same answer because it's true, you need to start at help desk. Once you work help desk for 1-2 years you become a system admin and begin to touch the cloud on a basic level such as maintaining the cloud side of AD (Azure AD), Office 365, Windows and Linux environments, etc. Then while working as a system admin start knocking out your certifications in AWS and actually applying what you learn to practical application. For example I pitched to my boss to host an internal corporate directory website in AWS that included some basic lambda functions to pull DynamoDB data and allowed CRUD. 
+
+You now have:
+1) help desk experience / admin experience (nobody will hire a brand new employee)
+2) Probably your solutions architect and maybe either developer or sys ops. Get 2 associate level certs or so.
+3) Actual real world experience you can put on your resume that you did work in the cloud.
+
+With those 3 things you can be viable and begin to pitch yourself. But honestly before then, yes, it's a waste of time.",1
+gekolek,k6efbo,"This is a route I had considered to build up my resume for programming as I had stumbled across a few helpdesk jobs, so thanks for the re-assurance with this path.
+
+Thanks also for the rest of the info, I'm interested to hear others perspectives as well.
+
+In the meantime I bought a practitioner course that was recommended to get the gist of it all, it was the price of an expensive cup of coffee so I'm not to worried!",1
+gemstwp,k6efbo,"Just do the cloud practitioner for sure, regardless of your future. If you're computer savvy at all you will pass your CCP in maybe 1-2 weeks of half ass study. I think at the time I knocked out the CCP and Azure fundementals in like a 3 week period because the material is so high level. Then that gives you a voucher from AWS for half off your solutions architect exam when you're ready and the material from the CCP is about 50% of that exam.",1
+gemnsdl,k6dagq,"The CCP exam is actually the entry-level exam. You can go straight to SAA if you want to save time, but having a CCP might be feasible since you want to have a cert before Christmas 
+
+The Certified Cloud Practitioner (CLF-C01) exam has various questions that revolves in billing, cost management, support plans, cloud concepts, basic AWS services and many others. Cost Explorer, AWS Budgets, RI Utilization tracking, Standard vs. Reserved Instance, Upfront, Partial &amp; No Upfront payment types and many others.
+
+I also recommend that you take the free 6-hour  AWS Cloud Practitioner Essentials digital course: https://aws.amazon.com/training/course-descriptions/cloud-practitioner-essentials/
+
+You can also check out our free AWS sampler test for CCP. 
+
+https://portal.tutorialsdojo.com/product-category/free-practice-exams/",3
+gemt9zh,k6dagq,Do you think it's feasible for the ssa by xmas if I study heavy? Any recommendations to study from for the ssa. Preferably a complete guide.,3
+genvztm,k6dagq,"Most people do video courses. I've used Stephane Maarek's (on Udemy) and ones from cantrill.io
+
+The CCP can be achieved by watching the free curriculum from AWS Training, or courses from the gentlemen listed above. 
+
+You'll also want to invest in some practice tests: Jon Bonso (tutorials dojo) is popular here, but there are more to choose from on Udemy.
+
+SSA by Christmas? That's about 3 weeks. How much prior IT datacenter or infrastructure experience do you have? I felt I barely passed and I took just over 3 weeks - with pretty deep network/datacenter experience. Not impossible but depends on how much you already know. If you're starting from zero, that is going to be very difficult. 
+
+The CCP test is mostly memorizing facts. SAA is everything in the CCP plus the ability to start solving IT problems and implement best practice design.",2
+geo4453,k6dagq,How many hours a day did you study?,2
+geodn81,k6dagq,"At least 2, but averaging 3-4 hours. Pretty much any time I wasn't on a videoconference or doing something for actual work I was watching videos or taking/failing practice exams.  
+
+More hours toward the end because time goes by fast in practice exams. 65 questions was taking 45 mins on average. So taking 3-4 practice exams a day is already a bit commitment.",3
+genvzd6,k6dagq,The SAA is only feasible before Christmas if you’re super familiar with the cloud. Otherwise you’ll need to do the Cloud Practitioner first as that’s foundational knowledge to help pass the SAA.,1
+gejf916,k6831x,"I got my CCNA earlier this year. I just passed the SAA and the security exam (like 20 min ago and I already have a sec+) in 5 weeks of full time study. I used https://learn.cantrill.io (I feel like if I had a brain I would have just bought all5), but I used his SAA and his SAPro courses to pass my two certs. The demos are the best part. I also used tutorial dojo, just buy the bundles https://tutorialsdojo.com
+
+I also plan to do the Sysops and SA Pro exams.",7
+gekiy5o,k6831x,Second [learn.cantrill.io](https://learn.cantrill.io) . Just passed my SAA with his course.,1
+gekoqi4,k6831x,"If we buy all 5 courses from Adrian, it will be lifetime access right? And will be updated all the time?
+
+Also, how long did you prepared for the CCNA?",1
+gekpxpf,k6831x,"Well for the CCNA, I had done the ICND1 a couple years ago. And then I spent like 5 weeks studying the ICND2. I think a lot of those networking concepts plus my security+ time made the SAA much easier to grasp.
+
+It is life time access for his courses. And he updates them. In fact, there were new modules being added while I was preparing for the SAA.",2
+gekor55,k6831x,"Hi if we buy all 5 courses from adrian, it will be lifetime access right? and will be updated all the time?
+
+also, how long did you prepared for the ccna?, I'm dad.",0
+gekou6k,k6831x,Cool story,0
+gem6x0n,k6831x,"Start with AWS Cloud Solutions Architect as it’s decent cert and will give a nice overview of core AWS services 👍
+
+Let me know if you have any questions 
+
+Also I would skip the Cloud a practitioner as it’s for non technical people, more like a sales one",1
+gemo07e,k6831x,"You can start off with the Certified Cloud Practitioner (CLF-C01) exam or go straight to SAA. It's your choice and it depends on your level of experience in AWS.
+
+The CLF-C01 exam is the entry-level cert and it has various questions that revolves in billing, cost management, support plans, cloud concepts, basic AWS services and many others. Cost Explorer, AWS Budgets, RI Utilization tracking, Standard vs. Reserved Instance, Upfront, Partial &amp; No Upfront payment types and many others.
+
+I also recommend that you take the free 6-hour  AWS Cloud Practitioner Essentials digital course: https://aws.amazon.com/training/course-descriptions/cloud-practitioner-essentials/
+
+You can also check out our free AWS sampler test for CCP. 
+
+https://portal.tutorialsdojo.com/product-category/free-practice-exams/",1
+gen76nm,k6831x,"If you’re new to the cloud I’d highly recommend starting with Cloud Practitioner, I just passed a few weeks ago. It’ll give you foundational knowledge to use for the practice parts of the Solutions Architect when you go to learn how to use the services.",1
+geiiw04,k63kzv,give it 24 hours. I haven't see a problem in the past.,2
+gejj2qi,k63kzv,"It’s not an issue, you have to wait at least 24h",1
+gekg0zc,k63kzv,"most people get it within 24, the remainder generally get it within 48.",1
+geintzy,k63kcx,Congratulations bro. Deleting prod databases would be my worst nightmare.,16
+geiuuvp,k63kcx,I've done it! I still have nightmares about it.,3
+geiw88k,k63kcx,"yeah, that dreaded feeling and the look of your boss' face that prod was messed up! Thank heavens for automated backups!",3
+geiwxgn,k63kcx,That was another problem... new company.. their only backup was an export and they had never done any DR testing. Scary!!!,2
+geixe93,k63kcx,"yeah, i really don't know the deal with these guys. companies, both old and new ones (including startups), should always have some sort of disaster recovery or business continuity plan for their data. This is also the idea on my head why I took the exam, it gives me that edge to flex my DB skills along with my other cloud skills at work, since all large companies have some sort of databases.",2
+geioil8,k63kcx,"Thanks! Yeah, prod issues are stressful man, not to mention the on-call I get on the wee hours of the day for support. Use Aurora Global Database with RPO of less than 5 seconds and RTO is less than 1 minute, or use RDS Read Replica to reduce lost data! These are the things that sinked in to me and share to my team.",5
+geikplg,k63kcx,"So yeah, after 2 weeks of study, I passed the Database Specialty exam! Compared to Security Specialty, this one has almost the same difficulty, scenario length and focus. The scenarios are like, *""A Database Specialist is this... or that...""* with a particular focus on various features of AWS Database Services (RDS, Aurora, DynamoDB, DocumentDB, Neptune, Redshift...), it's like Security Specialty in a sense that the theme of the exam is all about Databases, unlike SAA that covers a much wider topic range. There is also a lot of AWS DMS questions, failover and disaster recovery scenarios. Advanced DB concepts like Aurora fault injection queries and promotion tier showed up. Messing around with the AWS Console and doing those practice tests really helped fast track my review.
+
+We're heavily using AWS at work and achieving this certification really helped me have an in-depth understanding on RDS/Aurora that we use on our prod environments, like there's this new Storage Auto Scaling in RDS and high RTO/RPO for Aurora Global databases. Exam prep materials I used are:
+
+AWS Exam Readiness: [https://www.aws.training/Details/eLearning?id=47245](https://www.aws.training/Details/eLearning?id=47245)
+
+Tutorials Dojo: [https://portal.tutorialsdojo.com/courses/aws-certified-database-specialty-practice-exams/](https://portal.tutorialsdojo.com/courses/aws-certified-database-specialty-practice-exams/)
+
+I also read the FAQs for each database services. My next target would be Data Analytics Specialty, either I take it before this year ends to keep my momentum or next month. Already have Stephane Maarek and Frank Kane's Udemy course and Tutorials Dojo practice tests for my prep.",12
+gejy2l0,k63kcx,Almost wish I didn't read this. Gives me another cert to consider. Congrats btw.,2
+gek6ar0,k63kcx,"yeah, you won't regret it. lots of learnings for this DB cert and it's a quick win.",1
+geiqn1c,k63kcx,We've all been there.,3
+geivj5v,k63kcx,"yeah, but we shouldn't be. there's this guy at work who used the master DB user as the credential for our application. that's a big no-no since the app can affect the entire database including the other applications that uses the DB. This is why I love cloud computing so much, makes database backups easier to do and easier to recover than before",1
+geiuew6,k63kcx,"Congratulations🎉 and thank you for using our Database Specialty practice tests! 
+
+All the best in your upcoming Data Analytics exam! Don't rush it bro! It has lots of questions about Amazon Athena, AWS Glue, QuickSight, Redshift, Elastic MapReduce (EMR), Amazon Elasticsearch Service (Amazon ES) and Kinesis (Data Analytics, Data Firehose, Data Analytics). It’s important that you know how these services interact with each other to develop a complete data analytics solution in AWS. Prepare to see a lot of Apache technologies as well, such as Apache Parquet, ORC, Avro, Oozie, Sqooq, HBase and many others.
+
+You can also use our free AWS exam sampler for Data Analytics as you additional resource: https://portal.tutorialsdojo.com/product-category/aws/aws-practice-exams/free-aws-practice-test-sampler/
+
+Cheers! 🍻",3
+geivy52,k63kcx,"Thanks to you Jon for doing such a great job in providing high quality exam prep materials! I have to say that your explanations are top-notch, from the custom diagrams, rationales for each options and relevant AWS Docs links. It just makes my review easier and yes, I already bought your practice tests when you had your Black Friday Sale last month. I might check out your new eBook though when I decided to take the Pro-level exams.
+
+Edit: typo",1
+gekja4t,k63kcx,"When reading a comma makes all the difference between “no thanks to you” and “no, thanks to you”...,",1
+gekjoxb,k63kcx,"yeah my bad, thanks for letting me know. fixed.",1
+gekjwma,k63kcx,You were right the first time. I just read it wrong and I thought it was funny that not taking the comma into account made the sentence mean something completely different than what it was meant to say.,1
+gekk4ob,k63kcx,"that's okay, all good. I think Jon understood it though he didn't reply back",1
+gektopk,k63kcx,No worries man! Enjoy your well-deserved weekend!,1
+geiz9y8,k63kcx,:0,2
+gej0cev,k63kcx,😧😮😖😣😫,2
+gekmn1v,k63kcx,"Haha, this reminds me of my last job. Where we had a rule to show another person that we were checking the ""no reboot"" while taking AMI of prod servers. This came in after I did one, and couldn't remember if I checked or not. Most buttclench exercise me and my team got in a 5 minute period.",1
+gelr7b0,k63kcx,I just renamed it. The configuration services didn't like it.,1
+geimoni,k62e73,"this is with YouTuber NetworkChuck and Anthony Sequeira right? I have it, lots of demos but the topics covered are not highly relevant for the SAA-C02. Stick with Stephane Maarek or Adrian Cantrill in my opinion. The course is also fairly short at less than 8 hours, considering that the course has 3 instructors",1
+gei7k8d,k61g4f,"There aren't prerequisites. I started with two specialty exams (Machine Learning and Big Data, which was the predecessor to the current DA exam), then looped back to the associate level ones, and now am halfway through the Pro ones.
+
+That said, be aware that it's pretty brutal to jump to that level.
+
+CCP from what I've seen is essentially floors 1-2 in difficulty. The associate exams are probably floors 2-7. The Pro exams and Specialty exams are like floor 25.
+
+I'd recommend taking a look at some of the sample questions ([https://d1.awsstatic.com/training-and-certification/docs-data-analytics-specialty/AWS-Certified-Data-Analytics-Specialty\_Sample-Questions.pdf](https://d1.awsstatic.com/training-and-certification/docs-data-analytics-specialty/AWS-Certified-Data-Analytics-Specialty_Sample-Questions.pdf)) to get an idea of what you'll be in for. You'll be in for 3 hours of such questions (65 questions).
+
+That said, there's not too much overlap between the associate/pro exams and the specialty ones that I've seen. The associate/pro ones only very, very lightly touch the content in the specialty exams, while the specialty ones of course go very very deeply into those services/subjects. But it may be useful to at least do an associate one as a way of starting to slightly ramp up your experience taking the exams. Additionally, you are probably going to be pretty hobbled if you only know about the data analytics tools, but don't have a bit wider AWS knowledge. I'd probably recommend that you do the SAA cert before you consider a specialty cert.",2
+geiawit,k61g4f,"thanks for the detailed breakdown! it looks pretty intimidating, not going to lie. I guess I'm going to get the SAA first so I'm more familiar with the AWS field and then move on to the DA specialty",3
+geierq0,k61g4f,"I passed the Data Analytics exam and I strongly suggest that you pass your SAA first before moving to the Specialty certs to gain a more extensive knowledge in core AWS services.
+
+For the AWS Certified Data Analytics - Specialty (DAS-C01) exam, it has 65 questions that you must finish within 3 hours. The scenario-based questions here are lengthy; comparable to what you’ll see on your Solutions Architect and DevOps Engineer Professional-level exams! The scenarios are long but the options are not, unlike in the Pro-level ones.
+
+Lots of questions about Amazon Athena, AWS Glue, QuickSight, Redshift, Elastic MapReduce (EMR), Amazon Elasticsearch Service (Amazon ES) and Kinesis (Data Analytics, Data Firehose, Data Analytics). It’s important that you know how these services interact with each other to develop a complete data analytics solution in AWS. Prepare to see a lot of Apache technologies as well, such as Apache Parquet, ORC, Avro, Oozie, Sqooq, HBase and many others.
+
+For my exam prep, I heavily used the official Exam Readiness video course (that is available for free from the AWS Learning Library):  https://www.aws.training/Details/eLearning?id=46612 
+
+The new Exam Readiness course is now more interactive with responsive image maps, accordions, sample problem sets, section-based quizzes and a practice test in the end (around 17 questions only). 
+
+You can also use our free AWS exam sampler for Data Analytics as you additional resource: https://portal.tutorialsdojo.com/product-category/aws/aws-practice-exams/free-aws-practice-test-sampler/",2
+geih405,k61g4f,"thanks so much for the detailed answer! I am definitely bookmarking the links for after I have passed the SAA.  The list of things to learn seems pretty extensive and I hope I don't get lost as I am just getting familiar with the cloud technology. Hopefully, I'll figure it out",3
+geit84p,k61g4f,No worries. Give yourself some time to fully understand the concepts and do some sample hands on too,2
+geie7h5,k60qn2,"Congratulations and thank you for using our SAA-C02 practice tests! For your SysOps or Developer Associate exams, you can try out Adrian's new Associate-level courses and our practice tests: https://portal.tutorialsdojo.com/product-category/aws/aws-practice-exams/free-aws-practice-test-sampler/
+
+Cheers and have a great weekend ahead!",4
+gei75c7,k60qn2,Great job!,2
+gejx6n4,k60qn2,Amazing job /u/JaminenB \- glad I could help in a small way :),2
+gek6jvd,k60qn2,Congratulations !,1
+geojyvk,k60qn2,Did it have a lot of questions on Fargate / ECS?,1
+gei5yj1,k60qn2,Congrats!!!,1
+gehf0cp,k5wo76,"The Certified Cloud Practitioner (CLF-C01) exam has various questions that revolves in billing, cost management, support plans, cloud concepts, basic AWS services and many others. Cost Explorer, AWS Budgets, RI Utilization tracking, Standard vs. Reserved Instance, Upfront, Partial &amp; No Upfront payment types and many others.
+
+I also recommend that you take the free 6-hour  AWS Cloud Practitioner Essentials digital course: https://aws.amazon.com/training/course-descriptions/cloud-practitioner-essentials/
+
+You can also check out our free AWS sampler test for CCP. 
+
+https://portal.tutorialsdojo.com/product-category/free-practice-exams/",12
+gehih99,k5wo76,"Currently using these, they are very good",4
+gehnge7,k5wo76,[https://portal.tutorialsdojo.com/](https://portal.tutorialsdojo.com/) is a great site with solid content - an excellent way to gain the knowledge and prepare for the test,3
+gek980g,k5wo76,"Cloud Practitioner cert is mostly memory based exam. If you can remember the AWS Services, some FAQs about them, high level concepts about cloud, you are good to go. If you have no experience, it doesn't matter for this cert. Before buying anything on Udemy or anywhere else, I would also recommend the official AWS course. [https://aws.amazon.com/training/course-descriptions/cloud-practitioner-essentials/](https://aws.amazon.com/training/course-descriptions/cloud-practitioner-essentials/). It's FREE and its from AWS!!!
+
+Also, for Practice tests, check out these - [https://reviewnprep.com/marketplace/details/aws-cloud-practitioner/17/EXAM](https://reviewnprep.com/marketplace/details/aws-cloud-practitioner/17/EXAM). You can use coupon RNP10 for extra 10% off. 
+
+Disclosure - I own the Reviewnprep website and course author is a buddy of mine.",3
+gekgiau,k5wo76,Thanks mate!,1
+gehotm7,k5wo76,"You sure can!
+
+&amp;#x200B;
+
+1. Get the Bonso practice tests on UDemy
+2. Grind through all of them
+3. Make hardcopy flashcards for every single product and google everytihng you don;t know
+4. Repeat step 2 until you pass all of them with \~90% or better
+5. You're ready, take the test",2
+gehdwms,k5wo76,I bought the practice exams from Udemy.com and passed my first time.  Spend a month or two studying and you should be fine.,4
+gehvdm3,k5wo76,Can you share the Udemy link?,1
+gei87j0,k5wo76,[Here you go](https://www.udemy.com/share/103a09AEAaeFhTR3UJ/),1
+gekjpl1,k5wo76,I used this together with the Bonso tests and scored 940 on the actual exam. Highly recommended both courses,2
+gek0a64,k5wo76,What a coincidence ..I have bought this one too .. haven't gone thro it ...is this all that I read and practiced ?? No need for anything more ?,1
+geibhwi,k5wo76,Did you have any other experience with AWS before the course/did you use anything else to supplement your studying other than Udemy? Thanks!,1
+gejyuo1,k5wo76,Thanks alott guys !,1
+geiapm5,k5wo76,ExamPro has a CCP course and practice exams that I used to pass the exam. [https://www.exampro.co/aws-exam-cloud-practitoner-foundational](https://www.exampro.co/aws-exam-cloud-practitoner-foundational),1
+geifw4n,k5wo76,"Go on Google and find the best reviewed course to study for the exam then you can either pay for the course or you can go on a torrent site and bootleg it for free if you can't afford it (whichever option you take morally is up to you). 
+
+I would personally recommend A Cloud Guru but YouTube has a ton of free courses too -- I would say just pick a course with good reviews with a teacher you can easily listen to. I don't know why but I can't listen to anyone that isn't a native English speaker since they either talk too fast or they constantly mispronounce words without care. I need for studying reasons for everything to be as easy as possible. 
+
+To make the process easier search on Google study methods and stick to one that you like. Do not follow anyone's study routine that you personally are not comfortable with. 
+
+After studying for however long it takes for you to understand the subject material then begin to take practice exams for an entire month prior to sitting your test. Once you score 80-90% book your test immediately because you're more than ready to pass the exam. Some recommend paid practice exams like what Jon Boso sells or using Amazon's official AWS practice test but I think [https://www.examtopics.com/exams/amazon/aws-certified-cloud-practitioner/](https://www.examtopics.com/exams/amazon/aws-certified-cloud-practitioner/) is the best one since not only is it free but you have access to it forever. 
+
+I would supplement your learning with white papers and reading the FAQ as well as another course just so that you have another outlook on the topics you're learning. I personally didn't use a second course but instead just used any articles and videos I could find in Google and YouTube as well as messaging people on LinkedIn that you are connected to that work as AWS Cloud Engineers for help. 
+
+Oh, and do as many labs as possible and document it for LinkedIn so employers can see that you have some form of work experience. Then that leads into working on your CV so that what you are teaching yourself is reflected.
+
+Sounds like a lot but 4+ hours a day of self-studying (at least 20 hours a week) and you'll be ready in no less than 4-6 weeks max. I then did a week of intense practice tests for much longer than 4 hours a day for over a week and I passed. 
+
+&amp;#x200B;
+
+Good luck.👻",1
+geigcix,k5wo76,"Also, don't do that silly thing where people book their exam ahead of fully understanding the subject material. Only book your exam when you have confidently passed the practice exam by 80-90%. If you book the exam prior to gaining the knowledge then you'll just put even more unnecessary pressure on yourself -- don't be that guy/gal. 
+
+The official AWS practice test is not challenging enough in my opinion but still good to do since it's the closest to taking the REAL exam. Watch Youtube videos of people taking the test so nothing will throw you by the time you take your exam. 
+
+&amp;#x200B;
+
+Kind regards, 2Pac.👻",3
+gei2cgp,k5wo76,I'm in the same boat and taking an udemy course by Neal Davis. Finished 4 chapters so far and it's pretty concise and clear but I have nothing to compare it to. Hopefully it's good enough for me to pass the exam after,0

@@ -1,0 +1,389 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k75f3y,How to Use a MongoDB Database in a ASP NET Core Web API application,,2,mongodb,2020-12-05
+k6q7bf,Find all users in a project,"New to mongo, trying to figure a way to pull all usersids with access to a project",2,mongodb,2020-12-05
+k6mlsq,Error Attempting to Reconfigure ReplSet Nodes to P0,"I have a basic replset in MongoDB:
+
+* a - primary / p2
+* b - secondary / p2
+* c - arbiter / p1
+* d - secondary / p1
+* e - secondary / p1
+
+Attempted to make sure 'd' &amp; 'e' never become elected primary &amp; received this error:  
+
+
+    rs0:PRIMARY&gt; rs.reconfig(cfg)
+    {
+    	""ok"" : 0,
+    	""errmsg"" : ""This node, a:27017, with _id 9 is not electable under the new configuration version 76695 for replica set rs0"",
+    	""code"" : 103
+
+If priority is based on the higher the number getting priority status, why does me trying to reconfigure nodes 'd' &amp; 'e' have any weight on the current master which is P2?  
+
+
+The code to produce the error:  
+
+
+    cfg = rs.conf()
+    cfg.members[3].priority = 0
+    cfg.members[4].priority = 0
+    rs.reconfig(cfg)
+
+members \[3\] &amp; \[4\] are 'd' &amp; 'e' above. Appreciate any assistance.",1,mongodb,2020-12-05
+k6l2z8,MongoDB Atlas with AWS vs Azure as cloud providers.,"Hi, I am looking to deploy M10 cluster provided on MongoDB Atlas. While checking out, I noticed Azure is providing 30GB space in comparison to  on AWS, in same price.  
+I am confused here, which one to go with. 
+
+Need help with how to decide between them ?
+
+Thanks, 
+
+[MongoDB pricing](https://www.mongodb.com/pricing)
+
+https://preview.redd.it/y7ccrshua6361.png?width=974&amp;format=png&amp;auto=webp&amp;s=99f20c60eb749d77f272813d73e99dd144267b66
+
+https://preview.redd.it/2ltdorhua6361.png?width=975&amp;format=png&amp;auto=webp&amp;s=e9a240907ab84aa53f0d9eb40a932fca5649a1af",4,mongodb,2020-12-05
+k6kqb6,Need help getting MongoDB working on CentOS 7: 'Job for mongod.service failed because a timeout was exceeded.',"Hey, I'm not sure if this sub is really meant for support requests but I'd really appreciate if someone could help me with this. I'm not really a mongo user, I just have an application I need to install on a server and it uses mongo. The whole stack for this application has been a pain and I'm at the last hurdle with mongo now, but it won't run.
+
+So I get this error:
+
+    # sudo systemctl start mongod
+    Job for mongod.service failed because a timeout was exceeded. See ""systemctl status mongod.service"" and ""journalctl -xe"" for details.
+
+&amp;#x200B;
+
+Systemctl status gives me this:
+
+    # systemctl status mongod.service
+    mongod.service - MongoDB Database Server
+       Loaded: loaded (/usr/lib/systemd/system/mongod.service; enabled; vendor preset: disabled)
+       Active: failed (Result: timeout) since Fri 2020-12-04 12:45:45 UTC; 1min 31s ago
+         Docs: https://docs.mongodb.org/manual
+    
+    Dec 04 12:31:17 chess.gates.com mongod[30186]: forked process: 30188
+    Dec 04 12:31:18 chess.gates.com mongod[30186]: child process started successfully, parent exiting
+    Dec 04 12:34:36 chess.gates.com mongod[30919]: about to fork child process, waiting until server is ready for connections.
+    Dec 04 12:34:36 chess.gates.com mongod[30919]: forked process: 30921
+    Dec 04 12:34:38 chess.gates.com mongod[30919]: child process started successfully, parent exiting
+    Dec 04 12:43:09 chess.gates.com mongod[2005]: about to fork child process, waiting until server is ready for connections.
+    Dec 04 12:43:09 chess.gates.com mongod[2005]: forked process: 2007
+    Dec 04 12:43:11 chess.gates.com mongod[2005]: child process started successfully, parent exiting
+
+&amp;#x200B;
+
+And there doesn't seem to be anything related to mongod in journalctl.
+
+I found a /var/log/mongodb/mongod.log that has a bunch of lines, but this seems to be the relevant bit:
+
+    {""t"":{""$date"":""2020-12-04T12:43:11.173+00:00""},""s"":""I"",  ""c"":""FTDC"",     ""id"":20625,   ""ctx"":""initandlisten"",""msg"":""Initializingfull-time diagnostic data capture"",""attr"":{""dataDirectory"":""/var/lib/mongo/diagnostic.data""}}
+    {""t"":{""$date"":""2020-12-04T12:43:11.175+00:00""},""s"":""I"",  ""c"":""NETWORK"",  ""id"":23015,   ""ctx"":""listener"",""msg"":""Listening on"",""attr"":{""address"":""/tmp/mongodb-27017.sock""}}
+    {""t"":{""$date"":""2020-12-04T12:43:11.175+00:00""},""s"":""I"",  ""c"":""NETWORK"",  ""id"":23015,   ""ctx"":""listener"",""msg"":""Listening on"",""attr"":{""address"":""127.0.0.1""}}
+    {""t"":{""$date"":""2020-12-04T12:43:11.175+00:00""},""s"":""I"",  ""c"":""NETWORK"",  ""id"":23016,   ""ctx"":""listener"",""msg"":""Waiting for connections"",""attr"":{""port"":27017,""ssl"":""off""}}
+    {""t"":{""$date"":""2020-12-04T12:45:45.287+00:00""},""s"":""I"",  ""c"":""CONTROL"",  ""id"":23377,   ""ctx"":""SignalHandler"",""msg"":""Received signal"",""attr"":{""signal"":15,""error"":""Terminated""}}
+    {""t"":{""$date"":""2020-12-04T12:45:45.287+00:00""},""s"":""I"",  ""c"":""CONTROL"",  ""id"":23378,   ""ctx"":""SignalHandler"",""msg"":""Signal was sent by kill(2)"",""attr"":{""pid"":1,""uid"":0}}
+    {""t"":{""$date"":""2020-12-04T12:45:45.287+00:00""},""s"":""I"",  ""c"":""CONTROL"",  ""id"":23381,   ""ctx"":""SignalHandler"",""msg"":""will terminate after current cmd ends""}
+    {""t"":{""$date"":""2020-12-04T12:45:45.287+00:00""},""s"":""I"",  ""c"":""REPL"",     ""id"":4784900, ""ctx"":""SignalHandler"",""msg"":""Stepping down the ReplicationCoordinator for shutdown"",""attr"":{""waitTimeMillis"":10000}}
+    {""t"":{""$date"":""2020-12-04T12:45:45.288+00:00""},""s"":""I"",  ""c"":""COMMAND"",  ""id"":4784901, ""ctx"":""SignalHandler"",""msg"":""Shutting down the MirrorMaestro""}
+    {""t"":{""$date"":""2020-12-04T12:45:45.288+00:00""},""s"":""I"",  ""c"":""SHARDING"", ""id"":4784902, ""ctx"":""SignalHandler"",""msg"":""Shutting down the WaitForMajorityService""}
+    {""t"":{""$date"":""2020-12-04T12:45:45.288+00:00""},""s"":""I"",  ""c"":""CONTROL"",  ""id"":4784903, ""ctx"":""SignalHandler"",""msg"":""Shutting down the LogicalSessionCache""}
+    {""t"":{""$date"":""2020-12-04T12:45:45.288+00:00""},""s"":""I"",  ""c"":""NETWORK"",  ""id"":20562,   ""ctx"":""SignalHandler"",""msg"":""Shutdown: going to close listening sockets""}
+    {""t"":{""$date"":""2020-12-04T12:45:45.288+00:00""},""s"":""I"",  ""c"":""NETWORK"",  ""id"":23017,   ""ctx"":""listener"",""msg"":""removing socket file"",""attr"":{""path"":""/tmp/mongodb-27017.sock""}}
+    {""t"":{""$date"":""2020-12-04T12:45:45.288+00:00""},""s"":""I"",  ""c"":""NETWORK"",  ""id"":4784905, ""ctx"":""SignalHandler"",""msg"":""Shutting down the global connection pool""}
+    {""t"":{""$date"":""2020-12-04T12:45:45.288+00:00""},""s"":""I"",  ""c"":""STORAGE"",  ""id"":4784906, ""ctx"":""SignalHandler"",""msg"":""Shutting down the FlowControlTicketholder""}
+    {""t"":{""$date"":""2020-12-04T12:45:45.288+00:00""},""s"":""I"",  ""c"":""-"",        ""id"":20520,   ""ctx"":""SignalHandler"",""msg"":""Stopping further Flow Control ticket acquisitions.""}
+
+Config is just the default:
+
+    # mongod.conf
+    # for documentation of all options, see:
+    #  http://docs.mongodb.org/manual/reference/configuration-options/
+    # where to write logging data.
+    systemLog:
+    destination: file
+    logAppend: true
+    path: /var/log/mongodb/mongod.log
+    # Where and how to store data.
+    storage:
+    dbPath: /var/lib/mongo
+    journal:
+    enabled: true
+    # engine:
+    # wiredTiger:
+    # how the process runs
+    processManagement:
+    fork: true # fork and run in background
+    pidFilePath: /var/run/mongodb/mongod.pid # location of pidfile
+    timeZoneInfo: /usr/share/zoneinfo
+    # network interfaces
+    net:
+    port: 27017
+    bindIp: 127.0.0.1 # Enter 0.0.0.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net.bindIpAll setting.
+    #security:
+    #operationProfiling:
+    #replication:
+    #sharding:
+    ## Enterprise-Only Options
+    #auditLog:
+    #snmp:
+
+I've done some googling but it doesn't seem like my problem matches any of the ones I've found, so I'd appreciate any hints in the right direction. Kind of stuck on this one.
+
+Thanks a lot!",4,mongodb,2020-12-05
+k6ddf0,New to scalable database design and need some advice.,"I'm building a social media type website using MongoDB w Mongoose and I'm wondering if my design is going to run into trouble at some point.
+
+I have the following collections:
+ 
+USER 
+
+COMMENT 
+
+MESSAGE 
+
+In every USER document, I have a nested array containing COMMENT ObjectID and MESSAGE ObjectID, which I can then use .populate() to get the required Object data.
+
+Is this poor design? Should there be no seperate COMMENT AND MESSAGE collection that exists on outside of USER? As in, should this only exist in USER?
+
+At what point will I start to see negative effects?",1,mongodb,2020-12-05
+k6aiq3,Just wrote a simple blog on automating MongoDB atlas cluster creation with Terraform. Checkout and LMK your feedback :),,8,mongodb,2020-12-05
+k626to,[Resource] Bookstore | Using ASP.NET Core 5.0 and MongoDB,,6,mongodb,2020-12-05
+k5payl,How to update slug everytime I update my document title? Using mongoose.,"I have a model of article consisting title , slug, body, etc I am using slugify in pre save hook to generate slug everytime a new article is created. I am using find by id and update to update the article through patch request. But I  am struggling to find a solution to update the slug whenever I update the title of article. Please help me find a solution.",1,mongodb,2020-12-05
+k5gdkl,Help with Plotting Live Graph Using Changestreams,"Hi everyone! So I am using dash and plotly to build a real time dashboard. As I am pulling data using change streams, I am having a little issue. Basically instead of returning the value (by change streams) once, it returns the same data multiple times.
+
+Has anyone had experience plotting real time data using change streams? I could provide the code if required.",1,mongodb,2020-12-05
+k5bo8y,How to transfer a good amount of files from MongoDB to an S3,,5,mongodb,2020-12-05
+k55my9,How to return only an item from an array?,"&amp;#x200B;
+
+[How do I query to get only one item in the array?](https://preview.redd.it/5klhmre8kq261.png?width=270&amp;format=png&amp;auto=webp&amp;s=cd7164e4b2243f35576ed720425c8df49cb9539b)",1,mongodb,2020-12-05
+k52f9f,"Getting started with the FARM Stack - FastAPI, React, &amp; MongoDB",,3,mongodb,2020-12-05
+k4t02h,Using $or + $and operators together in Mongoose,"Hi guys,
+
+This is my first post in the subreddit, and I hope it's alright that I'm asking about Mongoose (it's safe to say the community probably has strong opinions about it, but I've joined a project, where I have no options but to use it). Anyway...
+
+I'm wondering if there's a way to build a mongoose query that includes multiple $or queries (like either a or b is true, but also either c or d is true). I've tried nesting the multiple $or operators in a single $and operator, but have had no luck getting that to work. I'm not that familiar with advanced Mongoose concepts, but would a clever query builder process or the aggregate pipeline be able to help with this?",0,mongodb,2020-12-05
+k4ovdc,dataSize Is Larger Than storageSize Confusion,"I'm confused about understanding the size of the database and how the dataSize value is much larger than my storageSize value:  
+
+
+    rs0:PRIMARY&gt; db.stats()
+    {
+    	""db"" : ""test"",
+    	""collections"" : 3102,
+    	""objects"" : 58825451,
+    	""avgObjSize"" : 7184.207721433364,
+    	""dataSize"" : 393.59020003210753,
+    	""storageSize"" : 277.46936798095703,
+    	""numExtents"" : 0,
+    	""indexes"" : 11733,
+    	""indexSize"" : 3.5992774963378906,
+    	""ok"" : 1
+    }",1,mongodb,2020-12-05
+k4lyq2,Running Mongo DB workloads on K8s using the community operator,"I have searched the web quite some time about the concept of running mongodb and dbs in general on Kubernetes. Opinions seem to be quite dividing between different people. 
+
+I  found the MongoDB [community operator for k8s](https://github.com/mongodb/mongodb-kubernetes-operator) which i played around quite a bit and managed to deploy a mongo db in cluster mode on 3 k8s nodes on aws ec2 instances using KOPS.
+
+My issue is that i have created a large automated process that creates and deletes the whole k8s cluster. My main concern is that databases are state full workloads and should be really careful not to lose any data. I am looking for ideas on how to safeguards accidental deletion of the EBS volumes used by Mongo in an unfortunate event. 
+
+I am also looking at ways to backup the mongo data on the kubernetes cluster but was unable to find a tutorial describing exactly that for mongo dbs deployed using the community operator. Most of the references that come up refer to the enterprise operator and Mongo Atlas. 
+
+I would appreciate your help if you have a similar stack with the community k8s operator and how do you manage the day to day DBA tasks.",1,mongodb,2020-12-05
+k4impo,oplog length varies - why?,"I have a replica set with oplog set to 100000MB. I wonder why the oplog length in time varies so much. Sometimes it says it has oplog for ~40 hours but right now it says the oplog length is 8.7 hours.
+
+Why is that?
+
+The point is that I don't want some lengthy index creation processes run out of oplength because it would render a read replica useless and it has to be synced from beginning and the newly created index got lost.
+
+I wish there were a setting where I could set oplog length in time units, not in size units (megabytes). Storage is cheap, time is expensive :)",0,mongodb,2020-12-05
+k4cwky,MongoDB Atlas,"short version: Does mongodb atlas save the data I upload onto the cloud and not my local machine? if so when I deploy my school project to openstack I wont have to re create the database on openstack?
+
+long version:
+
+Hello, for a school project I have to use Mongodb. I'm creating a website that serves info about movies. Currently I have everything working properly (runs on RAM using json files) now I have to add in mongoDB and deploy the final product to OpenStack. From my understanding when u normally use MongoDB locally it saves all your data on your local machine. So when uploading to OpenStack i would have to write some kind of script to upload the data as well and set up the database again on openstack. Then I came across MongoDB Atlas, considering it uses AWS does this mean it saves the all my data online? that way I wouldn't have to upload all my data to openstack because Mongo will be getting the data from the cloud?
+
+sorry for any improper wording/terminology I'm very new to web dev.",0,mongodb,2020-12-05
+k3psw4,need help designing a subscription-unsubscription stuff,"I have a database design, such that there are two users. A creator, and a customer.
+
+&amp;#x200B;
+
+Now I am using no-sql db design, such that if a customer subscribed to a creator, this is stored in both of their individual arrays of subscriotion\_details. So a creator can have multiple customers in his/her subscriptions, and for a customer's subscriptions array , it contains the list of all his/her subscriptions.
+
+&amp;#x200B;
+
+&amp;#x200B;
+
+Now when in dispute there is an option to block both the creator and the customer for short term at least. 
+
+So if you block a creator, i'll as of now empty the subscriptions array for a creator and for the customers, need to loop through all the subscribed customers to this creator and remove his/her id from the subscriptions array of theirs.
+
+&amp;#x200B;
+
+Now the opposite happens when we block a customer. Need to loop through all the trainers he/she have subscribed and need to remove this customer's id from the subscription array of those creators.
+
+&amp;#x200B;
+
+But this is very expensive task and takes up a lot of time. I strongly believe there is a simpler effective solution to this problem. So please help me.
+
+&amp;#x200B;
+
+thanks in advance",0,mongodb,2020-12-05
+k396sn,Load mongo from file,"I know in MySQL you can create a .sql file and just upload prewritten data into the MySQL DB.
+
+Is there a way to do something similar for mongo?",1,mongodb,2020-12-05
+k2o71u,Filtering by an index field and then sorting by _id results in colscan,"I have a price collection with product ids in it, I have indexed the productid so that getting prices from productid is fast. Had a need to do some aggregation, so added a match phase with productid and then added in sort phase with \_id so that I can sort the results in descending order, thought documents will be first filtered based on match phase and then sorted based on \_id. But when I run explain, I can see that keypattern used is 
+
+    {""_id"" : 1}
+
+and the index on productid is not used. From keysExamined, I can see that the entire collection is scanned as keysExamined equals the size of collection. If I remove the sort phase, everything runs as expected, index on productid is used and keysExamined is much lesser like how its supposed to be. Am I missing something here with sort based on \_id? Any help on this is much appreciated.
+
+Document has the following schema
+
+    {product: ObjectId, price: Number, size: String}
+
+I have an index on product . The aggregation I tried was
+
+    db.prices
+      .explain(""executionStats"")
+      .aggregate([
+        { $match: { product: ObjectId(""5fc1c4ed65fb2cbf839a0324"") } },
+        { $sort: { _id: -1 } },
+    ]);
+
+And this is reported by explain
+
+    {
+        ""queryPlanner"" : {
+            ""plannerVersion"" : 1,
+            ""namespace"" : ""test.prices"",
+            ""indexFilterSet"" : false,
+            ""parsedQuery"" : {
+                ""product"" : {
+                    ""$eq"" : ObjectId(""5fc1c4ed65fb2cbf839a0324"")
+                }
+            },
+            ""optimizedPipeline"" : true,
+            ""winningPlan"" : {
+                ""stage"" : ""FETCH"",
+                ""filter"" : {
+                    ""product"" : {
+                        ""$eq"" : ObjectId(""5fc1c4ed65fb2cbf839a0324"")
+                    }
+                },
+                ""inputStage"" : {
+                    ""stage"" : ""IXSCAN"",
+                    ""keyPattern"" : {
+                        ""_id"" : 1
+                    },
+                    ""indexName"" : ""_id_"",
+                    ""isMultiKey"" : false,
+                    ""multiKeyPaths"" : {
+                        ""_id"" : [ ]
+                    },
+                    ""isUnique"" : true,
+                    ""isSparse"" : false,
+                    ""isPartial"" : false,
+                    ""indexVersion"" : 2,
+                    ""direction"" : ""backward"",
+                    ""indexBounds"" : {
+                        ""_id"" : [
+                            ""[MaxKey, MinKey]""
+                        ]
+                    }
+                }
+            },
+            ""rejectedPlans"" : [ ]
+        },
+        ""executionStats"" : {
+            ""executionSuccess"" : true,
+            ""nReturned"" : 2,
+            ""executionTimeMillis"" : 2,
+            ""totalKeysExamined"" : 2,
+            ""totalDocsExamined"" : 2,
+            ""executionStages"" : {
+                ""stage"" : ""FETCH"",
+                ""filter"" : {
+                    ""product"" : {
+                        ""$eq"" : ObjectId(""5fc1c4ed65fb2cbf839a0324"")
+                    }
+                },
+                ""nReturned"" : 2,
+                ""executionTimeMillisEstimate"" : 0,
+                ""works"" : 3,
+                ""advanced"" : 2,
+                ""needTime"" : 0,
+                ""needYield"" : 0,
+                ""saveState"" : 0,
+                ""restoreState"" : 0,
+                ""isEOF"" : 1,
+                ""docsExamined"" : 2,
+                ""alreadyHasObj"" : 0,
+                ""inputStage"" : {
+                    ""stage"" : ""IXSCAN"",
+                    ""nReturned"" : 2,
+                    ""executionTimeMillisEstimate"" : 0,
+                    ""works"" : 3,
+                    ""advanced"" : 2,
+                    ""needTime"" : 0,
+                    ""needYield"" : 0,
+                    ""saveState"" : 0,
+                    ""restoreState"" : 0,
+                    ""isEOF"" : 1,
+                    ""keyPattern"" : {
+                        ""_id"" : 1
+                    },
+                    ""indexName"" : ""_id_"",
+                    ""isMultiKey"" : false,
+                    ""multiKeyPaths"" : {
+                        ""_id"" : [ ]
+                    },
+                    ""isUnique"" : true,
+                    ""isSparse"" : false,
+                    ""isPartial"" : false,
+                    ""indexVersion"" : 2,
+                    ""direction"" : ""backward"",
+                    ""indexBounds"" : {
+                        ""_id"" : [
+                            ""[MaxKey, MinKey]""
+                        ]
+                    },
+                    ""keysExamined"" : 2,
+                    ""seeks"" : 1,
+                    ""dupsTested"" : 0,
+                    ""dupsDropped"" : 0
+                }
+            }
+        },
+        ""ok"" : 1
+    }
+
+Please note that above is just an example I created in local setup where this issue can be seen.",1,mongodb,2020-12-05
+k2aavy,Finding Values in Nested document,"New to Mongodb. I want to be able to get a value based on the path of the data. Like a dictionary in Python.
+I have many docs with this structure:
+
+    Station
+        type
+            day : value i want
+
+Basically i want it to give me the value at station.type4.day13
+
+Is there an easy/efficient way to do this?
+Maybe mongo isn't the tool for me or I should restructure it. I'm open to suggestions. 
+
+Thanks!
+
+
+edit: added document in mongo syntax
+    
+    ""USW56065451"": {
+        ""TMIN"": {
+            ""day1"": 12,
+            ""day2"": 34
+        },
+        ""TMAX"": {
+            ""day1"": 15,
+            ""day2"": 90
+        }
+    }",0,mongodb,2020-12-05
+k1mgax,What mindset/design thinking change would you suggest to someone with many years of RDBMS about to work on a high volume mongodb project ?,"The project is a straight forward CRUD application easily doable with a RDBMS, but nosql/mongodb is being considered and I don't see a good reason.
+
+It's a store with a few 100 salespeople treated as local shops and showing availability/MRP in the respective zone of the salesperson.
+
+Each order consists of one to multiple sku's.",0,mongodb,2020-12-05
+k16pqo,MongoDB Chart data source: non-Atlas cluster,Is it possible to add my non-Atlas Mongodb cluster that is hosted on our own server as a Data Source to MongoDB Chart? I was only prompted for the option to add a sample Data Source or a Atlas cluster Data Source.,3,mongodb,2020-12-05
+k15d1b,"I have this error, could someone help me please?",,0,mongodb,2020-12-05

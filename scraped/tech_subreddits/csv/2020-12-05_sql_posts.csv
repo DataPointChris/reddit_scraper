@@ -1,0 +1,387 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k7b8i9,DBA is telling me dm_exec_query_stats and other DMVs are now useless in SQL Server 2016. Does this make any sense?,"At work I have been using various queries put put together using DMVs to look at execution times, index usage, etc, during the QA stage before we would put out a final release of our product. Our machines were running 2008 / 2012 because that was our base compatibility at the time.
+
+A while back they upgraded everything to 2016 moved everything to AWS, on what seems like a very underwhelming server. Initially it had 62GB RAM allocated to a box with 32 databases loaded on it. We got them to double it eventually because of performance issues but still doesn't seem great.
+
+After they moved everything to this server, the cached plans and all the DMVs basically only hold info for maybe a few seconds at most. Prior to the move, they held for 24hrs+.
+
+I ended up pushing on this issue enough that they set up a meeting with me and their DBA. She informed me that 2014 changed the storage method for caching data, and those queries are now useless for any version of SQL Server over 2014 because the caches are constantly being cleared because that's ""just how it is"" and there's nothing we can do about it. I showed her the logs where SQL Server is complaining about a low memory state, but she said that has nothing to do with it.
+
+I don't recall seeing anything that would lead me to believe these DMVs are now officially worthless. It seems like she's basically just fudging to get me / our office to shut up about the issue and make it go away without fixing anything. Is this basically what is happening here?",2,sql,2020-12-05
+k7ahqm,Applying Software Engineering Principles To Your Data Science Tasks In P...,,0,sql,2020-12-05
+k78zc5,"Both my ratios are 1, how to do this?","\# Compute sample count and ratio by gender  
+test = client.query('''  
+SELECT  
+  gender,  
+  gender\_count,  
+  (gender\_count / SUM(gender\_count) OVER (PARTITION BY gender)) AS ratio  
+   
+FROM (  
+ SELECT  
+    gender,  
+ COUNT(gender) AS gender\_count,  
+ FROM  
+    \`genomics-public-data.1000\_genomes.sample\_info\`  
+ WHERE  
+    In\_Phase1\_Integrated\_Variant\_Set = TRUE  
+ GROUP BY  
+    gender)  
+ ''')",3,sql,2020-12-05
+k78p28,Question: How can I get a list of SP (in production server) which are never used for past 10 yrs or 3 yrs. (No code has called them. Never executed) Is there a way to find this out?,"Question: How can I get a list of SP (in production server) which are never used for past 10 yrs or 3 yrs. (No code has called them. Never executed) Is there a way to find this out?
+
+I use SQL Server 2016 | Microsoft and SQL management studio",6,sql,2020-12-05
+k77vom,Cross Server Join,"Hi all!
+Is there a basic template for completing a cross server (database) join? In particular I’m looking for the SQL query to establish a connection to both databases and then join on an employee ID. 
+
+I attempted this with ToadData Point, using the query builder, but it says this is not possible without the professional version... maybe just the query building part... (it said I’d need to connect via ODBC to one of the databases, and that I cannot join two tables in two different servers without the pro version using the GUI). am hopeful that the SQL syntax can do the connection and the join.
+
+For example:
+
+Join table sales_rep_performance in databaseA on employee_ID to table overall_performance in DatabaseB
+
+I’m not certain If I need to have an AS statement?",2,sql,2020-12-05
+k77qls,400 Function not found: RATIO_TO_REPORT at [5:3],"Hello all, in a university project I have to analyze a dataset using Google Big Query. I followed this code here: 
+
+[https://github.com/googlegenomics/bigquery-examples/tree/master/1000genomes/data-stories/exploring-the-phenotypic-data](https://github.com/googlegenomics/bigquery-examples/tree/master/1000genomes/data-stories/exploring-the-phenotypic-data)
+
+However, when executing the second cell at google colab, I am getting the error message "" 400 Function not found: RATIO\_TO\_REPORT at \[5:3\]"". 
+
+Why does this error message occur?",4,sql,2020-12-05
+k750h2,Error System.Outofmemoryexception,"Hi,
+
+I've got a script in SSMS that loops through multiple excel files, imports the data to sql server, does some updates / inserts etc and then outputs another excel sheet with an email. 
+
+Not very complicated stuff but I've got the above error and not sure what to do.. 
+
+I've got similar scripts which handle a lot more data and this does not occur. 
+This job was only looking at 9k rows of data.  
+
+The job also seems to have completed fine... 
+
+I beliwvw that ssms is 32bit and that the memory is less but its not outputting 2GB of data to the results....
+
+Any pointers to direct me to a resolution are appreciated.
+
+Cheers",1,sql,2020-12-05
+k73btb,I need help with multiplying the count of given attribute,"So I'm making a database for photography studio (it's an university project) and I want to calculate the salary of the photographers by counting how many reservations they have for a given month and then multiplying that number by the daily rate but I don't know how. For example:
+
+Table 1- Schedule
+  John Doe     George Smith    etc...
+10.12.2020     08.12.2020
+15.12.2020     10.12.2020
+17.12.2020     12.12.2020
+20.12.2020     16.12.2020
+25.12.2020     18.12.2020
+                          24.12.2020
+
+Table 2- Salary
+Name                     Rate         NumOfReserv.     Salary
+
+John Doe              $500                  5                    2500
+George Smith      $650                   6                   3900
+
+""NumOfReserv."" is counting from Table 1
+""Salary""=""Rate""x""NumOfReserv.""",1,sql,2020-12-05
+k71ud5,Autonomous Dedicated and SQL Performance Analyzer: Through good SQL and bad,,17,sql,2020-12-05
+k70y1w,I always get confused with AND nd OR use in query.,Please help me understand that.,1,sql,2020-12-05
+k6sowf,Looking for help installing Sql express 2012,"So I normally have no issues with installing this software but I popped open some new systems that came in. Windows 10 pro x64 on HP probook6450b.
+
+All solid state drives, and i5 processors.
+
+All attempts to install express 2012 fail. I can launch the program without issue. Select fresh install. But while going through the system scan processes im given an error saying that I've attempted an unauthorized operation. 
+
+I've reinstalled the os, 
+Downloaded fresh install .exe from MS for Sp1, sp2 and sp3. 
+Created new admin profiles in windows
+Checked for registry entries for MSSql with no luck.
+
+I've combed Google for potential solutions but don't seem to see anything specific.
+
+Since the software doesn't even start to install im not even sure where I can get log files to check.
+
+Any help or direction would be appreciated 
+
+If this is the wrong flair I apologize.",11,sql,2020-12-05
+k6q7o1,BULK INSERT - Script works in SSMS but not SSDT,"Hi all,
+
+I've been working on moving a personal project into SSDT. So far things have been pretty smooth, but I have one script that keeps throwing format errors for some reason. It works perfectly fine if I run it in SSMS, but when ran / built within SSDT I get the error
+
+&amp;#x200B;
+
+""Msg 102, Level 15, State 1, Line 5
+
+Incorrect syntax near 'FORMAT'.""
+
+Script code
+
+`BULK INSERT dbo.import_general`
+
+`FROM 'D:\Downloads\test-general.csv'`
+
+`WITH`
+
+`(`
+
+`FORMAT = 'CSV'`
+
+`,KEEPNULLS`
+
+`);`
+
+[https://github.com/ChaseGeeseman/Voorhees/blob/SSDT/ProjectVoorhees/Scripts/import\_main.sql](https://github.com/ChaseGeeseman/Voorhees/blob/SSDT/ProjectVoorhees/Scripts/import_main.sql)
+
+&amp;#x200B;
+
+If needed, table creation code
+
+`CREATE TABLE dbo.import_general`
+
+`(`
+
+`import_order VARCHAR(MAX) NOT NULL`
+
+`,meeting_date VARCHAR(MAX) NULL`
+
+`,meeting_time VARCHAR(MAX) NULL`
+
+`,meeting_type VARCHAR(MAX) NULL`
+
+`,roll_call VARCHAR(MAX) NULL`
+
+`,sunshine_statement VARCHAR(MAX) NULL`
+
+`,comments VARCHAR(MAX) NULL`
+
+`);`
+
+&amp;#x200B;
+
+[https://github.com/ChaseGeeseman/Voorhees/blob/SSDT/ProjectVoorhees/dbo/Tables/import\_general.sql](https://github.com/ChaseGeeseman/Voorhees/blob/SSDT/ProjectVoorhees/dbo/Tables/import_general.sql)
+
+&amp;#x200B;
+
+If needed, example CSV:
+
+[https://github.com/ChaseGeeseman/Voorhees/blob/SSDT/test-general.csv](https://github.com/ChaseGeeseman/Voorhees/blob/SSDT/test-general.csv)
+
+&amp;#x200B;
+
+EDIT: I've found removing the ""FORMAT"" parameter all together allows the code to run without a hitch. I've confirmed that the project is targeting SQL Server 2019 in my settings(Since the FORMAT option was added in SQL Server 2017) So I'm leaning into thinking this is a bug.
+
+My workaround, for now, is to just put this code into a script that's not included in the SSDT build. It's a super ugly build but the data I'm importing has commas in some of the data I'm worried if I'm not able to specify that it's a CSV import that I may run into weird problems going forward without the FORMAT option.",1,sql,2020-12-05
+k6q5tf,What is difference between SSIS and T-SQL and Stored Procedure?,"We use Microsoft SQL Server DBMS. wondering what is the difference between SSIS, T-SQL and Stored Procedure?",8,sql,2020-12-05
+k6pf5l,Conditional Join to another value (not another table),"Hi, this seems like a simple thing to do but maybe I am approaching it wrong. I've tried searching for a solution to this but couldn't find any for wanting to change the value to join on. I have two tables representing Comps and Users for specific ID's. I want to create a combined table where the Comps and the Users get matched up in a certain way. Here is an example:
+
+Have:
+
+Table A
+
+|ID|Comp|
+|:-|:-|
+|Frank|1|
+|Frank|2|
+|Mary|1|
+|Mary|2|
+|John|1|
+
+Table B
+
+|ID|User|User Info|
+|:-|:-|:-|
+|Frank|1|blah|
+|Frank|2|blah|
+|Mary|1|blah|
+|John|1|blah|
+|John|2|blah|
+
+&amp;#x200B;
+
+Want - All the comps, and the matching user. **If no matching user, match to User 1**:
+
+&amp;#x200B;
+
+|ID|Comp|User|User Info|
+|:-|:-|:-|:-|
+|Frank|1|1|blah|
+|Frank|2|2|blah|
+|Mary|1|1|blah|
+|Mary|2|1|blah|
+|John|1|1|blah|
+
+&amp;#x200B;
+
+The actual values between the Comp and User column are actually 1, 2, 3... in my database, so they are matched together and any approach defaulting the join to user 1 should work. I just don't know how to condition it to join to user 1 if the equal match fails.
+
+These are the scenarios:
+
+1. ID Frank - equal number of comps and users
+   1. 1 gets matched to 1, 2 gets matched to 2
+2. ID Mary - more comps than users
+   1. 1 gets matched to 1, and because there is no User 2, Comp 2 gets matched to User 1
+3. ID John - more users than comps
+   1. 1 gets matched to 1, User 2 doesn't get matched
+
+&amp;#x200B;
+
+Here's my current code:
+
+    select
+    a.id,
+    a.comp,
+    b.user,
+    b.userinfo
+    from a
+    
+    left join b
+    on a.id = b.id
+    and case when a.comp = b.user then 1
+        when 1 = b.user then 1
+        else 0
+        end = 1
+
+I wrote 1= b.user to force the extra comp in Mary to get matched to user 1, but this actually creates duplicates and creates an extra line for Frank matching comp 2 to user 1. I am not really familiar with how case when works in a join statement, don't know why it did both the equal match and the user=1 match for Frank. I am at a loss at how to approach this. Thank you in advance!",3,sql,2020-12-05
+k6nqoa,Assistance Learning SQL - Discord Server,,19,sql,2020-12-05
+k6kext,BigQuery - is it possible to tell if a specific field has been updated?,"I'm using BigQuery. I'm wondering if it's possible to check when a **field** was last updated. I understand I can get the last table update, and in fact the table I'm accessing has a ""last record update"" date/time, which updates when ANY field has changed. However, I've formed a query that includes 10% of the fields, and I need to know if any of those fields have been updated in the last 3 days.
+
+Any advice would be very appreciated - I don't *think* that it's possible, but I'm very new to SQL and specifically to BigQuery.
+
+BTW if anybody is interested in copy-paste automation for Excel, please check the link in my profile for a nifty tool.",15,sql,2020-12-05
+k6ihom,Using different WHERE conditions in grouping sets,,0,sql,2020-12-05
+k6gyt6,Just got promoted to my first Reporting position - Can any vets give me insight on pay/skills?,"Hey all,
+
+At the start of the pandemic I took a remote job as a tech support agent for a large call center corp. Entry level gig, around 30k a year.
+
+6 months in, with a lot of persistance, I landed a position as Reporting Agent. Minimal raise, but I have never been so excited about a job! The thing is, I'm almost positive I'm getting grossly underpaid. I'm super grateful for the opportunity, and I am going above and beyond to try and build my resume for when I start looking to level up.
+
+I am unsure of what positions I should apply to when researching other companies because I'm having a hard time translating my responsibilities and achievements into resume bullet points. Hoping someone hear can give me some insight.
+
+I'm a little under 90 days into my new position, Here's a list of my responsibilities and achievements so far:
+
+Weekly Tasks-
+
+Use a SQL query to pull data from a MySQL database, and format the data to be processed by myself and a coworker
+
+Listen to segments of between 200-400 calls a week to validate data entered by entry level agents
+
+Submit between 100-200 ""training opportunities"" for infractions found when reviewing calls and their notes. These goto managers for agent reviews.
+
+After data on calls have been validated, i generate another report, extracting additional infractions for inaccurate documentation
+
+Monthly -
+
+Every month my department sends out summaries to 20 different manufacturers which sell their products in our client's stores (think top 3 retail chains). I am responsible for 7 of these manufacturers summaries.
+
+The summaries include the amount of times our call center received calls for their products, most common issues, most common unit, etc.
+
+These reports are seen by upper management in not only my corp, but also all of the corps that i send them out to.
+
+Achievements-
+
+We are currently preparing to transition from a CRM that runs a 20 year old version of Business Objects over to Oracle. Operations wants to change the font color of a line of text, in 11k different items in a database. All edits must be done manually through admin dashboard.
+
+I built a Node.js web bot that automated this simple find and replace task, saving hundreds of tedious man hours. This has caught my bosses attention.
+
+Because of this success, I was invited to a meeting with the oracle dev team for another transition issue. Because I spoke up at the meeting, and knew what i was talking about, I landed an assignment to completely restructure our Product database.
+
+A week later, and today I was the lead speaker at a progress meeting, and was given 3 people to offload any tedious work to so that I could be free for any other projects that might pop up.
+
+I have never had a job in the IT field, but always wanted to go into coding. While I am using code in some projects, most of my tasks seem to fit under the title of Reporting Analyst, but that doesn't match my title or my pay.
+
+With some more time in this position, can I leverage this job for a better paying position? What positions would be relevant for this? I have no degree, but have heard that experience can offset this in some fields, is this the case for reporting?
+
+Any tips appreciated! Thank you!
+
+EDIT: For those asking, I live in south Florida, USA. I'm not in a major city, but we do have 750k+ population in my county.",21,sql,2020-12-05
+k6g96b,Help in SQLite import from CSV,,1,sql,2020-12-05
+k6f7lf,What's the best/cheap plan to host data (+200go) on a postgres server ?,thank you all !,1,sql,2020-12-05
+k6b1uj,Any methods to parse a SQL Query?,"
+
+So I don't need a full parser, I just need to throw a query at it and get back tables/views/stored procs etc.  I literally only want the objects that are used.
+
+I have access to the SQL database the queries would run on so can solve using a query if possible and I'm also using python.
+
+I've tried a couple packages but they're either for python2 (im on 3) or they fail on the second example below.
+
+I mean, intellisense can technically do it so there should be a way, I hope.
+
+Example:
+
+    Select * from 
+    ( 
+        select column1, column2 
+        from table t 
+        join table2 t2 on t.id = t2.id 
+    ) x
+    Where column1 = (select top 1 column1 from table3 order by column2)
+
+Returns: table, table2, table3
+
+    EXEC @Var = MyStoredProc
+
+Returns: MyStoredProc
+
+Any help would be greatly appreciated.",0,sql,2020-12-05
+k6b1r1,[MySQL]Is it possible to do logic before SUM within a query?,"I'm used to doing SUM on numeric columns but now I have a simple query like
+
+    SELECT *, SUM(screws), COUNT(reg_number) as 'total_amount' 
+    FROM store; 
+
+where the column 'screws' above is not actually a number but letters like Trio, Duo and Uno where I want to translate it to 3,2 and 1 before counting them.
+
+Is it possible to do this logic within the query or should I do it separate?
+
+The actual problem is more complicated with subqueries and so on but I'm trying to simplify the question here.",1,sql,2020-12-05
+k6azu6,Any methods to parse a SQL Query?,"So I don't need a full parser, I just need to throw a query at it and get back tables/views/stored procs etc.  I literally only want the objects that are used.
+
+I have access to the SQL database the queries would run on so can solve using a query if possible and I'm also using python.
+
+I've tried a couple packages but they're either for python2 (im on 3) or they fail on the second example below.
+
+I mean, intellisense can technically do it so there should be a way, I hope.
+
+Example:
+
+Select * from 
+( 
+select column1, column2 
+from table t 
+join table2 t2 on t.id = t2.id 
+) x
+Where column1 = (select top 1 column1 from table3 order by column2)
+
+Returns: table, table2, table3
+
+EXEC @Var = MyStoredProc
+
+Returns: MyStoredProc
+
+Any help would be greatly appreciated.",0,sql,2020-12-05
+k6akzk,Questions regarding how to facilitate internships/work as DBA,"Hello everyone!
+
+In a year I am about to graduate as Systems Engineering and even though I have studied from Java, Python to CISCO Networking I must say DB is what caught my attention the most. There is two courses during my whole degree that are exclusively dedicated for DB. 
+
+DB I and Advanced Databases. During the courses I worked with Oracle SQL (server had to be on campus to be able to access the DB) and Oracle APEX (final project involved developing a DB using APEX for a company which I chose the family company) as for the next course I worked with Apache Cassandra, Mongo DB and Pentaho Data Integration. I must say that out of all APEX is the worst (at least back then) and I have no interest whatsoever on continue working with that. 
+
+As my graduation comes closer I can start looking to apply for some interships here in Mexico as DBA but as a new member I have seen some questions of people asking for certifications and so on. My following questions are:
+
+1. What certifications gives prestige to the resume?
+2. What certifications may interest the companies I may apply as internship?
+3. From all the servers available would you consider MySQL the best one to start practicing again?
+4. If there is someone here that works or had worked as DBA intern/contract/employee what was your experience like and how much the field has changed?
+
+There is a company relatively close from my city that has DBA available and I would like to apply. I haven't forgotten everything it is just a matter of me sitting down and start playing with DB like I did a year ago. 
+
+I am waiting for your comments. 
+
+Thank you and Best regards!",3,sql,2020-12-05
+k6a0sc,Recommendations for DB product,"Hi,
+
+Not sure if this is right place to ask but am looking for a db product.
+
+Right now I store a few large large tables that have a few terabytes of data.  Each table is has a few gigs per date,  and data goes back  a number of years.  Currently this is stored in sybase using clustered by date.  The problem with sybase, at least in my set up is that it is too slow to get all the data out or to reload all the data.  I have no idea if it is a network bandwith issue, or a disk issue etc. 
+
+So I converted all these tables to binary data files and store the tables in a file structure with each file representing one date.  This works very well and is much faster to load all the data into program or generate all the data from scratch and re write the files.  
+
+I can keep this solution but it is somewhat cumbersome in that adding a column is just cumbersome.  
+
+So am looking for non sybase solution that is very fast to load and read all the data.  I prefer something free.  Does such a product exist ?",0,sql,2020-12-05

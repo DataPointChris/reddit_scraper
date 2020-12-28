@@ -1,0 +1,308 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k7bxoz,When to use Hyperscale (Citus) to scale out Postgres,,1,postgresql,2020-12-05
+k79yzt,Postgresql's alternative to indexed views?,"In MS SQL Server, there are indexed views, which are views that somehow (AFAIK) behave like materialized views. In our app (half transactional and half BI) we heavily use Postgresql's materialized views for performance enhancement (essentially caching queries). It works well for batch data load, but now we are going to receive data incrementally (a few thousands records each day, overall a couple of millions of records). 
+
+&amp;#x200B;
+
+To allow the BI to run on all records, intuitively we would refresh the materialized views, but that would take hours (and some of them are created in tandem so cannot be sped-up). Is there a way to perform incremental updates? A few solutions we were wondering include: 
+
+1. Reduce the materialized views to views and cache the heavy computations in a table to which we can add records. In most queries, the new records will only add rows rather than change existing ones. 
+2. Create a materialized view for the new records (we get them all in a single batch each day), and wrap a union of the existing materialized view and the incremental one behind a view. Later (e.g. overnight) recreate the materialized view from scratch.
+3. Improve the performance of the underlying query to allow it to be a simple view: this is more of a goal rather than a solution, but perhaps consider things like columnar storage or switching to a data warehouse architecture/tool altogether. However, Postgresql's feature really help us simplify our app (handling semi-structured data, JSONB processing, full-text search), so we would prefer to keep Postgresql. 
+
+&amp;#x200B;
+
+Happy to hear other approaches to this issue.",2,postgresql,2020-12-05
+k79nhm,Heroku PostgreSQL query lag troubleshooting,"I wrote a webapp as a hobby that supports a game I play using flask w/postgresql as the database, deployed on heroku. The database has &lt; 100k rows, but for some reason the query speed has slowed to &gt;1,000ms - 4,000ms per query (especially when multiple simultaneous queries hit the database at similar times). If I loop the query script itself 100x and time performance, the first instance of the query is very slow (\~2,500ms), and the remaining 99 times run in an acceptable time (&lt;150ms).
+
+I'm relatively new to programming - any suggestions on how I should begin to troubleshoot this? It's significantly bottlenecking the primary function of the webapp.
+
+I find this especially frustrating given the monthly cost of the Heroku Postgresql (and their lack of support) - for a database this small, is it worth trying to run it myself on my existing VPS at digitalocean to save $? I have one running locally on windows and it works fine, and I don't imagine this database requiring multiple user accounts / scaling significantly, and if I lose the data somehow it's not the end of the world since this is a hobby tool at the end of the day.",1,postgresql,2020-12-05
+k6z2h1,When a function with a temporary table got called two times in the SAME session,"I have this function below. Please ignore the wedding and people logic as I had to change it to anonymize so I picked a people\_to\_invite\_to\_wedding/family\_tree as a recursive example.
+
+Anyway, the question is related to what would happen to ""wedding\_people"" temporary table in the function if the function was run in the same session twice with different input values(different weddings) at the same time on postgresql 11 server.
+
+Would ""wedding\_people"" temporary table get messed up since two functions try to access it at the same time?
+
+I don't know how Ruby/Sinatra/ActiveRecord handles the database sessions. The docs say that it's possible that the same database session could be used for consequent queries. So, I assume that the same temporary table could be accessed by two function executions AT THE SAME TIME.
+
+So, I need to know if wedding\_people table in two different function execution would collide or not?
+
+If they do, how can I append UUID or timestamp at the end of the temporary table name to avoid that? or is there any other built-in postgresql feature that I can use for this situation to prevent temporary table name collision?
+
+&amp;#x200B;
+
+***In DB Session 1 (Jane and Jack wedding invitation list)***
+
+SELECT \* FROM people\_to\_invite\_to\_wedding( '\[{""full\_name"":""Steve Jobs"",""depth"": **2**}, {""full\_name"":""wendy williams"",""depth"": 4}, {""full\_name"":""Britney spears"",""depth"": 1}\]');
+
+***In DB Session 1 (Bradley Cooper and Lady Gaga couple)***
+
+SELECT \* FROM people\_to\_invite\_to\_wedding( '\[{""full\_name"":""brad pitt"",""depth"": **5**}, {""full\_name"":""kim kardashian"",""depth"": 4}, {""full\_name"":""Angelina jolie"",""depth"": 1}\]');
+
+    CREATE OR REPLACE FUNCTION people_to_invite_to_wedding(JSON)
+    RETURNS SETOF family_tree_of_the_people_in_the_world AS $func$
+    
+    DECLARE   
+      i json;  
+    BEGIN  
+      DROP TABLE IF EXISTS wedding_people;  
+      CREATE TEMPORARY TABLE wedding_people (LIKE family_tree_of_the_people_in_the_world) LIMIT 0;  
+        
+      FOR i IN SELECT * FROM json_array_elements($1)  
+      loop  
+          EXECUTE 'WITH RECURSIVE $1 and $2 do something here and then
+                   insert every matching     
+               person and their kids, grandchildren, and so on
+                   to wedding_people list FROM family_tree_of_the_people_in_the_world
+            INSERT INTO wedding_people (SELECT * FROM recursivequery)'  
+          USING i-&gt;&gt;'full_name', i-&gt;&gt;'depth';        
+      END LOOP;  
+         
+      RETURN QUERY SELECT * FROM people_to_invite_to_wedding;  
+    END;  
+    $func$  LANGUAGE plpgsql; 
+
+&amp;#x200B;",4,postgresql,2020-12-05
+k6ihh7,Using different WHERE conditions in grouping sets,"Hi all
+
+I have the following query currently that's aggregating rows where col4 is true like so:
+
+    SELECT col1, col2, SUM(col3)
+    FROM table1
+    WHERE col4 = true
+    GROUP BY col1, col2
+    
+    UNION ALL
+    
+    SELECT col1, col2, col3
+    FROM table1
+    WHERE col4 = false
+
+I want to update this to use grouping sets, but is there a way to have different WHERE clauses for the different grouping sets (so col4 = true in the first set and col4 = false in the second).
+
+Thanks!",4,postgresql,2020-12-05
+k6i8zn,I'm using pgAdmin but I find it... uncomfortable...,So I'm trying to use IntelliJ to edit .sql then copypaste to pgAdmin so I can get Intellisense but then moved to vscode then not knowing the best way to do things... I'm lost.,14,postgresql,2020-12-05
+k6f6tn,What's the best/cheap plan to host data (+200go) on a postgres server ?,,10,postgresql,2020-12-05
+k6cy1y,uncompressing .dump file to .sql,"**TLDR: I need to uncompress a database dump from a \*.DUMP file to a \*.SQL file using pg\_restore or psql version 13.**
+
+We receive two database dumps from two different servers(1 &amp; 2) into AWS s3, each using the PUBLIC schema to store their data. We load the two dumps into one AWS database. We do so by opening the dumps and find&amp;replacing ""public."" with ""server1."" and ""server2"" respectively using a 'sed' command in linux. Then we load each into a database that has schemas server1 and server2 already emptied. All good.
+
+File size was getting big over time so vendor suggested they send over in compressed format(.DUMP) instead of text format(.SQL) as this is a over 10x savings on file size. We tested on server 1 dump that we could uncompress the file to be able to then use the 'sed' command by using 
+
+    pg_restore server1.dump &gt; server1.sql
+
+and it worked magically, we had the 10x bigger text format file on local disk we could search and replace again and then do the restore from the .sql file using 'psql' command as before. Delete both files when done. So we agree to it and start testing the entire pipeline. Server 2's dump is giving us the error 
+
+    pg_restore: [archiver] unsupported version (1.14) in file header
+
+Trying to use 'pg\_restore' to directly restore the database without uncompressing first also gave errors.
+
+So I update my local machine's(dev) postgres to the most recent version(13.1) and now I can restore the unaltered dump to public schema using pg\_restore with proper arguments, but I can no longer use it to uncompress, I get the following
+
+    COMMAND --&gt;  pg_restore server1.dump &gt; server1.sql
+    
+    pg_restore: error: one of -d/--dbname and -f/--file must be specified
+
+Adding -f or -d doesn't give me uncompressing file behavior, just getting more error messages that makes me thing it's trying to restore the database to a server vs trying to uncompress it to local disk. I've been at this for over a day and reaching my personal limit. I'm more of a Teradata person. thanks for any pointers you can provide.
+
+server1 dump seemed to be in 9.6.10 version (since I can uncompress it and read that). server2 dump seemed to be in 9.6.18 (from looking at the same place in the new file since most text characters are unreadable but it was in the same spot in the file header and clearly a version.)",1,postgresql,2020-12-05
+k6arey,How do I handle a Many to Many relationship?,"I just finished FCC's 4 hour postgres course yesterday and wanted to try to make a database myself. I figured I'll make a film database. This is my setup:
+
+film table: id, name, rating, release\_date
+
+actor table: id, name
+
+director table: id, name
+
+film\_actor table: film\_id, actor\_id (handling m to m relation between film and actor)
+
+film\_director table: film\_id, director\_id (handling m to m relation between film and director)
+
+I then want to make it so that a film will display all the actors and director(s) in the same record. However, after writing this query:
+
+    SELECT film.id, film.name, release_date, rating, actor.id, actor.name FROM (SELECT * FROM film JOIN
+        (SELECT * FROM film_actor WHERE (SELECT id FROM film) = film_actor.film_id) as ""film_actor"" ON
+        film.id = film_actor.film_id) as ""film"" JOIN
+        actor ON film.actor_id = actor.id;
+
+This is the best I can come up with:
+
+&amp;#x200B;
+
+https://preview.redd.it/b1vzfcmsm2361.png?width=1726&amp;format=png&amp;auto=webp&amp;s=e19229de1ea76239b9d150c35e10d147c51d75ec
+
+I want it so Inception will just display DiCaprio and Hardy as the actors, instead of making a separate record. I'm wondering if this is possible? I tried using arrays but foreign keys cannot be used with arrays.",2,postgresql,2020-12-05
+k65lyw,Null Characters: Workarounds Aren’t Good Enough,,9,postgresql,2020-12-05
+k65bwm,How to deny connection to a database for all superusers except postgres,"We have a script that runs nightly that takes dumps from a production server in the cloud and restores them locally to an on-prem instance. This usually works fine except the restore fails if a user is connected to the on prem database that is getting restored to. The script already kicks off all the users and sets the connection limit to 0 so that nobody can reconnect while the restore is happening. However I've realized this fails still if one of our employees who is a superuser leave stheir pgadmin open or whatever. Since they are a superuser they automatically reconnect after being kicked. So I'm wondering if theres any way to deny superusers reconnect, except the postgres user because thats the context that the script is run with. I would assume not since I mean thats the whole point, superusers are superusers. Thanks!",2,postgresql,2020-12-05
+k64du9,Stored Procedures as a backend,,26,postgresql,2020-12-05
+k5ytc8,"Postgres View Creation DDL vs pgAdmin ""Create Script"" Generated DDL","Let's say I create a view with the following schema:  
+
+
+    CREATE VIEW person.vw_example
+    AS
+    SELECT firstname,
+           middlename,
+           lastname,
+           CASE
+               WHEN firstname IN ('thom', 'tom', 'thomas')
+                   THEN 'hes a tom'
+               WHEN firstname IN ('cat', 'feline')
+                   THEN 'its a cat'
+               ELSE 'its human'
+               END AS somestupidcolumn
+    FROM person.person
+    WHERE lastname IN ('Miller', 'Matthew')
+
+When I go back into pgadmin, datagrip, wherever, and script that view back out again via ""Create Script(pgAdmin)"" or ""Generate DDL to Clipboard(Datagrip)"" I get this gnarly mess.   
+
+
+    create or replace view person.vw_example(firstname, middlename, lastname, somestupidcolumn) as
+    	SELECT
+        person.firstname,
+        person.middlename,
+        person.lastname,
+        CASE
+            WHEN person.firstname::text = ANY
+                 (ARRAY ['thom'::character varying, 'tom'::character varying, 'thomas'::character varying]::text[])
+                THEN 'hes a tom'::text
+            WHEN person.firstname::text = ANY (ARRAY ['cat'::character varying, 'feline'::character varying]::text[])
+                THEN 'its a cat'::text
+                ELSE 'its human'::text
+        END AS somestupidcolumn
+    FROM person.person
+    WHERE person.lastname::text = ANY (ARRAY ['Miller'::character varying, 'Matthew'::character varying]::text[]);
+
+Is there a way to keep Postgres from inserting all this extra language on the DDL generation? I'm used to sql server, where formatting, comments, etc remain exactly how I wrote it(most of the time, anyway). It makes it a bit more cumbersome and difficult when dealing with a large view to have to sift through all the extra syntax when trying to fix or add something.",1,postgresql,2020-12-05
+k5pto5,Help installing PostBird,"I downloaded and ran PostBird. This created an icon on my desktop and I opened it and everything seemed to function.
+
+Afterwards, my antivirus tells me that is deleted a virus threat and of course it deleted Postbird. Its a new computer and came with McAfree (or whatever its called...its been deleted now).
+
+So now I download the installer again and run it but it keeps getting hung up. I've tried deleting it and installing it again but it keeps doing the same thing.
+
+&amp;#x200B;
+
+Anyone have any ideas?
+
+&amp;#x200B;
+
+I'm very new to this stuff, I'm using PostBird for an Postgres tutorial I'm following.
+
+&amp;#x200B;
+
+&amp;#x200B;
+
+&amp;#x200B;
+
+SOLVED - found the files in  %LocalAppData%\\Programs\\Postbird  and downloaded the ZIP file version. Extracted the files to the above location. All good now.",0,postgresql,2020-12-05
+k5of0d,How do you take an unsecure postgresql database and dump it to a new machine and this time take all proper security measures,"My development database server was hacked, not exactly the database but I can't rule out the possibility that the attack was done through postgres as I have 0 security measures on postgres, I know absolutely nothing about how postgresql can be compromised or hacked, or what not to do. So I want to learn this time so I can avoid being hacked ever again before I move to production.
+
+Any advice, useful articles, anything at all? And I mean anything, thanks",0,postgresql,2020-12-05
+k5l5te,Very silly question,"`create table drivers (`
+
+  `id serial primary key,`
+
+  `first_name varchar,`
+
+  `last_name varchar`
+
+`);`
+
+&amp;#x200B;
+
+`create table vehicles (`
+
+  `id serial primary key,`
+
+  `make varchar,`
+
+  `model varchar,`
+
+  `driver_id integer references drivers(id)`
+
+`);`
+
+&amp;#x200B;
+
+in the vehicles table, what does it mean driver id references drives(id) is that now a foreign key?",2,postgresql,2020-12-05
+k4yqoy,"JSONB column: Is it possible to remove the parent element and ""flatten"" in a SELECT json_agg() statement?","SELECT json\_agg(t) FROM (SELECT id, data FROM test1) t
+
+Currently getting this:
+
+**\[**  
+**{**""id"": **1**,""data"": **{**""last\_name"": ""Blow"",""first\_name"": ""Joe""**}}**,       
+**{**""id"": **2**,""data"": **{**""last\_name"": ""Doe"",""first\_name"": ""Jane""**}}**  
+**\]**
+
+Want to get this:
+
+**\[**  
+**{**""id"": **1**,""last\_name"": ""Blow"",""first\_name"": ""Joe""**}**,       
+**{**""id"": **2**,""last\_name"": ""Doe"",""first\_name"": ""Jane""**}**  
+**\]**
+
+I won't know all the elements of ""data"" at runtime, so I can't specify the list of columns.  
+
+Is this possible?",2,postgresql,2020-12-05
+k4pgn3,Amazon just open sourced an easier path to PostgreSQL,,49,postgresql,2020-12-05
+k4pe0v,Tracking/Monitoring,I’m currently tasked with providing some of our reporting consumers with direct access to a read replica.  Traditionally all access to our data has come via an API which allows us to track who is making what requests and how often.  Anyone know of any tooling that will allow for tracking this type of information over time?  We frequently get asked for stats on what parts of the company have made what number of requests YTD...,1,postgresql,2020-12-05
+k42jhx,"Besides scalability, does the Citus Community (free) extension offer HA?","Does it offer HA and if so, how?  Does it replicate to a hot standby and does it take care of switching over to that?",1,postgresql,2020-12-05
+k4k8b8,Is there a way to Automate Postgres User Management?,"Hi everyone,
+
+Is there any way we can automate the Postgres user, databases, and roles management without manually creating roles?
+
+In our case, we expect at least 10+ users for 10+ applications with multiple roles (read-only, read-write, admin). Therefore, it'll get a lot difficult to manage everything manually.
+
+Just to give you some background, we are using RDS Aurora Instance and creating separate databases for each application. And we are deploying the applications on EKS (Kubernetes) which will connect to RDS (PostgreSQL). Also for each database, multiple users (with multiple roles) need to login to dump the data for various reasons.
+
+Looking forward!
+
+Thanks",5,postgresql,2020-12-05
+k49d4c,Can I another aggregate function from inside of my custom aggregate function?,"Hello everyone,
+
+I had a doubt regarding the implementation of a custom aggregate function.
+Is there a way I can call other inbuilt aggregate functions in my custom create aggregate function?
+
+I need to know this as it'll be lot easier to create a const variable which stores a simple aggregate (like mean or count) which will be passed in as an argument in the initcond [initial condition] variable?
+This will, as I observed, potentially save me from having to go over my data twice [once to calculate mean and other to calculate the variance/complex aggregate].
+
+I have already implemented the functions using single pass formule but I wanted to just know if i can do so or not?
+
+Thank you.",0,postgresql,2020-12-05
+k43fcq,"Where can I find the source code for aggregate function such as corr, min, max in postgresql documentation?","Hi, 
+So I am writing my own custom aggregate functions in postgresql. I wanted to see the preexisting aggregate methods source code to gain more understanding about them and integrate my functions in the code base. 
+
+Thanks!",1,postgresql,2020-12-05
+k3y6ye,"Help needed, I want to write complex aggregate functions in POSTGRE","hello, 
+
+I want to write my own custom aggregate function in postgreSQL as a part of my assignment. However I am stuck as I don't completely understand the terminology and thus my entire project is in jeapordy.
+
+Please help me out and i am willing to pay you for that. 
+
+Please DM or comment if you know anything about writing custom aggregate functions is postgres in pl/pgSQL or pl/python. Please! 
+
+&amp;#x200B;
+
+Thank you!",0,postgresql,2020-12-05
+k3swjz,"Complete DBA/PostgreSQL beginner questions on workflow: local, schemas, migrations, production, roll-forward...","Hi all,
+
+I've very little experience when it comes to running databases outside of ORMs or using PG outside of a local environment where I edit the database schema on the fly by running them in Datagrip
+
+I have an ""reasonable"" grasp on sql/psql itself and how to write/design a schema but not at all about concepts like committing, migrations, `CREATE OR REPLACE`, deployment or anything like that. So these are going to be complete beginner questions that probably don't even make sense but hopefully you can help me unpick it!
+
+Here's the sum total of what I'm guessing I should do and it's full of holes:
+
+1. Write a schema for local (e.g. a file like ""00001.sql"" or just in a database tool)
+2. Run it.
+3. Improve it... run it again... But wait, I can't `CREATE` my functions anymore but `CREATE OR REPLACE`. Is this wrong? Shouldn't this schema be just `CREATE` statements as I'd expect a production db to be just `CREATE`?
+4. Erm.... then... what's this concept of ""commit""ing the schema? There seems to be something different about running that schema and then ""commit""ing it but I don't understand.
+5. Add the schema to version control when it does what I want? (i.e 00001.sql)
+6. Push this schema file to production to create the database tables etc? Then users start adding data to it.
+7. Improve schema in local by creating a new file like 00002.sql, to add new things or change existing (is this approach ""roll forward""?)
+8. Commit that file to VCS
+9. Push to production, clone database, run 00001.sql and the new 00002.sql and then copy the migrated database back after testing etc. But wait... how does running 00001.sql again not destroy the data as it's `CREATE`ing stuff like tables right from the start?? Or does it actually destroy things? Or does it only run 00002.sql and somehow knows not to run the initial one?
+10. Erm... vacuum it at some point to clean up any cruft (e.g. tables no longer used)?
+
+So you see I understand basically nothing 😄. Can someone help or maybe point me in the direction of a complete end-to-end tutorial?
+
+Thank you so much!",2,postgresql,2020-12-05

@@ -1,0 +1,585 @@
+comment_id,post_id,comment,upvotes
+gens9wt,k6xv6x,"`data-` attributes dont mean, or do anything by themselves. you can add any number of data- attributes, and they could hold any kind of data. they are there for a script to use.
+
+`&lt;tr data-sort=""asc"" data-type=""fish, frog, airplane"" data-selected=""true"" data-snowType=""crunchy""&gt;`
+
+is fine, but without a script acting on it, none of them matter.
+
+whatever script you are using will determine how and what data- attributes are, and what they do. 
+
+so yes, `&lt;tr data-type=""fish, dog""&gt; ` is ok, but if the current script expects only one variable in the data, its not going to do much. its probably looking for `fish, dog` rather than `fish` and/or `dog`.",5
+genxrk5,k6xv6x,"I currently have a dropdown menu that filters out values based on the choice that is clicked but I would like to create a separate dropdown with different values that will also filter out values that are clicked. 
+
+The HTML for the dropdown looks like this: 
+
+&lt;select class=""filter-fish""&gt;
+
+  &lt;option value=""""&gt;Filter by category&lt;/option&gt;
+
+  &lt;option value=""angelfish""&gt;Angelfish&lt;/option&gt;
+
+  &lt;option value=""anthias""&gt;Anthias&lt;/option&gt;
+
+  &lt;option value=""blenny""&gt;Blenny&lt;/option&gt;
+
+&lt;/select&gt;
+
+&amp;#x200B;
+
+The &lt;tr&gt; looks like this: &lt;tr data-type=""anthias""&gt;
+
+and the script looks like this: 
+
+&lt;script&gt;
+
+$('.filter-fish').on('change', function(e) {
+
+  // retrieve the dropdown selected value
+
+  var location = e.target.value;
+
+  var table = $('.filter-table-data');
+
+  if (location.length) {
+
+table.find('tr\[data-type!=' + location + '\]').hide();
+
+table.find('tr\[data-type=' + location + '\]').show();
+
+  } else {
+
+table.find('tr').show();
+
+  }
+
+});
+
+&lt;/script&gt;
+
+Would it be logical to create a separate script for the second dropdown menu or is there a way to integrate a second dropdown menu into this script? 
+
+I appreciate you helping me out so far!",1
+genljo7,k6xv6x,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",2
+geli21h,k6lozk,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gelrvwh,k6lozk,"That's wonderful 
+I'm sad for myself because i live in iran and i can learn frontend develop 
+Do you have any idea to help me??",1
+geldz0g,k6kzwq,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gemcetb,k6kzwq,"Can you simply use the .VTT data being pulled by the player?
+
+In my case I see: [`https://drod04t-vh.akamaihd.net/p/allx/clear/download/85/5fbcc521aa5a61181ca7d885/subtitles/HardOfHearing-17814227-2a44a4da-4e77-4929-8c27-5beff5ff9cbf/segment_0.vtt`](https://drod04t-vh.akamaihd.net/p/allx/clear/download/85/5fbcc521aa5a61181ca7d885/subtitles/HardOfHearing-17814227-2a44a4da-4e77-4929-8c27-5beff5ff9cbf/segment_0.vtt)
+
+Incrementing `segment_0.vtt` to `segment_1.vtt` produces additional text.",1
+gemq2md,k6kzwq,I wanted to say I did a little searching of my own and found it in the Network section of the console. Thank you so much!!!,2
+gemz16k,k6kzwq,"Yup! That's the ticket. 
+
+As soon as I saw `vtt` I knew where to look. Web-vtt is an extremely popular format supported by many players.",1
+genrrj9,k6kzwq,I seriously appreciate it so much. Hope you’re having a good day!,2
+genu98y,k6kzwq,Cheers!,1
+gemp6md,k6kzwq,"Ah! I would have never thought/known to find that. Looks like it’s in minute increments which will be great. 
+
+Where exactly in the code did you pull it from so I know where to look on future episodes?",1
+gel77y0,k6jvdj,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+geliknq,k6jvdj,"Does just doing background: url(""bilder/submit.png"") work?",1
+gels8tt,k6jvdj,I have this question too,1
+gep0lmr,k6jvdj,I tried it and that doesn´t wok either.,1
+gep7uye,k6jvdj,"I would try using a color, if a color works then everything else is working, and try another image link",1
+geliyk4,k6jvdj,"Maybe you can try:  background-image: url (""bilder/submit.png"") 0 0 no - repeat; 
+
+ “0 0” is for background-position I believe. 
+
+Norsk?",1
+gemhwdz,k6jvdj,Think it is German by the text of shown in the form :),1
+gep135v,k6jvdj,"Nothing changed when i tried this.
+
+German :)",1
+gelyuhv,k6jvdj,"Make sure the `bilder` folder is in the same location as the HTML file.
+
+Other possible reason is that the image file is either corrupted, partially corrupted, or has non standard format. Check by opening image from a separate web browser tab.",1
+gep1afw,k6jvdj,i tried different pictures in different formats and stored them in a pictures foldere and and in the same folder as the html file. Nothing worked.,1
+gep6pzy,k6jvdj,Did you check the image files directly?,1
+gelyvf3,k6jvdj,"Hi make sure the `bilder` folder is in the same location as the html file.
+
+other possible reason is that the image file is either corrupted, partially corrupted, or has non standard format. check by opening image from a separate web browser tab., I'm dad.",0
+gelkpe9,k6jvdj,I do not believe you can use an input form field to display an image AND to submit a form at the same time. I would just use &lt;button&gt; and assign the type to submit and the background image to the image you want and use background-size:cover to make sure it is stretched and sized appropriately.,0
+gep0clx,k6jvdj,My skript shows both methods and to learn it i want both to get work.,1
+gel33jl,k6j98a,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gen38ex,k6j98a,Can you put your html and js in a codepen?,1
+gekzvsf,k6iqly,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gel5su5,k6iqly,"Not sure what you mean by ""move"". Do explain what you wish to achieve?
+
+If you have a table cell and you add content, by default the cell will expand to the dimensions of the content it holds, in your case the image. You are setting the size of the image so it will take up that size at the least.
+
+In your case, since you are specifying the size of the table, it is using up all that space and distributing it among all the available cells, and since the other cells are empty, the first 2 are getting oversized, remove the width=1200 height=600 of ur &lt;table&gt; to see waht i mean",1
+gel6a59,k6iqly,"I don't know what im doing wrong heres what im getting when i put pics 	
+
+[You can see that theres some wide space](https://www.pinterest.ph/pin/696439529875046422/)",1
+gel6dkq,k6iqly,"See my response, added why ur first 2 cells are oversized",1
+gel6n3m,k6iqly,OMG THANKYOUSOOOO MUCH,1
+gelh0u0,k6iqly,"You are looking for 
+
+    table {
+        table-layout: fixed;
+    }
+
+EDIT: Or, if you don't define your css in another file (which is a bad practice):
+
+    &lt;table border width=1200 height=600 style=""table-layout: fixed""&gt;",1
+geksmc3,k6h8ik,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gekxyd4,k6h8ik,Only one will be selectable if you assign the same `name`,1
+geky6bc,k6h8ik,"Thanks! It works now. But I want to check which radio buttons are pressed in python, but it stopped working once I changed them to a common name.",1
+gekrnb7,k6frb7,"* What's the main language utilized in 2020?
+
+Main language for what? machine learning? web dev? full stack dev? OS dev? OOP? low level vs high level? Its just a very broad spectrum.
+
+In general Python, Javascript and Java continue to be the most in-demand programming languages
+
+* What's the best place for documentation/tutorials?
+
+For Javascript - [javascript.info](https://javascript.info) and [MDN](https://developer.mozilla.org/en-US/)
+
+* How and where can I purchase a service to have the page running on the internet?
+
+Simple static page for a CV? IMO as widely accessible hosting solution, github is a very good option",3
+geo46lh,k6frb7,"My CV is using Django, hosted by Google Cloud Run.
+
+I followed [this tutorial](https://codelabs.developers.google.com/codelabs/cloud-run-django).
+
+Once you finish this code lab, freecodecamp has a Django tutorial on YT and beginner HTML/CSS exercises on their website.",2
+geo5e60,k6frb7,"Thanks for the reply.
+
+I found three tutorials: 
+
+-	HTML (2 hours almost finished)
+-	CSS (9 hours)
+-	JS (10 hours)
+
+I think that once I finish the three courses I will apply and look for front-end jobs. 
+
+I hope by the end of January I've finished everything.",1
+geoe3z9,k6frb7,Why don't you add a front end framework in there while you're at it?,1
+geoex23,k6frb7,"Even though I had an HTML class at the beginning of my degree I don't know a lot of front-end nor back-end development such as endpoints and what not.
+
+This is something *new*. I took a class with a teacher from Oracle Mexico (I'm Mexican) and he works in the UI/UX department. We used tools such as Figma and omg :0 I loved it! 
+
+So yeah... I'm in the *learning curve* although I already have programming experience with Java and Python so yeah...",1
+gekkxjt,k6frb7,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gel7yt8,k6frb7,"Ok you need a Front-End development skills to make your own design, and tou should be familiar with a programming language and databases to store and fetch your data (that's a dynamic option you can specify and modify them by hand for now).
+Fir your work availability, you need a domain name and hosting to get place on the internet.
+
+I'll drop some useful resources for you in other comment.
+
+Best wishes for you.",1
+gelzn3b,k6frb7,Here you are the path and resources [in this article](https://www.itechonics.com/2020/10/20/how-to-become-a-front-end-developer-2020-edition/).,1
+gek1pkq,k6bva4,"You aren’t doing anything wrong. The charset tag tells the browser what kinds of symbols to except (like alphanumeric characters that we are used to, or Chinese or Russian letters etc) and the Description tag is what shows up in the description field of Google.",5
+gek1re7,k6bva4,Oh ok thanks lol.,1
+gekx4sz,k6bva4,Anything to do with meta is usually stuff like SEO or the description you see on Google etc. Take your time to understand because these small details are important further down the line.,3
+gejzmdz,k6bva4,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",2
+gek41at,k6bva4,"Hey! So not all code has to be visible.. some code is more ""behind the scenes/under the hood"" while other code can be ""in your face/user experience"" which is the visible stuff.
+
+Think like CSS or JAVASCRIPT or the bookmark icon. The bookmark icon isn't visible on the page either, but becomes 
+
+In this instance where ``&lt;meta&gt;`` is used, it's just that, meta code. Meta is behind the scenes. As someone has already answered; The charset tag tells the browser what kinds of symbols to except (like alphanumeric characters that we are used to, or Chinese or Russian letters etc) and the Description tag is what shows up in the description field of Google.
+
+Also, if you ever get stuck you can always google tags, try look for anything from w3schools or MDN;
+
+https://www.w3schools.com/tags/tag_meta.asp
+
+https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML",2
+geld5q7,k6bva4,Alright thanks bro!,1
+geiwe0y,k65g6m,Maybe clear your float after the row?,3
+geix0yj,k65g6m,"You're amazing, thank you so much! Such a simple fix. That one flew right over my head",1
+geiv11b,k65g6m,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+geiw8ou,k65g6m,"I have also tried to reorganize the photos into rows containing 2 photos each, however these spaces still occur, causing the following photos to shift and wrap down to trailing rows.",1
+geiz9k3,k65g6m,"A cleaner, more responsive method: [https://jsfiddle.net/kefr52xw/](https://jsfiddle.net/kefr52xw/)",1
+geizkxp,k65g6m,"Yes, this design was literally made for flex.",2
+geirxzy,k651nm,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gejox5m,k651nm,"To me, it seems what you're looking for is responsive web design. This is a concept which means a website will respond to the device/screen size. The key aspects of it are responsive units and media queries.
+
+**Responsive Units** \- Some HTML/CSS units are relative to screen size and other traits. At this point, you are probably using `px` for width, height, etc. It's a good idea to instead use units like `%` (% of the container), `vw` (% of the viewport/screen width), `vh` (% of the viewport/screen height), and more. Deciding which unit to use for each situation requires some judgement, but fiddling with it for a while should yield positive results! [More on units](https://www.w3schools.com/CSSref/css_units.asp)
+
+**Media Queries** \- A media query is a statement using `@media` that you make in your CSS file. You can then define which traits you want to look out for such as screen width and height. Using media queries allows you to specify different CSS values for different media types. I won't go into too much detail here, but you can learn about media queries at [W3Schools](https://www.w3schools.com/css/css_rwd_mediaqueries.asp)!
+
+Hope this helps, and good luck!",1
+gej43qs,k64jgl,"Browsers like to cache CSS files so even if you change something, there’s a good chance the browser decided to use the old one a little longer.
+
+You can force a complete reload of the site and dump all cached files by simply refreshing it with CTRL + F5.
+
+Hope that solves it!",3
+geio4zf,k64jgl,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gej86ea,k64jgl,Set up compilers such as Laravel Mix which will reload your browser no matter which file you edit.,1
+geij3xq,k63se0,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gehon1n,k5yp4f,Your HTML file and image files need to be in the same folder for that to work.,10
+gehozr7,k5yp4f,ah alright thanks for answering,3
+gehoz8a,k5yp4f,"Place the image in your document root.
+
+What that means is you want the image in the same place as your HTML file. Wherever that file is, is your document root if you're just testing locally without a server involved.
+
+If you're working from a folder on your desktop, put the image next to the file, and you can call it with `&lt;img src=""filename.ext"" /&gt;`. Remember, on most servers, it's case sensitive, so `Filename.ext` `filename.ext` and `filename.Ext` are 3 separate, distinct files.",5
+gehplix,k5yp4f,thanks,3
+gehs5v7,k5yp4f,"You might want to review how pathing works in relation to HTML files, images, styles sheets, and other pages. Pathing will be the same of all instances but with pathing you learn the difference between absolute and relative pathing. For example, you have an HTML page stored in root folder MyPage. In your root folder MyPage you have a folder called Images. In this folder you have stored all your images including example.jpg. 
+
+Let's say your html page is in the folder MyPage, thus it is the root folder. Therefore the img src attribute will have for its value ""Images/example.jpg"". 
+
+Let's say you do not have an images folder and decided to store example.jpg in your root folder MyPage. Your index.html is also in root folder MyPage. Therefore your img src attribute value will now just hold the string ""example.jpg"" as the image is contained in the same folder as your html file. 
+
+This gets complicated when we talk about child folders and parent folders but again, I would review this by looking up relative pathing in HTML.",4
+gei6vno,k5yp4f,Or you can add a link to the image instead,3
+gei2m5s,k5yp4f,I’m by all means no professional but I think the image needs to be in the same folder as the html file,2
+geidb17,k5yp4f,[https://www.w3schools.com/html/html\_filepaths.asp](https://www.w3schools.com/html/html_filepaths.asp),2
+geho0pz,k5yp4f,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gekglov,k5yp4f,"Move your image to your website folders. 
+
+Let's suggest we have the base website folder, put your image and html file inside it then type src=""img_title.png"".
+
+If you put your image in a separate folder (a sub folder under the base folder), and your html file also in the base folder, then you should tell your browser about the new location like that src=""sub_folder/img_title.png"".
+
+Just read little bit about ""relative"" and ""absolute"" paths for deep understanding.",1
+gegcjkn,k5q09m,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gegg2uw,k5q09m,"I can see that the first 2 maps are working just fine. However for your third map, you are going out of bounds several times.
+
+Your image css
+
+    img {
+      display: block;
+      width:679px;
+      height:385px;
+
+and your poly coordinates (x,y) go outside this here
+
+    coords=""508,489,681,487,681,604,509,606,508,546"" shape=""poly""&gt;
+
+if height is 385px, your y coord of 489 is out of image bounds, similarly for width of 678 your coord of 681 is out of bounds",1
+geghiqy,k5q09m,"OHHH okok, that actually makes sense. Would resizing work? Maybe I'll try resizing the pic in ms paint and do a new image map(i use image-map.net ), thank you!
+
+update: I resized the image and made a new image map and it worked! I didn't think that would be the problem lol this is just for school 😅
+
+tysm for helping! :D",1
+gegjcrr,k5q09m,"np, have fun",1
+geg8djv,k5otig,"try to enter image url manually in the browser url bar. 
+
+Respect upper case land lower case.
+
+ if index is not top level and image is in same folder try src=""./montage.png""",3
+gegn0m5,k5otig,I’ll second the src=“./montage.png” move.,1
+gehb6u8,k5otig,"Thanks for the information. I just tried to search the picture from the direct url and it shows, “Forbidden You don't have permission to access this resource.” How do I fix this?",1
+gehd82g,k5otig,"your image is not in a public folder, or you missconfigured your web server",1
+geg4yi1,k5otig,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gef754d,k5jqwn,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gef6egd,k5jmtd,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gef810d,k5jmtd,"`id` is a unique identifier per page, and js will find the first instance of the id and use that. so each time it runs, it overwrites the first instance of `stID` it finds.
+
+why are you mixing js and php? why not generate your random string while outputting the rest of the php?",1
+gefwatm,k5jmtd,"I see, thank you.",1
+geer2di,k5gu3r,"HTML by itself cant be used to create a game, it needs to work along with css and javascript
+
+[https://www.w3schools.com/graphics/game\_intro.asp](https://www.w3schools.com/graphics/game_intro.asp)
+
+[https://blog.logrocket.com/build-a-game-with-html-css-javascript/](https://blog.logrocket.com/build-a-game-with-html-css-javascript/)
+
+[https://www.youtube.com/watch?v=bbb9dZotsOc](https://www.youtube.com/watch?v=bbb9dZotsOc)
+
+[https://www.youtube.com/watch?v=w-OKdSHRlfA](https://www.youtube.com/watch?v=w-OKdSHRlfA)
+
+[https://www.edopedia.com/blog/open-source-html5-and-javascript-games/](https://www.edopedia.com/blog/open-source-html5-and-javascript-games/)",8
+gef1d50,k5gu3r,You can create games using the &lt;canvas&gt; tag and Javascript. HTML alone won't be able to make a game as it is not a programming language.,5
+geeqxla,k5gu3r,"Well, HTML isn’t a programming language for creating games, it’s a language for building the base of a website.
+
+Try looking at language like C++, Lua, or C#.",3
+geflhkq,k5gu3r,[https://www.youtube.com/channel/UC5DNytAJ6\_FISueUfzZCVsw](https://www.youtube.com/channel/UC5DNytAJ6_FISueUfzZCVsw),1
+gegt1uv,k5gu3r,"u/lovesrayray2018 provided some viable sources, and if you even want to evolve your game development skills using Javascript, try testing out Sockets which allow you to make games ""multiplayer"" as in multiple people can browse that page to play with others.",1
+geenw3a,k5gu3r,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+geduv7n,k5cli9,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",2
+geeeovk,k5cli9,"You're going to have to share your code with us for anyone to help.
+
+As for making the links open in the same window/tab, make sure you either have target=""\_parent"" as the target tag (not target=""\_blank"") or get rid of the target tag altogether.",1
+geegeln,k5cli9,"ooh i had it at _blank, maybe I'll try that tomorrow :D
+I only have a pic of the code since I'm on my phone rn tho (https://ibb.co/fC56Scp)
+edit: doing _parent worked, thanks!",1
+geduk1t,k5brtj,"This is expected behavior, font size by default does not change based on the container element size change. It can wrap words, but does not change font size even if the parent changes.
+
+One solution is to use RWD and media queries to change font size based on the screen size of device.
+
+[https://www.w3schools.com/css/css\_rwd\_mediaqueries.asp](https://www.w3schools.com/css/css_rwd_mediaqueries.asp)
+
+Sample in your case, reddit change @ to u/ for some reason
+
+u/media only screen and (max-width: 600px) {    
+  .nav-link {  
+    font-size:10px;  
+  }  
+} 
+
+u/media only screen and (max-width: 1200px) {    
+  .nav-link {  
+    font-size:16px;  
+  }  
+}",2
+gedp0rq,k5brtj,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gedaq1p,k59u9t,Github is a very good option for hosting simple static web pages,8
+gedaxkd,k59u9t,Thanks. I appreciate that,3
+gee6hfa,k59u9t,GitHub Pages hosting is free but can be tough to set up for a newbie. You might also have some luck tinkering with something like Glitch.,1
+gedakw5,k59u9t,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",2
+geebi47,k59u9t,You can also use Microsoft Azure to host your website for free using Azure App Services in the free tier.,2
+geefd21,k59u9t,"Definitely check out Heroku (by Salesforce) I have multiple servers running on different accounts (a couple websites, and a discord bot), and haven’t paid a dime. There are some limitations due to their practice of putting free servers “to sleep”, but as long as you understand how and when they do that it shouldn’t really be a problem for small projects, and you can always pay later.
+
+Heroku runs server side code so you’ll need to know node.js (which is what I use), or a similar language. This enables you to make dynamic websites so it’s well worth the effort.
+
+Good luck!",1
+gedkd5o,k59u9t,"like the other person said, github is a good option. you can also just zip the folder with your code saved an an .htm file and then send that to people",-4
+gee6bn5,k59u9t,This is probably not a good solution.,3
+geedklg,k59u9t,i meant if you only need 1-3 people to see it (like for school),2
+geevrpj,k59u9t,Fair.,1
+gec5exg,k529c3,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gec6h4f,k529c3,You need to serve it on an http server like apache http server or some place like netlify,1
+gebtkhx,k4zpju,That path for the src looks suspicious. The start of the path should be where the html file is.,4
+gebtuf1,k4zpju,Doesn’t the whole path to the file work too?,1
+gebuhy0,k4zpju,Looks like you’re trying to use the server path. You should use a url - either relative to where the html file lives or an absolute url.,6
+gec1juk,k4zpju,Ideally you do not want to use an absolute URL. Use a relative URL.,2
+gebuepf,k4zpju,https://www.w3schools.com/html/html_filepaths.asp good examples on how to use paths here. Not sure if that is the whole path because don’t know the file system on your computer.,2
+gecnkas,k4zpju,"Just to clarify and help you understand, an absolute path works, but keep in mind that it's the browser that reads it and the browser doesn't have access to the entire machine, only what the server ""serves"". And that is probably starting at the folder `html` (could be different though).
+
+So an absolute path for the browser, would be `/portfolio/portfolio-pictures/Montage.png` (supposing the server serves the folder html).
+
+Just wanted to help you with this but **you really should use relative paths whenever possible**.",2
+gecfnrs,k4zpju,"Try using a relative file path. If your folder structure looks like this 
+
+    portfolio/
+      index.html
+      portfolio-pictures/
+        Montage.png
+   
+Then you should do `&lt;img src=“./portfolio-pictures/Montage.png” /&gt;`. Also double check your spelling, capitalization, etc. What server are you using?",3
+gecu7sb,k4zpju,this is the right answer.,2
+ged94hr,k4zpju,This is how it should be done as to be portable in case you move anything around in your page.,1
+gebpyfd,k4zpju,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gedor06,k4zpju,Good bot,1
+gebfbgy,k4q3zu,See [caniuse](https://caniuse.com/),2
+gebo8vq,k4q3zu,That's a great resource. /fistbump.,1
+gea3ko8,k4q3zu,"Welcome to /r/HTML. When asking a question, please ensure that you list what you've tried, and provide links to example code (e.g. JSFiddle/JSBin). If you're asking for help with an error, please include the full error message and any context around it. You're unlikely to get any meaningful responses if you do not provide enough information for other users to help.
+
+Your submission should contain the answers to the following questions, at a minimum:
+
+  * What is it you're trying to do?
+  * How far have you got?
+  * What are you stuck on?
+  * What have you already tried?
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/HTML) if you have any questions or concerns.*",1
+gebjeqb,k4q3zu,Yes,1

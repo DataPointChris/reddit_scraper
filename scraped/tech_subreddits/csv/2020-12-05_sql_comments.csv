@@ -1,0 +1,477 @@
+comment_id,post_id,comment,upvotes
+gepr98u,k7b8i9,"I haven't heard of the DMVs changing however the cardinality estimator had a lot of changes: [https://docs.microsoft.com/en-us/previous-versions/dn673537(v=msdn.10)?redirectedfrom=MSDN](https://docs.microsoft.com/en-us/previous-versions/dn673537(v=msdn.10)?redirectedfrom=MSDN)
+
+My guess is that the cardinality estimator resulted in some parameter sniffing issues so they set up a job to periodically clear the entire cache.",2
+gepci65,k78zc5,Cast them as numeric.,3
+gepedd3,k78zc5,"replace this --
+
+    (gender_count / SUM(gender_count) OVER (PARTITION BY gender)) AS ratio
+
+with this --
+
+    ( 1.0 * gender_count / SUM(gender_count) OVER (PARTITION BY gender)) AS ratio",1
+gepeyhg,k78zc5,you're the real MVP,1
+gepfar9,k78zc5,oops no does not work.,1
+gepjguo,k78zc5,"&gt; oops no does not work.
+
+okay, i stopped to take a closer look
+
+replace that line with this --
+
+    1.0 * gender_count / 
+    ( SELECT COUNT(gender) 
+        FROM `genomics-public-data.1000_genomes.sample_info`
+       WHERE In_Phase1_Integrated_Variant_Set = TRUE 
+    ) AS ratio",1
+gepm7fs,k78zc5,Is your sum over partition by gender going to give you a running total by gender then ending up divide male/male thus getting 1?,1
+gepc1co,k78p28,"[In a nutshell](https://stackoverflow.com/questions/595742/last-run-date-on-a-stored-procedure-in-sql-server), you can't unless your system is so stable and so far behind that you haven't rebooted in ten years. You can look at create, last modified, and last executed date in the [sys.dm_exec_procedure_stats](https://docs.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-exec-procedure-stats-transact-sql?view=sql-server-ver15), but these are based on cached plans which are wiped out when the server is restarted or anything clears the plan from the cache. 
+
+That first article is old, but it has some decent options. One thing we've done in the past is prefix procs we thought should be decommissioned with a ""z"" for a month or two after getting all the App Dev leads to agree we were going to decom things in batches. Once that time's up, script off the procs for safe keeping (or just take a backup) and remove them. 
+
+If monitoring is more the concern, I've created a rolling table of proc stats along with a few things that DMV doesn't store so we can track it across reboots and compare previous plan handles for determining the efficacy of index/proc/app optimizations and report on overall trends and timeout spikes. (Unfortunately, it's code owned by my work, so I can't really share it, but I can go into more detail about how I set it up if you're really interested.)
+
+Of course, I'm happy to be wrong. Might be a report or sys table I've forgotten about.",4
+gepcs8r,k78p28,"This really sucks as I thought there would be feature that stores this data in master tables. I am updating like 500+ SPs and some of them need code change. I can see some of them not updated for past 5+ yrs. But some of them are critical and so are never modified. And some are never used, I ran some checks in code. But removing them is not something I wanna do without having a proper list of SPs that are never called in production.
+
+I feel this feature should have been included in SQL 2016 or further up",3
+gepdsfs,k78p28,"Yeah, most of the DB community would agree with you. The problem is (and you'll see why if you ever run a profile trace) it's really, really expensive from SQL's backend system and would come at a serious performance cost for the main system. You could always set up a really lightweight logging system for a few procs at a time. It shouldn't be a huge performance cost if they're rarely or never used and then get management to sign off on decomm if they don't appear in your logging after a certain amount of time?",4
+gepeqxv,k78p28,Query store might have better stats if it's enabled.,3
+gepf0k7,k78p28,"Good point. I haven't had much occasion to use it yet. The first large DB we turned it on for killed its performance, so management has been weary of it for a year or two as we get everything up to 16.",2
+gepgbao,k78p28,"Turn off size based cleanup and you should avoid the performance issues, we saw the same thing in our production systems. This will mean it will fill up and then stop gathering data but if you use sprocs for access it won't actually use up that much space (EF is another matter).",3
+gepo0gy,k78p28,"Awesome to know, thank you! I know of a few places it'd be really helpful, so I'm hoping to make time to play with it soon.",1
+gepjia4,k78p28,"&gt; The first large DB we turned it on for killed its performance
+
+Make sure you're running the latest SP/CU for SQL Server, Microsoft is still iterating on Query Store. You shouldn't see performance ""killed"" by QS even in earlier incarnations though. Take a spin through Erin Stellato's posts on QS best practices, which in part address performance concerns. https://www.sqlskills.com/blogs/erin/query-store-performance-updated/ &amp; https://www.sqlskills.com/blogs/erin/query-store-best-practices/",1
+gepoxe8,k78p28,"Yeah, at the time it was early 2017 and we couldn't patch until after a migration. It does seem to be more stable now. I'll definitely check out those articles, though, thank you!",1
+gepdgmf,k78p28,"&gt; I've created a rolling table of proc stats along with a few things that DMV doesn't store so we can track it across reboots 
+
+Can you tell me more on that?",2
+gepewoc,k78p28,"Yeah, of course. So, the sys tables store a lot of info like reads, writes, elapsed times, etc. Unfortunately, since they're ever increasing numbers and wipe at reboot, they can be both difficult to read AND compare to previous times when things reboot. I also have a query that's able to check the plan cache and a few other places for current executions, wait stats, memory grants, and the like that I sort of merged into this. I have it running every 30 minutes in a lot of major systems (mostly for the main DB on the server) and aging out anything older than three months. 
+
+It inserts all this data into a temp table and then compares it to the main table. In this way, I also generate the more useful columns (they could be computed, but I think this is easier on the system). Each of these is a ""changed since last run"" field for memory grants, exe time, avg exe time, reads, writes, etc. And looks not only for the proc name, but that specific plan handle since they're only comparable if they're both the same. 
+
+This is more for monitoring trends and finding outliers, how often the cache is churning, etc, but if it _doesn't_ show up in this report by the retention period, that may mean it's unused (though you have to consider what might be month, quarter, or year end processes).
+
+Finally, I wrote a query that compares two time windows to compute the percent change for each proc name between the two windows.",2
+gepk8qz,k78p28,I am not that familiar with the sys tables. Is there some articles I could use? I am thinking of creating a prototype of code where I can take dump of entire sys tables into another DB and use that to get details on SPs executed or used.,1
+gepq9pq,k78p28,"I've mostly learned this over years of necessity, but I would say maybe from the [MSDN Documentation](https://docs.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/system-dynamic-management-views?view=sql-server-ver15) or this set of [SQL Tips](https://www.mssqltips.com/sqlservertutorial/273/dynamic-management-views/) might be a good place to start, but a deep dive like this [Redgate PDF](https://www.red-gate.com/library/performance-tuning-with-sql-server-dynamic-management-views) would probably be a better use of time long-term. That or just expand the sys tables and start seeing what all they each contain. Exec Sessions and Proc stats are probably a good place to start. The sys tables can tell you a lot about how SQL is put together and why it's making certain choices.",2
+gept709,k78p28,Thanks again!,1
+gepj5b8,k78p28,"&gt; Once that time's up, script off the procs for safe keeping (or just take a backup) 
+
+Are they not in source control already?",1
+geposf8,k78p28,"Based on the state of OP's system, I had to assume not. I've worked as a SQL Dev in four companies and DBA in two and only now are we pushing hard on the initiative. It's just a lot harder to integrate in older systems. I support about 4000 prod DBs where every major business unit has its own rules and frustrations. 
+
+ We all understand the necessity, but when you're built on mergers and acquisitions and always fighting a decade of technical debt, new feature deadlines, business users screaming fire, and VPs fighting each other to shift priorities with patchwork systems, it doesn't tend to be the first thing you work on. Gotta get a handle on the reactive and then proactive before you can get to best practices. I've been having this discussion for years, I yearn for the days when my standards are enforced and code review will prevent fifteen cross server joins and Cartesian products from getting to prod.",1
+gep6dcg,k77vom,If you're using SQL Server you can use linked servers to access data on another instance: [https://docs.microsoft.com/en-us/sql/relational-databases/linked-servers/linked-servers-database-engine?view=sql-server-ver15](https://docs.microsoft.com/en-us/sql/relational-databases/linked-servers/linked-servers-database-engine?view=sql-server-ver15),3
+gepqb3o,k77vom,It's usually best to pull all the tables you want to join onto one server and to do the join from there. Can do this using linked servers ofc.,1
+gep6ww6,k77vom,"If you are using Postgres, you can use foreign tables.",1
+gepjv3n,k77vom,"Depending upon what RDBMs you're using and where it's hosted, this may or may not be possible.
+
+But regardless of those factors, the performance will be absolutely terrible.
+
+You're better off establishing connections to each server independently, running the requisite query in each (probably do it asynchronously so you aren't waiting for Query A to finish before Query B starts), and then joining the results on the application side.",1
+gepccd5,k77qls,Not an answer but what’s your project?,1
+geos33h,k750h2,"Try just rebooting the entire machine, I've seen this issue before when doing simple selects, I think there's a memory leak somewhere. I got a warning from our sysadmin a long time ago that I was using 90% of the RAM on an SSMS jump box when I was just sitting on the desktop.",3
+geotywq,k750h2,Yup that fixed it. Stupid bloody thing. Cheers,2
+gep6znj,k750h2,"Make sure you're running the latest SSMS. There were several 16.x or 17.x releases which had terrible memory leaks.
+
+Also, give Azure Data Studio a spin. Or automate what you're doing w/ Powershell on the command line.",1
+geoja4h,k73btb,"Aaaaaand reddit f**ked up the arrangement of the ""tables"" in my post. So basically ""John Doe"" has 5 reservations (given as a dates) in Table 1-Schedule and in Table 2-Salary the count of reservations from table 1 is saved in ""NumOfReserv.""",1
+geo5viw,k70y1w,What are you confused about?,3
+geo5mkc,k70y1w,w3schools is a great resource for you to get detailed answers and be able to practice examples.,2
+geo5a4i,k70y1w,"And:  records return match all criteria 
+OR: records match either criteria",1
+geo5qxs,k70y1w,If you use AND it means both conditions have to be met. OR is when only one of the conditions has to be met. So for example Where comlum 1 = 2 And colum 2 = 5 is only going to return the rows where both 1 and 5 exist in the same row.  If you say Where column 1 = 2 Or column 2 = 5 is going to return any row that has 2 in column 1 and also return all the rows that have 5 on comlum 2,1
+geph3bl,k70y1w,"What if I put brackets? 
+(1=2) AND (2=5)
+??",1
+gepjkx1,k70y1w,In the way you have them there the brackets will not change the outcome,1
+geo5yrk,k70y1w,No. I mean AND works for row wise and OR works for column wise.,-1
+geosf28,k70y1w,"wut?
+
+could you please show an example of this difference?",1
+gep9i6h,k70y1w,"Ok. Let's say, there are two columns, ' Physics' and 'Chemistry'. And there are 100 rows of each student name and their marks in physics and chemistry column. 
+
+Now, in general english, we say, people who got 75 in Physics AND people who got 65 in chemistry. 
+
+Now if I write this as a query, I have to write OR. 
+
+If I put AND, it will check for a row who has 75 in physics and 65 in chemistry at the same time.",1
+gepel6w,k70y1w,"&gt; Now, in general english, we say...
+
+when we are not being precise, maybe
+
+but if we want to be precise, we will say it exactly the same way that SQL evaluates ANDs or ORs",2
+gephalm,k70y1w,"What if I write 
+(Physics =75) AND (Chemistry=65)
+instead of 
+Physics =75 AND Chemistry=65
+??",1
+gepj2yk,k70y1w,what happened when you tested it? ™,1
+gepkixg,k70y1w,"It's an example. I don't have this data to test. 
+
+But I am guessing it brings me both list of students with Physics 75 marks and students with chemistry 65 marks.",1
+gepkqp9,k70y1w,"&gt; It's an example. I don't have this data to test.
+
+please allow me to suggest that you learn how toi create a small test table so that you can test stuff like this
+
+if you're serious about learning SQL, that is
+
+p.s. just so you are aware, the parentheses in that last post of yours make no difference whatsoever",1
+gepp0ng,k70y1w,"What you are saying is more like 
+
+Select * from students where physics = 75
+Union
+Select * from students where chemistry = 65
+
+--===========
+
+Select * from students where physics = 75 and chemistry = 65
+
+Expressed in words is: retrieve students that have physics 75 and chemistry 65",1
+gepjll0,k70y1w,"If you're going to use English as a way to talk to computers, you're going to have a bad time. In your example, you can also say to a human ""give me a list of people who got 75 in Physics OR people who got 65 in chemistry"" and you would get the same results. In English, AND is not necessarily used as a Boolean operator. Depending on the context, it could be used as an inclusive OR, or it could be used to connect two words together.
+
+&amp;#x200B;
+
+This is the reason why programming languages exist. Read up on Boolean logic, understand how it's interpreted by the computer, and you'll be fine.",1
+gepkb6h,k70y1w,"But as you said, if I say someone to list out students who got 75 in Physics OR students who got 65 in chemistry, then either list will be fine. He can bring me one list, a list of students who got 75 in Physics and he can ""ignore"" chemistry list. 
+
+But the computer brings me both.",1
+gepmc6k,k70y1w,"The computer is bringing you exactly what you asked for. The misunderstanding is that the question you're asking it doesn't match what you're actually looking for.
+
+You need to spend some time learning [Boolean algebra](https://en.wikipedia.org/wiki/Boolean_algebra) and [basic set theory](https://plato.stanford.edu/entries/set-theory/basic-set-theory.html)",1
+gepkk2r,k70y1w,"&gt; Now, in general english, we say, people who got 75 in Physics AND people who got 65 in chemistry.
+
+You can also say ""people who got 75 in Physics or 65 in Chemistry"". Same meaning, and actually mirrors how you'd write the query.
+
+Using English (or most any human language) as an example for how to write programming logic is a terrible idea. This is why we have precise terms and symbols for describing things like this.",1
+gepkqkj,k70y1w,"Yes for simple results that's fine. But in real time business data, sometimes I have to talk to myself while writing the query.",1
+gepkuc8,k70y1w,"That means you are asking for either one of the lists. 
+A list of students with 75 in Physics or a list of students with 65 in chemistry. 
+
+But the computer brings me both lists with OR.",1
+geplpeg,k70y1w,"Try writing four queries:
+
+1. Where Physics = 75
+2. Where Chemistry = 65
+3. Where Physics = 75 OR Chemistry = 65
+4. Where Physics = 75 AND Chemistry = 65
+
+* Queries 1 &amp; 2 are each subsets of query 3 (or another way, query 3 is a superset of 1 &amp; 2)
+* Query 4 is a subset of the union of 1 &amp; 2
+
+These are different things. When you say _in English_ ""people who got 75 in physics and people who got 65 in Chemistry"" you're might be asking for two sets of results. Or maybe you're asking for one set. It's unclear because English can be ambiguous, which is why you can't use it to properly describe your logic here.
+
+If you want the people who fall into both of those sets, you want query 4. if you want people who fall into _either_ set, you want query 3.
+
+You need to spend some time learning [Boolean algebra](https://en.wikipedia.org/wiki/Boolean_algebra) and [basic set theory](https://plato.stanford.edu/entries/set-theory/basic-set-theory.html)",2
+gepkkuk,k70y1w,This isn't even close to correct.,1
+gengwkf,k6sowf,"I'm curious as to why you need 2012 specifically?  The newer versions breaking an application are very much edge-case.  Basically if it's using one of the features MS decided to depreciate.
+
+Honestly I'd say try the current version with your application.  It might just work anyway.
+
+You can also turn down the compatibility level of you do have issues, or your application is hard coded to check for it.",4
+gen9tch,k6sowf,"This article (https://stackoverflow.com/questions/38808331/new-windows-10-laptop-unable-to-install-sql-server-2012 )makes it sound like you need at least SP2 integrated into the install. 
+
+This site has some slipstream instructions (https://www.sqlshack.com/slipstreaming-sql-server-2012-2014/)
+
+Maybe that will work?",3
+genef8j,k6sowf,Why 2012 and not a more recent version?,2
+genpgdc,k6sowf,"It will but you have to tweak a few things.  
+
+Here’s some info. 
+
+From the microsoft support page (https://support.microsoft.com/en-us/kb/2681562):
+
+""Minimum SQL Server version requirements for Windows 10
+
+This section describes the minimum version requirements to install SQL Server on a computer that is running Windows 10.
+
+Before you install SQL Server on a computer that is running Windows 10, you must make sure that you fulfill the following minimum requirements, as appropriate for your situation.
+
+*For SQL Server 2014 You must apply SQL Server 2014 Service Pack 1 or a later update. For more information, see How to obtain the latest service pack for SQL Server 2014.
+
+*For SQL Server 2012 You must apply SQL Server 2012 Service Pack 2 or a later update. For more information, see How to obtain the latest service pack for SQL Server 2012. 
+
+Note Please check known setup issues when you install SQL Server 2012 on Windows 10.
+
+*For SQL Server 2008 R2 SQL Server 2008 R2 is not supported on Windows 10.
+
+*For SQL Server 2008 SQL Server 2008 is not supported on Windows 10.""",1
+genrh3i,k6q7o1,"I'm not sure why you'd be getting that error, I haven't used bulk inserts in this context before.
+
+However, you mentioned that you're moving to SSDT. Does that mean you're trying to do this in SSIS? If so, you should really switch that over to a data flow task instead of using a bulk insert. If you're using SSIS and loading a flat file to a table with a bulk insert in a SQL Script Task instead of just using a Data Flow task, you're kind of missing the whole point of using SSIS.
+
+Here's a decent tutorial on it, if that helps. https://blog.sqlauthority.com/2011/05/12/sql-server-import-csv-file-into-database-table-using-ssis/",1
+genxw6c,k6q7o1,"I actually haven't looked into SSIS. I made the assumption that starting with base SQL and then moving into tools would help me understand how everything works better. If SSIS is the way to go though I'll do some reading. Thank you for the tutorial!
+
+Edit: I just realized SSIS isn't supported in SQL Server Express. At the end of the day I want to host this data on a personal website, and I'm pretty positive doing so would break the licensing agreement if I set things up using the Dev version of SQL Server.",1
+geocjxr,k6q7o1,So when you say SSDT is this a database project?,1
+gephllh,k6q7o1,Correct.,1
+gepmzu0,k6q7o1,"Is this for a development project, like knowledge sharing?  Not production work?
+
+If so, then Developer edition (which has enterprise features) may be just fine for that type of stuff.  Haven’t looked at the licensing agreement recently but you may be fine at least using development of Proofs of concept and Knowledge sharing if you’re not charging money for it.",1
+geos5nv,k6q7o1,"SSDT is the visual studio GUI for SSIS.
+If you don’t have SSIS installed on your SQL Server instance then you won’t be able to deploy your package. 
+I don’t think SQL Server Express supports SISS.
+Also, yes you are correct, you would be violating the licence agreement to use it on a personal website.",1
+geow5b4,k6q7o1,He could still execute it through SSDT though.,2
+geox4fo,k6q7o1,"Yes of course but it’s totally manual.
+If he wants to automate it, he would be better writing SQL scripts to do everything and calling them via an agent job",1
+geoznsz,k6q7o1,"There is no agent in express, you’d have to use Windows Task Scheduler",1
+gep0m5p,k6q7o1,Ah right. I have never used Express sorry,1
+gepjoyz,k6q7o1,"Hmmm.... I'm actually able to deploy my code from SSDT so now I'm more confused.
+
+Running 
+
+`SELECT @@version`
+
+returns
+
+`Microsoft SQL Server 2019 (RTM-GDR) (KB4517790) - 15.0.2070.41 (X64)   Oct 28 2019 19:56:59   Copyright (C) 2019 Microsoft Corporation  Express Edition (64-bit) on Windows 10 Pro 10.0 &lt;X64&gt; (Build 19041: )` 
+
+So I know I'm running SQL Server Express, but if this is really just a front end for SSDT then I must be doing something wrong.",1
+geotipz,k6q7o1,"Ganon, can you please add more details about why you're trying to use SSDT for this?
+Is this code part of a stored procedure?
+Or something else?",1
+gephgq4,k6q7o1,"The end goal was to make this part of a stored procedure yeah. Im trying to scrape the meeting minutes of my local Township council and get them into a database. This way the information will be easier to view and analyze. The Township makes all this information available online, but they upload it in the form of a word document each month.
+
+So on initial setup of the DB I'll call the proc to import the currently scraped data, then each month after new meeting minutes come out I'll need to rerun the same code, just with the new data.",1
+gepifp0,k6q7o1,"You can create stored procedures in SSMS just fine, it's the only way I've ever done it. I'm not understanding the need to use SSDT if you're not going to be using SSIS, SSRS, or SSAS.",1
+gepiqwh,k6q7o1,"It's less of a need and more of a want. I'm trying to get myself familiar with more tools, and expand my personal knowledge.",1
+gepjw5c,k6q7o1,"Dreadnought, you're confusing SSDT with the classic BIDS which was indeed limited to SSIS, SSRS, and SSAS.
+
+SSDT is much more and is primarily used for development, source control, and continuous deployment of databases, i.e. tables, views, stored procedures, etc.",1
+gepkx0j,k6q7o1,"Isn't that basically just visual studio that you're referring to? I definitely know what you mean, but I would refer to that as visual studio, and SSDT as the components that you need to install in order to use the other SS*S tools.
+
+I could be wrong - do you need SSDT installed in order to work with a basic SQL project in visual studio? I guess I kind of figured that was standard but if I'm wrong then I stand corrected!",1
+gept8dq,k6q7o1,"Yes, you need SSDT in order to create SQL server database projects in visual studio.",1
+gepkqgm,k6q7o1,"Ganon, there's a chance that you did something wrong while writing the stored procedure. Please share the full sp script from your project for better insight.
+
+As far as I know, there shouldn't be an issue with the bulk insert command in SSDT.
+
+But, in the worst case scenario, the solution in your case would be to use a dynamic SQL command and execute it using sp_executesql.
+
+For example:
+
+    Declare @cmd nvarchar(max)
+    Set @cmd = 'bulk insert dbo.import_general
+    From ''d:\downloads\import.csv''
+    With (...)'
+
+    Exec sp_executesql @cmd",1
+gepkrj6,k6q7o1,"Hello, EitanBlumin: code blocks using backticks (\`\`\`) don't work on all versions of Reddit!
+
+Some users see [this](https://stalas.alm.lt/backformat/gepkqgm.png) / [this](https://stalas.alm.lt/backformat/gepkqgm.html) instead.
+
+To fix this, indent every line with **4 spaces** instead. It's a bit annoying, but then your code blocks are properly formatted for everyone.
+
+An easy way to do this is to use the [code-block button in the editor](https://stalas.alm.lt/files/new-reddit-codeblock.png). If it's not working, try switching to the fancy-pants editor and back again.
+
+[Comment with formatting fixed for old.reddit.com users](https://np.reddit.com/r/backtickbot/comments/k7ahqi/httpsnpredditcomrsqlcommentsk6q7o1bulk_insert/)
+
+[FAQ](https://www.reddit.com/r/backtickbot/wiki/index)
+
+^(You can opt out by replying with backtickopt6 to this comment.)",1
+gepl5i0,k6q7o1,Formatting fixed,1
+gepl20f,k6q7o1,"I've found that just removing the FORMAT parameter fixes it, so I'm starting to think this may be a bug and that I'm not actually doing anything anything wrong. The script I've provided is the same one I'm trying to execute in SSDT.",1
+geplvgy,k6q7o1,Can you confirm that your original script at least has the preceding CREATE PROCEDURE clause to indicate that you're creating a stored procedure?,1
+gemmwjq,k6q5tf,"Ssis is SQL server integration services. It's an etl application
+
+T-SQL is a sql dialect that is primarily  used by Microsoft products.
+
+A stored procedure is a sql server object that contains a set of sql commands that perform or return a result. They are often used for etl or reporting purposes.",13
+gems70j,k6q5tf,"As mentioned, SSIS is an ETL (extract, transform, load) tool.  It's used for migrating data (transforming as necessary) between a database and another source (which can be another database or data warehouse, flat file, etc.).  Think of it as a sort of software application that serves a very specific purpose and doesn't require any real coding (although you can).
+
+T-SQL is just Microsoft's version of SQL for SQL Server.  There are many like it, but this one is MSFT's.
+
+A stored procedure is an object that is stored in a database that contains T-SQL code to be executed; it's invoked any number of ways - from software, SSIS, ""manually"" via SSMS, or a SQL Agent job are the most common.  They are typically authored to allow the aforementioned processes to perform CRUD operations against a database.  There are also system stored procedures, which live in the system databases on a SQL Server instance (msdb and master are two) and are created when you install SQL Server to the machine.  (They shouldn't be modified unless you really know what you're doing, but there are plenty that can be invoked from user-written T-SQL.)",6
+genviwv,k6q5tf,"You write T-SQL commands to perform a specific operation in SQL.
+
+If you don't want to write that code again when you perform that same operation then you save the code as a Stored Procedure.
+
+and if you want to run this code over and over and over with other type of code or other stored procedures or alter and modify data then you can uses SSIS to package them together so that they run in sequence or parallel to perform automated complex processes while you drink coffee and don't have to think about writing code again until a different issue arises.",1
+gemp9j8,k6q5tf,"A lot. There's a lot of difference between those things. Google them.
+
+E: I thought this sub was against zero effort posts, but okay cool let's have more of these I love 'em 👍",-5
+gemc1a8,k6pf5l,"here is my code and output if it helps
+
+[https://www.mycompiler.io/view/2df1rgz](https://www.mycompiler.io/view/2df1rgz)",1
+gemr4p8,k6pf5l,"&gt; Want - All the comps, and the matching user. If no matching user, match to User 1:
+
+join all ""Comps"" to user #1
+
+left join comps to users via id/user.
+
+use case expressions in your select list to conditionally pick values from the second join or first if the second join did not get a match.",1
+gemrsqk,k6pf5l,"One solution:
+
+    WITH a_tmp AS 
+    (select a.id, a.comp, COALESCE(b.USER, 1) as user
+    from a  
+    left join b 
+    on a.id = b.id 
+    and a.comp = b.user
+    )
+    select 
+    a_tmp.id,
+    a_tmp.comp,
+    a_tmp.user,
+    b.userinfo
+    from a_tmp
+    left join b
+    on a.id = b.id
+    and a_tmp.user = b.user",1
+gem68s7,k6pf5l,Comment to folllow up,1
+gemodt8,k6kext,"I have not used BigQuery, but usually this is done by putting a trigger on the table and inserting records into a logging table.",1
+geou75u,k6kext,"Thank you very much, this makes sense I guess. It's a bit beyond my understanding right now but I will talk to my colleague about it.",1
+gelmne8,k6ihom,"first, what do you understand as ""grouping sets""
+
+second, how is that different from your UNION query
+
+third, how do you know which result rows of your UNION query came from which SELECT?",2
+gel9l7r,k6gyt6,"First of all, congrats on making forward moves in your career! Let's answer your specific questions.
+
+&gt;With some more time in this position, can I leverage this job for a better paying position?
+
+Yes, absolutely. Salaries depend on the area you're in, but in / around high cost of living areas, support roles get paid at least 60K a year. Entry level development jobs get around $75k a year (unless you get a job at a big, presitgous company, which can pay more).
+
+&gt;What positions would be relevant for this?
+
+A few positions come to mind, based on the experience you've described
+
+* Your experience working with databases could be translated into a junior database developer job. [Here is an article I wrote about how to get a job as an entry level database developer](https://sqlref.com/blog/how_to_become_a_database_developer.html).
+* Your experience with nodeJS could be translated into a junior web developer job.
+* Your experience administrating a CRM would qualify you for an operations type role. There are lots of jobs in tech companies that require you to be technically savvy, but maybe not write code.
+
+&gt;I have no degree, but have heard that experience can offset this in some fields, is this the case for reporting?
+
+Yes and no. Some companies don't care if you have a degree, but some companies won't even finish reading your resume if you don't have one. Experience is always good, though!
+
+Feel free to ask more questions, I'll be sure to respond.",7
+gembdh4,k6gyt6,That is one hilarious video! HAHA! I think this is going on my to-do list. Thanks.,1
+gel2ug2,k6gyt6,"Well, it sounds like the initial promotion was more of a QA role with some reporting functions, which, honestly you were probably still being underpaid for. The stuff you’re doing now, yeah, you’re being underpaid.
+
+You did a good job of selling your achievements. You can leverage that experience to get something better in the future.",16
+gel8rk9,k6gyt6,"I always say, assume you're going to be underpaid in your first tech job. The problem is breaking the cycle of ""we need x years of experience and proficiency with SQL"". Becoming proficient in SQL is not a difficult task, convincing someone to hire you with 0 years of experience is a much harder task. Once you break that threshold, get a job, and start getting experience- that's when you plan for a higher paying job. 
+
+These places that don't pay much either 1. Know they're underpaying but providing experience for someone, leaving themselves open to a very high turnaround rate for the position, or 2. Terribly stupid management that doesn't respect IT inherent worth. 
+
+The first developement job I had was grueling, demanding, and low paying. I stuck it out for 2 years there and gained some amazing experience. The next job I got after that I literally doubled my salary. 
+
+The next steps for you that I would suggest: 1. Stick it out for atleast 2 years where you're at now. I know it sucks being underpayed, but it will pay off. 2. Find ways to work your job to get the experience you need to get yourself to the next job you want. 3. Get in contact with IT recruiters, they are a major help and are usually great people.
+
+
+Best of luck!!",7
+geldpbz,k6gyt6,"Dip some hints that you think you're underpaid.  If you don't get a significant raise in a year,  then take this experience and hop to a job paying at least $70k.",3
+gelc29m,k6gyt6,"Congrats,
+
+Yes, I'd call your position report writer or reporting analyst. I do data warehousing, I don't have an it degree. People don't care about your degrees, they care if you can do the work.
+
+Learn everything you can from your peers. Read other scripts, see what they do. When you don't understand something Google things first, but then ask around the office see why they did that.
+
+
+Pay is very dependent on where you live. If your in rural parts of the USA, your paid normally. If your in Chicago, your paid less than half of what you should be earning. Start there for a year, build your resume. If you don't get a huge raise, see what else is available in your area.",2
+gelki18,k6gyt6,If you aren't in the US the salaries people are mentioning in the comments likely aren't applicable. Knowing what country/region you work in is important.,2
+gelh2ow,k6gyt6,"First of all kudos on showing initiative and going above and beyond. 
+
+Like others said you don’t need a computer science degree to work in IT. As far as where you would like you career to move, you have to make some decisions. If you like write SQL and work with data preparation then you can start a career as a data engineer. If you’d like to create dashboards then look at BI/Visualization jobs. I would also say learn snowflake given you already know SQL and it is all the rage now. I think you should be making at least 80K with 1-2 years of experience.",1
+gelnkd7,k6gyt6,"Focus on building up experience keep reading books and building up your skills even on the hard days. The reality is, most people starting out become tired and lose focus that they can ever actually make more. Ambition and drive quick disapears for them. 
+Don't get sucked into that trap. As you get better and better, people will start to get tired of you, this is good. It means you are out growing your role, that's when the good opportunities open up. Above all, always stay humble and a good person (you are also actively being watched by other teams).",1
+gem6g4a,k6gyt6,I think you should learn some python and start automating things you can,1
+gemo6pl,k6gyt6,"If you got a small bump up from $30k you are almost definitely being underpaid. I would keep an eye out for BI Analyst positions, as it sounds like you not only have some level of competency in coding and SQL, but an aptitude for understanding and analyzing actual operational data.
+
+As an example, a credit union near me recently had a job posting for a BI Analyst, technically all they wanted was a 4-year degree and if you didn't have that they wanted 3 years of experience in report creation. The advertised pay range was $70k-$105k. This is in Iowa, definitely not a high COL area.",1
+gentnjf,k6gyt6,I agree on BI Analyst. Seems like a good fit,1
+genthzt,k6gyt6,They gave you (a person with little database experience) the task of completely redoing an entire database? Is that a major project or a side thing? Will this be in Oracle? I’m struggling to grasp what kind of environment you are working on. How does the data get into the products database? Is there automation?,1
+geo0sxq,k6gyt6,"That's awesome!
+
+If you don't get offered a raise to at least 55k after 6 months in that role, move to a new job. Once others see you got paid for reporting, then you seem much more qualified. Rearrange your resume so someone who glances at it would think you had more time than just a few months doing reporting. During the interview, if it comes up, talk up how you self-studied and got a big promotion. If the next job asks what you were making, you don't have to tell them, but they also can't verify when you say you were getting 65k. Seriously, 6 months work experience, especially with your desire to learn, is enough for a well paying job. Degree not needed.
+
+Get as many measurement numbers as you can for your resume to quantify the impact you've had, listing out any automation. Ex: ""Created automated Node.js web bot to increase worker efficiency by 100x.""
+
+Also, things like ""Proposed projects to C-levels and implemented accepted projects as part of the engineering team"" to show the ability to speak c-level and technical.
+
+Jobs don't have a naming standard either, so look for jobs with the words Analyst, Report, Reporting, PowerBI, Tableau.
+
+Likely, Data Engineer and Data Scientist are too broad and high for you right now, but see if those seem like a sounds interesting for focusing your learning.
+
+All of Florida has lots of SQL and Reporting related jobs.
+
+Some places to look for training, on the Microsoft side of tools:  
+[https://www.pass.org/](https://www.pass.org/)  
+[https://www.pbiusergroup.com/](https://www.pbiusergroup.com/)  
+[https://www.sqlsaturday.com/](https://www.sqlsaturday.com/)",1
+gelerom,k6gyt6,"My company is 100% remote and I probably wouldn't offer even a super junior person anything less than 65k and that's the bare minimum. Keep doing your job but start looking for a new one. With experience it shouldn't be hard.
+
+And if you get questions in interviews as to why you're looking so soon after getting promoted, be honest and just say they're underpaying you",0
+genu1vs,k6gyt6,"I have been one of the main people to interview candidates at my last two jobs. I wouldn’t suggest he say they’re underpaying. I would suggest he says that he’s looking to grow his skills in a more technologically advanced department where he can contribute more. Even going further to say hes looking for mentorship. If he’s just looking for money, he’ll end up unhappy and it doesn’t come off good to lead with that, imho. Focus on the people and the money will come.",1
+genvt3m,k6gyt6,"I'm on our hiring team as well. I'm not saying he says, I just want more money. But if someone said I feel like I'm under paid given the value I can bring, that would be 100% fine.
+
+I feel like I work for one of the best companies in the world but I'm not going to lie and say I'd do it for a salary way below industry averages",1
+genwaw6,k6gyt6,To each their own!,1
+geknlyx,k6g96b,Link: [https://www.reddit.com/r/SQL/comments/k66t16/sqlite3\_import\_all\_columns\_got\_merged\_into\_one/?utm\_source=share&amp;utm\_medium=web2x&amp;context=3](https://www.reddit.com/r/SQL/comments/k66t16/sqlite3_import_all_columns_got_merged_into_one/?utm_source=share&amp;utm_medium=web2x&amp;context=3),1
+gelb3ov,k6f7lf,"It's not just about the data size. You need to understand how much memory/compute capacity you need too. Either to size a VM, or to be on the correct tier of PaaS (Amazon RDS, Amazon Aurora, Azure PostgreSQL) because those charge by the hour based on your compute capacity.
+
+Be careful hosting data you care about on the ""cheapest plan."" You get what you pay for. Maybe if your 200GB of data isn't terribly important to you, you can get by. But I'll pay a little more to get something that's kept secure and backed up, with reliable &amp; consistent performance.",4
+gekl6ua,k6f7lf,VPS? Linode?,1
+geleti9,k6f7lf,without any detail it's definitely self-hosting. 200GB is less than 30$ ad vitam.,1
+gejwdzg,k6b1uj,Can you post it one more time please?,7
+gek5yx7,k6b1uj,I thought my feed was broken,1
+gekw10h,k6b1uj,"What's wrong? I was having trouble posting on reddit last night, works fine for me, should have known something was up haha.
+
+Here's the OP:
+
+So I don't need a full parser, I just need to throw a query at it and get back tables/views/stored procs etc.  I literally only want the objects that are used.
+
+I have access to the SQL database the queries would run on so can solve using a query if possible and I'm also using python.
+
+I've tried a couple packages but they're either for python2 (im on 3) or they fail on the second example below.
+
+I mean, intellisense can technically do it so there should be a way, I hope.
+
+Example:
+
+    Select * from 
+    ( 
+        select column1, column2 
+        from table t 
+        join table2 t2 on t.id = t2.id 
+    ) x
+    Where column1 = (select top 1 column1 from table3 order by column2)
+
+Returns: table, table2, table3
+
+    EXEC @Var = MyStoredProc
+
+Returns: MyStoredProc
+
+Any help would be greatly appreciated.",1
+gek1o3i,k6b1uj,See if [this approach](https://port1433.com/2017/12/04/whats-in-the-box-validating-sql-server-scripts-with-powershell/) works for you.,2
+gekw224,k6b1uj,"Ohhhh that looks interesting, oh wow, much appreciated.  Will try it and see how far it takes me",1
+gekvngu,k6b1uj,Make a view and look at depenencies?,1
+gekw8l5,k6b1uj,I can't put stored procedures in a view and especially the EXEC @Var query is what I need,1
+gejvip6,k6b1r1,"Things like that, that are mappings, I would generally put them in a table and then just use that.
+
+Number, translation
+
+Uno, 1
+Duo, 2
+Trio, 3
+
+Then in your query join to this table on number and then sum translation",3
+gek604d,k6b1r1,"The simple answer is ""Yes"" you can perform calculations and translations on the ungrouped fields inside the aggregate function like below...
+
+SELECT *, SUM(case screws when ‘Uno’ then 1 when ‘dos’ then 2 end), COUNT(reg_number) as 'total_amount' 
+    FROM store; 
+
+...as the other user commented, depending on the nature of the translation it may be more efficient to use other methods but it will work as shown above, it just might not be fast depending on other factors.",2
+gekw8ue,k6b1r1,"Thank you very much, I understand it's probably a bit ugly to look at but it doesn't matter if it's a little slower in this case.",1
+gelm337,k6b1r1,"The proper syntax for the sum in your SELECT clause is : 
+SUM(CASE WHEN screws = ‘Uno’ Then 1 WHEN screws = ‘Duo ‘ THEN 2 WHEN screws = ‘Trio’ THEN  3 ELSE 0 END)  as colname
+
+It’s not that intensive to do this tbh. I usually do it with 1/0 type things but this is just fine.",2
+gemc1yn,k6b1r1,"Oh, I see, thank you, it worked either way but it's always better to use proper syntax.",1
+gemcs3j,k6b1r1,Actually if it worked the original way then I just learned something new. Didn’t know you could write a case statement like that. Both syntax ways would probably be considered “proper” but I’ve only seen it the way I told you so just learn how things are done in your department and do it like that.. so that other analysts may decode your work more easily in the future.,2
+geksxsu,k6a0sc,Postgres is awesome as SQL database,3
+gelqyh1,k6a0sc,Possibly will give it a go if I can get the db admins aboard.,1

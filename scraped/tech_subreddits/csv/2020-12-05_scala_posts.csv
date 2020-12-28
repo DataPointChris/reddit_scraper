@@ -1,0 +1,217 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k7752p,Why there's no async/await in core Scala?,Doing branching with Futures and for-comprehensions is quite unwieldy. Why the async/await semantics weren't put into standard library and exist as a separate library? Are there any problems with this approach that I'm not aware of?,7,scala,2020-12-05
+k7235d,"Noob Question: I can compile and run .scala files from the command line, but I get an error when running files from vscode (I have metals and Scala extention installed). Any advice?",,1,scala,2020-12-05
+k6o4yg,Thera: a new template engine for Scala,"Hello everyone,
+
+For my Master’s semester project at EPFL, I have been working on [Thera](https://github.com/scala-thera/thera), a template engine for Scala.
+
+We are pleased to announce a new version of the library that features error reporting, as well as the first [Thera’s tutorial](https://github.com/scala-thera/scala-thera.github.io). The tutorial highlights a typical use case, focusing on building a small blog.
+
+We hope you will find Thera and the tutorial useful, enjoy!",40,scala,2020-12-05
+k64675,[Job] Scala plugin for IntelliJ IDEA: Support Engineer,,32,scala,2020-12-05
+k63zdd,Advent of Code Data,"Are you working on [Advent of Code](https://adventofcode.com) this year? Don't wanna download your input data every time? Consider using this library! 
+
+[Advent of Code Data](https://github.com/bbstilson/advent-of-code-data)
+
+It's a shameless clone of a python library by the [same name](https://github.com/wimglenn/advent-of-code-data) with [fewer dragons](https://github.com/wimglenn/advent-of-code-data/blob/master/aocd/get.py#L74) and fewer features.
+
+Cheers!",21,scala,2020-12-05
+k5jdk4,Vert.X and Scala,"Has anyone here used Vert.x Web with Scala? If yes, what was the experience?
+
+Here is the link: [https://vertx.io](https://vertx.io).
+
+Thanks!",7,scala,2020-12-05
+k5fpg4,"Path-dependent types, methods and functions in Scala (and what's new in Scala 3)",,41,scala,2020-12-05
+k54usy,Message-based Parallelism with Actors,,22,scala,2020-12-05
+k4yrr2,Scala learner - peerreview request,"Hi!
+
+I'm a uni student and I'm going to give a short presentation (as a part of a course) on Scala Futures (from Scala standard library) and Fibers (from available effect system implementations like Cats Effect or ZIO). I've spent some time preparing (learned a lot about Fibers from a talk by Fabio from last year ScalaWorld) but I'm not sure about some statements that I found fundamental to compare both approaches.
+
+&amp;#x200B;
+
+To make it easy I just prepared it as a list statements/explanations that I think are correct in my opinion (but I might got it all wrong).
+
+I would be thankful for a comment on that - whether I missed something or understood incorrectly:
+
+&amp;#x200B;
+
+1. Fibers (also called green threads) are a next level of abstraction in threading where we define our computation in \_synchronous\_ manner (within concrete fiber) as a sequence of effects (blocks of effectful computations) that are then scheduled on provided execution context and executed \_asynchronously\_ on JVM threads.
+2. Scala's Futures are ONLY a more handy way for A DIRECT task submission to a execution context (like default global ForkJoinPool). Futures AREN'T an effect system. When we create a Future its ""content"" (e.g. block of code defined in Future { }) will be eagerly submitted as a task to EC. Any kind of Await operation (e.g. awaiting Promise completion) is unadvised because it's a blocking operation for JVM thread executing it. Due to that we should rely on callbacks and chaining Futures to avoid any blocking and resource wasting.
+3. Fibers ARE completely different concept from Futures. Futures still work directly as a tasks submitted to EC. Fibers are a new abstraction over threading. They are comprised of effects that are self-scheduled on provided EC. So when we create a promise in e.g. ZIO and Await a Fiber on it there will be no JVM blocking. It will just ""subscribe rest of its effects to execute when promise is completed"" (probably wrongly stated here?) and that's it - no blocking (Here, Await is only semantically blocking operation (from thread's point of view). That's the reason why we can have multiple fibers executed on e.g. one JVM thread. As in mentioned presentation - Blocking on a one level means suspending one level below (in threading hierarchy).
+
+&amp;#x200B;
+
+Here's a bit of code I want to show to visualize that additional level of abstraction in Fibers and semantical blocking:
+
+&amp;#x200B;
+
+This part is a deadlock:
+
+    object MainFuture extends App {
+      val executor: ExecutorService = Executors.newFixedThreadPool(1)
+      implicit val ec = scala.concurrent.ExecutionContext.fromExecutor(executor)
+      val promise = Promise[Unit]()
+      val inf = 10000.seconds.fromNow
+      val f = Future {
+        println(""Awaiting..."")
+        Await.ready(promise.future, inf.timeLeft)
+        println(""Awaited!"")
+      }
+      Thread.sleep(1000L)
+      val g = Future {
+        println(""Done!"")
+        promise.complete(Success(()))
+      }
+    }
+
+&amp;#x200B;
+
+This completes successfully:
+
+    object MainZIO extends zio.App {
+      val executor: ExecutorService = Executors.newFixedThreadPool(1)
+      val ec = scala.concurrent.ExecutionContext.fromExecutor(executor)
+      override def run(args: List[String]) =
+        app.on(ec).exitCode
+      val app = for {
+        promise &lt;- Promise.make[Nothing, Unit]
+        effect = putStrLn(""Awaiting..."") *&gt; promise.await *&gt; putStrLn(""Awaited!"")
+        effect2 = putStrLn(""Done"") *&gt; promise.complete(UIO.unit)
+        _ &lt;- effect.fork
+        _ &lt;- clock.sleep(Duration.fromMillis(2000))
+        _ &lt;- effect2.fork
+        _ &lt;- clock.sleep(Duration.fromMillis(2000))
+      } yield ()
+    }
+
+&amp;#x200B;
+
+4. When we say ""Effect System"" do we also mean Fibers? Are those inseparable terms? Like on Dotty website there was a line ""Effects -&gt; Considered"" in features list. Was it also reffering to Fibers concurrency model?
+
+&amp;#x200B;
+
+Thank you once again for any help - I hope that it makes at least a little bit of sense.",3,scala,2020-12-05
+k4q9z0,"IntelliJ Scala Plugin 2020.3 it out, with parallel compilation and compilation charts",,83,scala,2020-12-05
+k4p4o2,"Scala newbie, question about IDE","New to Scala. Coming from MS, C#, VS environment. Would prefer to stick with VS (or VSCode) if at all possible. Seems like IntelliJ IDEA is the preferred IDE.
+
+Question 1: Is there any good reason not to use VS/VSCODE to learn Scala, and if so, what is the biggest downside?
+
+Question 2: Can I create JAR files directly with VScode, or use SBT, and do SBT and VSCode work together?
+
+Thanks.",4,scala,2020-12-05
+k4a0by,[Question] Scala and Functional Programming,"In functional programming why is:
+
+    class Counter(val count: Int) {
+      def increment(amount: Int) : Counter = new Counter(count + amount)
+      def increment() : Counter = new Counter(count + 1)
+      def decrement(amount: Int) : Counter = new Counter(count - amount)
+      def decrement() : Counter = new Counter(count - 1)
+    }
+
+seen as better than:
+
+    class Counter(private var _count: Int) {
+      def count: Int = _count
+      def increment(amount: Int): Unit = _count += amount
+      def increment() : Unit = _count += 1
+      def decrement(amount: Int) : Unit = _count -= amount
+      def decrement() : Unit = _count -= 1
+    }
+
+They'd both be used to do the same thing but wouldn't the second option be faster since it wouldn't create an entirely new instance of the class because it has that mutability? Having that mutability wouldn't even be an issue because you can only access the setter within the class so why is the first option preferred in functional programming when compared to the second option?",3,scala,2020-12-05
+k40pdd,[Freelance] Looking for a technical writer,"Hi.
+
+We're looking for a technical writer for the open-source project Raphtory. Ideally versed in scala/spark and docker/containerisations. Any experience working with graph technology will be useful.
+
+https://raphtory.github.io/
+
+We need someone who can deliver a description of typeclasses like Foldable or Traverse and write short snippets based off the existing APIs, as well as review the existing documentation for consistency and some correctness. We can support in filling the gaps until you are up to speed.
+
+We can agree a per page or per hour rate. Let me know if this is of interest to someone.",16,scala,2020-12-05
+k3uoqr,"Got a quick question? Ask here - November 30, 2020","Hello /r/Scala,  
+
+This is a thread where you can ask any question, no matter if you are just starting, or are a long-time contributor to the compiler.  
+
+Also feel free to post general discussion.     
+
+[Previous discussions](https://www.reddit.com/r/scala/search?q=Got+a+quick+question%3F&amp;sort=new&amp;restrict_sr=on&amp;t=all)  
+
+Thanks!",6,scala,2020-12-05
+k3hmsh,"This week in #Scala (Nov 30, 2020)",,13,scala,2020-12-05
+k3gt13,Login Strategy for Play framework that serves React bundled index.html as served assets.,"Hey guys!
+I'm looking to authenticate login for users using my application and I was wondering if y'all could take a look at the strategy I want to use, and comment if it's possible and other notes you might have. 
+
+The strategy I'm looking to employ starts with the user sending credentials for Play/slick to authenticate. 
+
+1. Browser sends a post request with credentials to conf/routes:
+`POST  /login   controllers.AuthController.login()`
+
+2. In the login function, it'll validate user and redirect to serve the React packaged application:
+        
+`
+
+    def login = Action { implicit request =&gt;
+        // validate request.body with db
+        // val token = createToken
+        Redirect(routes.Application.index(token)
+   
+3. 3Which returns back to the conf/routes page:
+`GET     / controllers.FrontendController.index(token)`
+
+4. 4Which serves the React application with a token depending if it actually has one. In FEController:
+
+```
+
+    def index(token): Action[AnyContent] =
+      if (token.isEmpty) {
+        assets.at(""index.html"") 
+      else {  
+        assets.at(""index.html"").serveWith(token)
+      }
+  
+Now, where I can't find any documentation on is if it's possible to serve the assets with a token. I've seen other methods ex. `Redirect('/toHome/').withSession(stuff)`, but they all utilize view.html. I come from a webpacked front end background, so this:
+https://github.com/yohangz/scala-play-react-seed/ 
+was more familiar to me, and follows more modern methods of developing ui components. Thoughts?
+
+Also, please let me know if further clarification (especially the strategy part) is required. I'd be more than happy to do so.
+
+Edit 1: Interesting.. but it seems like there's a bug where the list numbers get autoassigned back to 1 after code blocks. Added the list numbers correctly",6,scala,2020-12-05
+k36x8b,RxTags - simple reactive ScalaJS,"https://sake92.github.io/RxTags
+
+Why?  
+Looking at existing UI libraries I felt like we could have something simpler and beginner friendly in Scala.
+Just create a simple Var and render it!
+
+I looked into ReScala and it almost had everything, except DOM diffing. E.g. when you change model on a onkeyup event, it renders a new input element. That means you lose focus on it, which is terrible. 
+
+So then I just connected ScalaTags with Reactify, and implemented the diffing part.
+
+It may have some glitches, but it is useful for smaller projects at least!  
+Todo-MVC example works flawlesly.",23,scala,2020-12-05
+k2ysgl,Coursier - Crash Course,,33,scala,2020-12-05
+k2yg6g,bazelbuild/rules_scala supports scala 2.13 now,,15,scala,2020-12-05
+k2jemv,"Unicode escapes in triple quoted strings are deprecated, use the literal character instead","I'm running into this error using the tpolecat sbt plugin and the following regex:
+
+    val whitespaceRegex = """"""[\s\u00A0\u2009\u2028\u2029]+"""""".r 
+
+
+The only thing that pops up on google is this issue: https://github.com/scala/bug/issues/11966
+
+Any idea how I can fix this? Thanks",9,scala,2020-12-05
+k20jzx,Library for algebraic structures like Groups and Fields.,"I've been using scalaz for that sweet |+| operator from Semigroup on multiple occasions. I'm surprised that I can't find actual Group (or Field for that matter) structure here.
+
+I would like to use |-| (or negation). Is there an extension I can't find or another library that provides such algebraic structures?",7,scala,2020-12-05
+k1ikmi,Enhanced Package Prefixes – IntelliJ Scala Plugin Blog,,26,scala,2020-12-05
+k19qsc,"MainArgs: a small, dependency-free library for command line argument parsing in Scala.",,72,scala,2020-12-05
+k0vyvf,Alternative(s) to Scanamo for DynamoDB,"Hi all,
+
+I'm starting to play around with DynamoDB and Scanamo. No complains really but now it seems Scanamo [will no longer be maintained](https://github.com/scanamo/scanamo/releases/tag/v1.0-M13).
+
+Is anyone aware of any other pure Scala alternatives (it's OK if they are less mature as long as they are actively maintained) 
+
+How about using the AWS  Java libraries directly from Scala (for DynamoDB in particular)? A quick look gives the impression that they rely quite a bit on Java Beans and annotations. Anyone with any real-world experience willing to share pain-points and don't-do's?
+
+Thanks in advance,
+
+Javier",7,scala,2020-12-05
+k0oeup,"Mirror, Mirror on the Wall, Who’s the Genericioust of Them All?",,37,scala,2020-12-05

@@ -1,0 +1,70 @@
+comment_id,post_id,comment,upvotes
+gc0djp0,jsh997,What score are you using? Is that your training score or a test score? Also is that a typo in the code too or just your question ;),2
+gc390a4,jsh997,No one can answer your question for you without a code example and a description of your dataset.,1
+galt3wz,jklvj0,"I can’t see your code, whatever link is provided in stackoverflow isn’t usable for me. There could be any number of things going wrong, did you normalize your data? Elastic net and Lasso are essentially variations on ridge regression IIRC so that’s a necessary data processing step to get those methods to work.",2
+ganeb8b,jklvj0,"Yep, my bet is on either feeding the data in incorrectly or forgetting to first normalize/standardize the data.",1
+gamocei,jklvj0,Maybe the underlying data does not follow a linear pattern with gaussian noice distribution.,1
+g8nvhog,j9q6bp,"If you are imagining an expert system (if/else decision tree) then try the `experta` package. If you need it to comply with the sklearn regressor or classifier API, then you can create a class with `__init__()`, `fit()` and `predict()` methods.
+
+* `__init__` : instantiate your custom experta `KnowledgeEngine` instance.
+* `fit` : calculate any stats on the dataset that you might need and adjust the parameters within the engine ( can just pass for most problems)
+* `predict` : use `self.engine.declare()` to intake the state/feature data and return the output of engine.run() which must be a numpy array to work in an sklearn Pipeline",1
+g8f2vm9,j8vepi,"The hyperparameters tol and max_inter are generally used to tell the model when to stop it's optimization for fitting the parameters of the logistic regression. Generally, tuning these parameters won't make a big difference to the predictive power of your model.
+
+The penalty and C parameter deal with regularisation. This is a concept in ML used to prevent overfitting of your model. Overfitting happens when your model performs poorly on unseen/test data compared to your training data. This usually happens when your model is too complex (perfectly tuned models are flexible enough to learn something from your data but not too flexible to overfit/memorize your training data).
+
+The penalty parameter lets you choose what type of regularisation you want to apply. There are two types of regularisation L1 (lasso) and L2 (ridge). L1 regularisation forces some of your parameters for the unimportant features to zero (these features are dropped from the model- LASSO does automated feature selection). L2 regularisation forces some of your parameters for the unimportant features to zero but not exactly 0 (these features are not dropped from the model). Elastic net is a combination of L1 and L2 regularisation.
+
+The C parameter lets you choose how much regularisation you want to apply. In the case of L1 regularisation, more of it means more features dropped from the model. If you drop enough unimportant features from your model, your model will not overfit. If you drop too many features you may lose some important information to learn from your data.",1
+g8mmeq2,j8vepi,I love this response. Thank you so much.,1
+g7u6e66,j5pcm6,Try installing with Anaconda,1
+g7waffb,j5pcm6,"So what I had to do:
+
+\&gt;conda uninstall scikit-learn numpy scipy
+
+\&gt;conda remove --force scikit-learn numpy scipy
+
+\&gt;pip uninstall scikit-learn numpy scipy
+
+\&gt;pip install -U scikit-learn numpy scipy --user",1
+g785qxo,j2v11w,"If you looked at the source code you would have noticed the ""algorithm"" kwarg which specifies that if you don't choose the ""brute"" option it uses a tree data structure. This may introduce slight discrepancies between the fit model and the ""true"" distribution of the data.",4
+g79d2mb,j2v11w,"Thanks for your prompt response, I got it overnight.
+
+I agree. I like the speed of the default model, I’ll time it but I reckon it’s there to be quicker than brute.
+
+I suppose I am then doing my own little brute method with the literal Euclidean nearest neighbour.  The combination works for my purpose.
+
+Nice one, thanks.
+
+Edit: two thoughts.  First, my data is very entropic so maybe trees ain’t so good.  Second, my code still might be wrong so brute is a good check that I haven’t screwed up my trig.",1
+g7a2j0z,j2v11w,"If there are ties (several neighbors with the same score) then scikit chooses the first one.
+
+A trivial example to show how it works
+
+    x = np.random.randint(0, 5, (20, 1))
+    y = np.arange(len(x))
+
+    knn = KNeighborsClassifier(1)
+    knn.fit(x, y)
+    knn.predict(x)",2
+g7b8lel,j2v11w,"Good point.  It’s not that, I removed duplicates for my purposes.  Thanks though.  🙏",1
+g7dd7oa,j2v11w,"Oops!  My method of removing duplicates just inherits the same behaviour.  
+
+I’m going to add fuzz/noise to them that that will work for my purpose.  
+
+Cheers for the stimulus 💓",1
+g70358r,j1idtx,"Without knowing the kind of system you're running this on (RAM, amount of cores etc, etc) or the hyperparameters you're trying to optimise on, you're generating 300 trees. That could take a bit. 
+
+Try decreasing the number of trees (say, 2?). If it's still hanging, message back and we can try to troubleshoot.",1
+g2w82j9,igtkry,"Nope. Sklearn doesn't return F / t / p values. You can code your own, but otherwise just use statsmodels.",2
+g0b6kn2,i3546z,"Not sklearn specifically, but graph theory could be useful.",1
+fyn0442,hu6y83,The clusters and centroids returned are the final results.,2
+fynnk7i,hu6y83,Gotcha. Me and a friend had kind of come to a realization that might be the case for something we are working on but we weren't too sure. Thanks for answering!,2
+g77yegr,ht4ol1,Hi.  I’ve made AUC from small numbers of points. Treat them like polygons and literally calculate the rectangles and triangles?,1
+fx4lpgh,hm6td7,"I think many ppl have got 100% on it, because when I implemented a simple CNN I was able to get 94%.
+
+As for the type of model, CNNs are usually quite reliable for image classification. However, you can still get an accuracy of 85+ using just Dense and Flatten layers without Convolutions and Poolings",2
+fx71pfp,hm6td7,"Thanks. Do you have any links where it shows people getting 100%?
+
+I was given this link where it shows the best performance is around 96-97%:
+https://paperswithcode.com/sota/image-classification-on-fashion-mnist",1

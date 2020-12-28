@@ -1,0 +1,921 @@
+comment_id,post_id,comment,upvotes
+geos15k,k752j3,"Talkr v2 is now out! This updated version has a few improvements:
+
+* Works on SRR apps
+* Display warnings in the console for missing translations
+* Replace t() by T() for an easier search in your IDE
+
+The other features remain available:
+
+* Super simple to use
+* Very light: 1.5kb minified / 812b gzipped, 0 dependencies
+* Typescript support
+* Dynamic translations
+* Plural rules auto-detection
+* Browser language auto-detection (not available for ssr, but you may pass your req.headers\[""accept-language""\] in the defaultLanguage prop)
+* Dynamic locale change
+* Access deeply nested keys in your json files
+
+Road to v3:
+
+* Support React Native
+
+If you want to participate in the project, feel free to send your pull requests. The only requirement is: no dependencies, vanilla js only.",1.0
+gep5yx5,k765h2,"i made a baker's math calculator in vanilla js, html/CSS: [breadbakersfriend](https://www.breadbakersfriend.com)",2.0
+geprhw5,k765h2,"Been trying to take every week to make a creative coding experiment with canvas drawing, this is week two https://cmdcolin.github.io/reclaimedspace/",1.0
+geprsvy,k765h2,I've created [Codepen demo](https://codepen.io/jcubic/full/VwKeZob) that showcase my [LIPS Scheme](https://lips.js.org/) project. It's editor that can take screenshots similar to [carbon.now.sh](https://carbon.now.sh/). I needed to modify the Codemirror Scheme parser to allow to use literal regular expressions and fix indent of object literals. Was not able to make box-shadow work. I've also contributed small patch to Codemirror Scheme parser because it was missing some keywords and indentation.,1.0
+gep6f1o,k757am,"A very interesting read, thanks. For the curious, the paradigm of accepting additional arguments by returning a series of higher order functions is called ""Currying"" and is pretty much the basis of modern functional programming.
+
+https://en.m.wikipedia.org/wiki/Currying",30.0
+gep7tz5,k757am,"Currying and partial application have made my codebases SO much better. FP as a whole has been a tremendous boon to my developer experience, frankly.",13.0
+gephreu,k757am,"exactly. can't wait to see how [pipeline operator](https://github.com/tc39/proposal-pipeline-operator) and [partial application](https://github.com/tc39/proposal-partial-application) will elevate that style of programming in JS further.
+
+p.s. you can already enjoy the benefits with corresponding babel plugins [1](https://babeljs.io/docs/en/babel-plugin-proposal-pipeline-operator)[2](https://babeljs.io/docs/en/babel-plugin-proposal-partial-application), but I suspect we'll get proper tools built around them when they are properly incorporated into the language itself, and also TypeScript unfortunately have decided to wait it out instead of experimentally supporting it.",6.0
+geph451,k757am,thanks a lot for the read and for the link! yes the whole post came as a result of [an hour-long experiment](https://stackblitz.com/edit/callback-heaven) of applying the same currying that is the basis of modern FRP libraries such as [callbags](https://github.com/callbag/callbag) and [RxJS](https://rxjs-dev.firebaseapp.com) and applying it to the old-school node callback convention to see what happens.,1.0
+gep6g62,k757am,"Desktop link: https://en.wikipedia.org/wiki/Currying
+***
+ ^^/r/HelperBot_ ^^Downvote ^^to ^^remove. ^^Counter: ^^303282. [^^Found ^^a ^^bug?](https://reddit.com/message/compose/?to=swim1929&amp;subject=Bug&amp;message=https://reddit.com/r/javascript/comments/k757am/from_callback_hell_to_callback_heaven/gep6f1o/)",1.0
+gephryb,k757am,good bot.,2.0
+gephkaq,k757am,"&gt; Remember the time when a lot of JavaScript code looked like this?
+
+Remember? I'm still working with callback hells almost every day :/",7.0
+gephwoh,k757am,legacy code?,2.0
+gepk1jv,k757am,"Some of us have apps that have been in production for 20 years now that are still 100% mission-critical, and rewriting it just because it isn't as elegant as we might like given more modern techniques despite it working perfectly and being solid as a rock, would be pointless and wasteful.
+
+When you aren't constantly writing what is essentially throwaway code and instead are writing code that's in it for the long haul, it's not ""legacy"" code used as a pejorative, it's simply CODE. You do the best with it you can at the time, you update what makes sense later, but there's nothing ""legacy"" about it, not as that word is so frequently meant in this context anyway.",5.0
+geplf0p,k757am,"yeah I don't think the negative connotation you are referring to here is inherent to the word ""legacy"". it is ""legacy code"" as it is written using legacy patterns, language constructs, abstractions, tools, etc, instead of modern ones. this doesn't mean that anything is wrong with the code necessarily, it just means you would be working with patterns that are old, when working with such ""legacy code"".
+
+so in this case, op was saying that they are still working with an old pattern on a daily basis, and my question was is it because the code itself is old or are there other reasons.",2.0
+gepnugn,k757am,"It's just what happens over time: we learn new ways of doing things, we realize some are better, and we adapt. Sometimes too, bad ideas for some reason take hold as ""industry standards"", or similar ideas, and become the de facto ""right"" way to do something. Eventually, we realize they really aren't good ideas and we change, but usually it's just ""this was the best thing we had at the time so it's what we did"" is the answer.
+
+In this case you may be right that legacy wasn't meant with a negative connotation, but there IS an attitude in this industry with way too many that ""old"" is ""bad"". Sometimes that is certainly true, but not always. What's worse is sometimes older code or technologies actually has something to teach us now, wisdom we've forgotten because there's this desire to move fast and break things all the time. People tend to not want to work on older things but sometimes there can be great value in doing so. 
+
+That's why when I see ""legacy"", I start from the assumption that it's meant in a negative way, which is at least sometimes unfortunate. And certainly, when you write code that lasts for decades, you certainly don't think of it as ""legacy"" as in simply old, that's really my point.",2.0
+gepp80d,k757am,"I don't know about decades, but everyone I know refers to their own code that's older than 3 years as ""legacy"" (myself included), not as a negative but mostly as ""old"" and mostly to communicate why some decisions and choices might seem odd to programmers who are maintaining it nowadays.",2.0
+gepn05c,k757am,"If people are working with it on the daily and describing it as callback hell (as hazzin describes), then the argument for improving it is far from pointless. You may not win that argument, as the cost and risk is non-zero, but describing the benefits of having clearer, more maintainable code as pointless and wasteful is wrong.
+
+If it's CODE that's old and you're afraid or unable to update then it is legacy code, that's what the pejorative means.",2.0
+geponsj,k757am,"That's silly. Are you replacing the engine in your car every year because new ones come out? It still works, why go changing it just because it's not the best available TODAY? Constant refactoring just because the code doesn't meet TODAY'S standards is wasteful and risky and isn't the way enterprise development works. Note that Im not saying you never touch the code, never update it, I'm just saying that it's not change for change's sake.",1.0
+gepqmf4,k757am,"Improving code clarity and maintainability is not change for change's sake.
+
+My experience of how enterprise development can work is; you go to the project sponsor and explain to them that if they invest some resources in tidying up the ancient mess of crap nobody wants to touch, then development speed will improve for all the new crap they want built on top of it, or they can leave it alone and watch the issues get worse.",2.0
+gepryi0,k757am,"Yes, you can make that argument, IF you can quantify the gains somehow. Then yes, you can justify the spend. Also, if BAU dollars can cover it, because NOBODY gives new dollars for that sort of thing unless the intent is to rewrite the ENTIRE application, then I agree, that can work and does sometimes happen. It's all about being able to prove there is a benefit.
+
+But in my 25 years of doing this, I've never once seen someone say ""hey, we've got this 15-year old app that the business depends on day in and day out, but it uses this old coding technique that, while it works, is kind of ugly and not how we'd do it today, so please give us X hours and Y dollars so we can stop looking at this ugly crap"" and have the answer be anything but them being laughed out of the office.
+
+There's a difference between change with a tangible, provable benefit, and change just because something is old and doesn't adhere to our modern sensibilities, in other words.",1.0
+geppfqp,k757am,I’m in the same boat. I mainly work on a website that has been around since 2001. Unfortunately we do not have permission to rebuild the site in a modern manner. Mainly because the code base is huge and it would literally take years. And doing it little by little wouldn’t really work. Oh well. As long as they keep paying me an obscene amount of money I won’t worry about it.,2.0
+gepgexj,k757am,"I've been trying to build all my utility functions as async/await but I absolutely hate having to wrap the entire route in a try/catch block. I wish there was a better way to return errors from an async/await-ted function, rather than ""throw 'Error Message' """,4.0
+gephbif,k757am,[https://gcanti.github.io/fp-ts/modules/Either.ts.html](https://gcanti.github.io/fp-ts/modules/Either.ts.html) is one (Haskell-y) way of avoiding using exceptions for flow control. It does force you to handle \`Left\`s in calling code though.,4.0
+gepp71z,k757am,"You could return an `Error` and then check the `typeof` the result, although I don’t know how much better that really is.",1.0
+genzf9q,k703ax,"If you like this, [I do a weekly roundup of open source projects that includes an interview with one of the devs that you can subscribe to.](https://console.substack.com/)",2.0
+georlrd,k6uj5c,Why do we need a plugin for this?,4.0
+geouovc,k6uj5c,"Hey Hello,
+
+Because it makes it much easier to make a grid of items.    
+I know there are CSS frameworks that do this, but EasyGrid makes it even faster and more efficient because it does basically everything for you.",1.0
+geoyo13,k6uj5c,Nearly all of this can be done with pure CSS which IMO is way better.,2.0
+geozzsa,k6uj5c,"Yes and no. It depends on the characteristics of the website, if it is an old website that does not use bootstrap for example ... it is difficult to make a grid and you could not add a CSS frameworks that give you this.    
+
+
+In addition, to dynamically add items to a grid (and other things EG allows you to do) , you need to use a CSS framework (as I said above, it is not always possible) and some javascript code that is probably disorganized and poorly optimized.    
+
+
+EasyGrid does everything for you and it is dependency-free (both CSS and JS).  
+However, im not saying that EG is better or to replace CSS Frameworks... its just a way to do things faster and optimized.  
+
+
+Thank you for your time, have a nice day!",1.0
+gep1vds,k6uj5c,"You neither need bootstrap nor a CSS Framework to use grids. Just use the native CSS stuff.
+
+If you need IE support, it's something else - does that lib support IE?",1.0
+gep4q42,k6uj5c,"Actually, you dont need a framework to do anything, but hey, they help you alot.  
+And btw, EG allows you to do alot more than a CSS Framework does behavior wise.
+
+Sure, if you need IE support, use a polyfill version of it.",1.0
+gepewwh,k6uj5c,"I just took a look at the demo and thought - yeah, that'd be &lt;5 lines of CSS (with shorthands often 1 liners).",1.0
+gelya9p,k6o3a4,"""There are only two kinds of languages: the ones people complain about and the ones nobody uses."" -- Bjarne Stroustrup",118.0
+gep1lrv,k6o3a4,Came here to say this! This is the correct answer to op's question.,2.0
+gem0wrh,k6o3a4,JS is the bomb idk what you’re talking about I love it,34.0
+gem12y0,k6o3a4,"Haha I love it too, been working with it for a long time and have made some pretty neat things with it. Just weird to see the hate all over the Internet for it :(",4.0
+gem1hec,k6o3a4,Only hate I see is from old school programmers who just dislike anything that’s not C. ItS jUSt A sCrIPTInG LaNGuaGE,7.0
+geok14a,k6o3a4,"What do you mean by ""old school programmers""?",2.0
+geokfas,k6o3a4,I mean people who don't want to move past the original programing languages and think anything else is a waste of time. It's not really a hard line,3.0
+geoo9c5,k6o3a4,Can one be an old school programmer and still be open to new ideas and languages?,1.0
+gepk23t,k6o3a4,"Obviously, being human, an old school programmer is subject to the entire human condition",1.0
+geno5n6,k6o3a4,"In time, you will get old and start to hate it too. Its a dumpster and we should burn it with fire.
+It was fine when it was only web stuff, but with nodejs its a ticking bomb. Luckily, nothing serious is being built with nodejs.",-8.0
+gensmcr,k6o3a4,I mean.. I'm working on banking software written in NodeJS.. but YMMV.,5.0
+gentlhr,k6o3a4,"Likely a web interface for users, not anything serious. You wouldnt be able to get any certification the second you do npm install",-5.0
+geok5hs,k6o3a4,"Company I worked at got Department of Defense certification even though we used npm. Thay said, I do share your concern about npm, and, I infer, its security.",2.0
+geokar9,k6o3a4,I mean if you're using all internal deps I don't see a problem,1.0
+genp0jo,k6o3a4,I mean that depends on what your definition of serious is I guess,2.0
+genrhmk,k6o3a4,Curious if this is your opinion of all scripting languages? Or all dynamically typed languages? Or something more specific to JavaScript?,2.0
+gem1gie,k6o3a4,"It has some fundamentally bad (or at least seriously questionable) design decisions that cannot be changed, as the TC39 committee does not allow breaking changes to maintain backwards compatibility on the web.
+
+This means that they are trying to improve the language by bolting new things onto the top of a very shaky foundation and while some of these new features definitely improve the language compared to its former self, some of the inherently bad choices will become an obstacle course that new additions will have to find a way around.
+
+Personally, I also think that the language's longevity introduced some identity crisis: it's trying to wear a bunch of hats, but it never ends up excelling at any of them. For example, JS was never intended to be OOP, but the class keyword makes it look like one, but some of the key OOP ideas are simply not there, so you can't go all the way. Arrow functions and chainable array methods help it improve as a functional language, but until pattern matching/pipelining/partial application arrives, it only feels like it's halfway there.
+
+So all in all the problem with the language is that it was never intended to be used the way we are using it, and the efforts to make it more scalable and efficient don't seem to have a decisive, singular vision.",21.0
+gem1ywc,k6o3a4,"Interesting, this makes the most sense",3.0
+genalyq,k6o3a4,What are the bad design decisions/very shaky foundation?,3.0
+geoogql,k6o3a4,"Type coercion (the idea that your types will be converted on the fly when needed) is fine for small scripting languages, but this feature is nigh impossible to design in a way that is unopinionated, so I think it's a terrible fit for a language intended for enterprise use. (This is probably up for a lot of debate, but dynamic typing might also not be ideal for large, complicated codebases)
+
+Strict equality mitigates it thankfully, but it's still present in some other areas of the language where you can't just switch operators for different ones: a classic example is \`\[\]+{}\` vs \`{}+\[\]\` which yields completely different results. Sacrificing the commutativeness of addition for unintuitive type coercion is not the mark of thoughtful design, in my opinion.
+
+There's also a lot of debate around \`this\` and arrow functions. Many cite that arrow functions fixed the problem, but from what I've seen, both are still in use and work quite differently, so it can be argued that consistency has not been accomplished",5.0
+genrbx7,k6o3a4,"The loose equality is oft-cited as a bad design decision, as well as var being global(?) scope. In modern JS its heavily discouraged to use var, and its usually always necessary to apply strict equal (""==="") wherever possible.",2.0
+geok8rf,k6o3a4,"Not sure why you got downvoted. You are right, though it doesn't prove the language is bad.",3.0
+gep0cov,k6o3a4,"The question was about bad design decisions, not if the language itself is bad. I don't think these things are mutually exclusive. Personally I like Javascript for smaller things, and when the app grows larger I like using typescript, because it can be as flexible as Javascript while also protecting from common mistakes.",2.0
+geno94m,k6o3a4,"&gt; key OOP ideas are simply not there
+
+what key OOP ideas don't exist in js?",2.0
+geon6og,k6o3a4,"Most people point to inheritance as the big OOP idea, but I think it's interfaces that really make it work in practice. (Especially since composition has been increasingly favoured over inheritance on recent years)
+
+But JavaScript doesn't really give you tools to replicate this concept",3.0
+gensnzx,k6o3a4,well inheritance is utter trash.. but you shouldn't be using inheritance in JS.,2.0
+gep0c1q,k6o3a4,What's the problem with inheritance in es6? in never had a problem with it. Especially in typescript.,1.0
+gepdzbg,k6o3a4,"I mean.. I guess if you like having to call super on every extended class and pass in all the required dependencies... Then yeah it’s great 👍 
+
+Also make sure you plan any future dependencies well in advance, other wise enjoy adding or adjusting 40 different models to account for any new dependencies you’ve added.
+
+Oh yeah, that object you want to extend? Doesn’t have a constructor, so you’re going to have to manipulate that before you can extend it.
+
+If you haven’t run into issues you have very light use cases for inheritance.",1.0
+gept903,k6o3a4,"&gt;I mean.. I guess if you like having to call super on every extended class and pass in all the required dependencies...
+
+that's just some neglectable boilerplate code. In Java, I end up having to do a super call most of the time as well... in addition to all the other boilerplate code that you don't have to do in typescript or javascript.
+
+&gt;Oh yeah, that object you want to extend? Doesn’t have a constructor, so you’re going to have to manipulate that before you can extend it.
+
+well, in a normal webdev workflow you don't extend some random pojos. Every class created with the class syntax will have a constructor.
+
+&gt;If you haven’t run into issues you have very light use cases for inheritance.
+
+well, if the standard webdev workflow of extending some repositories, services, models, controllers, db instances, models, guards, and other utility classes are considered light use cases then yes.",1.0
+genqr08,k6o3a4,Being serious here — how do you think it was intended to be used? I wonder if some of the abstractions around it’s prototypical inheritance are what limit it to going “all the way” in your examples about OOP and functional programming. Makes me wonder if it was first designed to go “all in” on prototypical inheritance.,2.0
+genspas,k6o3a4,hmm.. it's almost like it was.,2.0
+geomjbc,k6o3a4,"It was intended for writing around 50-100 lines or code to add some interactivity to a website and for that, it was always fine. But now we are writing enterprise apps with thousands of lines and a lot of work was needed to make this feasible including both the language and it's ecosystem
+
+(And from what I remember, it was originally meant to be more functional: it was inspired by Lisp, Scheme and it's prototypical features come from Self, a language designed by researchers who published a couple of papers on the subject which Brandon Eich read)",1.0
+geojfz3,k6o3a4,How regularly do you use javascript? His well do you know it?,2.0
+geoop0z,k6o3a4,"It's my main language at work, so I use it almost everyday
+
+I understand modern JS features and practices, if that's what you mean. I never meant to imply that it's still as terrible as it used to be. I just meant that there's still ways to go and I feel like there's no consensus on what this language should be like.",2.0
+geopnv8,k6o3a4,"I get your point and, likewise, I've been using the language all the time for 5+ years, however, I personally never run into issues with fundamentally bad design you mentioned. You have to use a subset of the language for that, yes, but if you're careful and try to write clean code (as you should in any language btw), then you don't usually (or ever) run into problems.",2.0
+geopzkc,k6o3a4,"I agree, if you learn a language the right way, you can circumvent it's problems and that's true for JS as well. I guess I'm just hoping to live in an idealized world where we design languages that don't require people to walk on their toes while using it.
+
+We needed years of work to get here and put up a bunch of heavy guard rails (like TypeScript and ESLint) to help people write better code in JS",2.0
+geoqwhh,k6o3a4,"Agreed! Not a big fan of the direction in which TypeScript is going lately, though. Nothing is perfect, unfortunately, and feature creep and legacy support is a natural continuation for languages unless there's a clear effort to avoid them.",2.0
+gem5xgd,k6o3a4,"Others mentioning things like wtfjs and how it's ""fundamentally bad,"" but I think it really just boils to down to this:
+
+Powerful and low barrier to entry = lots of inexperienced people using it
+
+Lots of inexperienced people using it with a low barrier to entry = lots of bad code
+
+Lots of bad code = dislike for JavaScript.
+
+JavaScript is very powerful and ubiquitous. It's really great at what it does and, yeah, it has some quirks, and isn't super strict about things, but that's also what makes it so ""powerful"" and flexible, and also why it's so popular. Unfortunately, because it's so easy to pick up and so easy to just copy code from random pages on the Internet and so easy to abuse and write poorly, many people do. JavaScript isn't inherently bad, but it makes abuse easy, and people always remember the times when developers use JavaScript poorly and rarely ever remember when JavaScript is written well (some form of survivorship bias?).",13.0
+gemxq25,k6o3a4,"All this and the tendency for new users to hop on the hate bandwagon without the knowledge to come to (or reject) those conclusions themselves. They see people making jokes about JavaScript being a bad language and think it makes them look knowledgeable, but typically, it just means they are generally inexperienced with the language and haven't worked with enough languages to realize that it's really not all that terrible in comparison.",7.0
+genoekr,k6o3a4,"I think the language is fine. It has some weird kinks if aware you can use them to do fun stuff. I think the issue is the community, the ""every kid builds a new framework"", the countless unsafe libs, and finally nodejs. Thats a real dumpster of security and legal risks.",1.0
+geojykd,k6o3a4,Do you think people generally blame others' inexperience on a language unless they are themselves inexperienced? I don't know,1.0
+gen4i3c,k6o3a4,"I don't think it's ""powerful"" at all beyond its monopoly in the browser.",1.0
+gelzjjj,k6o3a4,"JavaScript is the only option (other than WASM) for client-side scripting, so even if you don’t like it, you still have to use it for front-end development.
+
+It’s not the worst language in the world but it has some pretty staggeringly stupid design decisions and the policy of no breaking changes cemented them in place. The worst decision probably being the type system (or lack thereof).
+
+Modern JS with TypeScript is pretty decent though all things considered.
+
+JS is often used on the backend through Node/Deno mostly because it’s lower barrier to entry.",12.0
+gem042j,k6o3a4,"You are right, JS is the only option and it’s not that bad with TypeScript, but my question would then be, how did JS take over to be the only option? And why hasn’t anyone tired to create some kind of competitor or even another alternative?",2.0
+gem1cg5,k6o3a4,"[They have, and failed.](https://techcrunch.com/2015/03/25/google-will-not-integrate-its-dart-programming-language-into-chrome/)",6.0
+gemof1v,k6o3a4,"It may have failed at replacing JS entirely, but as it stands Dart is definitely not a failure. Just look at Flutter usage over the last year.",3.0
+gen0jjh,k6o3a4,"It didn’t take over, it was just the first thing offered. 
+
+From there, if you want something new, you need all browser manufacturers to agree and optimize for such a thing. Good luck with that as they’re always squabbling and saying the others are ruining the Internet.",3.0
+geo34ql,k6o3a4,See WASM. If that takes off it’s a whole new world.,1.0
+geoodf4,k6o3a4,See also: ScalaJS,1.0
+gelybff,k6o3a4,"The design philosophy behind JS i.e. prototypal inheritance, closures, etc. was unorthodox at a time when the philosophy behind *classical* and procedural languages was held in high regard. 
+
+Edit 1: 
+
+JS tried to appease into adoption but that effort only earned it criticism. For example, JS was confused for Java. It had that camelCase feel but behaved nothing like the language it copied...
+
+Second, though every language has a fair share of them, it had design errors which were made worse by inconsistent JS engine implementation across browsers. An example was the behavior of *this* when `use strict` is applied. 
+
+Moreover, you're looking at a time when the web wasn't close to a platform for consuming and distributing apps. At that time JS was nascent to the game. It didn't have full-formed features nor a community to drive adoption.
+
+Edit 2:
+
+I remember fiddling with form validation, a bit of animation...This was all native JS in its limited form, inconsistent implementation and very little support in terms of libs. It was painful. You'd fire up FF, Chrome and everything would work.
+
+Run the same page in IE 7, 8 or some other version and your code would fall on its a**. It was annoying. You don't want to write the same code many times. Plus there wasn't much you could do with JS. Things got exciting when jQuery came through...
+
+Then we'd MooTools. I remember BackBone in '12-13, Angular (not AngularJS) I paid no attention. Then somehow web 2.0, XaaS, e-commerce, UX/UI, 3/4G, smartphones, browser speed wars which birthed Blink and later V8 engine happened.
+
+Edit 3:
+
+Then someone thought well if JS is sitting on all that power we might as well run it server-side...Node lingered and sustained birthing Express .et al.
+
+This pushed the limits of JS. In '15...React, AngularJS, etc. came through",6.0
+gem0uzg,k6o3a4,Everybody does functional now,3.0
+gem27vn,k6o3a4,Not full-blown functional but more like adopting certain aspects. Imperative and procedural programming still have their use cases.,5.0
+gem387k,k6o3a4,Do you know any practical use for functional over OOP? Personally OOP seems more intuitive for web dev or maybe I’m not looking at it right,-1.0
+gem4krh,k6o3a4,"Just do procedural it's really simple and simplicity is key to clean code. Also you can use some concepts of functional programming like immutability, they come in really handy because you always know the value of a constant because it never changes. In web dev pure functional programming is impossible AFAIK, there's always gonna be side effects for example in callbacks. You don't need classes, they're just glorified functions that work on objects and use the horrible this keyword to which you can bind anything you want",3.0
+gem8lll,k6o3a4,"At some level, pure functional programming is impossible because we only have one universe to work with :)",4.0
+gem4xgf,k6o3a4,"Interesting, thanks!",1.0
+gemokt8,k6o3a4,"Procedural is good, also patterns over abstraction most of the time.",1.0
+gen4eku,k6o3a4,You can emulate pure FP but it requires diligence.,1.0
+gen0uoc,k6o3a4,Can’t tree shake OOP which makes it useless.,2.0
+gemoezd,k6o3a4,Yes being concerned with the state like with “this” can become a pain. It’s much easier and less error prone to know that the function only cares about what’s going on inside the function,1.0
+geoogix,k6o3a4,"`[1,2,3].map(e =&gt; e.toString())` wouldn't work without some FP",1.0
+gemfarm,k6o3a4,Ass!,1.0
+gemnpvr,k6o3a4,"I think a lot of the hate is dated.  The language has matured a lot over the years. I think it's often misunderstood as well. There's a lot under the hood going on - Classes aren't technically classes like they are in other languages and utilize prototypal inheritance instead, as an example. Heavy use of callbacks was also quite foreign when I started learning JS, even though I had experience with other languages. Another thing that comes to mind is that JS is very often used to manipulate DOM elements and was built around the web browser, so I imagine a lot of dominos fall from that origin alone.",3.0
+gepbaqd,k6o3a4,"&gt; I think a lot of the hate is dated
+
+I was really happy for already having learned webdevelopment before I took my programming education because holy fuck is there truth to this. Like one of the things we were shown doing HTTP calls in JS was ""really difficult because then you would have to use XmlHttpRequest and that's just so confusing. But luckily we can include Jquery and use it to make it simpler"" and I was like ""yeah but fetch tho!"". And another time, when we were shown angular and the teacher was going through *ngFor and being like ""And now this let foo of bar thing might be something that angular implemented internally"" and I felt obligated to inform them that it's basically a foreach loop in js",1.0
+gem5ku3,k6o3a4,"JS is the language of the web. Every single browser has it by default. It's easy to prototype things very quickly but is able to use whatver type of programming style you want. There has always been a low bar of entry... It's pretty easy to pick up and not overly verbose for people new to programming. Everyone uses browsers for nearly everything now. Companies can easily hire front-end devs to build complex applications. Add on that Node allows for server-side JS and now you can just focus on one language for your front and back end. I think things would have ended up very differently if Netscape was never a thing... I'm sure someone else would have come along and created their own scripting language for interacting with webpages and whatnot but who knows. If Netscape wasn't the default browser of the web in the 90s, we may had something totally different by now, and perhaps less standardized. 
+
+Obviously, JS's biggest pitfall is lack of a type system, which can be fixed by using Typescript, but it's a fair gripe. Despite that, Javascript is very powerful and used heavily by some of the biggest companies in the world so for as much flak as it gets from ""experienced"" programmers, you can't deny the powerful and amazing applications and technologies that companies have built using JS.",2.0
+gemaisq,k6o3a4,"Plenty of people like working with js, its one of the more loved languages, its just that its also one of the more 'divisive' languages so quite a few people hate it.
+
+The main reason js got so popular is that browsers take js, and more or less only js . This means that there are a large number of people who are forced to use js despite it not being thier thing, and a lot of backendy people that hate doing front-end work and hate what that manifests itself as for them, js. 
+
+Also js has a bunch of not so great or non standard stuff in there thats probably never going to get changed, though in my experience those are very minor issues.",2.0
+gem15ln,k6o3a4,"For some reason, this seems relevant: https://github.com/denysdovhan/wtfjs",1.0
+gem1fe3,k6o3a4,"Yep seen this before, JS code has some weird effects but again I’ve seen similar things for python lol",1.0
+gem1k9x,k6o3a4,"For sure, every language has WTFs.  PHP is practically made out of them ;)",2.0
+geoohbg,k6o3a4,"`0 == ""foo""`",1.0
+genoj5o,k6o3a4,Python is worse.,1.0
+geojcqq,k6o3a4,"Because people who dislike JS don't actually use it. People who use it regularly don't dislike it, but just giggle at all the jokes about it and at occasional weirdness of the language, but rarely experience problems related to the weirdness.",1.0
+gem6onu,k6o3a4,"It's like asking why so many C++ developers hate C++ yet it's so widely used or like asking why so many PHP developers hate PHP, yet it's so widely used. 
+People can only hate widely used languages.",1.0
+gemnl4l,k6o3a4,"But only Python is hated for a reason :)
+
+ps: I'm a C++/JS/PHP programmer",-2.0
+gemxdes,k6o3a4,What reason do you hate python for? I hate python and I’m always happy to have more reasons to hate it.,0.0
+genezyk,k6o3a4,"Personally, I don't like how ""pythonic"" code is held to such high regard yet more often than not the code that isn't ""pythnoic"" just ends up clearer and more readable.",0.0
+gensjm9,k6o3a4,"Wow I didn't realize people held it in high regard.
+
+I thought it was the language everyone used because it's easy to switch to from PHP.
+
+It's definitely not good looking code, nor have I ever seen ""functional"" python code.
+
+That's the conclusion I came to.
+
+It truly is the neckbeardiest of programming languages though.",0.0
+gemkm1x,k6o3a4,"it's disliked by salty people who chose the wrong technology to specialize in.
+
+JS is by far the most productive and versatile language to use in 2020. By FAR. If you chose to learn something else, you fucked up, and now you're salty about it.
+
+Whatever language you prefer is not superior to JS. You just dont know how to use JS properly, and you're salty about having wasted all your time betting on the wrong horse.",-3.0
+gemq2zr,k6o3a4,"I started in the deep end learning C++ first, I still feel like C++ is the best to start with (although not at all beginner friendly) once you get C++ proper, everything else becomes a breeze (expect functional languages), because then it’s Just a matter of removing knowledge and not adding much new.
+
+So I feel this view of other developers being salty is not correct, infact if someone really wanted thy could get into JS just fine cuz it’s so beginner friendly",1.0
+gemxmgv,k6o3a4,"I disagree. Memory management is more or less irrelevant in JavaScript (understand good code), and JS does better in a functional paradigm rather than OO.",1.0
+gemxud1,k6o3a4,What do you disagree with? You are right memory management is abstracted away in JS.,1.0
+gen0egb,k6o3a4,"There's so much more required for C++ than JavaScript, and if one wants to be a web developer they don't need to learn how to manage lists and other data structures independently. 
+
+I just don't see a need to learn C++ and it's paradigms before learning JavaScript, I think in a lot of cases it probably does more harm than good from what I've seen.
+
+I don't think it's the best to start with.. and that's what I disagree with.
+
+The best to start with is what someone feels comfortable with. I will never right another line of C++ code in my whole entire life, and I'm more than happy with that.",1.0
+geo7lsi,k6o3a4,"That’s exactly what i said, C++ is not where most people start, and certainly if you only wanted to do web development you wouldn’t start with C++ or Java at all. I started programming 4 years ago in High school at the age of 15 so I didn’t really know what I wanted to do then (infact I don’t really know now ether) so I started with what my high school taught me
+
+All I meant what that if you know A fairly low level language like C++, then every other language after that, every other higher level language becomes orders of magnitude easier to learn. Atleast that’s what I have experienced",1.0
+gelvj88,k6nvoq,"If you like this, [I do a weekly roundup of open source projects that includes an interview with one of the devs that you can subscribe to.](https://console.substack.com/)",1.0
+gelp5c0,k6muo3,"Project Page (?): https://github.com/dracos/bach.js
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/javascript) if you have any questions or concerns.*",1.0
+gelmugc,k6mhas,"Project Page (?): https://github.com/boytchev/mannequin.js
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/javascript) if you have any questions or concerns.*",1.0
+gelqpxp,k6mhas,"Pretty cool, any projects using this?",1.0
+gelw1r4,k6mhas,"Damn this is impressive, maybe I can use this as a base of some IK system? 🤔",1.0
+genln9r,k6mhas,this is awesome,1.0
+geo0qun,k6mhas,I have no need for this but I need to find one,1.0
+gelxkcs,k6ma6s,"The phrase maybe has some sarcasm behind it, but I agree with the idea. If you use some obscure framework and shit hits the fan, people are going to want to know why you’re using software that’s not as well supported and battle-tested as a free and prominent alternative. Not having to worry about that counts for something. 
+
+It just so happens that I like React the best of the frameworks I’ve tried anyway, so that’s a perk.",159.0
+gemejv0,k6ma6s,True....I've been on a few projects that have had managers pick some little known technology that nobody is using.  It's a recipe for disaster down the road.,36.0
+geoo8e1,k6ma6s,I’ve been the picker a few times. It’s not a fun conversation to try and justify why you’re using this obscure bullshit instead of industry standards. Especially when you’re standing over its smoking corpse.,8.0
+geos9bb,k6ma6s,Amen. I learned that lesson the hard way!,3.0
+geov2ay,k6ma6s,Why is a manager picking technology?..,2.0
+gepoviy,k6ma6s,Every organization is different,1.0
+gemnyjl,k6ma6s,,
+gemmq2v,k6ma6s,React is fine but flux makes no sense to me.  I fight with it every time I have to re-learn react.,7.0
+gemosl5,k6ma6s,redux toolkit and never look back,41.0
+gen1b19,k6ma6s,This is the way.,18.0
+gemwbiv,k6ma6s,Redux is a piece of shit. So much boilerplate. Context is so much simpler and easier to maintain.,1.0
+gemwxqh,k6ma6s,You should check out Redux toolkit. It's rare to see a library take its criticism so well.,36.0
+gen9rt3,k6ma6s,"Thank you! This is literally why I created Redux Toolkit :)
+
+https://blog.isquaredsoftware.com/2019/10/redux-starter-kit-1.0/#dealing-with-complexity
+
+Happily, we've gotten a ton of feedback from very satisfied RTK users with comments exactly like this one :)  That includes people saying ""I used to hate Redux, but RTK made me love Redux again"" (near-exact paraphrase of actual responses I've gotten)
+
+On a similar note: we just published the first alpha of ""RTK Query"", a new data fetching and caching addon built on top of Redux Toolkit:
+
+https://rtk-query-docs.netlify.app/
+
+Would love to get some folks trying it out and giving us feedback on the API design and use cases.  
+
+Once we're happy with the API and feel it's ready, we'll merge it back into RTK itself.",44.0
+genqtbl,k6ma6s,This really is a great library. I've used it daily as long as it's been out.,6.0
+genx3ih,k6ma6s,Awesome looking forward to trying this one out later,2.0
+gep1t7r,k6ma6s,"Personally I used to hate Redux, but RTK made me love Redux again. Thank you for all your hard work on it.",2.0
+gep8adx,k6ma6s,I’ve been meaning to jump back into the react ecosystem ( I mostly work with angular and the last time I touched react was before hooks... lol) and this sounds awesome. Thanks for the hard work!,2.0
+geplkm4,k6ma6s,"Thanks for that comment, I was really out of the loop on this one. I may even start liking redux again
+
+Just took a quick look at the docs and that sounds awesome",3.0
+geoob4f,k6ma6s,We recently stripped out a fuck-ton of data handling Redux and replaced it with React-Query. Would recommend. Really simplified our data loading patterns.,3.0
+gemr0uy,k6ma6s,Context API.,-10.0
+gemtdh7,k6ma6s,Not a good alternative in most cases,5.0
+gemvpl9,k6ma6s,"It's an excellent alternative in almost every scenario.
+
+I've not used Redux in years. Feels good to get rid of unnecessary complexity.",-6.0
+gemy84y,k6ma6s,This is a fine stance if your data is read-only or you don't care about performance. The solution to context's bad performance is consumer/provider spaghetti or rewriting a half-baked redux yourself,15.0
+genc09i,k6ma6s,"If you use memoization for stateful components using context, then you can still be pretty performant. But then you’re ramping up the complexity enough that the trade-off seems small.",3.0
+gemzunj,k6ma6s,,
+geo0juy,k6ma6s,Try Zustand,1.0
+gen74jr,k6ma6s,,
+gelxand,k6ma6s,"Vue is quite popular in the PHP world due to Laravel originally shipping support for it out of the box.  It's since moved to Inertia.js which treats Vue, React, and Svelte more or less equally, but Vue did get a pretty good boost out of that.",54.0
+gem6u8d,k6ma6s,I’m not enjoying having to use react at work coming from Vue.,30.0
+gemtz7r,k6ma6s,"For me it was:
+
+* I tried to learn React and things didn't made sense to me. (to be honest I didn't give to too much time or patience of going trough a complete tutorial/course)
+* I found Vue and loved it and understood it easily
+* I went back to React and took a second look and loved it instantly this time and went full React.",43.0
+genhpxv,k6ma6s,this is literally what happened to me,9.0
+geoowz6,k6ma6s,In my experience React makes the most sense to people extremely comfortable with JavaScript.,9.0
+gep8d1c,k6ma6s,"Fwiw this is exactly what happened to me a while ago except replace Vue with React and React with Angular. 
+
+What some people don't seem to realize in these discussions is that sometimes a framework just fits your mental model better than others.",2.0
+gepqvdp,k6ma6s,"&gt;What some people don't seem to realize in these discussions is that sometimes a framework just fits your mental model better than others.
+
+Exactly! If we're talking features I'm sure all frameworks can eventually do the same thing and with all you can build the product that you need. But, some just fit your mental model (as you said) better, and you find it easier and nicer to work that way.",1.0
+genwz10,k6ma6s,Checkout vue3 and the composition api.,2.0
+geos9y0,k6ma6s,"I’ve used both but I’m mainly a Vue guy. 
+
+What I hate about React is not really React’s fault but it’s the ecosystem. There appear to be 100 ways to do CSS with little consensus on a standard way. Choice is good and bad. 
+
+I tried styled components and that was okay but then moved to another React project that was using CSS modules. So not only do you have to get to grips with React but also learning how to do CSS in every new project. It’s frustrating. 
+
+This is also the same issue with state management. 
+
+In Vue, whether you want to use SCSS, PostCSS, Less etc etc it’s just a simple case of installing that library and adding a lang attribute to the style tag. Done! It’s such a nice dev experience.",1.0
+gep16j5,k6ma6s,"I run into this with first year juniors.  Taking an hour or two to show them how material style works, styled-components, css-loaders in webpack, and just composing your own class names and style objects... usually results in them going “oh this is all the same”
+
+If you understand css that shouldn’t be a problem.  “How I apply this string of rules” to a component is the least important bit.
+
+If you get how css works, it really shouldn’t matter if you write it in json, template strings, external files, scss, whatever.  Having huge difficulties jumping between 4-5 barely different ways to express the same thing is probably not the fault of your css library, but a lack of understanding of how the tool packages the thing that hasn’t changed much in a decade.",1.0
+gep1k6q,k6ma6s,"I understand CSS plenty fine thanks. 
+
+I’m talking about the difference between styled components and CSS modules in my example (and there are many more with React).
+
+They’re not “barely” different, they’re completely different ways of doing CSS, from setup and tooling to actually how you put the styles and apply them together. 
+
+This is not the same in Vue, where if you use single file components you have a style block that is your blank canvas to write whatever CSS you like. It’s in the same place and used in the same way. There are fewer concepts to jump between. 
+
+I’m not even saying this is a massive deal but it’s a mildly infuriating pain point in the developer experience and productivity when jumping between React projects. In Vue I would know exactly where to go for styles.",1.0
+gep68t8,k6ma6s,,
+gem9p72,k6ma6s,Why not?,18.0
+gemtbpw,k6ma6s,Lol people love to make aggressive boarderline insane blanket comments like “I don’t like react” or “python is a pain point in every project” or “don’t compile your C code” and never explain them,15.0
+geo3qty,k6ma6s,"How is ""I don't like react""
+
+&gt; aggressive boarderline insane
+
+?",17.0
+geoic4d,k6ma6s,“I don’t like react” isn’t a blanket statement lol,2.0
+gendhay,k6ma6s,"It’s usually because they don’t know what they’re doing and they don’t like the *feeling* of that, so they blame the tool.",7.0
+genttq0,k6ma6s,,
+gemjehv,k6ma6s,"I too want to know why not. I started VUE and React at the same time. React wasn't as pretty or fast (I've written my own framework, bonmot, based on Backbone; vue feels more like it than React). I left both for react because I found I was being incredibly productive in react vs either of the others. That was years ago.
+
+I recently revisited it while considering a new position. The all in one file approach is fun, and cdn-to-run is new to (also very bleeding edge circa 2006) but with the smaller community, and the cli bombing out on vanilla install my thought was ""how reliable/compliant can it be if they can't keep thier cli up to date, or at least post incompatibilities?""
+
+At which point I decided a different position would be better.",6.0
+gep4ksn,k6ma6s,"Do you really need a cli?  The simplest react app is only three lines.  Import React, grab a dom reference, call React.render()
+
+That’s it.  There is no complex scaffolding, it’s just a view renderer.  How you choose to build an application around it is up to you.
+
+I think the biggest problem is thinking you need a cli.  
+
+What you need is a packager.  Learn webpack, then try nx and lerna and parcel.  React shouldn’t package a cli, and CRA is not really useful beyond starting up an example project.
+
+You NEED to understand how packaging works to be able to deal with production problems, which is true whether you are packaging react or angular or vanilla js.
+
+Almost no open source frameworks/libraries have a cli to stub out your project structure.  You shouldn’t be expecting one to hold your hand, or be dependent on one to try out a new npm package.",1.0
+gepirwj,k6ma6s,"LOL. You'll get there padwan.
+
+Our job as software developers is to save human effort. Why would I want to hand roll a dev stack for a new framework? Best practice is _literally to follow best practices of the framework you're using_. That's one of the most valuable rolls of a framework cli.
+
+And let's not forget, you're kinda straw-manning here. The cli was broken. That's a real problem.",2.0
+gen3xta,k6ma6s,Damn yall are downvoting this guy because of his first-hand experience with something and his experience may be different than your opinion...,2.0
+gep0q6e,k6ma6s,"Disliking react is usually actually “misunderstanding react”.
+
+It’s just a stateful view renderer, there is no application framework.  Much like components intention of being composed/built up, react is supposed to be mated to a couple other libraries of your choice to build your framework.
+
+I think the biggest issue with react today is over-emphasis on functional components and hooks.  Forgetting to bind “this” on a class based component is way easier to debug and diagnose than broken hooks making your component render 6-8 times on every change.",1.0
+geo8imi,k6ma6s,,
+gelymue,k6ma6s,"I'm curious why he used lit-html then decided he needed a framework and didn't try using lit-element/Polymer which IS a framework (using lit-html as the render engine) and pretty much feature-parity with React. 
+
+I find it is also much better at handling things that update a lot without having too many re-renders.",20.0
+geohggd,k6ma6s,"Believe me I used lit-html and polymer at work before, they are so much painful to work with compared to react. The toolchain is old so you would end up reinventing a lot of wheels and stuck in a nightmare of maintaining ancient wheels instead of benefitting from the open source world.",6.0
+geohrsl,k6ma6s,"I can't really comment on the out-of-the-box toolchain. I don't use either Polymer or React's toolchains, as they both have issues that annoy me, just the code libraries and then I have my own rollup-based toolchain.
+
+The nice thing about LitElement is literally all you need is to pull in the lit-element module and you're good to go. No other required dependencies.
+
+Also, not sure if you used the older Polymer 2 or earlier. I've never used those, but just looking at the docs I come across for it occasionally, looks like it was a lot rougher than the current version.",1.0
+genw46c,k6ma6s,"I don’t particularly like react.   If I was hiring for a project I brought to the “functionali prototype” stage that I wanted to productize, I would go for React, because I would have a much larger pool of competent developers to choose from. 
+
+I could very well prefer something else over it, but it hardly matters if you want to  build a product in a decent timeframe.",1.0
+genxj2b,k6ma6s,"That's a good point. I personally never hire based on framework or even language knowledge. I'm a very senior developer who is perfectly fine ramping up a competent dev of the required skill level on the technical particulars of whatever we are doing.
+
+But, that is a luxury not ever company has due to time or having a person like me willing and able to help ramp someone up. If I was forced to hire for a framework, looking for React devs would definitely be much easier.
+
+Though honestly, LitElement is so similar to React, the transition period is like &lt; 1 week, you could still hire a React dev for a LitElement project. You can really tell that LitElement was basically made by a bunch of ex-React devs. It kept all the things I liked about React, fixed a few of the minor annoyances, and brought in Web Component goodness.",1.0
+geowmq0,k6ma6s,"&gt;never hire based on framework or even language knowledge
+
+A refreshing view. A competant dev can translate their existing knowledge to a new language quickly. Most of it is syntactical sugar.",3.0
+geowvkv,k6ma6s,"I've been using that approach for the entirety of my 10 year professional career and not been disappointed once. I've also applied for plenty of jobs, gone in and said ""I don't know this tech stack"" show them what I do know and still got offered jobs too.
+
+At the junior level, being able to think logically and being willing and able to learn.
+
+At the mid-level, you need the above plus technical knowledge (such as design patterns) to be able to quickly translate solutions into code.
+
+At the senior level, you need the above plus have an overview of what technologies are out there (like types of databases and what each is good for) and how to put them all together to create advanced solutions. Even at the senior level though, you don't have to master it all. Knowing what tools are available is important. You can always learn how best to apply those tools as you need.",1.0
+gemr0yy,k6ma6s,"Worked with Angular.js, Angular, Vue and React
+
+My choice is React (even Next.js these days). But if I’m building anything that’s form-orientated (admin dashboards etc) my preference swings towards Angular/Vue",7.0
+genox2h,k6ma6s,Have you tried https://formik.org ? The combo of that with Yup for validation has been a massive help on my team’s recent projects,4.0
+geokflq,k6ma6s,Yes as recommended by the React docs too. It’s nice(r) but still a bit more fiddly than Vue/Angular when you just wanna put something together quickly for CRUD operations against a database,2.0
+gemvhkn,k6ma6s,I ran into headwinds with forms on react too.,3.0
+genfrk3,k6ma6s,"This doesn't seem to have anything to do with React. First the author attempted to go a path of no/micro framework and realised they would have to write the features they needed themselves. Then they tried to use a framework they were unfamiliar with.
+
+Hot take: if you want to be productive, use the tools you're familiar with.",11.0
+geo286s,k6ma6s,THIS^ it's not like companies or clients care,2.0
+geozkn9,k6ma6s,"It depends.  I’m a greenfield developer.  This is what people hire me for.  I build frameworks for mobile and web, then I build your app.
+
+It adds 2-3 weeks development time at the beginning, then I work faster by myself or with a team of 3 juniors than a team of 4 seniors working with material and bootstrap.
+
+When all of your UI components are composed of your own reusable stuff, fixing everything usually means fixing one thing.
+
+Just don’t do your first greenfield project without the support of other senior developers. And/or after doing it yourself a few times.  Don’t risk other people’s jobs for it.
+
+Greenfield development -&gt; building your own application framework/library IS the way to write excellent, malleable, and easy to understand software.....  but it’s not like everyone and anyone can just do that.  You need experience to back it.",1.0
+gelraad,k6ma6s,"Haha, cute title. It's pretty spot-on. Look, I'm a Vue girl, it's superior to React in every way (fight me) but the truth is the widespread adoption isn't out there to the same degree. Which mostly means if you're looking for a supportive library, you have slim(mer) pickings. 
+
+React has the opposite problem. And the same problem, kind of. There's too many choices and a lot of them are garbage or incompatible with the version of React that you're using. 
+
+But people trust React. Big companies are using it heavily. It's an easier sell to management. It's easier to sell it to *yourself*. I'd wager to guess that React devs even make more money than {other JS framework} (there's definitely more market demand for React).",95.0
+gem0blv,k6ma6s,"The better technology isn’t always the technology that wins. It all comes down to several factors including marketing. React is not perfect but it’s got all the support behind it.
+
+Kinda like JS, there were/are better languages but you know what they say, there are the languages people complain about and the languages nobody uses.",61.0
+gemkvxa,k6ma6s,,
+gemec5p,k6ma6s,It's not superior in every way since because React is so popular there are more devs available for a project.   Finding available talent is a key component to a project's success.,22.0
+gen7v9s,k6ma6s,"dev/community support is also important imo, there is probably more written on stackoverflow, medium, etc about react compared to vue. fits in with the idea that the well trodden path is generally a safe one.",7.0
+geo6y5o,k6ma6s,"Could also be that in VUE things just click, they make sense and thus people rarely have any questions outside of what the docs already cover? This is what I felt about VUE",5.0
+geoioxw,k6ma6s,"I certainly have found Vue makes sense to me in a way that my dabbling with react hasn't. Though I've only built comparatively tiny things in it, so that may be a factor?",1.0
+gep8ruh,k6ma6s,"There’s definitely more magic. But if you take time to understand the magic, it then becomes this really friendly library that just does what you want. 
+
+I’ve moved on from vue (due to work) and now mostly work with angular and it’s similar but more so. Does a TON of magic, but it’s really well engineered and makes sense once you drink the koolaid. Honestly from a philosophy standpoint, it reminds me of Drupal. It’s almost a one stop shop to anything already in the framework",1.0
+gena4x6,k6ma6s,"That's true....although I think there's enough of Vue online to get by.  I heard it's super popular in Asia.   In my region, React is #1, Angular #2, and Vue is much rarer in 3rd popularity spot.",2.0
+gep8vwm,k6ma6s,"I’m in a 2nd tier tech hub(not SF or NY) in the US and yeah same here. React then angular. And those are actually almost equal, I would say the divide is more that smaller and medium sized companies seem to want react, and larger enterprise shops always want angular.",1.0
+geltcz3,k6ma6s,"Thanks! I think if you’re happy and productive with Vue, then stick with that. Point of the post isn’t that React is “better”, but to just to use whatever you can be productive with, rather than chasing some notion of efficiency or technical purity.",29.0
+gelv50j,k6ma6s,"That's very true. I've attempted to branch out, but often it comes back to ""Well I can just get this done 10x faster, and probably better, if I use the tools I already know"". My inner engineer isn't always happy with my choices and conflicts with the pragmatist in me, but I try to let that pragmatist win because, I mean, theory is one thing and in-practice is another. ¯\\\\\_(ツ)\_/¯",11.0
+gemn77z,k6ma6s,"Yeah, I call that Grown-up Architecture, aka wistfully googling “Rust api framework” then opening your terminal and firing up a headless Rails project.",29.0
+gemszh1,k6ma6s,I feel attacked,10.0
+gen23oe,k6ma6s,I love this. Painfully true.,4.0
+geooldn,k6ma6s,"This is IMO the core of our job. 
+
+It’s about understanding *innovation S-curves* and knowing that this is the time to use the new thing, or time to stick with what you know. 
+
+You have to balance practical productivity with professional growth and progress. That was way more alliterative than I intended but you know what I mean. 
+
+It’s honestly hard to do. Hard to know how to find that balance.",1.0
+geo3lva,k6ma6s,That exact thought is why I've done so many personal projects with Laravel,2.0
+gemti73,k6ma6s,"I used vue on a project. I hated it with my spirit, soul and body. So much magic and shitty javascriptisms. 
+
+React I can reason about. At least when functional. 
+
+But you do you.",28.0
+gen1wmm,k6ma6s,"That's pretty interesting, I have the same problem but in reverse. Vue works exactly like I expect it to, it's very, very predictable to me. Vuex is &lt;3 I've found with React it's too easy to write bad code. You have to constantly babysit PRs for code consistency and performance and have meetings on dos and don'ts.",10.0
+gen6ur0,k6ma6s,"Bad code is just that, bad code. A framework won’t save any team from it. Honestly I’ve seen awesome and horrible code in: Angular, Vue, React. I’ve been sticking with React for a couple of years now simply because React Native is a huge selling point to me. Transferable skills from web to native mobile apps.",14.0
+geniduz,k6ma6s,"I don't exactly agree. I mean, I agree that you can write bad code anywhere at any time, but frameworks are specifically structured systems that contain good practices in ""how"" your application should be set up and a good framework is difficult to break out of. Spring Boot, Ruby on Rails, .NET, etc are still widely adopted because these frameworks make it clear that there is a ""right"" way to do things and a ""wrong"" way. You can jump into a codebase that you've never seen before, hitting the ground running, because you know how these puppies work. React and Vue technically aren't frameworks, but Vue definitely leans closer to being a framework than React.",11.0
+georsal,k6ma6s,,
+gep8iaz,k6ma6s,"Vuex IS &lt;3 
+
+It’s been a while since I touched the react world, and I mostly use angular these days, but holy shit is Vuex the best state management solution I’ve used. It’s so stupid simple and “just makes sense”.
+
+Not sure if you’re interested in angular, but the most common solution (NGRX) is literally water torture when you’re coming from Vuex.",3.0
+gep6xy3,k6ma6s,,
+gemxvpr,k6ma6s,"Can you point me towards some good high-level Vue resources? Everything I find seems to be tutored towards beginner developers. I have to use Vue for work, but any time I try to write data-driven or functional code, some random quirk in Vue makes it borderline impossible.
+
+It seems to be designed for static, imperative approaches and it's driving me insane—I want to write neat, performant, and reusable components, but I don't understand how to.",6.0
+gen05f4,k6ma6s,"FrontendMasters has pretty great stuff and does deep dives. Evan You himself has courses on there, but it's kind of expensive at $40/month. I'd be happy to help in any way I can though, feel free to PM me any time! It's not like React where you can throw your template into variables and pass it around, but once you understand the rules it'll click. Then you can go to any Vue project and jump right in!",2.0
+geopuwe,k6ma6s,"I can't help you with resources, but if you can describe your problems a bit more specifically I can try to share my approach. I find Vue perfect to write data-driven components, so maybe there's something I do differently :)
+
+And if you want to use Vue with more functional components, check out the new Composition API. It's really fun to use, and works well with a functional mindset.",1.0
+gem3lin,k6ma6s,"I've just started learning Vue and have added Vetur to VS Code but when writing components, it's not auto adding closing brackets or indenting properly, it's making it incredibly tedious to write as i'm constantly having to fix the indentation of markup/js/css - am i doing something wrong? (Vue 2 if that matters)",4.0
+gem5z9o,k6ma6s,"I experimented with Vue for awhile and ran into similar awkward issues. I recommend giving Sveltejs a try, it's really quite a remarkably effective framework.",5.0
+georzsm,k6ma6s,Try using Prettier? That’s kind of what Prettier is for. Vetur is to give you more intellisense in your IDE.,2.0
+geow8r2,k6ma6s,ah ok thank you,2.0
+gemo0r7,k6ma6s,"Switch to WebStorm if you can afford it (5$ a month or free if you're a student), it has insanely good Vue support right out of the box, all the problems that people face with VScode and Vue I have never gotten with WebStorm, also, you get to use a full fledged IDE instead of a text-editor",4.0
+gemubny,k6ma6s,Check if your eslint file is configured correctly and if vscode is using it. They should work together to fix any code mistakes.,1.0
+gemubjs,k6ma6s,"One big problem is developers stating strong opinions like this and not being willing or able to talk in details about why they think that. In years I haven’t seen a single strong argument for either Vue or React being better than the other, just a lot of opinions elevated to fact. It would serve these kinds of conversations a lot better if devs with strong opinions could get into why they hold their opinions rather than why Vue or React fitting with their existing opinions makes either framework “better”.",10.0
+gen3lop,k6ma6s,"I came to prefer React as things like mapping are done using the native language, whereas at least at the time Vue had its own proprietary mechanisms. I don't know if that's changed.",5.0
+genfcmq,k6ma6s,"Same. I originally looked at React and thought Vue looked much better. Did a project in Vue and I didn't like it.
+
+Gave React a try and it just clicked. I find it just so much better, personally.",4.0
+georukb,k6ma6s,"The only big thing that’s most obvious in Vue as proprietary is the template directives. But that’s just for simple conditionals or looping. 
+
+It’s pure JS from within your methods, computed properties etc. 
+
+That said, anyone reading this who likes React but dislikes Vue should try the new Vue 3 which has a composition API that you may find feeling more familiar to you. 
+
+Both frameworks are fantastic so everyone should learn a little of both. There’s nothing to lose and everything to gain.",2.0
+geootho,k6ma6s,"You’re spot on. I did a lot of study of different frameworks and found that a lot of the things people were arguing as benefits were either enormously subjective “it’s easier to learn!” or “it makes more sense” or in some cases weren’t actual differences: “it uses dom diffing” or “it supports components”. 
+
+Personally my own preferences are for Ember and for Svelte, but I use React as a commercial reality.",1.0
+gem0sz1,k6ma6s,"You should know React well enough to know when not to use it. 
+
+It's a problem in the JS community where everyone throws a framework or library at everything. Dependency hell is real and people don't understand it until they start working enterprise.",6.0
+genffvc,k6ma6s,"I really need to show the users what time of day it is.
+
+`npm install moment`
+
+Perfect!",8.0
+gep91jk,k6ma6s,Now install datefns!,1.0
+geo1xy3,k6ma6s,"It's not just that, but it's easier to find Talent for React. That's huge for any growing team or company that wants to grow.",2.0
+geoodh2,k6ma6s,"&gt;	it's superior to React in every way (fight me) but the truth is the widespread adoption isn't out there to the same degree
+
+Then it’s not superior in every way, is it? :P",2.0
+gemvc2g,k6ma6s,Hey I'm also gonna throw my opinion in: Preact is superior to vue in every way.,5.0
+gemzjj8,k6ma6s,Oh it's on!! (ง •̀_•́)ง ผ(•̀_•́ผ),2.0
+gep92j1,k6ma6s,Why?,1.0
+gem17wf,k6ma6s,"&gt; But people trust React. Big companies are using it heavily. It's an easier sell to management. 
+
+its the wordpress problem all over again. management and clients don't know what it is, but they know they *need* it. recruiters then ask for it. bootcamps churn out fresh ""react devs"" where they used to churn out ""wordpress devs"".",5.0
+gemgevt,k6ma6s,"The difference is that WordPress is terrible software, magical spaghetti code that can do everything, but React is actually pretty decent in terms of architecture.",30.0
+gelt0il,k6ma6s,,
+gembptg,k6ma6s,"Here I’m, meet my friend, Angular!",21.0
+geojraj,k6ma6s,"Ah, the lovely \`&lt;ng-content&gt;\` or the confusing template system, when you want \`props.children\`",1.0
+gelzrml,k6ma6s,"Ha, I had the exact same issue pop up for me when I tried Svelte. I'm more of a Vue guy myself, but I agree with the conclusion, you're better off choosing something you're familiar with so you can focus on solving the problem you want to solve.",7.0
+genfrl5,k6ma6s,"I choose Mithril.js for almost all projects that come my way, I adopted it years ago and never went back to the others and that is mainly because I personally found myself to be more productive with it then the counterparts.
+
+ I’ve had devs take over apps I’ve built with Mithril and for the most part I don’t think any dev has been happy about picking up a project that at first glance looks foreign to them, (ie: not React). I do make a conscious effort to keep things functional, well documented and above all else pure but far to often the React banshees will start wailing, it’s more so the HyperScript that really gets folk hot and bothered but regardless I have no plans to go back to React or Vue (though the recent Vue release was pretty dope).
+
+I think other SPAs are great but that monopoly Facebook holds over tech makes me uncomfortable. 
+
+Here are my current stack choices and i still don’t know why they are not more widely known and leveraged:
+
+- Mithril instead of React.
+- Meiosis instead of Redux
+- FQL (FaunaDB) instead of GraphQL
+- Ava instead of Jest
+- pnpm instead of npm / yarn or lerna
+- Rambda instead of Ramda
+
+Hope someone picks up or brings attention to the alternatives that exist. While React is the safe and preferred option, it’s not the only option. Diversify your stack. 
+
+Happy Holidays to all!",6.0
+genqura,k6ma6s,Rambda? Google just returms ramda,3.0
+geod4oq,k6ma6s,https://github.com/selfrefactor/rambda,1.0
+gep7ay7,k6ma6s,"Same here for mithril.js.  We do all our webapps in mithril.js, from a monolithic employee scheduling app to smaller dashboards.",1.0
+gelu70r,k6ma6s,"Not sure I'lll ever understand what kool aid React developers have drunk to make them so incredibly obsessed with one single framework.
+
+It's just ok, chill out.",31.0
+gemaej2,k6ma6s,"I don't think this article is about React specifically as much at it is about how a lot of time it makes sense to choose the battle tested, heavily used, ""safe and boring"" piece of technology instead of whatever new hotness you think might be slightly more performant.",24.0
+gemq789,k6ma6s,If everybody followed this advice nobody would be using React though. Someone's gotta take a chance at some point for things to move forward.,8.0
+gemtfez,k6ma6s,,
+gemnz7q,k6ma6s,"The same kool-aid jQuery enthusiasts drank in the late 2000s/early 2010s. Remember back when we had `jQuery-datepicker`, `jQuery-dropdown`, `jQuery-${component_type_here}`? Now we're in the same place, just replace jQuery with React. 😂",16.0
+gen80rp,k6ma6s,"haha don't forgot a bootstrap, foundation and material versions + all their ports to other frameworks. My vote, bring on web components and end framework specific components for good!",5.0
+gemsewc,k6ma6s,React is the new jquery,8.0
+genlezs,k6ma6s,"I’m still stuck in Angular land. I kind of like it though tbh. The opinionated framework works well for a large team of varyingly skilled developers. 
+
+I haven’t worked much with React yet but it is much less opinionated and allows you to plug-in your own tools for various things that are just baked in to Angular. 
+
+Is it due to this flexibility that React gets a bad rap? Kind of like jQuery and well JavaScript...it is so accessible and flexible that you can potentially write some really horrible code and get things running still.",2.0
+geop7id,k6ma6s,"Nothing wrong with Angular. Richly featured *Batteries Included* frameworks are slept on by Reddit because people make poor choices.  IMO.
+
+Everyone is like “React is simpler than Angular!” and people nod sagely and agree. Then spend three weeks trying to figure out how to integrate React-Redux-Saga-Thunk-Query-Router with TypeScript on a custom Webpack setup.",9.0
+gep9t77,k6ma6s,This.,1.0
+geoubc2,k6ma6s,"„Stuck“ is a hard word. 
+
+At least here in Germany, Angular seems to be still a bit more popular in terms of job listings than React (at least for now). 
+
+Maybe it’s because it is battle tested as you stated or because German companies are a bit „slower“ in adopting new technologies/frameworks, I don’t really know. 
+
+But Angular is still very very relevant.",1.0
+gep9r69,k6ma6s,"I really wanted to dislike angular (to be cool, as is required) but oh boy do I LOVE it now. It’s fantastic. Once you drink the kool aid, it opens up a lot of doors. 
+
+I think the bad rap with react is why someone like me now really likes angular: react is inconsistent. What I mean is that if you were to walk into 5 react shops, you’d have 5 different application architectures. You’d have multiple libraries for doing the same thing (depending on team preference). Vs angular... you know what to expect from project to project. Which speaks to your point about it being good at enterprise level.",1.0
+geoecee,k6ma6s,Why you say good thing like it bad thing?,1.0
+gepiwpl,k6ma6s,"I guess I would disagree that it's a good thing, but I see both sides of the argument. IMO, it's more advisable to use tools and libraries that are framework agnostic (preferably vanilla with 0 deps 😉) to reduce the chances of vendor lock-in and of creating a tremendous dependency graph that relies on your version of jQuery/React being version x.x.x, which then becomes a maintainability nightmare 7 years down the road when you want to upgrade React, but `react-thingie-majig` has been deprecated for 5 years.
+
+Obviously, this problem isn't unique to the JS world, and I see the benefits in the short-term (*rapid* development).",1.0
+gem53su,k6ma6s,I've been a React dev for the last 5 years and I totally agree. Something better comes along and I will jump ship so damn fast. Who cares about what framework you are using? It's like everyone has React developer as their sole identity.,8.0
+gemmny7,k6ma6s,"because react has the most jobs. at the end of the day, i just put in my 40 hours and get a paycheck. my work is ultimately insignificant and when im on my deathbed pondering if i have any regrets in life, its certainly not going to be ""damn, i wish i had learned vue instead of react to serve my corporate overlords well""",32.0
+gempc8y,k6ma6s,Preach,5.0
+gep9w76,k6ma6s,I like you! You got your priorities fucking straight.,2.0
+gemnc9z,k6ma6s,"Haha also a React dev for 5 years, and I guess I'm a fanboy. But I agree 100% with you-- if *something better comes along* I'll switch happily!
+
+But the reason I love React is because everything seems easy, **flexible**, performant, and the community is huge. The more I use it the better I like it. They've added huge new language features, I enjoy using most of them. Honestly I have no complaints about React, it's an absolute pleasure to work with lol",7.0
+gen3hu3,k6ma6s,"I’m also a massive React fanboy. However, I keep an eye out on competitors to stay relevant. I recently played around with Svelte and it’s quite enjoyable.",3.0
+gen7mmy,k6ma6s,,
+gen70er,k6ma6s,It was a paradigm shift when it came out. JSX was new. I still don't like going back to template formats where there's any kind of inlining with HTML.,2.0
+geoxdtp,k6ma6s,But svelte is already here,1.0
+gemyc1g,k6ma6s,"&gt; Not sure I'lll ever understand what kool aid React developers have drunk to make them so incredibly obsessed with one single framework.
+
+For me, I feel like I can express what I want in React. The framework helps me, whereas other frameworks try to abstract away the important details. I suppose that appeals to beginners, but any time I try something that isn't a React-like I feel like my hands are tied.",3.0
+geop8sv,k6ma6s,"Not a good sign, tho",1.0
+geop6di,k6ma6s,"Also, it's a library. Not a framework. Framework is too big of a word for what react intents to solve. I bet ""react devs"" wouldn't like if people said they're ""jquery devs"".",1.0
+gep9iij,k6ma6s,That wasn’t the point of the post,1.0
+gemzvhg,k6ma6s,"React is big, and its VERY easy to really screw up. If your not a seasoned dev your end product will probably (at least in my eyes) be a bigg ball of mid. React (the way, if you will) requires lots of experience outside react.
+
+Reasons for this is the ecosystem, the state flow and usually poor management.
+
+Its very easy to write poor apps in react (note, this is 100% not reacts fault) than it is in a more ”traditional” way.
+
+Im all for simplicity, and really like react, but its really hard for beginners and mid level devs.",7.0
+gem2zgx,k6ma6s,"I've been running my personal stuff with preact + lit, in the form of [buildless](https://github.com/Fordi/buildless) - mostly because it means I don't need a dev server to make stuff (or even an `npm i`), and lit's close enough to JSX I barely need to think about it (and I've got a good buildless -&gt; react transform I wrote for when I feel the need to migrate to full react).
+
+I wouldn't use this for production work, but as my own little toy, it's pretty neat.",5.0
+gen9y24,k6ma6s,Angular for ever.,4.0
+genmxrd,k6ma6s,"I was fired for choosing React while working as a front end architect at a blue chip financial firm in 2018. Despite building a successful production application and component library off of React, Redux and Next.js, the rest of the company was full of C# zealots who made their love for Angular known by maneuvering to have me fired during a round of layoffs to make room for more cheap contractors.
+
+I'm my absence, the other projects relying on my work foundered and a year later a recruiter offered me a ""great opportunity"" at a blue chip financial firm as a front end architect to convert a legacy application to React. 
+
+I told them they couldn't afford me. This was true, as I'd had two jumps in pay and rank since I was there, and I knew the pay ceiling on that position. 
+
+Moral of the story: React, or any great technology can get you fired if the leadership and your peers want it badly enough.",5.0
+geo8edw,k6ma6s,,
+gemnkuv,k6ma6s,"Funny, I used this exact same phrase at work about two weeks ago. I wanted us to “risk” really upping our game on the front-end. Developed some POC and documentation. Was basically told that would be too “hard.”
+
+I then said, “well, React is a lot like IBM in 1988 or so. Safe choice. No one got fired for choosing IBM, just like no one will be exposed to any risk here by choosing React...”",2.0
+genpiql,k6ma6s,CHange your job bruh,1.0
+gemwk8p,k6ma6s,"The author, perhaps unconsciously, references perhaps the most famous IT catchphrase of the 1980s: ""Nobody ever got fired for buying IBM.""
+
+The phrase was used variably as a marketing bullet point (by IBM salespeople) or a derisive characterization of unimaginative IT middle management. IBM wasn't exciting, it didn't push boundaries, it didn't have the best development environment, but boy did it have job security!
+
+Concomitant with the phrase was the notion of ""fear, uncertainty and doubt (FUD)"" in choosing a solution that did not involve IBM. Again, IBM sales and its proponents played up the FUD to achieve their numbers.
+
+The backlash against IBM's gray ubiquity inspired Apple's first Macintosh advertisement, ""1984,"" and accelerated the already established free software movement, leading to FreeBSD and Linux being popular alternative server OSes.
+
+Good to keep these lessons of the past in mind, as React seems to dominate the front-end development landscape.",2.0
+geofcwy,k6ma6s,It's an open source library though. No large corporate entity is profiting from me using it for my company's internal web app.,1.0
+gepjl3d,k6ma6s,"While they don't profit directly, the fact that React's main contributors and arbiters are Facebook employees means that ultimately, the more widespread React is, the more leverage Facebook has on the front-end ecosystem.
+
+Not saying there's any reason to be alarmed. But corporations know exactly what they're doing when they open-source their tools.",1.0
+gendk8t,k6ma6s,"&gt; Apple's first Macintosh advertisement, ""1984,""
+
+Seeing the situation with Big Sur this is pretty ironic and sad at the same time.",1.0
+genpg7f,k6ma6s,"A problem can have multiple solutions. A problem can also only have one solution. The idea of being a ""'React guy"", ""Vue dude"", or ""Angular gal"" won't really matter. Solution doesn't care if you use react, vue, or angular as long as it works best for both the client and devs. I'm not saying devs should learn it all, its just that there is a difference between a solution-maker and a one-framework-obsessed solution-maker.
+
+&amp;#x200B;
+
+""For now, I’m choosing React."" Really liked this line from your article.",2.0
+gemc1i3,k6ma6s,What are your thoughts about Angular? I haven't looked at Vue/React,2.0
+gemdrht,k6ma6s,It’s fine! The point is to use what you’re already productive with.,7.0
+gemh27z,k6ma6s,"The nice thing about React is that it’s idiomatic functional JavaScript. When I use it, I don’t feel like my JavaScript skills are eroding. 
+
+Angular is the opposite. Everything is bespoke. If I wrote Angular for five years and Angular disappeared, I suspect I’d be unemployable.",16.0
+geodxq3,k6ma6s,Why would writing Typescript instead of JavaScript make you unemployable?,5.0
+geondoi,k6ma6s,"It’s nothing to do with Typescript. Typescript is just JavaScript with types. Everyone uses TypeScript now. 
+
+I would prefix this by saying that I don’t hate angular. It has its uses, and I do recommend it to clients who have certain specific team structures. 
+
+When I write a React component, I’m writing a function that returns DOM. My application builds is a nested array of simple functions. If I want to pass parameters it’s simple, my component function receives a parameter. Events are the same. I just pass a function as a parameter and we let closure take care of the rest. If I want to iterate over an array, I just Array.map it into a new array of DOM nodes. It’s all plain, transferable TypeScript. The only special pieces are the createNode function that creates the node and the render function that updates the real DOM. 
+
+Contrast this with Angular. A component is a class decorated with the @component decorator. What does @component actually do under the hood? You don’t need to know. It’s specific to Angular, you can’t use it anywhere else. How do I pass parameters? That would be @input and @output. How do I iterate over an array? That would be *ngFor=“let item in items”. If I want to use anything I have to make an angular.module. Why? To take care of singletons and DI. But doesn’t ES6 already have a module system that handles singletons for us by default? Isn’t overriding a service for test as simple as doing as second import in the test file?
+
+None of these skills are transferable. Google has tried to recreate Java in JavaScript and in so doing has built a new GWT. 
+
+React is JavaScripty, it understands the language and uses its features. Angular is Java-ish. It fights JavaScript every step and reimplements core language features like modules to make them fit a classical mindset.
+
+I’m not saying that Angular is bad BTW. I actually recommend it where you have Java coders who want to work on the front end. It does scale quite nicely and it’s welcoming to people coming from a classical language who don’t want to learn functional coding. As a front ender though, It is a dead end for your career.",4.0
+geoo8kq,k6ma6s,"You're just talking about the presentation layer. You still have the entire rest of the application to write, which is all just Typescript. In order to forget how to write that, you'd have to be writing applications that don't actually *do* anything.",4.0
+geoojwk,k6ma6s,Perhaps I should take another look. It’s been a couple of years since I built anything real with it.,1.0
+gepb5uk,k6ma6s,"Idk if I’d go all the way to saying it’s a career killer. In my area the available jobs are almost equal between react and angular, with smaller companies Being more likely to use react and enterprise more likely to use angular.",1.0
+gepf4uo,k6ma6s,"But the point is that when React goes away, I’ll have spent the time writing sensible functional code. When Angular goes away, I’ll have spent the time writing framework specific templates and decorators. 
+
+React is a simple library for DOM manipulation. Angular is a complete framework. 
+
+I’m not saying Angular is bad, but it doesn’t lead anywhere. If I learn the Angular animation framework for example, I can’t transfer those skills to another framework later. 
+
+This is fine for backend devs who just want to follow a recipe and get some work done, but it’s not a great choice if you plan on specialising in the front end long term. It’s similar to the people who spent time learning Silverlight.",2.0
+gen2x3s,k6ma6s,"This! React is just JavaScript, JSX is just calling functions, it's always been so clear to me. I hate all the template binding magic of other frameworks. Yes react does have plenty of its own complexity but it I've always found its something I was doing or didn't understand rather than the framework doing something weird that I didn't understand, I know which way round I prefer that",7.0
+geo36ss,k6ma6s,"Jsx is calling functions but only after transpiled. That's not the code the everyday react dev writes. And by adding hooks and discourage classes React got farther from ""just javascript"".",2.0
+geodwyo,k6ma6s,,
+gen3wb0,k6ma6s,"Meh.  I did vanilla JS for years, and I used to think that way.  But I'm restless, contrarian, and arrogant, so I picked Angular, because it was hard, and when it started clicking, I was like ""Ooohh!  So *that's* what all that fancy OOP junk is for.  Wow.""",0.0
+genejm9,k6ma6s,"You consider yourself a contrarian yet pick one of the most ubiquitous monolithic front end frameworks of the last 10 years, made by one of the biggest companies in the world. Super edgy!",12.0
+geonaho,k6ma6s,,
+geob2fk,k6ma6s,"Angular is just JavaScript for the most part these days, all the library crap like custom for loops etc, from AngularJS are long gone. 
+
+It's main separator from others is the DI and class decorators.
+
+I work on a lot of big data / logistics applications these days, and wasn't super sold in going back to angular. but I realize now that a combination like angular + material + formly are actually pretty good for that type of project.
+
+Don't have to make too many ongoing tech decisions and can focus on the hard integrations and math + management and recruiting of large remote teams a lot easier. Finding slightly more senior dev's in the market is easier too.
+
+In saying that angular has a whole host of other issues mainly around the kitchen sick bloat of being around a long time. But writing nice functional components in plain JavaScript is very doable these days.",3.0
+geoqz6s,k6ma6s,"I do agree it has applications, and when recommending a framework I take account of team structure and ease of hiring. If you have a bunch of Java devs and you want them to work on the Front End, a classical framework like Angular is a good idea. 
+
+It’s also quite friendly for juniors since all the decisions are already made. It’s much more recipe based. 
+
+I’m not sure about the ease of hiring thing. I’ve always found it harder to find decent front end devs who want to work with Angular. 
+
+Don’t you still have *ngFor=“item in items”?",2.0
+gemj79n,k6ma6s,"This is why I chose Vue. You get the full view ecosystem out of the box. No need to cherry pick bundles, file loaders, state managers etc. You can pick well known cocktails in the React world and keep them with medium to low hassle - which I have done, but to just lean on Vue CLI is really hassle free.",2.0
+gemwdy3,k6ma6s,"I wonder if server-generated HTML was ever considered. I also have an issue with how bulky SPA's are. But once you decided you're going to build an SPA, React itself is fine. Just avoid tools that install everything and the kitchen sink like create-react-app and it's all pretty lightweight. Not as lightweight as server-rendered HTML, but, you know...",2.0
+gemwk0e,k6ma6s,"It’s a browser-based graphics editor, so no — it has to be a SPA.",3.0
+gemxwc8,k6ma6s,Fair enough!,1.0
+genvqsz,k6ma6s,This is the first I've heard of create-react-app bloat vs DIY webpack. What bloat does CRA add?,1.0
+geo2ukb,k6ma6s,"Not just but all the shiny toys that devs think they need and while they may have their use case, it's not for every project. Not every app needs form validation, or LESS or SASS.",1.0
+gelvbr4,k6ma6s,"Worked on angularJs for 2 years, recently switched to react and the best thing about it is.... react redux",2.0
+gelxgix,k6ma6s,NgRx,8.0
+gemshko,k6ma6s,redux toolkit,2.0
+gepb9oj,k6ma6s,Akita,1.0
+gemf5tr,k6ma6s,"I also came from AngularJS (never got a chance to upgrade to Angular ;). If you're using Typescript, the best thing for me is typesafe templates! Writing karma tests to make sure you have the right variable name in your html template is painful, but it's the place that would break most often.",3.0
+gemyyd2,k6ma6s,"Angular/angularJs is the dementors of the web. It sucks all joy and happiness away, leaving the developer cold and soulless.",0.0
+gem5xiz,k6ma6s,"Thank you, glad to hear that!
+
+Just in case you haven't seen it, make sure you're using our official Redux Toolkit package, which is our recommended approach for writing Redux logic :
+
+https://redux-toolkit.js.org
+
+https://redux.js.org/tutorials/fundamentals/part-8-modern-redux",7.0
+gempl5m,k6ma6s,Really? Why do you like it? I'm not a fan of Redux at all. I avoid is as much as possible.,4.0
+gemeoqw,k6ma6s,Not too many people are fans of redux.,2.0
+genzxjn,k6ma6s,"Interesting! The most challenging thing about react for me is React Redux! It's a huge mess of boilerplate, and until React hooks came in, made me hate React.
+
+I have minor experience with AngularJS (Pro-Vue here), what makes you like React Redux?",1.0
+geo5t9d,k6ma6s,"What specific aspects of Redux are you concerned about?
+
+Please note that ""modern Redux"" code is very different than what most older tutorials show. We've introduced newer APIs like Redux Toolkit, which is a set of utilities that provide a light abstraction to simplify the most common Redux tasks, and the React-Redux hooks API, which is generally easier to use than the traditional `connect` API.
+
+I strongly recommend reading through the newly rewritten official tutorials in the Redux docs, which have been specifically designed to teach you how Redux works and show our recommended practices:
+
+- [""Redux Essentials"" tutorial](https://redux.js.org/tutorials/essentials/part-1-overview-concepts): teaches ""how to use Redux, the right way"", by building a real-world app using Redux Toolkit
+- [""Redux Fundamentals"" tutorial](https://redux.js.org/tutorials/fundamentals/part-1-overview): teaches ""how Redux works, from the bottom up"", by showing how to write Redux code by hand and why standard usage patterns exist, and how Redux Toolkit simplifies those patterns
+
+The older patterns shown in almost all other tutorials on the internet are still valid, but not how we recommend writing Redux code today.
+
+You should also read through the [Redux ""Style Guide"" docs page](https://redux.js.org/style-guide/style-guide), which explains our recommended patterns and best practices.  Following those will result in better and more maintainable Redux apps.",1.0
+gemr62m,k6ma6s,Redux is one of the worst parts about modern react. The only thing worse is material UI.,-2.0
+gems590,k6ma6s,"I agree with the sentiment, but can't but feel he tried and forced react patterns on other view libs.",1.0
+gentgac,k6ma6s,"You could use react for the menu system where framerate isn't that important and use the vanilla JavaScript for the canvas for graphics.
+
+Idk, when you say graphics editor I think of something like photoshop or gimp. You're going.to have a canvas in those situations and react really isn't the right tool for a canvas anyways. The whole menu system and control panels however would be great for react.",1.0
+geofwxc,k6ma6s,"TBH, I want to use svelte for everything, but I'm too dependent on react-query, react-hook-form, react-virtual and the countless list of other react-\* tools to switch right now, and on top of that - the react ecosystem embraces typescript 100% - svelte and vue are both playing catchup on this front.",1.0
+geollob,k6ma6s,Why do people dislike react?,1.0
+gelsw9i,k6ma6s,"I don't doubt Reactjs is a good framework, but it's definitely not the best.  I used to use Angular often now I am a Vue guy.",-4.0
+gelug3h,k6ma6s,"There is no ""best"" framework - they each have different strengths and weaknesses.",17.0
+gelvpaw,k6ma6s,"Bes for ""me"", everyone has a different opinion",0.0
+gelvyuw,k6ma6s,"It's not about personal opinion, there are strengths and weaknesses for each framework need on the project. Eg. The primary benefit of React is that you can easily hire developers who either know it or want to",2.0
+gem0oze,k6ma6s,,
+gen28ga,k6ma6s,"Look, as long as we can all agree that Angular is over-engineered, overly-complex, hot garbage, then I'm cool with it.
+
+(I have to use Angular at work and I really do find it to be the worst of the major options, but I'm kidding here, to the extent that I'm not actually looking for everyone to agree - use what you want, I don't need everyone to see things the same as me, and I'm certainly not going to fight about it)",0.0
+geo2h5d,k6ma6s,"The moment I saw what the code of a fresh off the cli scaffolded Angular 2 project looked like, I walked away and never looked back.",1.0
+gelqz96,k6ma6s,"I've had some really weird performance issues with React with no obvious way to resolve them. Rewrote in vanilla JS, got 100x rendering speed improvement.
+
+I love React, but it's got problems.",-6.0
+gem1b3j,k6ma6s,"Angular JS had CPU problems because of the digest cycle. They cleaned that up a bit with Angular 2+. React has a RAM cycle issue because of the VDOM and the immutable state tracking. Most React setups, off the bat, doesn't scale well for deep trees, or lots and lots of data. 
+
+In mostly any framework, the more complex your data gets, the more you have to fine tune it. At a certain point, you're better off with skipping the framework and working with vanilla JS. It's not for beginners though, but luckily React fills most architectural needs.",5.0
+gem7ip4,k6ma6s,You have to be real careful about rerenders. It’s pretty awful and easy to do.,1.0
+gemvyaf,k6ma6s,Nope. I fired someone for choosing react.  It was the wrong choice for backup software and now our backups don’t work but look pretty.,-1.0
+genja6f,k6ma6s,"Wouldn't react just be on the front end, I assume the back-end that does that actual back-up heavy lifting wouldn't have any  knowledge of react?  To me react would be as good a front-end as any, if it's just consuming a REST API, right?",2.0
+genm7oy,k6ma6s,In this case no but I was mostly joking. People stay on my team for generally 15 years and only leave when they retire.,2.0
+gelrlcr,k6ma6s,,
+gem5kml,k6lwcp,"Neat. It says “show-off there skills,” it should be “show off their skills.” I’m not saying that to be a know-it-all; it helps your credibility to not have these typos there.",2.0
+gelrl2o,k6lrc0,Eich's crazy mutant baby of a language has grown up and taken over the world!,1.0
+gelsgnb,k6lrc0,I wish I lived in the word where Scheme won,1.0
+gelkidr,k6i3gr,"const compile = (code) =&gt; code;
+
+That's what I understood.",52.0
+gemjkbm,k6i3gr,Same,1.0
+gelmrkj,k6i3gr,eval(javascript),38.0
+gelol4w,k6i3gr,"This is cool but is there a bug in the live demo? It seems to be running modern JavaScript. I can enter this and it'll run:
+
+    let hello = () =&gt; {
+      print('hello mocha!!!')
+    }
+    hello()
+
+EDIT: Actually no bug. See explanations below. This is indeed 1995 JavaScript. It was ignoring the parse errors and evaluating the print statement as if it wasn't even in a function.",7.0
+gen4dip,k6i3gr,"open the dev tools to see what's really going on, it's basically screaming in pain the whole time but refusing to give up so it ends up finding the print() statement and running it anyway.
+
+some evidence it's actually running pre-spec javascript:
+
+    function hello() {
+      print('hello mocha!')
+    }
+    hello()
+    delete hello
+    hello()
+
+will not choke on the `delete` statement, but the second `hello()` call fails with `mocha_shell_wasm.html:1 Mocha: line 5: hello is not a function`",6.0
+gelp9re,k6i3gr,"I was able to get this to work:
+
+```
+(&gt;&lt;/#;ehbz\π÷ ✓n print(""tset"")
+```
+
+Try removing the call to hello, it seems like it's ignoring stuff.",3.0
+gem0og4,k6i3gr,"So it’s all JavaScript?
+
+🔫 Always has been",18.0
+genv7sa,k6i3gr,*ActiveX has entered the chat*,2.0
+gel90yz,k6i3gr,"This is awesome, and to see the work from 1995 come alive shows the quality of engineering by Eich.",10.0
+gel65gb,k6i3gr,"Very interesting indeed! I did a live conversion of the LUA interpreter to WASM when demonstrating the compiler capabilities, found it super easy at the time (~1 year ago).",4.0
+gelthb3,k6i3gr," &gt;The original Mocha used Makefile for the build system, but it clearly doesn't work anymore on today's OS platform
+
+Eh, what?!? Makefiles *do* still work, duh, if you have make, although the command lines that it runs probably will have to be fixed.
+
+&gt;that was the era when MacOS was still using PPC processors!
+
+That tidbit is totally irrelevant with regard to make, and again, can only influence the exact compiler commands make needs to run.",-10.0
+gelyvb7,k6i3gr,"&gt; the command lines that it runs probably will have to be fixed
+
+&gt;can only influence the exact compiler commands make needs to run
+
+This is clearly what the author was saying, you're just defensive",7.0
+gemdiic,k6i3gr,"The fact that a computer is or isn't running on a powerpc cpu has nothing to do with how a makefile works. Those are orthogonal concepts.
+
+These days Linux can be built both on a Raspberry Pi, and on a PC. The differences between these platforms are far more different than that.",-2.0
+gemgzwx,k6i3gr,"Yeah, those are two modern platforms compling a project currently maintained for modern platforms. The makefile is still linking files and compiling for PPC targets, then it won't work. Hence, the makefile clearly doesn't work. They aren't magic. I'm guessing a Raspberry Pi can't compile Linux circa 1992",2.0
+genu7gi,k6i3gr,"Yes, the `make` tool definitely works today, I just mean that the original makefile config in 1995 doesn't work on my Mac now...",2.0
+gemnh71,k6hjwp,"Hi reddit js community!
+
+I'm the author of that project and I'm really keen to know your opinion about that tool:
+
+\- do you find it useful?
+
+\- what do you think could be improved? What features are missing?
+
+&amp;#x200B;
+
+My ideas for the next charts: 
+
+* build size (raw/minified/gzipped) 
+* contributors
+* usage statistics  (share of sites that use the library) 
+* vacancies per technology 
+* salaries per technology 
+* licenses 
+* make use of stateofjs survey
+
+If you are curious about the tech stack: Vercel, Vue, Tailwind, Fauna (database)
+
+&amp;#x200B;
+
+Alexey",1.0
+gejs84b,k69yg0,"Functional, with just a hint of pettiness. I like it!",54.0
+gekbg8y,k69yg0,lmao love it,6.0
+gejzqf4,k69yg0,Unless they changed something you will quickly hit an API limit. Tried this like 5 months ago and they locked my account for a few hours.,37.0
+gekp361,k69yg0,until now it working fine without your account got locked and you can use filter to delete month by month,9.0
+gek11au,k69yg0,That's not using an API.  It's literally clicking buttons on a rendered page...,-26.0
+gek67n7,k69yg0,Well. I mean. Pressing the button is using an API.,68.0
+gekw87s,k69yg0,With a precise 1 second interval. Kind of fishy if you're a backend.,6.0
+geledyp,k69yg0,I doubt they're running analytics on the precise frequency with which your account hits API calls.,2.0
+gelet3u,k69yg0,"I think they do actually! Facebook has quite a problem with bots, so I assume they try every tactic possible to limit the amount of bots. / scripts to be ran on site.",7.0
+gelinkj,k69yg0,Why wouldn't they? I think you'd be surprised at the range of data points they're collecting.,2.0
+gekhtyt,k69yg0,"The button sends a POST request to /api/graphql.
+
+So yes, that is using an API.",17.0
+gekkhyo,k69yg0,"I love the comments. “Facebook, you little bitch.”",16.0
+gek65cr,k69yg0,share this w r/privacy i’m sure they’ll appreciate it,18.0
+gekpbu8,k69yg0,You think they use Facebook?,36.0
+gen6wgh,k69yg0,Lmao man true that,1.0
+genl0pm,k69yg0,"Many do as a necessary evil.  I hate Facebook, but due to work and business I need to have it as a communication tool unfortunately.",1.0
+gel8tei,k69yg0,"But surely Facebook doesn't remove the like from its database, it just soft deletes it.",8.0
+gel9a42,k69yg0,"That surely is the case. And even if they delete the likes, I'm pretty sure they have other databases that keep track of people's preferences and interests.",5.0
+gemo2vu,k69yg0,"&gt; I'm pretty sure
+
+100%",3.0
+gek685t,k69yg0,Here is an idea to build upon this. Create an algorithm/neural net to go on fb for you (as you) and then just behave in the most erratic and *random way possible. If enough people get on board that train it will screw up facebook's algorithms. The hardest part of this scheme is getting people to willingly use it.,24.0
+gekhvv1,k69yg0,I've absolutely considered doing this to make my profile useless. Only problem is that there's 14 years of real activity that I can't erase.,9.0
+gelits6,k69yg0,Have your real activity blend into randomness. With any luck they'll just think you're mad and you'll start seeing mental health-related ads. Then you know it's working.,3.0
+gekx5x3,k69yg0,what's real activity?,1.0
+gelsc10,k69yg0,I think you could describe real activity as consistent usage patterns.,2.0
+gemcoyk,k69yg0,Okk thanks,2.0
+gekq7r4,k69yg0,"You know these viruses that send out messages to your friends and then delete them so that you don't see it? Or share shit to your wall? Do that, but instead of sending out malicious links, just implement your plan.",4.0
+gelbdt6,k69yg0,Sounds like the plot of The Feed,2.0
+gell25l,k69yg0,Just delete FB from your life,3.0
+gel2u2u,k69yg0,Or just delete your Facebook,5.0
+gel9ovf,k69yg0,Or never have one in the first place...,4.0
+gekz3dv,k69yg0,"I used this in the past, works really well: https://github.com/marcelja/facebook-delete",2.0
+gekzhkk,k69yg0,Man it a very nice program if it is still working you need to post it,2.0
+gek2buh,k69yg0,"Why not just delete your account?   If you are concerned enough about a platform to go to this length...just delete it all.
+
+I finally did it after their refusal to ban Bannon and it feels good.",4.0
+gekp5pr,k69yg0,sometime you just need to delete your old likes,9.0
+gekpdxu,k69yg0,Because I'll lose a way to talk to my friends.,0.0
+gelb7hx,k69yg0,"Two soloutions here:
+1. get rid of friends using facebook
+2. get rid of friends",1.0
+gencc0u,k69yg0,The goal is to keep those friends so the proposal isn't a solution.,1.0

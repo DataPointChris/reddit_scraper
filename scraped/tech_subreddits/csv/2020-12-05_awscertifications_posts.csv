@@ -1,0 +1,220 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k7aptn,First AWS certificate to take,"I am planning my journey to take on the AWS SysOps Associate certification (first ever one I am doing). As a starting point for learning  material and practice exam papers , what do you guys recommend I should look in to. 
+
+Am not sure if this would be the correct certification  for me as my interest is within the field of DevOps and the learning path suggests I should take the sysops certification first before taking the DevOps one. 
+
+I currently test code before having it released which involves me monitoring and debugging applications that are deployed via AWS Codepipeline",2,awscertifications,2020-12-05
+k7ant0,Practice Exams | AWS Certified Developer Associate 2021 by Stephane Maarek &amp; Abhishek Singh,"I got my DVA exam coming up next week and I have already completed Jon Bonso's : AWS Certified Developer Associate Practice Exams which was fucking excellent btw. Now I still got another week to go so I thought it would be a good idea to buy Stephane's exam course and ...
+
+Wow, just Wow!!! 
+
+I completed two sets of questions from the above mentioned course on Udemy and I have to say that I'm totally SHOCKED! 
+
+Totally SHOCKED, I tell you...!!!
+
+It is obvious to me that Stephane had no hand in compiling these bizarre questions and I'm really disappointed that he had the good mind to affix his exceptional reputation on to this rubbish. Just to make a fast buck I assume... Really sad.
+
+The level of English grammar of these questions are so bad that even my six year old niece could outclass this baloney. The wrong prepositions and long-winded sentence structure, totally befuddles what the questions are attempting to ask. Not only this, but most of the questions are either asking about some general trival concept or some obscure factoid that is totally out of scope from the Associate Developer curriculum.
+
+Stephane should stop trying to turn a fast-one and focus on the high level of content that we expect from him. 
+
+I'm now going to give the exam prep course of Neal Davis a try.",2,awscertifications,2020-12-05
+k7acpj,PSI Online Proctored exam experiences,"Hi All,
+
+&amp;#x200B;
+
+Anybody took PSI online proctored exam remotely ? Can you share your experiences ? I am from India and scheduled SAA-C02 exam next week. Is there anything important that i need to be aware of ?",2,awscertifications,2020-12-05
+k73vll,Will new features announced from AWS re:Invent affect the exams?,I plan to take the DVA-C01 in a couple weeks and I can already imagine questions that will be affected by new announcements like the per-ms billing for Lambda or S3 Intelligent Tiering support for Glacier and Glacier Deep.,11,awscertifications,2020-12-05
+k71xrq,🦄The saga continues 12/8 at 1pm EST - AWS GameDay @ re:Invent 2020🦄,"Preparing for a cert? Come learn AWS hands-on and risk-free, network with other tech professionals, and have some fun! The Unicorn Polo League returns live to Twitch on Tuesday, 12/8 at 1pm EST. Claim your spot from the re:Invent [GameDay Site](https://virtual.awsevents.com/channel/GameDay/186983893?nc2=reinv20_m_hocgd) beginning 1 hour prior. Review this [FAQ](https://d1.awsstatic.com/events/AWS%20reInvent%202020%20GameDay%20FAQ.pdf) and see below for some more pointers. Additional video content is available at the GameDay site as well which will help you navigate the event. We are excited to see you there, and find out if you have what it takes to outdo the winners from the Asia-Pacific event last week!
+
+**Know-Before-You-Go**
+
+* Event is free, we will provide your team with an AWS account to work in
+* You need an Amazon.com account to complete a brief registration process and log in
+* We will be streaming live on [Twitch](https://www.twitch.tv/awsgameday), with an internal team playing along with customers and sharing tips and strategy. You'll also have the chance to meet the game developers in exclusive interviews.
+* No pre-registration
+* No pre-formed teams, we'll assign you to a team of 4 after you log in
+* First come, first served
+
+https://preview.redd.it/8l1vfjdm0b361.png?width=3200&amp;format=png&amp;auto=webp&amp;s=cfd59cca80c77c064a3f001d2b498aa850d21ba7",5,awscertifications,2020-12-05
+k7067i,About to buy and schedule for AWS CPP . Any difference or advantage between using PCI or Pearson Vue?,FYI ! I will take it home regardless vs a test site.,1,awscertifications,2020-12-05
+k6ympt,Nervous about CCP,"Hi. I am looking to take my CCP soon. I have been doing the training from Udemy by Neal (digital cloud training). I can take all 5 practice tests and pass with over 90%, but I am extremely nervous the questions won’t match or will be completely different. 
+
+Anyone have experience with the udemy course by Neal with digital cloud training? If so, we’re the exam questions similar. 
+
+Thanks!",1,awscertifications,2020-12-05
+k6v471,Failed SAA-CO2 Because of Pearson VUE wasting time,"Took my test today online through Pearson VUE, my session was passed around to 5 different people who all took forever to type and made me show my desk and monitors over and over, while each person demanded a different camera angle. This caused me to lose about 20+ minutes total in time. Now I have to wait 14 days. Is there anyway I can contest this and ask for an immediate retest? If so, who do I contact?",2,awscertifications,2020-12-05
+k6u7fu,Passed CLF-C01,"Started studying on November 28, 2020 by taking the introductory Cloud Practitioner Essential Course provided by AWS. Exam was on Dec 2, 2020 (wanted to schedule it earlier, but didn't find an earlier spot).
+
+To summarize:
+
+* 4 days of studying (exam was on very early morning)
+
+* Half-assed the 2nd half of the introductory Cloud Practitioner Essential by skimming most of the text (I know, reading is hard)
+
+* Completed the exam itself in 20 minutes
+
+* Passed with a 920 / 1000
+
+
+My background:
+
+I had 0 prior AWS experience. Used Bonso tests for prep.
+
+Exam feedback
+
+* Rather confusing and much more difficult than any of AWS's training materials. Rote memorize all of the services and know your stuff! You definitely cannot half ass this one.",3,awscertifications,2020-12-05
+k6qe96,Seeking advice: Passed SAA-C02 but have no commercial experience,"Hi
+
+I am new to the IT space, having recently decided to change careers from a metallurgist in the oil and gas industry. I graduated in Physics and Computer science more than 10 years ago and have done little to nothing related to computing.
+
+Due to the downturn, I decided to look at the cloud and I successfully passed the AWS SAA-C02 Solutions Architect Associate course after 3 months of studying. I am having trouble landing my first job and having looked at junior roles, all of them require at least 3 years of experience in the industry as well as working knowledge of other technologies - Docker, Kubernetes, Python etc etc.  
+
+I am now in this horrible place where I am being overlooked for junior roles because I do not have any experience, and to gain experience I need a job.
+
+Anyone else had the same issue and what advice can you give to a 40 year old who is changing careers? Any advice most welcome.",10,awscertifications,2020-12-05
+k6p4nf,AWS Certs and Career Advice,"Hi Guys,
+
+I need some career advice, here is some info about me
+
+So currently I am 4x AWS Certified, having done the following in the past 5 months:
+
+\- AWS Cloud Practitioner
+
+\- AWS Solutions Architect - Associate
+
+\- AWS SysOps Admin - Associate
+
+\- AWS Developer - Associate (Perfect Score of 1,000)
+
+I am currently studying for DevOps Pro and plan to clear it in January.
+
+I am an accountant, switching careers and trying to make it into DevOps.
+
+For this I have been studying for almost 2 years.  
+
+
+Initial Plan was to get into Full Stack (React / Node.js) Development but seeing the market saturation, I decided to get AWS certified and try DevOps.
+
+For Front-end I know:
+
+HTML / CSS (Grid / Flexbox) / JS (ES10), Typescript, React (Router, Styled Components, Redux, Cotext API)
+
+Back-end I know:
+
+Node.js (Express), Building REST API, JWT Tokens, SQL (PostgreSQL), MongoDB
+
+(I built a small e-commerce website using this, along with Stripe API integration - adapted from a course I was following learning this. There are other small projects as well).  
+
+
+But seeing the poor market response, I decided to learn more about DevOps. This is when I started doing AWS and fell in love with the platform, and the power it offers.
+
+I am focusing on AWS right now. But to be able to pass these papers quickly I built up my background knowledge. I followed COMPTIA's A+ 1&amp;2, Network+, and LPIC 1 &amp; 2 for some Linux knowledge, but did not appear in the cert exams for these courses.  
+
+
+Furthermore I plan to learn Python (I know basics already), Terraform, Kubernetes (Maybe get my CKAD) and Ansible.  
+
+
+I heard that AWS certifications are really valuable and some firms require people who have Professional Certs. That is why I am doing DevOps Pro.  
+
+
+Am I doing on the right path. Is there some career advice you guys can give on how I can get my first break? Will I be able to get a job if I have done these? I plan to finish all of this by Feb 2021 and get into full job hunt mode.  
+
+
+I am feeling a but lost now, any advice would be appreciated.  
+
+
+TLDR: Was an accountant, zero tech experience, started learning Fullstack JS, got interested in DevOps and started learning AWS, did all of the above, what do I need to do to get into DevOps?",7,awscertifications,2020-12-05
+k6o9l3,CCP Passed,"Hey guys
+
+Just wanted to share my experience for those interested in CCP
+
+2 weeks intense study just followed Stephan’s udemy course along with his udemy exams
+
+Thanks to my over 10 years of IT experience I managed to pass but if you’re planning to rely on purely on Stephan I’d say the real exam is way more difficult so you may want to add some variety if your level of experience is not that sufficient 
+
+Also few words on proctor based test, can tell the worst experience I’ve ever seen, waited in the checkin page around 1 hour watching my live stream then contacted their online chat on my mobile phone browser finally someone called and asked me to restart my pc then it went smooth so try to make those pages available in the browser background 
+
+Good luck",12,awscertifications,2020-12-05
+k6l0on,Passed DVA-C01 with 937,"Follow up to my first post here: https://www.reddit.com/r/AWSCertifications/comments/jrnczi/passed_saac02_with_802/
+
+Started studying 8/8/20, passed the test 12/4/20. After ~4 months.
+
+Took my test the morning of 11/3/20 in person through a Pearson VUE site and got my score back the next day. Passed with an 937. I was a lot more confident with my test this time around, I flagged 23 questions for review and my logic was that if I got those down a 50/50 guess then I would still pass so I didn't review any.
+
+**My background:** 
+
+I had 0 prior AWS experience outside of a basic project consisting of an EC2 instance and RDS database. Company needed someone with AWS experience so I started learning. Started with the Developer course and upon finishing that I needed to work on some system architecture stuff for work so I switched over to the Solutions Architect course and went through the non-overlapping sections. Decided to do the SAA exam first and then did the DVA exam after.
+
+I used the Maarek courses and Bonso tests for prep. 
+
+**My prep was as follows:**
+
+* Maarek Developer Associate course between 8/8/20-9/18/20
+* Maarek Solutions Architect Associate course between 9/22/20-10/11/20 
+* Bonso SAA tests between 10/17/20-11/9/20
+* Maarek test and supplemental 11/2/20
+* Bonso DVA tests between 11/14/20-12/2/20
+* Maarek test 11/29/20 and 12/2/20
+
+
+I used the same general strategy as with SAA where I took a test, reviewed what was incorrect or flagged for review. This time I did a slower approach because there were less available tests and would do a test one day and a study session the next day. I saved Test 4 and Maarek's test as validation tests. I panicked because I failed both validation tests leading to a pretty anxious/grindy test week but I will touch upon that in a post mortem later.
+I tracked my scores:
+
+| Bonso Tests                    |          |          |          |   |
+|--------------------------------|----------|----------|----------|---|
+| Diagnostic Test (10 Questions) | 11/14/20 | 11/20/20 | 11/30/20 |   |
+|                                |      50% |      80% |     100% |   |
+| Test 1                         | 11/14/20 | 11/20/20 | 11/29/20 |   |
+|                                |      61% |      84% |      89% |   |
+| Test 2                         | 11/16/20 | 11/23/20 | 11/30/20 |   |
+|                                |      70% |      87% |      89% |   |
+| Test 3                         | 11/18/20 | 11/25/20 | 11/30/20 |   |
+|                                |      78% |      96% |      95% |   |
+| Test 4                         | 11/27/20 |  12/1/20 |          |   |
+|                                |      70% |     100% |          |   |
+| Maarek Test                    | 11/29/20 |  12/2/20 |          |   |
+|                       |      66% |      86% |          |   |
+
+
+So I think the practice tests for this exam are a bit off compared to the amazing coverage with the SAA exams. They serve as great study material but are not true to the format of the exam. The questions in the real exam were a lot less wordy with most prompts being 2-3 sentences rather than the SAA test where they would have a whole paragraph. This made the test a lot easier to get through and a lot less mentally taxing. In addition, it felt like the DVA exam did not have as many tricky questions compared to SAA where to get the answer right you often have to pick between 2 very similar answers.
+
+I am happy to be done taking exams and courses for a bit. This was a nice throwback to college but reminded me how much I hated having an exam looming in the future. My future will be more building with AWS for work and maybe starting a SAP course that is more project based sometime early next year.
+
+Thanks to everyone here, you guys provided a nice sense of community over the past months.",30,awscertifications,2020-12-05
+k6eoja,Is there currently any way to get a free exam voucher?,Particularly for the Cloud Practitioner exam?,2,awscertifications,2020-12-05
+k6efbo,"SEX!, now that I have your attention, this is just a GENERAL QUESTION!","Hi all,
+
+A friend working in the tech industry has recommended to me multiple times to get an AWS certification.
+
+Since I'm taking prereq's to return to college for computer science degree I thought ""What's another few courses?""
+
+I didn't see any wiki or FAQ for this subreddit so that's the purpose of this post.
+
+I could have done more research but between a full time job, college and a baby I thought I'd ask you fine folk instead.
+
+A quick google search for cloud related positions returns the similar results as looking for entry level programming jobs. In short, it seems like a ""gold rush"" scenario, where there doesn't seem to be many (any) entry level jobs but instead a plethora of teaching or faceless recruiter related positions (what I'd consider to be ""leeches"").
+
+So where are the opportunities!? Not necessarily looking for straight entry level but what should I be keeping an eye out for?
+
+Thanks in advance for any informed replies.",0,awscertifications,2020-12-05
+k6dagq,Does the AWS CPP hold Major weight over AWS SAA for employers and if anyone have taken both how vast is the difficulty between the two? I'm aiming to have one before Xmas. Also I am not a heavy online learner so are there any recommendations via book vs these online camps?,FYI! I acquired my Sec + July 2020  and landed my first I.T job September. I start a new job the 21st of Dec as a Field Technician II  or Customer Engineer. Not much actual work experience with security or the cloud prior but I am trying to diverse my portfolio to cross that 6 figure bracket by end of 2021 if Covid 19 don't take over the world.,4,awscertifications,2020-12-05
+k68z4i,"Looking to become a Cloud Engineer or a Solutions Architect? Free AWS, one hour live hands-on training and mentoring session on Sundays",,0,awscertifications,2020-12-05
+k6831x,CERTIFICATION,Hey guys I recently got my ccna and now I’m trying to get into aws what would you guys recommend as a good starting point,4,awscertifications,2020-12-05
+k63kzv,Did not receive the confirmation email after exam!!!!!,"I gave my AWS ML Specialty exam today and the result showed PASS on the screen, however I still have not received my confirmation email about exam completion. I see that the exam scores will be posted after 5 business days but am I not supposed to be receiving an exam completed confirmation? Anyone faced this issue before?",6,awscertifications,2020-12-05
+k63kcx,Passed the AWS Certified Database Specialty (DBS-C01) exam!,,180,awscertifications,2020-12-05
+k62e73,David Bombal Udemy Course,Has anyone used Dave's course for SAA-C02? Purchased it because it was on sale and I like the other instructors he has.,0,awscertifications,2020-12-05
+k61g4f,Prerequisites for specialty certificates?,"Hello, I'm completely new to AWS and just recently decided to start learning it. I am currently taking a CCP course online to get myself familiar with the cloud industry and what AWS has to offer. 
+
+I am a data analyst by trade and thinking about getting a data analytics specialty certificate from AWS. Has anyone here taken it before? I wonder if I need to go through CCP and SAA before starting the DA specialty? Any tips are welcome. Thanks!",1,awscertifications,2020-12-05
+k60qn2,Passed SAA-C02!,"I opted to take this exam at a nearby testing center after reading a lot of horror stories with proctors, rescheduling, and constant interruption for checking your surroundings. Ended up passing with an 891/1000 after 2-3 months of studying including about 2 weeks of practice exams.  I have been working in tech for about 6 years and have worked in AWS for the last half-year.
+
+Resources:  
+1. Thanks to /u/acantrill over at [learn.cantrill.io](https://learn.cantrill.io) for putting together a great course with a lot of content. Can't say enough about how thorough he is.    
+1a. I previously had ACG but didn't like the quality and how shallow the info was - may have been great for taking the C01 exam in the past but I don't think there is enough for passing the C02.
+
+2. Practice exams were great from /u/jon-bonso-tdojo at [tutorialsdojo.com](https://tutorialsdojo.com/). The format was similar to what I saw on the exam and think the difficulty was similar.
+
+Next stop is one of the other associate exams.",21,awscertifications,2020-12-05
+k5x2t9,10 VPC,,0,awscertifications,2020-12-05
+k5wo76,How to prepare for Cloud practitioners exams,"I’m thinking to do this exams, I’m just new or you can say beginner no experience nothing, where i can study and prepare for exams?",18,awscertifications,2020-12-05

@@ -1,0 +1,126 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k7ao3w,Spark developers - please participate in a survey,"I'm a PhD student, working on [code quality](https://arxiv.org/pdf/2007.10912.pdf) and its [improvement](https://www.cs.huji.ac.il/~feit/papers/Refactor19PROMISE.pdf).
+
+I'm conducting a survey on motivation and its outcomes in software development.
+
+If you contributed to [Spark](https://github.com/apache/spark) as a developer in the last 12 months , we ask for your help by answering questions about your contribution and motivation.
+
+Answering [these questions](https://huji.az1.qualtrics.com/jfe/form/SV_73wu35ICXBWm07j) is estimated to take about 10 minutes of your time.
+
+Three of the participants will receive a 50$ gift card.
+
+PS.
+
+This message is for [Spark](https://github.com/apache/spark) developers.
+
+However, if you contribute to other project we will be happy if you'll answer too.",0,apachespark,2020-12-05
+k6oqbe,APACHE SPARK: THE DEFINITIVE GUIDE,"**What is Spark?**
+
+Spark is a scalable, open-source big data processing engine designed for fast and flexible analysis of large datasets (big data). Developed in 2009 at UC Berkeley’s AMPLab, Spark was open-sourced in March 2010 and submitted to the Apache Software Foundation in 2013, where it quickly became a top-level project.
+
+Until Spark came along, machine learning was not practically scalable and took too long. Spark accommodates multiple languages. Two of the most significant benefits of Spark are its scalability and speed of processing. Spark supports multiple languages such as Scala, PySpark, R, and SQL. It provides many configuration parameters that allow you to optimize the Spark Application.
+
+Spark consists of a single driver and multiple executors. Spark can be configured to have a single executor or as many as you need to process the application. Spark supports autoscaling, and you can configure a minimum and maximum number of executors.
+
+[**Click here to learn some of the best practices for optimizing Spark in the Qubole environment.**](https://www.qubole.com/blog/an-introduction-to-apache-spark-optimization-in-qubole/)
+
+## Key Components of Apache Spark
+
+**Spark Core:** The general execution engine of the Spark platform, Spark Core contains various components for functions such as task scheduling, memory management, fault recovery, etc. Spark’s API that defines Resilient Distributed Datasets (RDDs) also resides in Spark Core. Thanks to RDDs—Spark can draw on Hadoop clusters for stored data and process that data in-memory at unprecedented speeds, allowing data to be explored interactively in real-time.
+
+**Spark SQL:** Big data consists of structured and unstructured data, each of which is queried differently. Spark SQL provides an SQL interface to Spark that allows developers to co-mingle SQL queries of structured data with the programmatic manipulations of unstructured data supported by RDDs, all within a single application. This ability to combine SQL with complex analytics makes Spark SQL a powerful open-source tool for the data warehouse.
+
+**GraphX:** Also found in Spark’s integrated framework is GraphX, a library of common graph algorithms and operators for manipulating graphs and performing graph-parallel computations. Extending the Spark RDD and API, GraphX allows users to create directed graphs with arbitrary properties attached to each vertex and edge. GraphX is best used for analytics on static graphs, such as Facebook’s Friend Graph, that uncover social network connection patterns.
+
+Read full guide about [Apache Spark](https://www.qubole.com/apache-spark-the-definitive-guide/)",0,apachespark,2020-12-05
+k6d1ng,Observability for Databricks clusters,,1,apachespark,2020-12-05
+k5lfoy,Question about Spark and Scala Futures or Parallel Collections,"I have some spark etl work I've written right now in scala.   It basically takes some sql from the resources executes them, runs some transformations and loads them into a target table.
+
+&amp;#x200B;
+
+Each sql entry basically becomes a spark-submit task.   I'm in a cloud environment with auto scaling.
+
+&amp;#x200B;
+
+What I've been hoping to do rather unsuccesfully is use Futures  / parallel collections in scala to submit a bunch of these units of work at the same time to run.
+
+&amp;#x200B;
+
+Effectively I want to scale up and use as much of the server resources available, rather than scaling up and scaling down for each spark-submit task.   
+
+&amp;#x200B;
+
+I have found the use of futures and/or parallel collections to be non deterministic and I seem to hit random concurrency errors because Spark itself is parallel processing.
+
+&amp;#x200B;
+
+Has anyone been able to use futures or parallel collections of some kind with spark with any success?     I've seen some stuff around, but I haven't been able to find anything definitive on the correct way to submit multiple dags using futures or parallel collections.",2,apachespark,2020-12-05
+k5fonr,"Video: How to get started with our free, hosted, cross platform Spark UI &amp; Spark History Server. This is but our first milestone towards replacing the Spark UI entirely with new metrics and visualizations. I'd love your feedback :) JY @Data Mechanics",,12,apachespark,2020-12-05
+k4x22z,Databricks community edition is kind of broken,"I used to use a lot of Databricks when we purchased our own clusters and I as a BA only learned the query part. Now that HQ removed those benefits so I have to use the community edition to learn the other parts.
+
+But so far it is a bit frustrating when it comes to the non-query part. There is no easy way to download and manipulate files in the console, you have to use %sh everytime which is PITA. I heard there is a terminal but then the cluster failed to spin up with a persisting ""Network error: Unexpected token &lt; in JSON at position 0"" error.
+
+Basically I only want to wget a 7z file and unzip it into a folder, should be 30 seconds under Linux but with Databricks took me an hour and still couldn't get it done. I'm wondering if anyone could help me with this. Is there an easy way to download files into dbfs and just do it the Linux way? Now I can't create a new cluster, and can't shut down the original cluster because of the Network error. I think it would be better if I just spin up a Linux VM and install Spark from there.",4,apachespark,2020-12-05
+k4wij1,which spark products/tools to use?,"hi everyone, i'm quite new to spark, and there seems to be a million products/tools/infrastructure to choose between. emr or databricks or diy, yarn or kubernetes, i've seen quite a few monitoring tools available as well that seem interesting. how did you choose which product/tool to use? is there a spark product/tool you highly recommend?",8,apachespark,2020-12-05
+k4ov2b,BigQuery support for Data Pipelines,"[BigQuery](https://cloud.google.com/bigquery) is now supported by [Data Pipelines](https://www.datapipelines.com/) so you can do cool things like delivering reports from data stored in BigQuery straight to Google Sheets or any other destination of your choice, without writing a single line of code.
+
+See how it's done here:  
+[https://youtu.be/\_n-LZh\_8kqU](https://youtu.be/_n-LZh_8kqU)",2,apachespark,2020-12-05
+k4nrj5,Big Data Ingestion Options,,2,apachespark,2020-12-05
+k4lspx,Migrating Scala Projects to Spark 3,,3,apachespark,2020-12-05
+k431lj,Automatic configuration tuning for Spark cluster,"If you have been writing Spark applications for a long time, you couldn't help but come across the tuning of its configuration parameters. Now you can do it automatically with a tool that optimizes the cluster resources for you. Made by me for you.
+
+http://spark-configuration.luminousmen.com/",13,apachespark,2020-12-05
+k3g44f,"The 19th edition of the @data_weekly is out. The edition focus on Data Quality @Airbnb, Dynamic Data Testing, @Medium story on how counting is a hard problem, Opinionated view on AWS managed Airflow, Challenges in Deploying ML application.",,3,apachespark,2020-12-05
+k3bc27,Dive into Spark memory,,12,apachespark,2020-12-05
+k2uias,Tips/Resources for Creating a Streaming Pipeline for an ML Platform?,"Hello, I'm just getting into pyspark and am trying to build a streaming project for self-learning purposes. I have already trained a model with pyspark that I would like to utilize in this project. I'm quite new to streaming software and have just started reading about/setting up Kafka, but I am wondering what this subreddit's tips are for creating a basic streaming project. I was originally planning on using mysql with python to stream data into my model, but I have heard that this is not a good idea/not the best approach to take.
+
+I am currently scraping comments from reddit to later use as input into my model. I have a stream setup using [praw](https://praw.readthedocs.io/en/latest/) that simply pulls new comments from certain subreddits, and I would like to make predictions on these comments with my pyspark streaming app. 
+
+To be honest I've been getting bogged down by all of the different streaming services that exist out there, and I am coming to you all for some help on how I can get setup quickly. Any recommendations for what streaming service you recommend for this would be awesome, as well as any tips for getting started to avoid some major headaches. Thanks!",4,apachespark,2020-12-05
+k0u8sl,"Updated book alternatives to ""High Performance Spark""?","Been recently lurking for some books related to performance tuning and tweaks related to Apache Spark, but I've only seen that one related to that topic and it's from 2017, too old when it comes to Spark I think, too many things have changed (and from what I've read it mostly covers RDDs, not much the SQL API side of things).
+
+Any other worthy alternatives out there or I'm better off checking the docs, SO and such?",13,apachespark,2020-12-05
+k0dpw3,Apache Spark Hands on Lab,"Hi,
+
+I have been reading extensively on Apache Spark and have a good understanding and grasp of concepts. However I haven't actually worked on a full scale capacity and haven't really debugged or have written code to optimize my loads. Is there a platform where I can work with clusters online to maybe process data and write partitions, buckets etc.",3,apachespark,2020-12-05
+k0avnm,Data + AI Summit Europe 2020 Highlights,,14,apachespark,2020-12-05
+jzymrk,Spark Setup with Scala and Run in IntelliJ,,6,apachespark,2020-12-05
+jzjnth,Any math task example with solution,Hi spark community. I'm preparing the presentation about spark/databricks at university and want to show some live example. I've decided to pick some of math tasks which can be solved and in result will have some beautiful chart(using databricks) :) Any suggestions? Thanks in advance.,5,apachespark,2020-12-05
+jz50tp,"The 18th edition of data engineering is out. Microsoft’s ML model governance, Google’s MinDiff, Slack’s Airflow migration, Doordash’s scaling ML feature store, Pinterest’s journey from Lambda to Kappa architecture &amp; What is data mesh?",,6,apachespark,2020-12-05
+jywjgt,Errors while using pyspark for neural network training,"This is my current setup Spark version 3.0.1, Java 11. I am running programs in jupyter and using findspark then pyspark.
+
+I am trying to implement a paper titled ""The Parallelization of Back Propagation Neural Network in MapReduce and Spark"". It tries to parallelize NN training by training N smaller networks and having them vote for the answer.
+
+To try this out on a sample network I put all the TensorFlow code into a function, created an rdd from the training data, then mapped the function onto the rdd.
+
+The result should be an rdd of models which I am then evaluating using test data(by mapping with another wrapper function) to get an rdd of accuracies.
+
+Now to display these accuracies I am using rdd.collect()  which is where I am getting issues like ""Py4JNetworkError: An error occurred while trying to connect to the Java server (127.0.0.1:41051)"".
+
+List of fixes I have tried:-
+
+1)Changing java version to Java 8.(This just breaks the whole thing and gives errors like ""Java is not listening"" or ""Cannot deque from empty queue"" and doesnt go back when I change it to 11)
+
+2) I have tested collect in other places. I tried to serialize a small array \[1, 2, 3, 4, 5, 6, 7, 8, 9, 10\] then collect it again. It works fine.
+
+I also tried to run collect on the input training dataset immediately after I ran parallelize on it and it gave the same error.
+
+3) I tried increasing memory  spark.executor.memory  to 12g in config.
+
+I know that spark has inbuilt functions for ml but I do not want to depend on them. I want to be able to parallelize any part of the program I want to.
+
+Please help me fix this. Thank you.",6,apachespark,2020-12-05
+jyftkv,How do people decide how many nodes on AWS to use when running Spark?,"For example,  I am running some tests with the [HiBench benchmark](https://github.com/Intel-bigdata/HiBench) (ML Bayesian) and I am not sure how many nodes I should use to get the fastest performance.  Some specs on this test:
+
+* My input data size is 75 GB.
+* Running on AWS m5.4xlarge instances (16 vCPUs).
+* Running with Spark
+
+Any  tips on what people normally do to select the number of nodes when they  want to maximize performance (but being conscious of costs)?",14,apachespark,2020-12-05
+jy7vf0,"Spark partitions, an explanation",,13,apachespark,2020-12-05
+jx5twt,A step-by-step guide for debugging memory leaks in Spark Applications,,18,apachespark,2020-12-05
+jx1y7l,Question about /tmp,"I am running a spark job in Yarn Client mode, and setting the /tmp path to a local disk which might not be available to all the nodes using java.driver.extraOptions, -Djava.io.tmpdir in the spark submit command. Temporary data is being written here and my job is completing successfuuly, but my question is:  
+
+
+What about the executors? What happens when they cannot access this path? What are my options here? Do I need to set a /tmp alternative which is available to all nodes, driver as well as executors?",2,apachespark,2020-12-05

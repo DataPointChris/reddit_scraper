@@ -1,0 +1,164 @@
+comment_id,post_id,comment,upvotes
+gepsyn1,k7bql3,"Yes, I agree. There is clearly a gap for good DRL courses and DRL books that use tensorflow. I cannot help with the second one, since I use PyTorch, but regarding courses, you should check out the DRL Bootcamp:
+https://youtu.be/qaMdN6LS9rA
+(However, the first 2 or 3 lectures are general RL again)",1
+gepjaoa,k7a6ay,"This is a collection of annotated implementations popular neural network architectures and related algorithms.
+
+Here's the link to Github repo: [**https://github.com/lab-ml**](https://github.com/lab-ml)
+
+We have implementations of
+
+* Transformers
+   * Original transformer
+   * Transformer XL (relative attention)
+   * kNN-LM
+* Recurrent Highway Networks
+* Capsule Networks
+* GANs
+   * MLP GAN
+   * DCGAN
+   * Cycle Gan
+* Sketch RNN
+* Reinforcement Learning algorithms
+   * DQN
+   * PPO",1
+geppjrt,k79lj0,"
+I personally think that (hard) conditional neural networks will be the way to go in the future.
+So basically a way to have neural flow of information and activity be mostly dormant except for the parts of the network that are required for a given output.
+
+This will mirror the sparsity of biological neural networks which also stay silent until needed.
+
+An intuitive explanation would be that one would not think of ones first stuffed animal when solving a differential equation...
+However current ANNs are usually utilizing all their parameters for an output.
+
+Mirroring this biological neural sparsity would massively safe computational cost as well as memory because unused weights could be offloaded to the harddrive while frequently used weight would reside in RAM.
+
+However I am merely a long term hobbyist so take this with a grain of salt.",1
+gepgqm2,k769cn,"That's a demonstration, not a tutorial.
+
+Still, impressive.",1
+gepgrew,k769cn,"Hi that's a demonstration, not a tutorial.
+
+still, impressive., I'm dad.
+
+
+(Contact u/BadDadBotDad for suggestions to improve this bot)",-1
+gepiaow,k769cn,"How do you put those dots so they follow your body movement, like what program is that? Thanks",1
+geoteon,k757xe,"First thing I suggest is looking up Neuralink.
+
+Now for the second thing, not gatekeeping, but you should probably read up on both human biology and deep learning (and possibly computer memory) since your understanding on the matters seem to be in layman territory and your idea, if we could call it that, is full of holes in both the theoretical and practical sense.",4
+geousvm,k757xe,"This is literally logical.
+
+'learning off of self' - Recurrent Neural Networking.
+
+And no, 'neuralink' yeah so what -- all this is is just knowledge, anyone can perhaps be able with knowledge and accessibility interface with the brain -- ie anyone make own EEG stuff - all it is is access to medical equipment to do this safely -- all it is is literally able to receive a signal from a neuron AND send back to the brain neuron. Send and receive. To and fro, between the brain and the computer brain -- this logic is literally extending the brain. Thus can use this for 'mind transfer' - living both in a computer, and the human brain, have this - then perhaps cut off human brain life support - stop blood flowing, and importantly keeping the computer on -- and now just living inside of a computer brain setup.
+
+Got the medical equipment, know how to do this -- immediately go right ahead and get a computer with a recurrent neural network to save peoples lives!!
+
+People dying and think this are ok? NO! I know exactly how to do this! I know what I'm doing! -- a label 'oh sorry your not a 'professional', im not gonna listen to you ' a label is nothing to do with knowledge and logic. I feel with confidence I know exactly how this should work!! Here!!
+
+Just get a cheap but good enough computer - that can last at least for around 10-20 or so years, immediately rush to people that'd about to die, their bodies failing and immediately hook their brain up to this computer with that Recurrent Neural Network setup and immediately just keep them alive in the computer to buy them some time. And then perhaps work on adding digital cameras for eyes, microphone for ears, etc later.
+
+People's lives at stake!!! This is absolutely not acceptable!! People's bodies falling apart and oh just turn them into ash, put them into a coffin and bury them to never to be seen again -- NO! That is not sane! Here's the answer! -'it must go through a process, we dont know if-' -- No this is it right here, save peoples lives RIGHT NOW. Period. No wasting time. Immediately rush over to get this done!",-2
+gepf5gd,k757xe,"You seem to think that all you need for an AI product is the will. You are incredibly mistaken, classical layman entrepreneurship doesn't work in this field. That's why I suggested you read up on those things, so you could understand why it's not as simple as ""Just do it"".
+
+I have told you to check out Neuralink to understand what is CURRENTLY possible. To show you how much money it requires. And despite your monologue being basically a dumbed down fantasy version of it you are choosing to disregard it completely for whatever reason. You do understand that your potential investors and developers care about competitors, even if you don't, right?
+
+And even if your intentions are more pure than those of Jesus, won't change the fact that what you're proposing is wishful thinking at most.
+
+If you want to save people, earn a M.D title. Better than acting like an irresponsible marketing department of an IT company, promising things you're not sure you can deliver. Because I can say "" Let's eliminate poverty by just printing money for poor people!"". But anyone with a very basic understanding of economy can tell that I'm not a saint, but an idiot. And let's just say that I'm in a position where I understand enough to say you're not a saint.",2
+gepr7ma,k757xe,"There are companies with multi-billion dollar budgets and teams of the best AI scientists in the world.
+
+Why do you think they haven't done this yet, if it's ""so easy""?",1
+geosbqt,k7402y,"Don't see a single reason why a paper on a commercial product would ever be released. As for FOL NNs, there are plenty of papers.",1
+geoibvo,k6vnx8,"Interesting! But I am confused that training such a generator still need the game core, right? And if I can collect enough data to train such a generator, why don't just train the reinforcement model directly?",2
+gen8en1,k6vnx8," NVIDIA's blog post: [https://blogs.nvidia.com/blog/2020/05/22/gamegan-research-pacman-anniversary/](https://blogs.nvidia.com/blog/2020/05/22/gamegan-research-pacman-anniversary/)  
+ The Paper: [https://arxiv.org/pdf/2005.12126.pdf](https://arxiv.org/pdf/2005.12126.pdf)  
+ The game will be available later this year at: [https://www.nvidia.com/en-us/research/ai-playground/](https://www.nvidia.com/en-us/research/ai-playground/)",2
+geosota,k6vnx8,Pretty cool. Thanks.,1
+gemrgrb,k6qmsd,I hope this AI is better than the one YouTube is using. That friggin thing doesn’t even know what country I’m in half the time.,2
+geool3m,k6qmsd,"No, should not let this rule your life -- this is all just a logical guess.
+
+Cannot say you know for sure with just a guess.
+
+If you take the effort to thoroughly wear like a space suit in the middle of a virus hot spot -- you're just perhaps accounted as with without wearing a space suit, thus seen as infected.. -Regardless you can easily make the logical guess yourself, don't need anyone else to rule your life -- just have self responsibility. Not turning on a computer thinking you cant think and let make decisions for you - when easily get something wrong, cannot say know everything.. All really need is self responsibility and being careful -- know how things work, have logic - account for the possibility do not know everything kind of thing, not just say to lose your mind and think this magic computer box has all the answers. No, not true. Need to have discernment - important to not forget that.
+
+If to not figure things out on your own, and think to just let someone rule your life, turning on a 'magic computer box' - you easily get led right off a cliff if not smart and not thinking on your own, without discernment and critical thinking \~ not thinking and just told to keep walking since the guesser do not think there's a cliff ahead, yet there actually are a cliff there - made a mistake do not know everything, perhaps thought there were a bridge ahead but a meteor come out of nowhere and break it up. You easily end up walking right off a cliff.. Maybe even someone telling you this -- intentionally lie to you, knowingly wanting you to walk off a cliff since see it you do not question what they say.. So, need to be careful and not lose your mind.",1
+geo11ug,k6pi5b,"View in your timezone:  
+[Wednesday, December 9, at 8:20am PST][0]  
+
+[0]: https://timee.io/20201209T1620?tl=%5BR%5D%20NeurIPS%202020%20%7C%20Probabilistic%20Approaches%20for%20Algorithmic%20Recourse%20With%20Limited%20Causal%20Knowledge",1
+gemeum4,k6nojn,"There’s already practical ways of doing bitmap to vector that are very fast. Not sure why one would need a fancier method of conversion. Search for “bmp to svg” and you will find quite a few.
+
+I remember being able to do this with my 486 and Corel Draw.",1
+gemfuel,k6nojn,"lol, thanks. i'm surprised because there's so many textbooks out there that are clearly crappy scanned versions that could have easily been converted to svg to make them look much better.",2
+gem58i0,k6invc,Yeah so u can make ur dataset for imageBERT easy. And can just put into ordinary bert model to train,1
+gelcw2s,k6invc,"If I understand correctly, you could feed regular bert images as a sequence of pixels and bert should learn some representations of the data.",1
+gekt6m3,k6grz1,Completion until today (Friday 4th) at 12 PT will be added to the drawing of a NeurIPS 2020 full-access ticket!,1
+gekk66p,k67r1l,Google scholar image classification with attention models,1
+gekk6ub,k67r1l,"Hi google scholar image classification with attention models, I'm dad.",1
+gektm2z,k65qmk,"Overall I thought it went very well, especially compared to how conferences have gone in the past few years. I really preferred the 2 rounds of review to the desk rejects.",1
+gejtzbb,k65bk1,"Interesting. I wonder if a model trained using this method will learn from the other cars on the road. For example, by driving at least 5mph faster than the speed limit and not using turn signals.",4
+gelbazn,k65bk1,"Cool, this is the exact topic I plan on exploring for my thesis that I start next semester. I have just given it a glance, but I am sure there is some good stuff to expand on in here.",1
+geisfo2,k6055b,No,1
+gek0xgb,k6055b,Why...,1
+gen0b5c,k6055b,"Commandments are easy:
+
+    &gt;&gt;&gt; def commandment(stuff):
+    ...    return f'thou shall not {stuff}'
+    ...
+    &gt;&gt;&gt; commandment('shit') # proofing against possible exceptions 
+    'thou shall not shit'",1
+gehg2ti,k5x8tc,"The simples IMO would just be to rescale to 0-255, generate, and rescale back when generating samples.",2
+gep4yrr,k5x8tc,It is giving checkboard patterns on output,1
+geoyzfv,k5x8tc,Your dataset contains images that have RGB values that exceed 255? Usually you want to normalize your data anyway and feed in images in the 0-1 range or -1-1 range and then have the last layer of your gan have a tanh activation such that it can't output anything beyond 1.,2
+gep4xb6,k5x8tc,Did you mean changing activation function of the discriminator? Because i cant change anything on the generator end,1
+gep62rf,k5x8tc,Why can't you change anything on the generator end?,1
+gep6ou1,k5x8tc,"I think I can change on gan as well. Currently my discriminator has leakrelu as the activation fn, does this also  become tanh?",1
+gep4xxo,k5x8tc,"Hi i see. but i should change for generator or discriminator?, I'm dad.
+
+
+(Contact u/BadDadBotDad for suggestions to improve this bot)",0
+gehuh96,k5wn5k,"While I'm in the same boat of trying to understand them, I found this article to be quite insightful: http://peterbloem.nl/blog/transformers
+Hope this helps.",8
+gei98b2,k5wn5k,This one is good thx,1
+gek3hee,k5wn5k,Thanks 💯 I'll have a look,1
+geigmjm,k5wn5k,"[https://youtu.be/bvBK-coXf9I](https://youtu.be/bvBK-coXf9I)
+
+Check out this video. The guy in this video is u/gordicaleksa. I've watched few of his videos and he is pretty good. Check out his YouTube channel. 
+
+Also Jalammar is pretty OG.",6
+geilffg,k5wn5k,"Thanks for sharing! Btw. I'll post a Medium blog on that topic on Thursday so that may help as well (I am not that bullish on Medium but I do ocasionally write).
+
+And maybe this project I recently did can help:
+https://github.com/gordicaleksa/pytorch-original-transformer",4
+gek3j2k,k5wn5k,Will definitely take a look. Thanks,2
+gei0n3z,k5wn5k,"http://jalammar.github.io/illustrated-transformer/
+
+I haven't read this post but have read the very similar gpt2 illustrated. It helps a bunch. Also have a look at ""the annotated transformer"" article.",6
+geie7pq,k5wn5k,"[1] - Basically the paper but w/ code at each step and some annotations
+
+[2] - For the more mathematically inclined 
+
+https://nlp.seas.harvard.edu/2018/04/03/attention.html
+https://homes.cs.washington.edu/~thickstn/docs/transformers.pdf",3
+geklppe,k5wn5k,You are godsend,1
+gek3eyu,k5wn5k,"The videos from Coursera NLP Specialization are pretty good too. I think one can watch without paying for it. Plus there's plenty of NLP Specialization notebooks which will help you try it in code too, with guidance of course. Good luck.",2
+geklrz3,k5wn5k,"Hey I was thinking of doing the last course from fej NLP Specialization , does it provide good  theory and practical exercises as well?",1
+gekq2ym,k5wn5k,"Hey, I think if you're gonna do the courses do the 3rd and 4th courses. 4th builds up upon 3rd so it might be crucial. Plus, the assignments are in Trax so it might be wise to study in the 3rd course. Btw the courses are pretty good and worth doing.",1
+gehtu90,k5wn5k,"Well I am not an expert but I hear a lot about a paper named ""Attention is all you need"". Apparently it inspired a recent Pytorch release",2
+geideqn,k5wn5k,"That's the original paper.
+
+But I think it's a little too dense for people to really absorb the insights necessary to understand transformers. Previously I had to look at a few of the articles like the ones linked in other comments before I had a good grasp on how attention works. But actually it's quite simple once you get past the jargon.",2
+gek3m5p,k5wn5k,"I've skim through it, but at points I find it overwhelming and find myself lost",2
+gek3n8m,k5wn5k,"Hi through it, but at points i find it overwhelming and find myself lost, I'm dad.",1
+geklzba,k5wn5k,"Ngl I was pretty new to AI myself when one of my friends shared it to me.
+I started straight back from W2Vec, FastText, Sent2Vec, Doc2Vec, Attention paper by Dmitry Bahadanau,  then finally a AIAYN ! Was great understanding exactly why Transformers are needes",1
+gekm5wp,k5wn5k,"I just ask for a thanks in return lol
+
+https://lilianweng.github.io/lil-log/2020/04/07/the-transformer-family.html
+
+Literally all about Transformers succinctly here (proly for a layer study )",1
+gehoy70,k5ufba,Can't really make much of this with no details.,3
+gehd810,k5ufba,Retaliation or just consequences?,1
+gehhvat,k5ufba,This is what's wrong with the world today. I'll bet you it has nothing to do with this ladys skin color.,1

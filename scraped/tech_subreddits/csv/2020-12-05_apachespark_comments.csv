@@ -1,0 +1,186 @@
+comment_id,post_id,comment,upvotes
+genqff2,k6oqbe,"Save effort 
+
+https://databricks.com/p/ebook/learning-spark-from-oreilly",8
+geo9lnx,k6oqbe,Qubole is dieing,3
+geopwon,k6oqbe,"Why so?
+
+Btw, from the last 2 years of using qubole, i noticed bugs from them a couple of times that affected our clusters",1
+geoq818,k6oqbe,Idera acquired qubole and most of the employees are leaving qubole for good. They stopped responding to our high priority tickets also. Soon they might shut down.,1
+geopxjm,k6oqbe,"Hi why so?
+
+btw, from the last 2 years of using qubole, i noticed bugs from them a couple of times that affected our clusters, I'm dad.
+
+
+(Contact u/BadDadBotDad for suggestions to improve this bot)",-2
+gep8dnu,k6oqbe,Half-assed spam from Qubole.,1
+gegtrzg,k5lfoy,"Spark works best when given a lot of data to chew on at a time. “Each SQL entry” sounds like one task per row, If so you should be able to refactor it into one large ETL with all rows",1
+gegvkhq,k5lfoy,"No it's actually quite a large workflow.  However as shuffle stages kick in the executors needed shrinks.    
+
+However in databricks doing a job submission one large dataframe operation at a time is quite wasteful when waiting for spin up and wind down times.",1
+gehkrw8,k5lfoy,"How about something like this. Since spark is lazy.
+
+Create a list of your data frames without executing the action.
+
+Then do list.par.foreach(df =&gt; df.count(or whatever your action is))
+
+Then let spark handling the resources and you can adjust the scheduling from fifo/fair to accommodate your needs",1
+gehmsvt,k5lfoy,Yeah I've done that of course.  It's not deterministic and fails rather randomly.,1
+gehtobb,k5lfoy,"That might actually be a good starting point then. If two maybe skewed data frames run at the same time you get fails. Can you split the list up into two and have each of those data frames in separate lists? 
+
+Then do list one first then list two second?
+
+If that’s not deterministic can you try grouping your list. Say you have a list of 100 data frames.
+Do something like list.grouped(5).par.foreach....",1
+gehn5as,k5lfoy,"&gt; Each sql entry basically becomes a spark-submit task. I'm in a cloud environment with auto scaling.
+
+This is how I'd approach it. Call spark-submit once for each entry, rather than trying to perform multiple tasks within the same spark context. You can still perform those calls in parallel and let the resource manager handle the scaling.",1
+geht76c,k5lfoy,He’s trying to avoid that because the overhead of starting a spark submit,1
+gehzprv,k5lfoy,"I have a workflow where we process in parallel multiple input tables, same code for all, but executed in parallel for better resources usage.
+
+i did a local test with a reduced version and it worked:
+
+    import java.util.concurrent.Executors
+    
+    import org.apache.hadoop.fs.{FileSystem, Path}
+    import org.apache.spark.sql.expressions.UserDefinedFunction
+    import org.apache.spark.sql.{DataFrame, SparkSession, functions}
+    
+    import scala.concurrent.{Await, ExecutionContext, ExecutionContextExecutor, Future}
+    import scala.concurrent.duration._
+    
+    def main(args: Array[String]): Unit = {
+    
+        val spark: SparkSession = SparkSession
+          .builder
+          .appName(""TEST"")
+          .enableHiveSupport()
+          .config(""spark.scheduler.mode"", ""FAIR"")
+          .master(""local[5]"")
+          .getOrCreate()
+    
+        //... read or create DF ...
+        val df_random = //...
+    
+        import spark.implicits._
+    
+        val df_1 = df_random.filter($""dimension1"" === ""A"")
+        val df_2 = df_random.filter($""dimension1"" === ""B"")
+        val df_3 = df_random.filter($""dimension1"" === ""C"")
+        val df_4 = df_random.filter($""dimension1"" === ""D"")
+        val df_5 = df_random.filter($""dimension1"".isin(""A"", ""B""))
+        val df_6 = df_random.filter($""dimension1"".isin(""B"", ""C""))
+        val df_7 = df_random.filter($""dimension1"".isin(""C"", ""D""))
+        val df_8 = df_random.filter($""dimension1"".isin(""D"", ""A""))
+    
+        val executor = Executors.newFixedThreadPool(3)
+    
+        implicit val executionContext: ExecutionContextExecutor = ExecutionContext.fromExecutor(executor)
+    
+        val dfList = Seq(df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8)
+    
+        val dfListExecuting = dfList.map((df:DataFrame) =&gt; {
+          Future{
+            SparkSession
+              .getActiveSession
+              .get
+              .sparkContext
+              .setLocalProperty(""spark.scheduler.pool"", s""pool-${Thread.currentThread().getId}"") //set pool name, needed for FAIR mode
+            df.count()
+          }
+        })
+    
+        Await.result(Future.sequence(dfListExecuting), 1.hour)
+      }
+
+where ""Executors.newFixedThreadPool(3)"" defines parallel level. Same dataframe used en parallel, no concurrency error.",1
+gei05ai,k5lfoy,"Yeah I find it runs well most times but when I go wide I see the probability of a concurrency error go up.    I suppose I could add a limit to the concurrency of submissions.    
+
+I saw this which may be of interest as well:
+
+https://spark.apache.org/docs/2.3.0/api/java/org/apache/spark/FutureAction.html
+
+Concurrency can be tricky because the entire stack needs to be thread safe.    Ugh.",1
+geiusbi,k5lfoy,"Well, yes, your code executing in parallel need to be thread-safe, spark itself is thread-safe.
+
+&gt;I suppose I could add a limit to the concurrency of submissions 
+
+if you do the action inside the Future, you cant have more submited jobs than Threads in ExecutionContext so its auto limited. Tried with 1000 actions and 50 thread without a problem. Max 50 active jobs.",1
+geok80d,k5lfoy,"What about spark-job-server? It reuses the same Spark session, if I understand it correctly... 
+I had a similar problem, and did it with par collections. Although, we do start only about 10 jobs inside one Spark application.",1
+geok8kk,k5lfoy,"Hi what about spark-job-server? it reuses the same spark session, if i understand it correctly... 
+i had a similar problem, and did it with par collections. although, we do start only about 10 jobs inside one spark application., I'm dad.
+
+
+(Contact u/BadDadBotDad for suggestions to improve this bot)",0
+gecmtec,k4x22z,"I have been using community edition of databricks for 6 months now. In my experience the community edition is more for learning for students. I think its very slow and doesn't have a lot of features the paid version of databricks has.
+
+Yes! I tried to create a cluster and got the same error - "" Network error: Unexpected token &lt; in JSON at position 0 "". 
+
+Also, I have never come across any way of unzipping a file on community edition of databricks. May be there isn't a feature like that in this edition. I will try to find it and get back to you if I do find any.",3
+gedg25o,k4x22z,"Thanks, indeed it's missing some features, and I'm wondering the best way for me to learn Spark is to run it on my own Linux VM, even if it only has 2 cores and 4GB memory, but at least I have access to all tools.",1
+geez18u,k4x22z,"Try running cloudera's HDP sandbox
+ https://www.cloudera.com/downloads/hortonworks-sandbox.html
+
+I have heard many people use it. 
+
+I ran this vm on Oracle virtualbox software a month ago. My laptop has a i5 and 16gb ram.  Expected that the vm would run smoothly without any problem. I was a bit sad, cause it was a bit on the slower side. Frankly it ruined my learning process man!  Had to switch back to community edition of databricks. Sometimes I used spot instances of  AWS m.5 large clusters. Spot instances are quite cheap compared to on demand instances. Had to pay like 5 dollars for a month of use of AWS. Mind you I was just learning pyspark, didn't do anything serious using the clusters.
+
+But, I have to say, nothing is easier to work with than databricks. Only if the community edition had more features.  I am still in search of fast ways of running spark which don't cost any money. Will let you know, if I do find a way.",2
+gee3dfr,k4x22z,This has been reported to Databricks and subsequently resolved. It was related to a graphQL issue.,3
+geetjy4,k4x22z,Hi thanks man! Will check when I'm off work.,1
+gecpt2d,k4x22z,Sadly dbfs local apis don't work in community edition anymore.,2
+gedeq7r,k4x22z,"Thanks, yeah it's sad. Wondering if we can get a free edition with full feature for a limited period of time, say 3 months.",1
+gecwsnz,k4x22z,"Yes it's not working since morning. @databricks could you please us.
+
+#databricks #community edition",2
+gederu8,k4x22z,"Surprising, thought it's just me...",2
+gebo6wt,k4wij1,"Unless you have a specific need to run your own cluster, save yourself the trouble and go with Databricks or EMR. I personally prefer Databricks, but EMR is well regarded.
+
+Setting up and managing your own cluster can be useful, but it's kind of a pain to configure and keep up-to-date. Once you've learned Spark itself, then you can see if there's a need to setup a specific cluster.
+
+That said, if that side interests you, give it a shot - I just wouldn't try all of it at once.",5
+gec1jgo,k4wij1,"I agree completely. Worked with both at different companies, EMR works fine but QoL felt higher with Databricks. For the record, when it comes to changing I’d rather move from EMR to Databricks. Going the other way you really miss the convenience features.",4
+gec3brc,k4wij1,thanks for the input! that's really helpful to know!,1
+gedso59,k4wij1,Definitely databricks.    We used qubole at our company and spark was run on yarn and didn't work that well.  Spark on databricks seems to just get out of your way.   It's nice.,2
+geebevt,k4wij1,"oh! i assumed databricks also uses yarn, but this serverless resource manager seems pretty cool and easier to use. thanks for the tip!",1
+geekyfw,k4wij1,No databricks for sure is kubernetes.    It performs way better.,1
+gedvi9w,k4wij1,I am also starting to run some spark jobs and I am using databricks. Quite easy to deploy clusters and the interface is easy to use.,2
+ge6nksr,k431lj,This looks interesting. How are you calculating those values based on number of cores and memory per node ?,1
+ge6q2u4,k431lj,Ah interesting. Thanks a lot.,1
+ge75bq4,k431lj,"Nicely done. I'm curious why you are leaving one core per node unassigned. Have you seen problems when having executors on all cores, or just leaving one for the system?",1
+ge7s1q3,k431lj,"&gt;Nicely done. I'm curious why you are leaving one core per node unassigned. Have you seen problems when having executors on all cores, or just leaving one for the system?
+
+Leaving one core per node for Hadoop/Yarn daemons",2
+ge83eb9,k431lj,I'd be curious to see if using all the cores starves the daemons. It *shouldn't* as long as you're not using enough memory to swap stuff out. Maybe you can squeeze out another core worth of performance.,1
+geb6s9d,k431lj,does this mean that i should try to use as large of an instance as possible? so that the one core per node overhead becomes less significant?,1
+gdznwx3,k2uias,You can just use pyspark streaming to wrap your praw code to do some basic data processing and feed it to your model. That would be a decent streaming project. You would only need to use Kafka if you want to store the data you get from praw and replay it on a stream multiple times.,1
+gdk9zjb,k0u8sl,Spark The Definitive Guide (Bill Chambers) and Learning Spark 2nd Edition (Jules S. Damji),9
+gdmfowo,k0u8sl,"I think with the introduction of Catalyst and DataFrame/DataSet, most of the ""performance"" stuff that developers had to pay attention to ""went away"". Now to really properly get those same performance boosts, you need to write your own catalyst rules, which require domain knowledge in the data processing pipeline your using. Other than that, all the old stuff still applies like, watch how you use collect, watch when you cache, if when in doubt use more partitions, etc etc.",3
+gdi2n3j,k0dpw3,"You might try [databricks community edition](https://community.cloud.databricks.com/login.html), it's free and comes with [some datasets](https://docs.databricks.com/data/databricks-datasets.html) to play around with.",3
+gdsbqvj,k0dpw3,"use Spark on AWS EMR
+
+or install pyspark on your machine and run it for free",1
+gd88m3g,jywjgt,"You need to paste full stacktraces of Spark errors, as often the true error is located quite far down the stack. The error line you posted is probably due to an executor being lost, but does not specify why the executor was lost.
+
+Please also include the command line you are using to start Spark.",3
+gd8ioup,jywjgt,Ok i was concerned that the post would get too long. Ill try to comment it,2
+gdb3ktz,jywjgt,not sure this is related- but how is the initialization of TF occures on each of the executors? does it happen once for each executor? for each partition?,1
+gd3zjkn,jyftkv,in many cases running on small instances that can easily be provisioned abd obtained through spot prices is rhe best. I would try to engineer the data (shufflepartitions etc.) to fit small instances,2
+gd7sjbl,jyftkv,"Now that’s a great question to me!
+
+So I can’t give you the best answer.
+Why? Because I am currently only running an instance like you single node.
+But I can maybe tell you how I plan to go on it.
+For me I have insight on all systems filing requests to Spark (lucky me it’s a small team that I can get full control of “information flow” still. Would sure be a different story if there was a full ML team hitting Spark with random loads as well).
+So in short: I know my peak times.
+During this times I usually monitor what’s going on.
+
+Next steps for me is to optimize as this will develop best practices for our use in the long run.
+When I feel like “optimization” isn’t really general, but too task specific, then I stop (there is just so much time you have during a work day, right?). E.g. I would spend time to improve JDBC Connections workflow anytime, but wouldn’t go deep on a specific database query.
+
+Now I am monitoring load again. When I am hitting over 80% load at peek time I add 1 more node or 10% more nodes (this 10% is a random chosen number as it’s still a small “cluster” - well. Stand-alone ;) ). This is basically random rule of thumb I try now.
+
+Hope that helps. I know it’s not an experience based answer you (and me) may have hoped for, but maybe my take on it can get you some inspiration.
+
+Best regards",1

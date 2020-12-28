@@ -1,0 +1,801 @@
+comment_id,post_id,comment,upvotes
+gep41ax,k7752p,"It’s crappy and confusing and not as flexible as our Future libraries.
+
+When we create a future we get an object with a type. we can pass it around to other variables, put it in maps, or lists and delay execution until a time of our choosing. We can also choose the thread and conditions in which to execute it.
+
+More than await we can do things like map, recoverWith and change the type without running the code. It’s more flexible. We can chain and stitch them together like variables.
+
+We can work with partial futures and have multiple competing libraries like monix, fs2. With cats we can make the futures library abstract and then not use one in the test suite at all, so we get transparent ability to ensure there are no race conditions in any circumstance and exercise that appropriately.
+
+Async and await are a poor mans solution. Your code is written to mirror it’s runtime execution. This fork calls that fork so the fork calls are in sequence. We can control parallelism and thread counts and scale as we wish. We can choose different execution engines and mixes them up, prioritising gui stuff over background stuff. We don’t need to mix implementation with execution stuff.",22
+gep6gwu,k7752p,"It's all fine and dandy but as far as I understand the way to combine all this stuff is for-comprehensions. My question arises from a pretty simple utility I've written that does something like this:
+
+```
+def copy(): Option[Int] = {
+  if (sourceExists()) {
+    if (!destinationExists()) {
+      val i = getSourceInfo()
+      createDestinationLike(i)
+    }
+    Some(doCopy())
+  } else {
+   None
+  }
+}  
+```
+This is a synchronous version. If every function call returns a Future the code turns into a freaking mess. Will fs2, cats, Monix or whatever else help me write code similar to sync version?",1
+gepc00y,k7752p,"For comprehensions are just pretty syntax for calls to the ‘map’ and ‘flatten’ functions. A Future is just an object with methods.
+
+The equivalent of await is either Await.result(someFuture, Duration.Inf) function, if you want one-to-one solution with a async/await but it’s better to put the code after the await into the map function which is called when the future completes.
+
+    val x: Future[String] = ???
+
+    x.map { myString =&gt; println(s”time has passed and now we have $myString”)
+
+There’s also methods like onComplete and onFailure. Your problem probably isn’t starting new threads of execution but rather joining them back together. That’s where functions like ‘sequence’ and ‘traverse’ come in. They can combine Futures together which is what ‘await’ also does, the former in a complicated and flexible fashion. Flatten collapses a Future containing a Future into just a single Future which you can map on.",5
+gepg8i9,k7752p,"You can do something like this:
+
+    def copy(): Future[Option[Int]] = {
+      sourceExists().flatMap {
+        case true =&gt;
+          for {
+            flag &lt;- destinationExists()
+            _ &lt;- if (flag) Future.unit
+                 else getSourceInfo().flatMap(createDestinationLike)
+            result &lt;- doCopy()
+          } yield Some(result)
+
+        case false =&gt;
+          Future.successful(None)
+      }
+    }
+
+You can play with the code [here](https://scastie.scala-lang.org/BalmungSan/vTwYmZc9R0SxGMoP9rUYIA/2).",3
+gepn8k0,k7752p,"As an aside, instead of pattern-matching on `Boolean`
+
+    sourceExists().flatMap {
+      case true =&gt; foo
+      case false =&gt; bar
+    }
+
+you can do this:
+
+    sourceExists().flatMap(
+      if (_) foo
+      else bar
+    )",2
+gep6hk5,k7752p,"Hello, pavlik\_enemy: code blocks using backticks (\`\`\`) don't work on all versions of Reddit!
+
+Some users see [this](https://stalas.alm.lt/backformat/gep6gwu.png) / [this](https://stalas.alm.lt/backformat/gep6gwu.html) instead.
+
+To fix this, indent every line with **4 spaces** instead. It's a bit annoying, but then your code blocks are properly formatted for everyone.
+
+An easy way to do this is to use the [code-block button in the editor](https://stalas.alm.lt/files/new-reddit-codeblock.png). If it's not working, try switching to the fancy-pants editor and back again.
+
+[Comment with formatting fixed for old.reddit.com users](https://np.reddit.com/r/backtickbot/comments/k7825m/httpsnpredditcomrscalacommentsk7752pwhy_theres_no/)
+
+[FAQ](https://www.reddit.com/r/backtickbot/wiki/index)
+
+^(You can opt out by replying with backtickopt6 to this comment.)",3
+gepi447,k7752p,"For comprehensions don't have a syntax for branching (`if`/`else`) out of the box, but there are combinators that take that role. Admittedly, mixing two styles can look noisy. That's usually a sign that you need to split your logic into smaller pieces - which, if you postulate referential transparency, is a piece of cake (NPI).
+
+Assuming `sourceExists` etc. are converted to return `IO[Boolean]` etc., your example can be directly translated into something like this:
+
+    val copy: IO[Option[Int] =
+      sourceExists.ifM(
+        for {
+          exists &lt;- destinationExists
+          _ &lt;- if (!exists) {
+            for {
+              i &lt;- getSourceInfo
+              _ &lt;- createDestinationLike
+            } yield ()
+          } else IO.unit
+          result &lt;- doCopy
+        } yield result.some,
+        IO.pure(none[Int])
+      )
+
+And I'd write the same thing with just combinators, without for comprehensions:
+
+    val copy: IO[Option[Int]] = {
+      val doCopy0 =
+        destinationExists.flatMap(
+          getSourceInfo
+            .flatMap(createDestinationLike)
+            .unlessA(_)
+        ).productR(doCopy)
+    
+      sourceExists.flatMap(
+        _.option(doCopy0)
+          .sequence
+      )
+    }
+
+(libraries: `cats`, `cats-effect` and `mouse`).
+
+UPD: cleaned up the first example a bit.",1
+gept07a,k7752p,Why the checks? Do the operations in a single happy path and handle errors later. If this is dealing with a filesystem it’s also likely to be more atomic and prevent weird issues where a source disappears after you checked that it existed.,1
+gep3qdc,k7752p,"[https://docs.scala-lang.org/sips/minutes/2016-07-15-sip-minutes.html](https://docs.scala-lang.org/sips/minutes/2016-07-15-sip-minutes.html) yields some insight about why it wasn't added.
+
+Nowadays, in modern Scala programming, however, lazy `IO` monads are used instead of `Future`\- s, and `for` comprehensions are nice enough when you get used to them.
+
+You may also want to read:
+
+[https://github.com/scala/scala-async/issues/232](https://github.com/scala/scala-async/issues/232)
+
+and look at:
+
+[https://github.com/rssh/dotty-cps-async](https://github.com/rssh/dotty-cps-async)",9
+gepd3uh,k7752p,"There are occasions where it can really simplify code, but we don't use it at my company because it was difficult to teach less-experienced programmers how to use it correctly. 
+
+I don't know if people have these problems in other languages with async/await, but it was very common for programmers to basically randomly add async or await until it type-checked, without understanding what race conditions they were causing.
+
+Since you have to explicitly call `Future.sequence` or something similar if you don't use async/await, it's a lot more difficult to accidentally run futures in parallel.
+
+Now we use Monix Tasks and Observables much more frequently than Futures, and so we wouldn't be able to use a built-in async/await anyway.",2
+geoofy0,k7235d,"So Metals expects a valid Scala workspace in order to ""run"" Scala code. This can be sbt, Mill, Maven, or any other [supported build tool](https://scalameta.org/metals/docs/build-tools/overview.html). The easiest way to do this would be to use the `Metals: New Scala Projects...` command from the command pallete, and just select the hello world template. Then you'll be able to open the `src/main/scala/Main.scala` and see code similar to what you have and you'll also see the run code lens to run your code.
+
+Metals does offer some support for a standalone Scala files, but you won't be able to ""run"" them that way.",2
+geongr9,k7235d,You use Metals! Did you find a way to not get a `.metals` folder in EVERY SINGLE WORKSPACE even if they're not Scala projects?,1
+gep4xyd,k7235d,Globally disable metals and then enable it for each scale workspace,2
+geo199l,k6o4yg,"Honestly this looks like step back. Strong point of Scala ecosystem has always been compile-time validation and code-based DSL, allowing IDE autocomplete on template model and features.
+
+Modern template engine should not have error reporting, its templates do not compile if not valid.",9
+geoz2bh,k6o4yg,"Yes! Check out Hepek, it is half way there!  
+For example it has automatic relative URLs, you cant mistake them!  
+One thing that would be nice is a macro for static resources, css, js etc. :) 
+
+https://github.com/sake92/hepek",1
+gen0oad,k6o4yg,"Uh, there’s a lot of static website stuff to wade through before we get to anything about the actual templating tool.
+
+What does it do that’s different to the other templating languages available on the jvm? Why should I use this and not any of the template languages supported by scalatra? What’s its syntax, and how much expression is allowed/forbidden in the templates themselves?",9
+geim04e,k64675,"# Support Engineer
+
+Help us to better understand what problems out users are up against!
+
+If you know how to communicate with people, enjoy digging into  technical problems and want to help Scala developers around the world, get in touch.
+
+## Responsibilities:
+
+* Provide technical support to the users via a help-desk system, community forums, issue tracker, other media.
+* Investigate users' issues and help with bug localization.
+* Gather information on most important problems (“pain-points”) for the team.
+* Review long-standing issues in the bugtracker.",7
+geixklf,k63zdd,"Ooh, neat, thanks.",3
+gekn1hz,k63zdd,Awesome!,3
+gel1hgn,k63zdd,Love it! Would be amazing to see it published to maven though :),1
+geio7a9,k5jdk4,"I am using it with ZIO and so far, so good:
+
+* Significantly faster than http4s, Play etc.
+* Supports Pac4J so I have Google OAuth, LDAP and Mongo user auth all with JWT.
+* Event Bus is a killer feature for modern web apps.
+* Just a library so you can use it independent of the rest of Vert.x.",4
+geiu45k,k5jdk4,"I am very interested in how you use it with ZIO. Do you have a git repository that you can share, if it is not too much trouble? Or perhaps you can share some resources. I am a beginner, so I am not sure how ZIO can be brought into the mix.
+
+I was looking their examples (see here for instance, [https://vertx-web-site.github.io/docs/3.9.2/vertx-pg-client/java/](https://vertx-web-site.github.io/docs/3.9.2/vertx-pg-client/java/)),  they use these nested callbacks that I am not a fan of. They could benefit from some FP love to make the code cleaner.
+
+Thanks!",3
+gei53yy,k5jdk4,"Only for trying it out, not for production. It was exactly like using it in java. Shocker.",3
+gegoq5q,k5jdk4,"I have, about 4 years ago. It felt pretty unnatural and I wouldn't recommend it unless there is some pretty good reason that you need to use Vert.x specifically. The API's are pretty heavily tilted towards mutation, so it ended up just basically feeling like writing raw servlets ... except in scala. Yuck.",5
+geegv23,k5fpg4,Written form here: [https://blog.rockthejvm.com/scala-3-dependent-types/](https://blog.rockthejvm.com/scala-3-dependent-types/),10
+gegxrck,k5fpg4,Thank you for the definition. I think we could use a little more complete examples in motivation section to see how this kind of types can be utilized.,5
+gegwhpg,k5fpg4,"If I understood the type projection correctly (`Outer#Inner`), it would suit better to call them path ""independent"" type, right? Because we can now forget from which path we got that inner type from. At least, that's what I understood.",2
+gegxpcl,k5fpg4,"Also if my understanding is correct, `Function1[AbstractRow, AbstractRow#Key]` doesn't sound like it uses path-dependent type (which was `row.Key`, rather than `AbstractRow#Key` which is different, especially when it is in return type position since it is less specific type).",1
+gehtm9s,k5fpg4,"Legit point. There's some terminology clarity that I need to add to the article/video.
+
+I think you got the idea of an instance-dependent type (e.g. `row.Key`) and an instance-independent type (e.g. `AbstractRow#Key`). Both are ""path-dependent"" in the sense that they depend on a concrete instance or a concrete type, so ""path"" is a confusing term.
+
+The `AbstractRow#Key` is also called a _type projection_. To better differentiate the concepts, I probably should have named the terms ""instance-dependent type"" and ""type projection"". I'll address those in the article.
+
+Type projections solve the problems I described, and they're removed from Scala 3 when attached to an abstract type because they are unsound (cause properly compiled code to fail) if they are mixed with certain type bounds.",3
+gei5t7g,k5fpg4,"Thanks, this makes it much clearer for me.",1
+geh7bsz,k5fpg4,"FWIW, Scala 2 has path-dependent types.",3
+gembuxp,k5fpg4,"For the record, path-dependent types are different things that _dependent types_. _Path-dependent types_ are a form of existential types.",3
+genk6lp,k5fpg4,"ah that reminds me of this [https://www.reddit.com/r/scala/comments/gyyml3/dependent\_types\_in\_scala\_3/](https://www.reddit.com/r/scala/comments/gyyml3/dependent_types_in_scala_3/)
+
+What a mixup :)",3
+genoll3,k5fpg4,Exactly! :),1
+gegzbcg,k4yrr2,"I think you are trying to think about green threads and effects as abstractions that are related somehow. I think this is making it more complicated than it needs to be.
+
+Green threads are threads of computation that are implemented in userspace. This is distinct from threads that are managed by the operating system.
+
+An effect system is a programming abstraction to separate pure computation and effectful computation at the type level, where ""effectful"" is anything that can't be represented as a pure function (mutation, IO, etc.).
+
+You can have green threads without an effect system. Golang has this as one of its flagship features. You can have an effect system without green threads. This is what you get if you are using [https://github.com/gcanti/fp-ts](https://github.com/gcanti/fp-ts) with typescript on Node.js.
+
+It's true that a scala Future is not an effect system, since as you pointed out the act of creating it creates an effect (submitting the task). Note however that this is an implementation detail. Future COULD be implemented to be effect-free. It's just isn't in scala.
+
+So to go through your points:
+
+1. Green threads are threads of computation implemented in userspace. Everything else in this paragraph is an implementation detail, not a universal truth.
+2. Everything here looks correct but is only applicable to scala, again these are implementation details
+3. ""Fibers ARE completely different concept from Futures."" Well a fiber is a thread implemented in userspace and a Future is type to represent a value that will be available later. So yeah, they are different concepts. They are not opposite ends of some spectrum though, they are just different things. There's no reason someone can't implement an effectful Future that runs on fibers and doesn't block an OS thread. That what you get with (for instance) Kotlin coroutines. ZIO brings you both an effect system and a green thread implementation. But that's just a decision the library creators made to provide both features.",4
+ged4rgj,k4yrr2,"Hi, first a quick disclaimer that I am also not an expert in these fields, so take what I am about to say with a grain of salt _(since they may also have some irregularities)_.
+
+1. This is completely right AFAIK.
+
+2. I have mixed feelings with this one:
+
+&gt; Scala's Futures are ONLY a more handy way for A DIRECT task submission to a execution context.
+
+Not exactly sure what do you mean with this.
+
+&gt; Futures AREN'T an effect system.
+
+This is right, but I believe you actually not care about this one _(more on this later)_.
+
+&gt; When we create a Future its ""content"" (e.g. block of code defined in Future { })  will be eagerly submitted as a task to EC.
+
+First minor detail, here you want _""i.e""_ not _""e.g.""_; the former means _""that is""_ whereas the last means _""for example""_.
+
+Second, a note _(but I believe you already know this)_ being submitted to the **EC** doesn't mean it will start running right away, but it will do if there is an available thread. In any case, yeah they are eager.
+
+&gt; Any kind of Await operation (e.g. awaiting Promise completion) is unadvised because it's a blocking operation for JVM thread executing it. Due to that we should rely on callbacks and chaining Futures to avoid any blocking and resource wasting.
+
+Yes!
+
+3. The following are the ones I am not that sure if I am also correct.
+
+&gt; Fibers ARE completely different concept from Futures.
+
+Yes? Not sure if I would be that emphatic on their being different.
+
+&gt; Futures still work directly as a tasks submitted to EC. Fibers are a new abstraction over threading.
+
+**Fibers** are indeed an abstraction over threading but AFAIK **Futures** are also an abstraction over threads. Also, I am pretty sure you can run many **Futures** over few threads, just like **Fibers**.
+
+I believe that **Fibers** are a bit more lightweight compared with **Futures** and the main difference is not about **Futures** VS **Fibers**, but **Futures** vs **Effect Systems** like `cats-effect`, `monix` or `zio`.
+
+&gt;  So when we create a promise in e.g. ZIO and Await a Fiber on it there will be no JVM blocking. It will just ""subscribe rest of its effects to execute when promise is completed"" (probably wrongly stated here?) and that's it - no blocking (Here, Await is only semantically blocking operation (from thread's point of view). 
+
+I am not sure if semantic blocking is a property of **Fibers** in general. But, it is true that all **Fibers** implementations that I know have semantic blocking.
+
+&gt; That's the reason why we can have multiple fibers executed on e.g. one JVM thread. As in mentioned presentation - Blocking on a one level means suspending one level below (in threading hierarchy).
+
+The reason you can have many **Fibers** in one thread is because of the scheduler and again, I am pretty sure **Futures** do the same. But yeah, blocking a **Fiber** means suspending without blocking the underlying thread.
+
+4. Not sure if you understand what an effect system is but:
+
+&gt; When we say ""Effect System"" do we also mean Fibers?
+
+I believe no.
+As of today all the three major effect systems on **Scala** _(i.e. `cats-effect`, `monix` &amp; `zio`)_ have **Fibers**, that is right. But, if I am not mistaken all of those three started without them. Also, while I am not sure what is the formal definition of **Effect System** is, but I would guess tat it is more about suspending and encapsulating side-effects so those can be composed rather than about **Fibers**; additionally I believe you can implement **Fibers** without an **Effect System**.",1
+gee9k9k,k4yrr2,"Great write up!
+
+Just some things to which I think could be useful to add.
+
+I think this post about [what is an effect system](https://softwareengineering.stackexchange.com/questions/310960/what-is-an-effect-system) is pretty useful. The general gist is, an effect system makes it so effects are explicitly called out. One of the features being you can see at a glance, whether a function will cause a side effect.
+
+On the point of Fibers and Futures. I believe you can configure your ExecutionContext to have similar behaviour, whereby nested futures are executed on the same thread. You might need to do some digging to grokk it though, see:
+
+* [BatchingExecutor](https://github.com/scala/scala/blob/2.13.x/src/library/scala/concurrent/BatchingExecutor.scala#L92)
+* [ExecutionContext.opportunistic](https://github.com/scala/scala/blob/2.13.x/src/library/scala/concurrent/ExecutionContext.scala#L230) \- I think this is only available for 2.13.4
+
+Just going to include a quick ammonite snippet, which highlights the thread switching which occurs with Futures with the default EC. Don't have ammonite with 2.13.4 yet, so couldn't test the new stuff.
+
+Threads being used for Scala Futures:
+
+    import java.util.concurrent.Executors
+    import scala.concurrent._
+    implicit val ec = ExecutionContext.fromExecutor(Executors.newFixedThreadPool(5))
+    
+    def printCurrThreadFuture = Future { println(Thread.currentThread) }
+    
+    @ val _ = printCurrThreadFuture
+        .flatMap(_ =&gt; printCurrThreadFuture)
+        .flatMap(_ =&gt; printCurrThreadFuture)
+    &gt;
+    Thread[pool-2-thread-1,5,main]
+    Thread[pool-2-thread-2,5,main]
+    Thread[pool-2-thread-5,5,main]
+
+Threads being used for IO:
+
+    import $ivy.`org.typelevel::cats-effect:2.3.0`
+    import cats.effect._
+    
+    def printCurrThreadIO = IO { println(Thread.currentThread) }
+    
+    val _ = printCurrThreadIO
+      .flatMap(_ =&gt; printCurrThreadIO)
+      .flatMap(_ =&gt; printCurrThreadIO)
+      .unsafeRunSync
+    &gt;
+    Thread[main,5,main]
+    Thread[main,5,main]
+    Thread[main,5,main]
+
+Hopefully you can see that the IO version all executes on the same thread, whereas the future version executes on different threads (context switching).
+
+Anecdotally, the performance gains in using green threads are not that much.",2
+gekdk0c,k4yrr2,u/jdegoes maybe you’d like to comment?,1
+gelc6wj,k4yrr2,"To clarify some of your observations:
+
+1. Fibers (AKA virtual threads AKA green threads implemented in a library) are a concept from concurrency, and are not necessarily connected to blocking/non-blocking or to effect systems.
+2. You are right that Scala's Future does not define an effect system. In functional Scala code, libraries like ZIO and Cats IO define an effect system, one which is either course grained (if you use `IO` for everything) or potentially fine-grained (if you use ZIO environment or tagless-final).
+3. Futures actually _are_ fibers. At least, they are closer to fibers than they are to effects. Although imprecise, you can think of `type IO[+A] = () =&gt; Future[A]`, and `type Fiber[+A] = Future[A]`. There are some concrete differences between futures and fibers, mainly that fibers maintain their own heap-allocated stack and they run in batch-mode.
+
+The terminology _effect system_ comes from _type-and-effect system_, in which a compiler is augmented with the ability to understand not only the structure of computed values, but also, the capabilities of functions (for example, a capability to mutate memory or perform file IO). 
+
+Effect systems in Scala provide you with a way (requiring discipline) to leverage the compiler to track which parts of your programs are purely computational, versus which parts involve interaction with the world outside the function (so-called _side-effects_). 
+
+A course-grained effect system like `IO[A]` can track only the distinction between ""this code is pure"" and ""this code is impure"". Whereas, using ZIO environment or tagless-final, you can track (up to discipline), the distinction between ""this code generates random numbers"" and ""this code mutates memory"".
+
+Effect systems are not necessarily related to concurrency or fibers. Although, as a practical matter, all effect systems in Scala subsume asynchronous computation and leverage fibers to improve scalability of concurrency over physical threads.",4
+geafnzz,k4q9z0,Nice update,7
+geajc3p,k4q9z0,"I’m pleased to see 2020.3 it out! Great to see the IJ team listening to Scala Deverlopers ;-)
+
+Seriously though - great work guys and gals!",6
+geav8ln,k4q9z0,"Agreed, with every new update, more important features and bug fixes comes.",3
+gedcajy,k4q9z0,Wow! Definitely compilation is much more quicker now.,2
+geewvoh,k4q9z0,Doesn't that only apply to stuff compiled by idea's build server? What would be an advantage to using it rather than sbt's or even boop's?,2
+gea08e0,k4p4o2,VS code is fine with Metals plugin. You create a jar file via SBT build task.,8
+gea0a6b,k4p4o2,"IntelliJ will have a lot of build in tool to help you. But it's possible to use vscode. I personally prefer IntelliJ. If you are learning Scala, feel free to join the online community, we had a conversation about IDE not long ago. 
+
+Http://sca.la/learning-community",6
+geajcdi,k4p4o2,"Yes, I'm learning Scala. No good reason to do so, except I like learning different languages and Scala seems hot right now. Also, I'm a database guy (two plus decades) and I see Spark in my future. Maybe. Thanks for the invite. I'll look at it.",3
+gecvtpi,k4p4o2,"I helped create the Scala support in VS Code and I personally use VS Code for development but I would still recommend IntelliJ in your situation, especially if you're coming from a MS/C# environment. IntelliJ will provide you with a richer set of features (refactoring, debugging, navigation, building/testing) compared to VS Code.",2
+gecsgcj,k4p4o2,"&gt; Question 1: Is there any good reason not to use VS/VSCODE to learn Scala, and if so, what is the biggest downside?
+
+VsCode is well supported with our newer metals plugin. It's still nowhere near as good as intelliJ. In intelliJ you can press alt+enter over a variable name and it will add the method signature like this:
+
+    val x = List(1,2).map(d =&gt; Future.successful(s""d"")).sequence
+
+    val x :Future[List[String]] = List(1,2).map(d =&gt; Future.successful(s""d"")).sequence
+
+That's a very powerful feature of the editor and one that made learning scala a million times easier. I would honestly advise you to install intelliJ and use it whenever you get stuck in VSCode because it has an amazing feature set. Once your Scala is better and you need less support, that's when you can go to VSCode. I'm not saying don't use VsCode, just you're shooting yourself in the foot if you turn your back on the IDE that comes with the best Scala support and has the most intuitive real time feedback and the best refactoring and inspection tools.
+
+&gt; Question 2: Can I create JAR files directly with VScode, or use SBT, and do SBT and VSCode work together?
+
+Make a scala project using the sbt app. Manage your build.sbt config file manually with an editor. Look at the sbt-assembly plugin for turning your app into a Java jar file and learn this separately from your IDE. There are sbt integrations and an integrated shell in IntelliJ but keeping a terminal with sbt open is easier.",2
+gedllfz,k4p4o2,"&gt; Make a scala project using the sbt app. Manage your build.sbt config file manually with an editor.
+
+Yes, this is like making a .NET Core app using the command line tools. I'm reading through the Elahi book and the next-to-last chapter addresses this. BTW, this particular book is probably good for a complete beginner, but is just barely adequate for someone coming from a programming background. It will get your feet wet, but that's all.",2
+gebv7ta,k4p4o2,"&gt; Is there any good reason not to use VS/VSCODE to learn Scala, and if so, what is the biggest downside?
+
+the biggest downside is less refactoring support. renaming a class or variable and having the update propagate is handy in IDEA.
+
+&gt; Can I create JAR files directly with VScode, or use SBT, and do SBT and VSCode work together?
+
+no, I don't believe you can create JAR files with VS code, you'd just use SBT. yes, SBT and VS code work together using metals.",1
+gecevgv,k4p4o2,"&gt;renaming a class or variable and having the update propagate is handy in IDEA.
+
+I was going to say this as well, this my #1 feature in IDEA, the ability to rename any variable, member, class etc. and trust it that it will find all the instances. JavaScript might be the only exception, but for Java, Scala, F# (Rider.net), C# (Rider.net, Resharper) this saved my butt many times.",1
+gea0p5u,k4p4o2,"re: Question 1: I know everybody raves about VS code. However, see this: [https://github.com/microsoft/vscode/issues/47284](https://github.com/microsoft/vscode/issues/47284). They collect telemetry information - not sure if you can disable it, maybe you can. I haven't used it in a while. Personally, I prefer IntelliJ Idea, though the scala plugin sometimes has trouble parsing scala code and it reports errors when there are none.",0
+geb8qgv,k4p4o2,Google codium - same as in  chrome vs chromium - codium is VSCode with telemetry removed.,4
+geceomh,k4p4o2,This one: [https://vscodium.com/](https://vscodium.com/) ?,1
+gechaf7,k4p4o2,"Yep, but other comments still apply. At most places where Java/Scala development takes place, you'll find IntelliJ being used...",1
+gedjafa,k4p4o2,"I would say, except in the intermediate-to-advanced environments where IDEA's plugin's false positive rate on errors becomes too severe and the lack of an integrated debugger matters significantly less. VSCode, Metals, and the Ammonite REPL tend to be a plenty-powerful combo in these contexts.
+
+**Update:** Apparently Metals has supported [debugging in VSCode](https://scalameta.org/metals/blog/2020/01/10/cobalt.html#debugging) since January.",2
+gedk4eh,k4p4o2,"Agree with that - but going back to OPs context - how likely they'll encounter those false-positive cases as a beginner?
+
+And what is their chance of landing in such an ""intermediate-to-advanced"" workplace, and not getting indoctrinated in ""tried-and-true"" tools for real pros...
+
+Personally, I dream of a day when I'll be able to spew working Scala code from vim with LSP and not rely on Idea to hold my hand...",1
+gedzdfr,k4p4o2,"Yeah, good questions.
+
+I think the VSCode/Metals debugging support narrows the gap quite a bit, but I certainly wouldn't say someone should avoid IDEA until and unless they find the false positive error feedback to impinge on their productivity unacceptably. For me, that would essentially be a daily occurrence, but I realize I may be an outlier in that respect.",2
+ge9y1vr,k4p4o2,"Correct me if I'm wrong but I think Martin Odersky, the creator of Scala, uses VS Code.",-1
+ge7p0gk,k4a0by,"avoiding mutability and side-effects introduces some nice guarantees. for example, consider
+
+```
+class Counter(val count: Int) {
+  def increment(amount: Int) : Counter = new Counter(count + amount)
+  def increment() : Counter = new Counter(count + 1)
+  def decrement(amount: Int) : Counter = new Counter(count - amount)
+  def decrement() : Counter = new Counter(count - 1)
+}
+
+class MutableCounter(private var _count: Int) {
+  def count: Int = _count
+  def increment(amount: Int): Unit = _count += amount
+  def increment() : Unit = _count += 1
+  def decrement(amount: Int) : Unit = _count -= amount
+  def decrement() : Unit = _count -= 1
+}
+
+val c = new Counter(1)
+val mc = new MutableCounter(1)
+
+someOtherFunction(c)
+someOtherFunction(mc)
+
+println(c.increment.count) // what's the output here?
+
+mc.increment
+println(mc.count) // what's the output here?
+
+```
+
+the immutable counter is guaranteed to be 2, while the mutable counter could technically have any value because we have no idea what someOtherFunction does",19
+ge7zu65,k4a0by,"One isn't strictly *better* than the other. They simply have different trade-offs.
+
+You mention speed, and indeed, if your program is very performance-sensitive, the immutable approach is unsuitable. However you claim
+
+&gt; They'd both be used to do the same thing
+
+This is incorrect, because of the tradeoff they offer, they would be used to do different things. For example I would expect the second one to be used inside a video game in order to keep track of some sort of global variable that only some entities are allowed to mutate, but the state has to be shared, for performance and architectural reasons.
+
+The first one would probably be used in some sort of multi-threaded application like a large server where immutability allows you to avoid race conditions and [referential transparency](https://en.wikipedia.org/wiki/Referential_transparency) allows you to avoid obvious bugs when working on legacy code. There are other benefits like being able to abstract over the functions that define your counter and compose them with other functions. This is where functional programming shines, and is certainly why, if you're interested in functional programming, you'd go for this option instead.",9
+ge7zv7v,k4a0by,"**[Referential transparency](https://en.wikipedia.org/wiki/Referential transparency)**
+
+Referential transparency and referential opacity are properties of parts of computer programs. An expression is called referentially transparent if it can be replaced with its corresponding value (and vice-versa) without changing the program's behavior. This requires that the expression be pure, that is to say the expression value must be the same for the same inputs and its evaluation must have no side effects. An expression that is not referentially transparent is called referentially opaque.
+
+[About Me](https://www.reddit.com/user/wikipedia_text_bot/comments/jrn2mj/about_me/) - [Opt out](https://www.reddit.com/user/wikipedia_text_bot/comments/jrti43/opt_out_here/) - OP can reply !delete to delete - [Article of the day](https://redd.it/k48t1a)",3
+ge9ukf9,k4a0by,Good bot,2
+ge7r5k6,k4a0by,"That's a rather strange and specific example.
+
+I always thought [this](https://www.lihaoyi.com/post/WhatsFunctionalProgrammingAllAbout.html) explained well.",6
+ge8cui4,k4a0by,"You’d probably never see anything like either of those examples.
+
+The first one for being unnecessarily convoluted, it would be slightly less awkward with a case class, so a bit more likely, but still not great:
+
+```
+case class Counter(x: Int) {
+  def increment(y: Int): = Counter(x + y)
+  ...
+}
+```
+
+The second one is not functional. That’s because in the second one you’re keeping some state parallel to your function and find out about the counter by consulting that state, while your function doesn’t return anything useful (remember functional is “programming with functions” and that approach dumps the function output in favour of using something else). Additionally, you define 4 functions that can arbitrarily modify that state. So any of these function calls will affect the outcome of calling any of the others. As a consequence it becomes impossible to determine the result of calling one of these functions because that outcome is influenced by external factors (the fact that any of the other functions may have modified the value).
+
+A more likely approach in functional Scala for such a use case would be using something like a Ref (https://typelevel.org/cats-effect/concurrency/ref.html). 
+You’d inject the counter into the place where you need to count, and you would update it by calling `counterRef.update(x =&gt; x + 1)`.
+
+NOTE: The documentation examples fail to mention update, but Ref has update (https://typelevel.org/cats-effect/api/cats/effect/concurrent/Ref.html).",3
+ge8cv87,k4a0by,"Hello, mlopes: code blocks using backticks (\`\`\`) don't work on all versions of Reddit!
+
+Some users see [this](https://stalas.alm.lt/backformat/ge8cui4.png) / [this](https://stalas.alm.lt/backformat/ge8cui4.html) instead.
+
+To fix this, indent every line with **4 spaces** instead. It's a bit annoying, but then your code blocks are properly formatted for everyone.
+
+An easy way to do this is to use the [code-block button in the editor](https://stalas.alm.lt/files/new-reddit-codeblock.png). If it's not working, try switching to the fancy-pants editor and back again.
+
+[Comment with formatting fixed for old.reddit.com users](https://np.reddit.com/r/backtickbot/comments/k4edr4/httpsnpredditcomrscalacommentsk4a0byquestion/)
+
+[FAQ](https://www.reddit.com/r/backtickbot/wiki/index)
+
+^(You can opt out by replying with backtickopt6 to this comment.)",0
+ge8jydg,k4a0by,The first one is thread-safe while the second one is not.,2
+ge8mp58,k4a0by,None of them is thread safe. The first one can produce the wrong values if both threads read the value before the other updates. You can use `Ref` if you need it to be thread safe (see the link in my other comment).,2
+ge8nadl,k4a0by,"Of course, if both threads in the first case operate always on the same instance instead of the returned ones it doesn’t work.",1
+ge8ocux,k4a0by,"In which case you’ll need to either count from 0 on each thread and reconcile the total count when folding the results back, or keep track of the count at the moment of parallelisation.
+
+Also I’m not even mentioning case 2, because that’s basically just threads overwriting each other.",1
+ge8onq6,k4a0by,"Absolutely. This is what I meant: case 2 is totally unpredictable unless you add some `synchronized`, which is totally bad, or use `Ref` or `AtomicReference` at least. And yes, you’ll need to reconcile the values for case 1.",1
+ge8rxpm,k4a0by,"Yes exactly, so in practice both cases are bad, the solution here is to drop the case class entirely, since it’s use case is to encapsulate the counter, and just use an Int inside of a Ref. You get immutability and thread safety.",1
+ge8s79k,k4a0by,"Yep. Anyway, I think he just wanted to understand the differences and implications between the two cases so I think this discussion will to bring some light over them.",2
+ge8t2ww,k4a0by,"Yes, might also be worth it to mention, for OPs benefit that this is an unlikely use case for a functional approach. Since in a functional approach you wouldn’t loop, you rarely will require a counter, and if you need to associate a number with elements is some non-indexed structure you can easily do it with zip. Not to say there are 0 use cases, I’ve used counters myself to implement a backed off retry (using Ref of course), but it certainly is a much rarer pattern to emerge on FP than on imperative code.",1
+ge8tc9d,k4a0by,"I agree with you. But let’s not dig too much into this specific example, that is probably wrong from the basis, as he was IMO mostly just interested in understanding the general implications of side-effecting (Java style) vs. returning an updated instance.",3
+ge9k66m,k4a0by,"Functional programming is a certain way of writing programs that focuses on writing ""true functions"" (search for ""referential transparency""). True functions take inputs and produce outputs without causing any side-effects. Modifying an input is a side-effect because in Java (Scala, Kotlin, etc) everything is a reference. 
+
+So if you pass an object to a function, you have no idea what the function does to it. After you call that function, your object may be totally different than it was before you called that function. One way of mitigating that from happening is to create classes that are impossible to mutate. This approach is popular even in Java these days (see the improved Date classes in Java 8).
+
+The ""selling points"" of functional programming is that it's (depending on who you ask ;)) easier to reason about code, since you can't mutate an object far away from where it was first created, and that this consequential immutability then makes multi-threaded/asynchronous computation much easier, since you don't have to worry about other threads modifying your data out from under you (literally could happen between two lines: `if (x &gt; 0) { doSomething(x) } // could fail if x is changed to 0 AFTER the if, but BEFORE the functional call`).
+
+On the other hand, regular-old-single-threaded performance suffers from this approach. A heavily functional Java codebase will do TONS of allocations and puts lots of pressure on the garbage collector. Allocations and garbage cleanup are not that expensive on the JVM, so it's usually okay, but it can go from ""okay"" to ""performance problem"" quicker than you realize sometimes.
+
+I think doing mutation INSIDE a function with ONLY local variables is fine. Your public functions should NOT mutate inputs, and your public classes should be immutable by default. It's worth the performance trade off. You might choose to offer a mutable version of some classes, if appropriate.
+
+My opinion is that functional programming is more-or-less necessary in Java, Scala, Kotlin because of the way the JVM works: all objects are references, no limit to mutation, no universal way to `clone` an object, no way for a function to promise not to mutate its inputs, and cheap allocations and garbage collection. Those things mean that imperative, mutation-based, programming is bug-prone.
+
+HOWEVER, I don't think functional programming is a panacea. There are languages for which FP offers almost no benefit, such as Rust and Swift. Even C++ to some extent because of `const`. In Rust, mutation is controlled locally AND functions have to declare that they need to mutate an input. There are strict rules enforced by the compiler that say that only one mutable reference to an object may ever exist at a time. This fixes all of the problems that FP fixes, but without the performance hit of never mutating in place. I'd say that writing Rust in a functional style is almost a code smell. In Swift, we have structs that are value types and passed by copy rather than reference. Swift structs also have to mark mutating methods as such and you can only call them when you have a mutable binding to the struct. Functional/immutable approaches don't gain you much in Swift, either.",1
+geabokm,k4a0by,"You were doing great but at the end you hit a common misconception. FP is not immutability and immutability is not FP.
+
+Curious enough **Rust** use common FP patterns like typeclasses and representing errors as values.",1
+geak0lo,k4a0by,"&gt; You were doing great but at the end you hit a common misconception. FP is not immutability and immutability is not FP.
+
+Immutability is a corollary to referential transparency. If your functions are referentially transparent, your inputs are immutable- either enforced by the language or just by the fact that your function cannot mutate them and still be referentially transparent.
+
+You can have immutability without FP, but you can't really have FP without immutability.
+
+&gt; Curious enough Rust use common FP patterns like typeclasses and representing errors as values.
+
+""FP patterns"" such as those found in Clojure or Elixir? Both languages that are certainly more functional than Rust.
+
+Rust is not at all functional. It's an imperative language with a nice type system. You don't need immutability in Rust because of the borrow checker, so writing functions that mutate their inputs is perfectly fine and not significantly more bug prone than pure functions would be. That's very much unlike Java et al. Also, composing and passing functions around in Rust is awkward and painful to the point that *no one* writes code like that. The ""primary unit"" of any random Rust code base is structs and traits- it's rarely functions. Writing ""functional"" Rust is leaving performance on the table and causing yourself type-check pain for nearly zero gain.",0
+geavtno,k4a0by,"&gt; Immutability is a corollary to referential transparency. If your functions are referentially transparent, your inputs are immutable.
+
+Sure, global mutability is discouraged in FP.
+But then again, you can write FP that uses some degree of mutability without it stop being functional.
+Also, my point was mainly that just because you are immutable doesn't mean you are functional.
+
+&gt; you can't really have FP without immutability
+
+So anyone using a `Ref` or a Database is not doing FP?
+
+&gt; ""FP patterns"" such as those found in Clojure or Elixir? Both languages that are certainly more functional than Rust.
+
+So the point is?
+I was saying that **Rust** uses patterns that are common in functional languages and you just confirmed my point.
+
+&gt; Rust is not at all functional. It's an imperative language
+
+This is the main problem. A language is not either imperative or functional. Imperative and functional are properties of a program not of a programming language.
+You can write imperative **Haskel** and functional **C**. Of course, each language makes it easier or harder to write code on any paradigm.
+
+Now, I have to say that I really haven't written much **Rust** so I won't discuss if it is common or not, or even easier or difficult, to write functional code in **Rust**. But, for what I can see it provides things that can be used to write functional code. Of course, nobody will use and `IO` monad and probably won't compose _functions_ into a bigger program, but you can also say that for many **Scala** code bases out there.",2
+gebll87,k4a0by,"&gt; Sure, global mutability is discouraged in FP. But then again, you can write FP that uses some degree of mutability without it stop being functional. Also, my point was mainly that just because you are immutable doesn't mean you are functional.
+
+Well, you literally said ""FP is not immutability and immutability is not FP"". I agree in one direction but not the other. FP requires immutability at whatever resolution we're using the FP label. If we say ""this is a (pure) function"" it means it must not mutate its inputs. If we say ""this is a functional code base"" it means that the majority, or the most important parts, of the code is/are pure functions. Pure functions do not mutate their inputs. Therefore ""functional"" implies immutability. Is the whole project functional? Is this module functional? Is this *function* functional? Whatever **thing** you label as ""functional"" implies it does not cause side-effects.
+
+*Obviously* you don't need 100% purity to call your project ""functional"", but calling `map{}` once doesn't quite cut it, either.
+
+&gt; So anyone using a Ref or a Database is not doing FP?
+
+Come on, now. You're not being intellectually honest in how you're replying to me. You replied to me with a claim about immutability and FP, which I argued against and now you're just playing games. All useful programs will have some impurity (Haskellers might debate whether Haskell programs have *any* impurity). There's a difference between having two functions that are impure and having damn near all of your functions be impure.
+
+If you'd like me to call your software project's code ""functional"", it better have mostly pure functions. That implies that MOST of the data flowing through your logic is immutable.
+
+&gt; So the point is? I was saying that Rust uses patterns that are common in functional languages and you just confirmed my point.
+
+How did I confirm your point? I pointed to two popular, functional, languages that don't have those features. In any case, Haskell, Scala, and Rust are the only languages that I know of that have typeclasses. I'm sure some others do, too. But if I list all of the languages that I think of as functional: Haskell, Scala, Clojure, OCaml, Elixir, Elm; then only two of the six have typeclasses. I just don't think that typeclasses is something that I'm willing to associate with functional programming in a general sense.
+
+Returning errors as values, though, I do agree is common in functional programming. But, again, it's easy to find counter-examples: C and Go both use return values for errors, and Clojure uses exceptions.
+
+So the fact that Rust has these things doesn't convince me at all that it's a functional language (or that Rust code is generally describable as ""functional"" in reference to your next point).
+
+&gt; This is the main problem. A language is not either imperative or functional. Imperative and functional are properties of a program not of a programming language. You can write imperative Haskel and functional C. Of course, each language makes it easier or harder to write code on any paradigm.
+
+We're on the same page here. When I say that ""Rust is not functional"" or ""Rust is imperative"" I'm actually rolling several things together. A more thorough statement of my opinion is that ""Rust makes it difficult to write functional style programs. Rust has language features that make functional style code less beneficial than it is in other languages. Rust's standard library and in-memory representation of objects is not optimized for a functional style of programming (no persistent collections or objects). Writing procedural style code in Rust is easier and provides better performance (see `async` vs. using Futures combinators).""
+
+That's why I said that writing functional Rust code is, to me, a code smell. It's like when someone tries to write Java-style OOP in Python. They are *most likely* just bringing their ""best practices"" with them without thinking about why or if they are necessary. Writing functional Rust is swimming upstream and sacrificing performance for not much benefit, if there is any.
+
+That's not to say that writing pure functions in Rust is bad. I only mean that contorting your code to avoid mutation at all cost is silly, and copying big collections to avoid mutations is also silly. It's actually pretty elegant to write a function that takes ownership of an object and returns a modified version of it so that you have a ""fluent"" API where you are guaranteed that the caller didn't hang on to an old, outdated, reference.",1
+gec4j6c,k4a0by,"&gt; Well, you literally said ""FP is not immutability and immutability is not FP"". I agree in one direction but not the other. 
+
+Ok I am going to be fair that I was too sloppy on my first statement. Let me try to rephrase it in a way I think we both agree.
+
+_""Immutability on its own doesn't imply FP, in the sense that you can have imperative code that uses immutable values""_.
+
+&gt; but calling map{} once doesn't quite cut it, either.
+
+Agree.
+
+&gt; All useful programs will have some impurity.
+
+Well, this depends on what you consider purity.
+For me `Ref` is pure, a DB call that returns an `IO` is pure.
+
+_""FP is not about avoiding side effects, FP is about managing side effects""_ - Fabio Labella.
+
+&gt; How did I confirm your point? I pointed to two popular, functional, languages that don't have those features
+
+Sorry, I misunderstood your point. I thought you were saying those languages had such features, not that they didn't had it.
+
+&gt; That's why I said that writing functional Rust code is, to me, a code smell. It's like when someone tries to write Java-style OOP in Python.
+
+Ok, that is fair.
+As I said, I haven't written too much **Rust**, for the little I have seen it looked to me that it could be _""functional""_.
+
+&gt; I only mean that contorting your code to avoid mutation at all cost is silly, and copying big collections to avoid mutations is also silly.
+
+I think here we just have a discrepancy on what can be called FP or not. And I think that is a valid difference on points of view.
+For example, is **Akka** code functional or not? Some say yes, some say no, others would say that functional is not like a switch but rather a spectrum.
+
+Also, I just remembered something from one the blog post I read when looking at **Rust**, the author said something like: _""Rust is also pretty functional, but the authors will never say that out loud because that would scary their target audience""_. And, while I think the author said that mostly as a Joke and I do not know enough about **Rust** to have an opinion myself, I think it could true, given that it is targeted as system programming language where speed matters; and that the word _""functional""_ have that implicit meaning of _""slow""_.
+
+Nevertheless, when I wrote _""nobody will use and IO monad""_ I decided to google if it was an `IO` Monad for **Rust** and I found a **Reddit** post of someone sharing his experiment about creating its own `IO` Monad for **Rust**, and the comments were mainly negative, not in the rude sense, but in the sense that most people didn't saw any value on that. Even some people were saying something similar to what you said: _""Rust is an imperative language, period""_.
+So, either it is actually true that **Rust** is only for imperative programming, or it is true that most **Rust** users are _""scared""_ of FP :p (disclaimer: this is a silly joke)",1
+ged9erx,k4a0by,"&gt; Well, this depends on what you consider purity. For me Ref is pure, a DB call that returns an IO is pure.
+&gt; 
+&gt; ""FP is not about avoiding side effects, FP is about managing side effects"" - Fabio Labella.
+
+Sure. And reasonable people may disagree and debate either point. However, this is WAY beyond the original point. If we're looking at a code base and we're debating whether or not returning `IO` should be considered pure, then I am *happy* to tell you that we are looking at a functional program, no matter where we land on `IO`.
+
+Remember that the original point I made was approximately that ""Functional programming is important in Java-like languages because its benefits outweigh the costs. Some other languages have non-reference types and controlled mutation at the language level. For those languages, functional programming style doesn't benefits that outweigh the costs.""
+
+Then you replied and argued that immutability doesn't imply FP and FP doesn't imply immutability. The latter is false. The former is only relevant to the extent that we can write immutable Java/Scala/Kotlin that's not FP. Which is a fair point. One could argue that it's actually immutability that is most beneficial for JVM languages and not necessarily FP.
+
+&gt; Also, I just remembered something from one the blog post I read when looking at Rust, the author said something like: ""Rust is also pretty functional, but the authors will never say that out loud because that would scary their target audience"". And, while I think the author said that mostly as a Joke and I do not know enough about Rust to have an opinion myself, I think it could true, given that it is targeted as system programming language where speed matters; and that the word ""functional"" have that implicit meaning of ""slow"".
+
+I think it's more that people are intimidated by ""functional programming"". They think of ""monads"" and Haskell.
+
+&gt; Nevertheless, when I wrote ""nobody will use and IO monad"" I decided to google if it was an IO Monad for Rust and I found a Reddit post of someone sharing his experiment about creating its own IO Monad for Rust, and the comments were mainly negative, not in the rude sense, but in the sense that most people didn't saw any value on that. Even some people were saying something similar to what you said: ""Rust is an imperative language, period"". So, either it is actually true that Rust is only for imperative programming, or it is true that most Rust users are ""scared"" of FP :p (disclaimer: this is a silly joke)
+
+Well, Rust fans are weirdly ""protective"" of their language. They say no in that subreddit to everything. I personally agree that an IO monad is not super helpful except in a language that actually enforces it and can use purity and laziness for optimizations, i.e., Haskell. But if there's not language-level support for purity, then wrapping IO in a monad feels less useful. It's a nice marker for ""this function does side-effects"", but that's about it.
+
+On the other hand, one of the things I'd *like* to see Rust do is to have all functions default to `must_use`, which is an optional marker that you can annotate a function with that makes it a compiler warning for the caller to not use the return value. In other words: `foo();` is a warning and `let _ = foo();` would not be. I think that should be opt-out rather than opt-in (Yes, that's also a functional language thing). But everyone on the subreddit moaned at the idea and ""OMG, the false positives!"". I'm pretty sure none of them have ever used Swift, because that's the default there and I don't think I've ever gotten a false-positive. Oh, well.",2
+gedf97m,k4a0by,"I just want to close this saying it was an interesting discussion and that I learned a couple of things _(so thanks for that)_.
+
+I still think it could be said that one can write FP code in languages like **Rust** but just a different kind of FP than the one from **Haskel** or _typelevel / zio_ **Scala**.
+It may be worth an analysis about if the borrowing technique from **Rust** could be seen as a different form of an Effect System, at the end the point of both is not really avoiding side-effects or mutations, but rather control them in a way that you can reason about them.
+
+But then again, I may just start speaking nonsense due to my limited knowledge of **Rust**.
+
+Anyways, have a nice day.",2
+ge777xb,k40pdd,I'm interested,2
+ge92jsy,k40pdd,DM'd,1
+ge7nnyc,k40pdd,"I’d be happy to work on this. DM if you want to discuss, generally 150$/hr but happy to consider other options. Background: software engineering 15 yrs",2
+ge8yyny,k40pdd,"Hey, $150/hr is way out of budget for our open-source project that's being funded out of pocket. Thanks for the response though.",2
+ge9ayp3,k40pdd,I’m interested too!,1
+ge9t2zk,k40pdd,Interested,1
+gef2xjr,k3uoqr,"Is there such a thing as `lazy` for Futures?  Basically, I have a handful of remote API calls I need to execute in no particular order but depending on the result of a few of them, I may not need to look at the Future result of others. Seems wasteful of network resources I know, but it would be really nice to have them concurrent in for comprehension rather than flatMap Future after Future.",2
+gef4to6,k3uoqr,"&gt; Is there such a thing as lazy for Futures.
+
+Well, that sounds like an `IO` Monad. Take a look to [**cats-effect**](https://typelevel.org/cats-effect/), [**monix**](https://monix.io/) or [**zio**](https://zio.dev/).",2
+gejmoje,k3uoqr,"Any tips on working on a codebase that’s ‘over your head’? It’s good code, but the senior who wrote it is just way more skilled than me. It also doesn’t help I had no real experience with scala, so Im struggling with some syntax even. Help is much appreciated :)",2
+genp3qp,k3uoqr,"In general I would say
+
+- ask a lot of questions, from the author of your codebase if you can. if it's a general scala language question then asking here or users.scala-lang.org or the gitter channel or even r/learnprogramming should get you some quality info
+
+- go through _Programming in Scala_ as its quite an easy read and will give you insight into the design of the language and some common data structures and patterns you will see
+
+- google terms you encounter that you do not know, open a couple blog posts, and if you find particularly helpful explanations check the history for whether the author has explained anything else related to scala. posts may explain things using other terms you don't know, and you should do the same with those.
+
+- don't try to understand the codebase as a whole. if it's well factored you'll be able to understand a piece of it at a time. if it's not then you can still find one particular happy-path flow that you can understand.
+
+- remember that scala is intentionally a hybrid object-oriented and functional language and you will encounter both forms as well as mixtures of those forms. this can be confusing when you're only used to one or the other, but ultimately the design gives you a lot more power and flexibility than either in isolation, so try to temper the early frustration with future anticipation
+
+- rewriting and refactoring code is an extremely useful tool for understanding it. you don't have to commit every change you make so don't worry about it and get used to writing a lot of code that will eventually be thrown away (which is still handy even when you're not in the initial learning phase). for instance, if you come across highly generic code or implicit-based code that you don't understand, maybe write a few tests, and then try to rewrite the code and tests in a non-generic and/or non-implicit way. by comparing the starting and ending points and going through the process you will learn not only how those things work but also how they contribute to usability and readability and debugging and more.
+
+- learn to love strong type systems and type safety. scala and its ecosystem have a heavy bias in this direction. the compiler is your friend, and every error it points out is an error you didn't hit when running the code, even when it's bad at explaining the error. don't just try to shut up the compiler; try to understand what it's telling you and why.",2
+geldj8s,k3uoqr,"Well, you need to understand the language, the common patterns / architecture the code is using and the libraries / frameworks over which the code was built; and for that, you need to study.
+
+The first thing would be the language, for learning **Scala** you do not only need to learn the syntax but, the basic mindset of FP, understand the importance of a strong and static type system and how to take advantage of it, and familiarize with the stdlib data structures a_(`List`, `Option`, `Try`, etc)_ &amp; functions _(`map`, `flatMap`, `find`, `forall`, `foldLeft`, etc)_.
+If you are already here and just got confused with some fancy syntax from time to time, then do not worry too much about it, you will be learning about it while working on the code and you can google or ask in the [**gitter** channel](https://gitter.im/scala/scala).
+If not, then this is the first step, pick any course / book / tutorial you want to become familiar with it, you can find a couple of post about recommendations in this same subreddit.
+
+The next step would be to understand the libraries / frameworks &amp; techniques used by the code. It would be hard to give you any tip without knowing which ones they are, can you list them? Also, it may help if you can post a _short_ snippet of something that is confusing to you so someone can explain it and point to reference material.",1
+genk57t,k3uoqr,"Anyone written a fancy TUI app in scala? What library did you use if so? I don't have a particular project in mind, but I think it would be cool if my next project had a rich terminal interface instead of (or in addition to) a web interface.",2
+gep8sbv,k3uoqr,"I had some success using [Lanterna](https://github.com/mabe02/lanterna) from Scala, you might check that out. It's not functional (but can be made to be) but it works fine and does a lot for you.",2
+ge6lxay,k3uoqr,"Is there a tool for Scala similar to this one from F# where I can see quickly the code that scala generates: https://sharplab.io/#v2:DYLgZgzgNAJiDUAfALgTwA4FMAEBJAYgPaHYC8AsAFDY3YCGARhMgE50DGy2Atptw5hbYAEpmDBCIbAFcAdgEsuAWgB8MhcipU0WbACE6LABQBKMtnbA6ECFVrzZyQWA44CxbAHdFACzu1aXn5BbAB9ZB95CAA6UXFCU3N0FgdkMFlsACI4iUyqTFkYLUoAbQAeAEFpZEIAeSxZFQBdKm5CGGlgHABRAA8nWQh5QkGyf2wdNyISbwjxgKCBIVDYsQkAJkTSbGTU9KycwnW8yiourl7zA2MTYoB6O97V+MSypSULQm50eS6hQRYhCEPkEmCoT0Om1up0okzw0z6XF2ADc6E5sFt5sw0fJ2Dw+EsRGtCABmDFgYhSdyEMwUagBWi7Rz7bLEkknKjUxHPCRk3pAA===
+
+I know that one option is to decompile class files to java see that was generated, however, you have to go and figure out the class files that were generated for a class and open those as well.",1
+ge6zd79,k3uoqr,This maybe? https://alvinalexander.com/photos/run-javap-inside-scala-repl-help-commands/,2
+ge8wrae,k3uoqr,"I have a java.awt.Graphics2D instance. I would like to set the colour on it this way:
+
+g2d.color = RED
+
+so I created this:
+
+extension (g2d: Graphics2D) def color\_=(color: Color): Unit = {  
+  g2d.setColor(color)  
+}  
+
+
+but it appears the ""property"" syntex doesn't work with extension methods in Scala 3.0.0-M2. Is there a way to do this without having to wrap it in a class?",1
+geabjwc,k3uoqr,"The details escape me, but I vaguely recall that an assignment like that needed a corresponding accessor. Try adding a `def color: Color = g2d.getColor()` and see if the assignment will resolve.",2
+gecsaik,k3uoqr,You are correct for a standard class. I added another extension method that returned the color but unfortunately that didn't make the setter work.,1
+geef0dd,k3uoqr,"Bummer. Just to be sure, did the other method have the same name and no parentheses and not conflict with a member variable name? I recall an empty parameter list will not work. Because I think [it works for me](https://scastie.scala-lang.org/6lqxqq5QTqW7Nwuw9njlNg).",3
+geh3zj0,k3uoqr,I wasn't aware you could put multiple methods inside the same extension block. It works perfectly. Thanks a lot.,2
+ge3a0qr,k3gt13,"Instead of using tokens in the URL you could just use a cookie.
+
+If you set the flags correctly e.g. same site, secure, http only then it is pretty safe from CRSF and other security issues.",2
+ge42cb3,k3gt13,"I don't mind using the cookie method either. I think I can isolate my issue a little more: for the life of me I cannot Redirect to another link
+
+An example that I cannot achieve is here, using the redirect method of DefaultController:
+https://www.playframework.com/documentation/2.8.x/ScalaRouting#The-Default-Controller
+
+My issue is pretty similar to these issues: 
+https://stackoverflow.com/questions/42759515/play-framework-server-side-redirect-on-unauthorized-async-request
+
+https://discuss.lightbend.com/t/history-mode-vue-spa-configuration/6034",1
+ge90ebt,k36x8b,What do you think of https://github.com/raquo/Laminar?,6
+gecnsgt,k36x8b,"I think it's much more serious than my toy project! If you like it just go for it! :D   
+But I wanted something dead simple.
+
+I need to work more on my diff algortihm, currently it is pretty fragile and dumb.
+But todomvc tests are passing lolz.",1
+ge3dhd0,k36x8b,"This has a similar syntax:
+https://www.wbillingsley.com/veautiful/
+
+It's used for quite a few of my teaching materials. E.g. here's Rescue Line simulated in the browser:
+https://theintelligentbook.com/thinkingaboutprogramming/#/challenge/rescueLine/0/0
+
+And here's a deck explaining MOSFETs:
+https://theintelligentbook.com/circuitsup/#/mosfets/0/0
+
+I'm giving a talk on it at ASCILITE (Australian Higher Ed conference) tomorrow, but here's a demo from the Intelligent Textbooks Workshop: https://www.youtube.com/watch?v=HlG7lmu-sP4",4
+ge3nto5,k36x8b,"Yes, looks nice indeed!  
+I'm glad that more people are striving for simplicity, especially in Scala! :)",1
+ge1061r,k2ysgl,"Good stuff!
+
+Coursier really is amazing for lots of things.",4
+ge958kd,k2ysgl,"I find coursier's CLI to be pretty terrible, TBH, but perhaps this is because I use it under the wrong assumption that it's meant to be a ""package manager"" for scala and not just an artifacts resolution and caching tool?",3
+ge95h19,k2ysgl,I use it as a package manager and I am pretty happy with it. What bothers you?,1
+geimekj,k2ysgl,I've setup a private couriser channel at work and use it to distribute cli tools. Even random main classes in our existing java artifacts are fair game.,3
+geitb36,k2ysgl,Awesome!,1
+ge0z4c9,k2yg6g,OOoooooh! Nice.,1
+gduxp8e,k2jemv,"As an aside, `\s` already includes `\u00A0`, AFAIK.",4
+gduk107,k2jemv,It's telling you not to use unicode escapes and just write the characters themselves. You can look up how to type each of them in your os,3
+gduxah5,k2jemv,That's gonna lead to some ugly source code.,9
+gduye0t,k2jemv,Yeah sounds horrid. I wonder why they deprecated them.,3
+gdvrk5z,k2jemv,"I can see where they are coming from. Triple-quotes are what you use when you don't want Scala to interpret any escape sequences. It's kind of confusing to make an exception for one kind of escape sequences.
+
+The suggested fix is only bad in this case because you can't tell the characters apart visually. My editor puts a `[0xA0]` etc in the status line when my cursor is on the character which helps. It's actually a lot more concise:
+
+    """"""[\s  ]+"""""".r
+
+But you don't have to take the warning message's suggestion. You can use single quotes:
+
+    ""[\\s\u00A0\u2009\u2028\u2029]+"".r
+
+Or interpolation:
+
+    val unicodeWhitespace = ""\u00A0\u2009\u2028\u2029""
+    s""""""[\s$unicodeWhitespace]+"""""".r",8
+gdw6mbk,k2jemv,"Thanks, this fixed it.",1
+gdvlepz,k2jemv,Right to left text in left to right source sounds awful.,2
+gduk56n,k2jemv,I had something similar and it should tell you in the error message what to replace the characters with ?,1
+gdw25cw,k2jemv,It doesn't sadly.,2
+gdrj2nz,k20jzx,[Algebra](https://github.com/typelevel/algebra) and [Algebird](https://github.com/twitter/algebird).,10
+gdro95w,k20jzx,"I would think [Spire](https://typelevel.org/spire/), which depends on the Algebra project mentioned in a parallel comment.",7
+gdrn1ue,k20jzx,"There's a `Group` typeclass in [typelevel/cats](https://github.com/typelevel/cats), which is a successor/competitor of Scalaz as a general purpose functional programming library. But if you want `Field`s, `Ring`s and so on, you'll need a specialized library like those mentioned in the other comment.",4
+gdqbi38,k1ikmi,I don't know how useful this feature really is. It saves maybe a minute or two when starting a new project? Seems like a lot of change for minimal gain.,5
+gdn2g9z,k19qsc,/u/lihaoyi I see that you often use annotations/macros in your projects (e.g. here and also in cask). Can you give some summary of how much trouble you expect when porting this to Scala 3?,11
+gdnew36,k19qsc,"These don't actually use annotation macros at all: just normal macros. jodersky already helped port Cask to Scala 3, so I don't see any reason we can't port this one the same way. The macros aren't particularly sophisticated in either case",15
+gdnrbiw,k19qsc,"Thank you, that's great to hear! :)",2
+gdvx550,k19qsc,"Annotations in scala arent necessarily macro annotations. AM usually transforms a class/object and adds additional functionality to them.
+
+Here annotations are only used as markers/metadata. 
+`ParserForMethods(this).runOrExit(args)` searches `this` for those annotations and does some magic if found.",1
+gdn2bpp,k19qsc,You do so many amazing projects.  Thank you for making scala rock!,19
+gdnrwa7,k19qsc,Can you give maybe a small overview on what (if anything) you’re doing that makes your software better than [scallop](https://github.com/scallop/scallop)? 🙂,7
+gdptb54,k19qsc,"I'm interested in this, as well. I've got a bunch of stuff using Scallop. It's had some rough edges but I get along fine with it nowadays.",5
+gdq8ek1,k19qsc,"To answer both your questions, Mainargs has considerably less boilerplate. Consider the Scallop getting started example:
+
+    
+    class Conf(arguments: Seq[String]) extends ScallopConf(arguments) {
+      val apples = opt[Int](required = true)
+      val bananas = opt[Int]()
+      val name = trailArg[String]()
+      verify()
+    }
+    
+    object Main {
+      def main(args: Array[String]) {
+        val conf = new Conf(args)  // Note: This line also works for ""object Main extends App""
+        println(""apples are: "" + conf.apples())
+      }
+    }
+
+With the equivalent Mainargs code:
+
+    object Main {
+      @mainargs.main
+      def run(apples: Int, bananas: Option[Int], name: String) = {
+        println(""apples are: "" + apples)
+      }
+      def main(args: Array[String]) = mainargs.ParserForMethods(this).runOrExit(args)
+    }
+
+The verbosity isn't prohibitive, but it's nice not to have to deal with it. The data types are simpler too: just a method taking arguments or a vanilla `case class`, without this mutable DSL-ish `ScallopConf` object that the Scallop library uses",1
+gdtfwcj,k19qsc,"That's certainly a lot less code. We have some apps with maybe 50-100 lines of Scallop boilerplate. A good bit of that is verifications, so perhaps we can move them to custom argument parsers. I'm excited to use this in our next project, especially if we can make things easier to test.",1
+gdnn26c,k19qsc,"What is the recommended model for validation?
+
+For example, `--max-items`, where `maxItems` is `&gt;= 1`.
+
+It would be also useful if it supported `--version`.",3
+gdq851a,k19qsc,"I think the way that fits best would be to define a wrapper type `case class PositiveInt(i: Int)` with a custom argument parser:
+
+- https://github.com/lihaoyi/mainargs#custom-argument-parsers",4
+gdld0cg,k0vyvf,"Try [https://github.com/moia-dev/scynamo](https://github.com/moia-dev/scynamo)
+
+It gives you typeclasses (with auto derivation) to read/write from/to Dynamo format. You can then use AWS SDK directly to interact with Dynamo. We're developing that in-house and using it actively in multiple projects across the company.",9
+gdlalcq,k0vyvf,Hi. I’m working on an alternative client for DynamoDB. It is a wrapper around the AWS SDK version 2 so it is nonblocking client under the hood: https://github.com/d2a4u/meteor,7
+gdmjvln,k0vyvf,"Hi all, 
+
+Thanks so much for your replies. For right now I think Meteor is closer to solving my immediate needs. Scynamo looks intriguing though, but maybe as the substrate for my own library... because, yeah... [obligatory xkcd reference](https://xkcd.com/927/)  
+
+I was aware of both Alpakka and DynamoDB-Spark (sorry, should  have been more clear about that) but my current project is on a ""lean Cats stack"" and adding Akka or Spark as dependencies just to use DynamoDB seemed a bit too much and I wanted to avoid it as much as possible... and adding Spark would drag me back to 2.12.",2
+gdnsyh4,k0vyvf,"You may want to keep an eye on [**dynosaur**](https://github.com/ovotech/dynosaur), sadly it is not released yet.",2
+ge7d6lv,k0vyvf,"Hey, just to update here. We are changing strategy on that (mainly because dynosaur was started before SDK2, which addresses some concerns natively, such as nonblocking core and immutable AttributeValue).
+
+The idea is to use `meteor` (mentioned above) as a wrapper for SDK 2, and transform dynosaur into just offering the Schema abstraction over AttributeValue (like we do for fs2-kafka and vulcan respectively, in the kafka/avro world)",2
+geb9iow,k0vyvf,"I've been playing with meteor for three days and I've found myself doing just that. By the time I'm done I will have an ad hoc, informally-specified, bug-ridden, slow implementation of half of your project :)",1
+gdl0s7b,k0vyvf,"IFIRC Alpakka has a DynamoDB library
+
+EDIT: It does, but it’s a pretty thin wrapper over the AWS SDK",1
+gdmd30j,k0vyvf,"If you are familiar with spark, I suggest using it. Here is the data connector: [DynamoDB-Spark](https://github.com/audienceproject/spark-dynamodb) It works like a charm",1
+geb70pj,k0vyvf,"Try [https://github.com/PlayQ/d4s/](https://github.com/PlayQ/d4s/)! It's quite mature, provides magnolia-based or circe-based codecs, a flexible DSL, supports metrics, AWS SDK v2 and bifunctor effects (such as ZIO, monix-bio)",1
+geb9kr6,k0vyvf,This looks... really good.,2
+gdkqoxp,k0oeup,"If anyone else was thinking ""Whoa! Scala 3 has `derives`???"". Here ya go: https://dotty.epfl.ch/docs/reference/contextual/derivation.html",8
+gdrkkx8,k0oeup,"Yeah, Haskeller inside me is satisfied...",3
+gdlrz6z,k0oeup,"Wow. I want to go back to a Scala-focused job soooo badly. I mean I already liked Scala a lot, but Scala 3 looks really good.",4
+gdsfdpk,k0oeup,Until you get the job and realize they refuse to upgrade from 2.11,3
+gdsm8gq,k0oeup,Still better than what I'm forced to do right now.,4
+gdsrk36,k0oeup,What language(s) are you working in?,1
+geckj17,k0oeup,"These days it's mostly really badly cobbled together Typescript and JavaScript. The organization I'm part of fully drank the ""worse is better""-kool-aid, apparently.",1

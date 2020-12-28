@@ -1,0 +1,155 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k78yl5,I created an app to show the shortcuts of the current application,"Looking up shortcuts on the web takes you out of the current context and breaks your workflow. That's why, as a Linux user, I have always been a bit envious of macOS users, who had access to tools that could instantly show the current application's shortcuts (CheatSheet, Pretzel, ...). 
+
+Thanks to KeyCombiner, my side project for the past 10 months, I can now do the same on Linux. Via pressing a global shortcut (`Super`\+`Alt`\+`C` by default), I can trigger an overlay that lets me search through the current application's shortcuts, without taking me away from the current context. While testing the app, I have grown dependent on it and miss it whenever I work on another machine without KeyCombiner installed. I think you might like it, too ;)
+
+The AppImage is free to use and can be downloaded from this page: [https://keycombiner.com/desktop/](https://keycombiner.com/desktop/)  
+Direct download link: [https://keycombiner.com/download/KeyCombiner-0.0.9.AppImage](https://keycombiner.com/download/KeyCombiner-0.0.9.AppImage)
+
+This Gif shows how it looks like:
+
+[Demo for VSCode, Chrome, and PyCharm](https://i.redd.it/ma91eofxpd361.gif)
+
+The data is provided by an offline version of KeyCombiner's public shortcut collections: [https://keycombiner.com/collections/](https://keycombiner.com/collections/)
+
+So it works for the applications listed there. In particular, it should work for all apps that an average software developer uses (VSCode, JetBrains IDEs, Vim, Eclipse, Chrome, Nautilus, Terminal, Obsidian,...). This list is growing fast, and I am happy to take suggestions ;)
+
+To use the app, you will need to create a free account. This is needed because KeyCombiner not only shows the current application's shortcuts but, in addition, also those from your personal shortcut collections. These personal collections are also accessible from a web interface and associated with your user account. You can also create collections of short text snippets, such as commands and programming language syntax. These will then also be available via the instant lookup on the desktop. Personally, I use this a lot for looking up Regex syntax, that I keep forgetting.
+
+(KeyCombiner has a lot of additional features, but this one has a Linux-specific implementation and can be used by itself)
+
+I'd be thrilled to receive some feedback and answer your questions!",10,linux,2020-12-05
+k75gr2,Why do unis insist on using Microsoft Services?,"I worked in a couple of start ups before coming back to academia. I am a biologist, so no real background in computer science either. I have however had to use Linux Ubuntu or Linux Mint as my workstation OS's. Windows was only used for analytical equipment as the software often needs Windows (some supply software for Linux as well, mind you!)
+
+I realised that my uni pays huge sums in yearly subscription for basically the MS office suite which can easily be replaced by Libre-Office and an in-house email server. When I came to uni with my Linux machine, I basically couldn't connect to email (as thunderbird doesn't handshake very well with the new outlook settings) and Teams always gives trouble. For every MS software or service the uni uses, a FOSS alternative with equal ease of use exists. 
+
+Seeing that underaged students study here and their data gets peddled to corporations to serve advertisements, I am surprised that uni's and these corporations don't get sued under child protection schemes. 
+
+Am I missing something? Why do uni's insist spending money (student fees money) on software when a free and stable alternative exists?",308,linux,2020-12-05
+k73ds2,Subcluster allocation for qcow2 images,,1,linux,2020-12-05
+k72ily,The future of 32-bit Linux,,134,linux,2020-12-05
+k70g6t,elementary OS on Raspberry Pi,,66,linux,2020-12-05
+k6yptm,Linux KDE Plasma KWin Script Manual Tiling Window Manager V1.6,,3,linux,2020-12-05
+k6ynrj,Linux KDE Plasma KWin Script Manual Tiling Window Manager V1.5,,14,linux,2020-12-05
+k6ycbh,Chromium now available in Flathub,,58,linux,2020-12-05
+k6x5f6,It's amazing that Linux can look much better than Windows and still be much faster.,"I have dual boot windows 10 and manjaro with kde plasma. Kde plasma by default is prettier than windows 10 on default, but once you start customizing it windows can't stand a chance. 
+
+This is where the fun begins. My windows is really slow, so I disabled all visual effects. While manjaro has a bunch of visual effects and it's still mch",83,linux,2020-12-05
+k6wz06,Linux will run on anything. I thought this laptop should go to E-Waste till I booted linux on it.,,806,linux,2020-12-05
+k6w2b0,Integration post - your favourite Linux distro's dealbreaker,"For many, maaaany years I was faithful to Ubuntu dustro, since 12.04, I used it with Unity, then Gnome. It was perfect distro for me back then, when I knew little to no about Linux. It just worked. Well sometimes some programs were missing from apt, sometimes it crashed after version change, but generally for casual user it was perfect as alternative for Windows.
+But some time ago I started hopping from one distro to another - Pop, Arch, Mint, Fedora, Puppy, Kali, Manjaro.
+And the last one - Manjaro - is what I stayed with. Manjaro Gnome to be precise. Why? It's not about ""Arch feeling for casuals"" or ""always newest kernel"" or something like that. It was two things - Gnome, that I was used to very, very much, that made me feel like home in Ubuntu, with it's NOT Windows-like feel, customization. And the second one - YAY (and YAOURT before that). It's just perfect, no searching for PPAs, no deciding if I want to use apt or snap, no update and then upgrade. Just yay and, like Todd Howard said, ""it just works"".
+I know, these are not most important things in Manjaro, it has many pros, but for me - this is the dealbreaker. The Ubuntu casual-friendly look and feel (despite me beeing advanced Linux power-user) without having to struggle with apt, snap, ppa, git and all that.
+And what's your story? Why are you using this particular distro, over another? What is the dealbreaker?",7,linux,2020-12-05
+k6vu5k,"New Raspberry Pi OS release will switch to PulseAudio as default, citing difficulties with ALSA.",,69,linux,2020-12-05
+k6uhs8,KISS Linux live 2020.12-1 released,,22,linux,2020-12-05
+k6ubpk,Radeon RX 6800 and 6800 XT and Linux Compatability,"These cards are closing in on being in the market one month and boasted out of the box linux compatability. Has this been the case for you? I am curious if this is actually the case for the average linux user.
+
+I have had issues trying to set it up in arch based distros like endeavor os and manjaro, likewise with ubuntu 20.04. Old installations fail to boot, new attempts at installations work, until reboot. Then it fails to boot.",14,linux,2020-12-05
+k6ty2s,We did it boys. We have our own big green install button on the official Minecraft website.,,377,linux,2020-12-05
+k6sfnp,Starting services only when the network is ready on Debian/systemd,,8,linux,2020-12-05
+k6quzp,HINT: To edit configs in graphics editor,"If you equally hate `nano`,`vi` and `emacs` and want to edit configs with a graphical editor, be it VSCode, Atom or GEdit - you may find running them with `sudo` problematic. However, you can do it easily like this:
+
+Declare an environmental variable ""VISUAL"" in your `.bashrc` or whatever. Put there a command to start your editor. `export VISUAL=""code -nw""` Now, the command `sudo -e file` will open the file in the editor, allow you to edit it and preserve the file owner. 
+
+Please note that the editor command should not exit before the file is saved. That is why with VSCode you must supply the argument `-w`.",0,linux,2020-12-05
+k6pqh5,Fedora running on M1 Macs using QEMU,,0,linux,2020-12-05
+k6pkuh,I have developed a utility to clean up your home dir from dotfiles,"Hi,
+
+After a long and frustrating battle with dotfiles in my home dir I decided to take a different approach. I developed \`antidot\` which is a utility to find dotfiles in the home dir and move them to their appropriate location (XDG dirs based). \`antidot\` also makes sure applications can find their config and cache files in the new location by defining environment variables, aliases and as a last resort symlinks.
+
+I would love for your feedback and contribution! This project is young and it's success depends on the community.
+
+https://github.com/doron-cohen/antidot",85,linux,2020-12-05
+k6oxpe,"Weekend Fluff / Linux in the Wild Thread - December 04, 2020","Welcome to the weekend! This stickied thread is for you to post pictures of your ubuntu 2006 install disk, slackware floppies, on-topic memes or more.
+
+When it's not the weekend, be sure to check out r/WildLinuxAppears or r/linuxmemes!",2,linux,2020-12-05
+k6o1op,"It might be a little bit off topic, but I'm proud to have done my first bit of hardware hacking and rooting my openwrt-based (a Linux distro for routers) router. Love the banner.",,91,linux,2020-12-05
+k6npc0,New RISC-V CPU claims recordbreaking performance per watt,,1198,linux,2020-12-05
+k6kqci,"T2 Linux 20.10 - ARM64, PowerPC64le, RISCV &amp; more!","After a decade of development we are proud to announce the availability of the new T2 Linux **Source and Embedded Linux** distribution build kit stable release **20.10**.
+
+The **20.10** release received updates across the board, while a major working target was adding new architecture support for **ARM64**, and **RISCV** as well as further improving **cross compilation**, and all official ISO images are now fully cross build! Over 13800 Subversion revisions indicate the magnitude of the release, with over 1000 new packages, new features and various other improvements and fixes, including the latest Linux kernel, **GCC, LLVM, Clang, Rust,**  **X.org****, Wayland, Firefox, KDE, GNOME** &amp; everything in between.  
+Aside support for the latest Epyc and Threadripping AMD Zen silicon, with enthusiasm we also maintain support vintage hardware. such as the **Sony PS3, Sgi Octane, Sun UltraSPARC** and various other such systems!  
+More information, source and binary downloads are available open source and for free at: [https://t2sde.org](https://t2sde.org/)  
+
+
+Since recently the development can also be followed live on YouTube at: [https://youtube.com/renerebe](https://youtube.com/renerebe)",205,linux,2020-12-05
+k6gdr1,Open Source Does Not Equal Secure,,63,linux,2020-12-05
+k66woz,Ranking comparison between distros sub members and Distrowatch views.,"&amp;#x200B;
+
+|Reddit position|Distrowatch position|Sub name|Sub members|
+|:-|:-|:-|:-|
+|1|5|r/Ubuntu|163k|
+|2|17|r/archlinux|160k|
+|3|40|r/tails|60.9k|
+|4|4|r/linuxmint|51.6k|
+|5|3|r/ManjaroLinux|45.2k|
+|6|6|r/debian|44.9k|
+|7|9|r/Fedora|42.1k|
+|8|18|r/Kalilinux|41.2k|
+|9|2|r/pop_os|25.4k|
+|10|31|r/freebsd|20.3k|
+|11|71|r/redhat|20.3k|
+|12|7|r/elementaryos|19.8k|
+|13|15|r/CentOS|14.5k|
+|14|12|r/openSUSE|14.0k|
+|15|59|r/Gentoo|13.6k|
+|16|10|r/SolusProject|9.7k|
+|17|49|r/Qubes|8.0k|
+|18|47|r/Kubuntu|6.4k|
+|19|55|r/NixOS|5.8k|
+|20|50|r/voidlinux|5.4k|
+|21|1|r/MXLinux|4.5k|
+|22|37|r/Lubuntu|3.8k|
+|23|54|r/ParrotSecurity|3.8k|
+|24|51|r/xubuntu|3.7k|
+|25|41|r/slackware|3.4k|
+|26|14|r/kdeneon|3.0k|
+|27|52|r/UbuntuMATE|2.8k|
+|28|21|r/deepin|2.6k|
+|29|61|r/reactos|1.8k|
+|30|16|r/zorinos|1.4k|
+|31|64|r/Androidx86|952|
+|32|23|r/puppylinux|917|
+|33|65|r/AlpineLinux|846|
+|34|8|r/EndeavourOS|715|
+|35|62|r/Ubports|711|
+|36|68|r/artixlinux|545|
+|37|56|r/devuan|542|
+|38|28|r/Mageia|268|
+|39|38|r/PeppermintOS|260|
+|40|13|r/ArcoLinux|225|
+|41|66|r/OfficialArchLabsLinux|185|
+|42|24|r/LinuxLite|182|
+|43|26|r/FerenOS|140|
+|44|32|r/archbang|131|
+|45|20|r/antiXLinux|107|
+|46|46|r/GhostBSD|71|
+|47|27|r/pclos|36|
+|48|30|r/SparkyLinux|28|
+|49|11|r/UbuntuKylin|12 (lol)|
+|50|39|r/Archman|1 (LOOOL)|
+|51|19|Linuxfx|no sub|
+|52|22|EasyOS|no sub|
+|53|25|Q4OS|no sub|
+|54|29|Endless|no sub|
+|55|33|Garuda|no sub|
+|56|34|MidnightBSD|no sub|
+|57|35|AV Linux|no sub|
+|58|36|Absolute|no sub|
+|59|42|EuroLinux|no sub|
+|60|43|Emmabuntus|no sub|
+|61|44|Voyager|no sub|
+|62|48|Bluestar|no sub|
+|63|57|PureOS|no sub|
+|64|58|Ultimate|no sub|
+|65|60|PrimTux|no sub|
+|66|63|Oracle|no sub|
+|67|67|Kodachi|no sub|
+|68|68|Nitrux|no sub|
+|69|70|Blackarch|no sub|
+|and a|lot more|up to 275|distros on Distrowatch|
+
+&amp;#x200B;
+
+To conclude that distrowatch **is not** a valid source to know what are the most used distros.",8,linux,2020-12-05

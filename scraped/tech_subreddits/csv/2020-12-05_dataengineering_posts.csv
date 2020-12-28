@@ -1,0 +1,268 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k78f3a,"Get to know Workflows, Google Cloud’s serverless orchestration engine",,4,dataengineering,2020-12-05
+k6wwzr,Looking for ideas for running many short and long tasks,"Currently each short (&lt;5s) task and long task is put into separate celery queues, and workers execute tasks after they are put in their corresponding queue.
+
+The tasks are inserted through an api request. There could be some scheduling, but not required. 
+
+I have motivations for wanting to break the tasks into two (feature  will, model training) or more steps.
+
+An inference/short task would then be split into two short tasks...
+
+I could probably accomplish this with celery, but I'm interested in how things like Airflow and Beam might be of use. I think I have read that Airflow is not ideal for many short tasks...
+
+I can offer some more description if I have left anything out.
+
+Thanks!
+
+Edit: celery is an asynchronous task queue for use in python, for those unaware.",1,dataengineering,2020-12-05
+k6sdwi,Introducing the 5 Pillars of Data Observability,,42,dataengineering,2020-12-05
+k6s8xb,Let’s talk about Snowflake. What are your thoughts on it?,"Snowflake is the hype new DWH. But always hearing mixed opinions: other tools can do the same thing vs it makes things a lot easier. Im not asking whether or not they are doing something new. Rather, do you think what they are doing is valuable and if they will see growth.
+
+[View Poll](https://www.reddit.com/poll/k6s8xb)",26,dataengineering,2020-12-05
+k6qqrg,Data is overwhelmed,"Internet is now filled with all types of data and If at all I wanted to learn Data Engineering. It is really confusing me how to excel in this field. I'm stuck with a regular day job along with trying to pursue the right path, rather than learning some random youtube videos, courses, etc.. Is there anyone like me trying to learn everything but learning nothing. 2020 is gone like this. I learned nothing. At least 2-year rock-solid plan I need to make a good switch for a high-paying job. I don't have any urgency for any job change.
+
+I don't even know - version control, Jenkins, SQL(very basic only), not even wrote single line of code, etc.. so I feel like surviving is getting a tougher daily basis.
+
+my daily job goes like managing the people and do organizing between teams and handling client calls. Even If I learn I can't implement it anyway, So learning becomes useless. I have my own server Dell T30, bought 2020 to learn and implement. But nothing happened so far. at least i wanted a good change.",0,dataengineering,2020-12-05
+k6m9o2,Need help understanding a Data Engineering Project Requirement,"Hey Everyone,  
+
+
+Recently, I have received a Coding activity from a Firm which requires me to scan through a Json file for various Data Sources related to COVID-19 Data. After the Scan, I have to make sure that the Data is segregated according to each states; and the Data should be transferred into PostGRE SQL Data base.  
+
+
+I have to schedule a job for this data transfer pipeline using Apache Airflow. This is the understanding I had from the requirement and if someone can help me if I missed any thing from this. Please find the  additional details below:
+
+**Problem Statement:**
+
+*Imagine you are part of a data team which wants to bring in daily data for*
+
+*COVID-19 for all the states. Your team has to design a daily workflow that would*
+
+*run at a specific time and would bring in all the data into the system.*
+
+**Website:** [**https://healthdata.gov/data.json**](https://healthdata.gov/data.json)
+
+**Data Schema**
+
+*1. The link contains json data for various data sources. You would have to scan*
+
+*through and filter any COVID related data*
+
+*2. Design a schema for every state and store data in the respective tables per*
+
+*state*
+
+*3. Apply various indexing technique on PostGres to enable fast searching*
+
+*While developing a solution think about the following :*
+
+*1. DAG performance and efficiency*
+
+*2. Concepts of Distributed Computing*
+
+*3. Your choice of schema design 1 NF, 2 NF, 3NF*
+
+*4. Utilize any async process while performing any loads*
+
+*5. How would you scale DAG with increase in data volume*
+
+*6. Logging and monitoring if any failure happens*
+
+*7. Object oriented design*
+
+**Requirements:**
+
+*1. Use Python 3 for developing the solution*
+
+*2. Utilize Apache Airflow to design a daily dag that would run every day.*
+
+*3. Create a task within the dag to iterate through the json and download the*
+
+*locally.*
+
+*4. Create task to load the files into PostGres Schema*
+
+*5. Optimize your dag performance by achieving max parallelism locally. You*
+
+*could utilize parallelism for task, dag concurrency, thread pool or*
+
+*max\_threads*
+
+*6. Follow the ETL process of Extract, Transform and Load*
+
+*7. Each dag task should be independent and should be able to run individually.*
+
+*8. Implement unit or integration test*
+
+*9. Containerize your application inside a docker container. Use docker-compose*
+
+*if required*
+
+**Bonus points:**
+
+*You could create any visualization on top if your data stored in your database*
+
+*Visualization notebook using any standard Python library such as matplotlib, seaborn,*
+
+*etc.*
+
+*Example:*
+
+*While querying*
+
+[*https://healthdata.gov/search/type/dataset?query=covid+state+of+maryland&amp;sort\_by=ch*](https://healthdata.gov/search/type/dataset?query=covid+state+of+maryland&amp;sort_by=ch)
+
+*anged&amp;sort\_order=DESC candidates can find a number of COVID resources for the*
+
+*state of Maryland. Similar searches on other states could lead to finding right resources*
+
+*per state that you will use for data ingestion.*",2,dataengineering,2020-12-05
+k6kgak,Where do you run your Hadoop cluster on,"And where do you think the market will learn towards in the future
+
+[View Poll](https://www.reddit.com/poll/k6kgak)",1,dataengineering,2020-12-05
+k6jkyj,"Surprisingly Made Final Round Entry Level DE Interview, Need Help","A few weeks ago, I had an interview for a technology associate program, being considered for a data analyst and data engineering role. My passion is data science and I have a lot of deep learning project experience from this past year, but with only my Master's being completed and the inability to obtain a PhD due to financial restraints, I am trying to find a way to break into a data-related job from my current job in the traditional Mechanical Engineering industry (undergrad in Mechanical Engineering, masters in systems engineering and data analytics).
+
+&amp;#x200B;
+
+The initial interview I had went fairly poor, with me struggling to answer some of the technical questions (I've never taken a formal Data Structures and Algorithms course, I am mainly self taught in my coding abilities) and the manager interviewing me seeming to be confused that I was trying to switch from Mechanical Engineering to a data type job, but to my shock, I moved to the final round for the data engineering position. The only part of the interview that went well is when I spoke to a current data scientist at the company who is in the program I am applying for (this year the program is not interviewing for a data science position), and she was really impressed by my deep learning projects and publications.
+
+&amp;#x200B;
+
+My current strengths:
+
+1. Python - my strongest coding language and I can explain coding solutions using it fairly well
+2. SQL - I am fairly decent at it and have never failed a hackerrank portion containing it and can answer most questions
+3. Machine Learning, Neural Networks, Natural Language Processing specialty (what the company I am applying for uses mostly for its deep learning applications)
+
+&amp;#x200B;
+
+Does anybody have any advice on what things I should try to cram study this weekend to have a shot at landing the position? What are the most things to know for an entry level DE position? I am not sure if it is better to focus on data structures and algorithms (ironically I have used many in project experience without knowing what I was doing was called) or to try to study about the types of databases and tools generally used.
+
+&amp;#x200B;
+
+Thanks!",3,dataengineering,2020-12-05
+k6hyla,"Machine Learning Model Serving Overview (Seldon Core, KFServing, BentoML, MLFlow)","Hi Everyone,
+
+TLDR; I’m looking for a way to provide Data Scientists with tools to deploy a growing number of models independently, with minimal Engineering and DevOps efforts for each deployment. After considering several model serving solutions, I found Seldon Core to be the most suitable for this project’s needs
+
+Full Overview:
+
+[https://medium.com/everything-full-stack/machine-learning-model-serving-overview-c01a6aa3e823?source=friends\_link&amp;sk=a1a2e9d27c62913e0218d3a8bc252896](https://medium.com/everything-full-stack/machine-learning-model-serving-overview-c01a6aa3e823?source=friends_link&amp;sk=a1a2e9d27c62913e0218d3a8bc252896)",18,dataengineering,2020-12-05
+k69kgd,Azure Synapse and Purview,"Microsoft announced the general availability of [Azure Synapse Analytics ](https://docs.microsoft.com/en-us/azure/synapse-analytics/get-started) , formerly Azure Data Warehouse but now with Spark and integrated workspace. Kind of flying under the radar is that in addition to launching Synapse, Mircrosoft [Azure Data Catalog Gen 2](https://azure.microsoft.com/en-us/services/purview/) has been branded “Azure Purview”. Brings multicloud data governance, discovery, lineage, etc",12,dataengineering,2020-12-05
+k67u5d,"Not getting Slack Notifications when dags fail, tried SlackWebhookOperator and SlackAPIPostOperator","Hello!  jr. data engineer here, and a bit stuck!
+
+This is my code using SlackWebhookOperator, I used the same formatting when trying to use SlackAPIPostOperator except I  had 'token' not  webhook\_token'
+
+    from airflow.models import Variable
+
+from airflow.contrib.operators.slack\_webhook\_operator import SlackWebhookOperator import os
+
+    def get_channel_name():
+        channel = '#airflow_alerts_local'
+        env = Variable.get('env', None)
+        if env == 'prod':
+            channel = '#airflow_alerts'
+         elif env == 'dev':
+            channel = '#airflow_alerts_dev'
+         return channel
+    
+    def task_fail_slack_alert(context):
+         failed_alert = SlackWebhookOperator(
+             task_id=context.get('task_instance').task_id,
+             webhook_token=os.environ.get('SLACK_URL'),
+             channel=get_channel_name(),
+             text=""""""
+                    TEST
+                  """"""
+        failed_alert.execute(context=context)
+
+&amp;#x200B;",0,dataengineering,2020-12-05
+k5zz4q,How do you manage the CREATE statements of your data warehouse tables?,"Hello. Every time we have to make a new integration, we first create manually the new table. After that, we use to store that query in a GitLab repo, so that if we need it again, we don't have to extract it using SQL queries. 
+
+We are now moving from this approach to using the tool YoYo Migrations, which allows us to keep a record of what has been done and some other advantages.
+
+However, I was wondering if there is a better approach to manage this thing. In case it is useful, our stack is Airflow, Snowflake and Qlick.
+
+Thanks",1,dataengineering,2020-12-05
+k5w5z3,Is there an organized catalogue for all the steps in a data pipeline that shows the tools necessary (in each step) to have an end-to-end data engine?,"The question is asking for everything, but anything would help :)",33,dataengineering,2020-12-05
+k5ti0y,Choosing best storage strategy &amp; file format on S3 for simple reporting,"I'm designing a simple reporting solution for my web app and I want to use S3, Athena and Quicksight for that purpose. My web app is emitting events about orders placed on my website to Kinesis and I'll be storing them in S3.
+
+Now I have different storage strategies to choose from:
+
+1. 1 event, 1 file
+2. Many events, 1 file - but then how should I partition them? Per hour? Per day? Per week?
+
+What would be the best file format (parquet? other alternatives?) and storage strategy given my app is emitting:
+
+* a) few events, say 1000 per 24h
+* b) mediocre amount of events, say 10 000 per 24h
+* c) a lot of events, say 10 000 000 per 24h
+
+I'm also curious what would be the pricing x performance considerations in that case.",3,dataengineering,2020-12-05
+k5styq,Work Experience in Job Descriptions,"Hello everyone,
+
+If a job post does not include the amount of experience required, does it mean that they are willing to entertain anyone that can do the job, given that they satisfy technical and the rest of the requirements in the JD?
+
+I'm thinking if I should include those kind of Jobs^ in my list when looking for a DE position. I'm confident with my CS fundamentals, and is planning to build an end to end DE project before reaching out recruiters. And maybe if the question above is true, then I will pick a DE Stack among those JD that I can focus on.",1,dataengineering,2020-12-05
+k5n3gk,Frustrated with DE.,"Just want to vent a bit...
+
+I love Data Engineering, well at least the idea that there is this massive amount of digital gold being produced every minute which needs to be harvested by Data wizards.
+
+But self learning has not been easy.  It hard to keep things ""high level"" without falling down a rabbit hole of big data tools.  I get some tools are necessary, but It doesn't feel right spending 1-2 months learning Airflow along with all its configurations &amp; quirks (which I will surely not remember).  Or going crazy trying to figure out Docker just so I can avoid the massive pain of setting up tools on my local for personal projects.
+
+Don't get me wrong, I am interested in the big data/infrastructure tools.. I am just currently more interested in the basics.  I don't want to be a senior DE, or the lone data guy at some startup.  It does feel like I am learning things just so I am not completely lost if I ever get an interview... these things aren't easy to begin with and the fact that I wish I instead were going deeper on say databases makes it that much tougher (I feel like I know the minimum about SQL/Databases to hold my own during an interview, but I find the topic very intriguing and wish I could just learn more).
+
+Well guys, if you are on the same boat, drop a comment so I know I am not the only one here.  Ok, back to the grind... (today I get to read more documentation on how to do the very specific task of sending files to S3 using Airflow.. hooray).",47,dataengineering,2020-12-05
+k5lyby,Some questions about Lyft's Amundsen as a data portal (user restrictions and flatfile cataloging),"Anyone with any experience using Amundsen know about the following?...
+
+1. Is there a way to **restrict certain datasets from being discoverable by the general base of users** in Amundsen? In my case, we have siloed teams that have certain data assets that only they should be able to search / know about while they do have some other assets that they do want to have discoverable by other teams/users in the org.
+2. Can Amundsen catalog data that only exists as **loose files on FTP and other storage servers** (I noticed ""CSV"" in the integrations page, but not sure how that works or if other flat file sources can be hooked in)?
+
+I've seen the presentation here ([https://youtu.be/m1B-ptm0Rrw?t=734](https://youtu.be/m1B-ptm0Rrw?t=734)) and looked around the Amundsen site ([https://www.amundsen.io/amundsen/](https://www.amundsen.io/amundsen/)). But was not able to understand if the above could be done.
+
+The use case here is that we want to have Amundsen act as a general data portal for our org. In our case, we have various research teams that have their own set of data assets (which we as admins want to be able to search / discover), yet we don't want / can't have these various teams being able to discover ALL of the data assets of everyone else (only certain data that those teams deem ""public""). This is similar to ""public / private"" data works for Organizations in CKAN ([https://ckan.org/](https://ckan.org/)), but interested in trying Amundsen.   
+
+Thanks",2,dataengineering,2020-12-05
+k5l7af,Legacy db migration to a new system,"Hey, any suggestions for a good read on legacy system database migration to a new system? The common pitfalls, keeping integrity constraints etc? Thanks!",1,dataengineering,2020-12-05
+k5i1vf,How do you prevent broken data pipelines?,"Any best practices? 
+
+[https://towardsdatascience.com/how-do-you-prevent-broken-data-pipelines-326f3c6d239e](https://towardsdatascience.com/how-do-you-prevent-broken-data-pipelines-326f3c6d239e)",0,dataengineering,2020-12-05
+k5fq97,"Video: How to get started with our free, hosted, cross platform Spark UI &amp; Spark History Server. This is but our first milestone towards replacing the Spark UI entirely with new metrics and visualizations. I'd love your feedback :) JY @Data Mechanics",,15,dataengineering,2020-12-05
+k5djs0,How To Create Differentially Private Synthetic Data,"A practical guide to creating differentially private, synthetic data with Python and TensorFlow [https://gretel.ai/blog/how-to-create-differentially-private-synthetic-data](https://gretel.ai/blog/how-to-create-differentially-private-synthetic-data)",2,dataengineering,2020-12-05
+k5ctt1,Is Hadoop/Hive/HDFS considered a data warehouse or data lake?,"I'm wondering if my labelling in parenthesis is considered correct below. If an interviewer asks me to explain my company's data ingestion process and I explain to them the following, would you say that i know what I'm talking about or not at all.:  
+
+
+raw data sources (transactional data) &gt; operational Informix database (operational db) &gt; Informix sends raw csv data files every day to on-prem server (datalake) &gt; python script runs batch spark load job to loads csv files by cleansing/mapping the data to temporary staging tables in Hive (staging area is the temp daily hive tables) &gt; finally spark batch load jobs inserts from daily staging hive tables to historical hive tables (these historical hive tables we use as our data warehouse).   
+
+
+Can you use Hive tables for both the staging process and also as the data warehouse?",0,dataengineering,2020-12-05
+k5b078,Monte Carlo launches Data Observability Platform to prevent broken data pipelines,,1,dataengineering,2020-12-05
+k58n2u,#idataengineer podcast 003 Sejal Vaidya,"In the third part of our micro-podcast, [Sejal Vaidya](https://github.com/sejalv) speaks about how data needs to serve business, and that deployment is king.  
+
+
+[https://www.dataengineering.academy/pipeline-data-engineering-academy-blog/idataengineer-confessions-interview-003](https://www.dataengineering.academy/pipeline-data-engineering-academy-blog/idataengineer-confessions-interview-003)",1,dataengineering,2020-12-05
+k56ist,Microsoft Create: Data Online event,"Hi,
+
+I'm helping to organize [Microsoft Create: Data](https://aka.ms/createdata). During the event, we have [Holden Karau](https://twitter.com/holdenkarau) joining for an interview with [Cheryl Adams](https://www.linkedin.com/in/cheryl-adams-cloudarchitect/), Holden will cover her journey with Spark and will share insights and best practices on how to join an open-source project related to distributed data.
+
+[Jacek Laskowski](https://twitter.com/jaceklaskowski?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor) will share how you can use Delta Lake from Spark SQL commands.
+
+&amp;#x200B;
+
+[Tim Berglund](https://twitter.com/tlberglund?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor) will talk about picking the right distributed database and how to navigate NoSql tools to find the right one for the tasks.
+
+&amp;#x200B;
+
+We will also have a workshop on Azure Synapse Serverless SQL with Simon Whiteley, Panel about data for good, and more.
+
+&amp;#x200B;
+
+Would love to know if you have any questions for our speakers, happy to take all your questions with them so they can address them live during the event.
+
+&amp;#x200B;
+
+You are all welcome to join us, this is an online free event, but requires registration.
+
+&amp;#x200B;
+
+Thank you 🙌",5,dataengineering,2020-12-05

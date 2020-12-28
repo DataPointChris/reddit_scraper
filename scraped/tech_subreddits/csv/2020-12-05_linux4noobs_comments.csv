@@ -1,0 +1,246 @@
+comment_id,post_id,comment,upvotes
+gep1grj,k770ea,"I've got Mint 20
+
+This happens occasionally, perhaps one out of every 20 boots or so. I've left it for a long time and it just keeps on printing that out continuously. I have to shut the computer off from the power button to get passed it.
+
+In other instances, instead of going to that screen I get a ""busybox"" initramfs prompt saying that the root filesystem requires a ""manual fsck"". I run fsck and then it boots normally. This happens perhaps 1 out of 10 boots or so.",1.0
+gepn7wn,k7ahpi,Phones have been traceable long before android. What makes you think your carrier won’t be able to trace this? If you don’t use cellular then it’s just a very small tablet. What is your goal here ?,2.0
+gepshs5,k7ahpi,Anything with a radio transmitter can be traced and triangulated.,1.0
+gepm5gr,k79y1f,"One thing about switching to Linux is learning to understand how an operating system works. How the user interacts with the software and what is happening behind the scenes to carry out the tasks at hand.
+
+That being said, you need to also learn to ask the right questions. If you said, ""my computer is slow"", well that doesn't really help with a diagnoses. It's like going to the doctor and saying ""I feel sick"". There are thirty followup questions that need to be asked for evaluation.
+
+You say your file transfers are slow. How are they slower on Linux vs your windows experience. Are you moving between partitions? Between disk drives on the local computer? Do you have a NAS that you're trying to transfer large files to? Are these files moving over USB or a network? Are you downloading from the internet? Is it wifi speeds you're complaining about?
+
+We just need a lot more information.",3.0
+gepqhat,k79y1f,"I used elementary OS and it has Pantheon desktop environment or something like that. Everytime I try to copy files from my phone using USB it's slowwwwwwwwwwwwwww. I have a Huawei P20 Pro and it's just better tobise windows cause I constantly move files from my phone to my external hard drive, but doing it on Linux is sooooo sloowww",1.0
+geprn1b,k79y1f,How slow? What was the speed on Linux and what was it on windows?,1.0
+gepi6e7,k79y1f,"I don't know what you mean. my speeds are fine. acceptable for the interfaces and tech in question.
+
+do you have any examples?",1.0
+geppako,k79y1f,"I used elementary OS and it has Pantheon desktop environment or something like that. Everytime I try to copy files from my phone using USB it's slowwwwwwwwwwwwwww. I have a Huawei P20 Pro and it's just better tobise windows cause I constantly move files from my phone to my external hard drive, but doing it on Linux is sooooo sloowww",1.0
+geptn9i,k75tku,"It's paradox's shitty launcher, I almost refunded Prison Architect when they added that. Anyway, did you try just double clicking the binaries, or did you edit the lauch options to skip the launcher? For me the later works perfectly",1.0
+gepaszd,k758h5,what window manager/DE? The compositor may have crashed.,1.0
+gep7zys,k74g80,https://unix.stackexchange.com/questions/339491/find-a-file-by-hash,2.0
+gep8v2s,k77yb5,"You can monitor the SMART status.
+
+- https://help.ubuntu.com/community/Smartmontools
+
+- https://wiki.archlinux.org/index.php/S.M.A.R.T.",3.0
+gep9n8o,k77yb5,thank you!,1.0
+gepc6e6,k77yb5,"You can't really avoid hard disk failure.  They're all going to die eventually. 
+
+The SMART  status might help you identify a drive that is about to fail, but it's no substitute for a robust and frequently tested backup regime.  
+
+I do a monthly test...restoring the backup set to a scratch drive and comparing that against the main data store.  This month I discovered a change to the system configuration excluded an entire subdirectory of work-related data from the backup set.  I would have not noticed  had I not run the test.",2.0
+gepcx38,k77yb5,"I was looking for something like SMART.
+
+btw kind of stupid question but is it possible to set up RAID by partitioning one single HDD into 2 equal volume? I know it sounds stupid",1.0
+gepp7gt,k77yb5,"You can do that for sure, with MDADM, LVM, etc. But frankly, BTRFS with the ""dup"" profile will do a better job than pretty much anything else in that scenario.
+
+Not that I recommend doing that weird RAID-like redundancy, but it should work",1.0
+gep6apu,k77xak,"If you'd describe these issues, maybe we could help.",1.0
+gep8r46,k77xak,"When I boot the live cd for tumbleweed KDE (the latest version), the desktop tries to load, but i get an error dialog that says ksplashqml crashed.    
+On leap the desktop background loads and there is a cursor but nothing else.     
+In both cases I can access the shell, but I am not sure where to start to look for an error log.",2.0
+gep8vi1,k77xak,"Maybe a shot in the dark, but what GPU, if any, does your MacBook use?",1.0
+gep94g1,k77xak,NVIDIA GeForce GT 330M and Intel integrated graphics.,1.0
+gep9av5,k77xak,"NVIDIA graphics have sadly always been a source of problems on Linux. Likely those distros have some documentation on how to get NVIDIA machines working, but alternatively you can try Pop!_OS as it includes those drivers on the installation media.",2.0
+gepmoy5,k77xak,"I will try pop os to see if it works better, thanks for the suggestion. I guess my question for anyone who uses linux on the 2010 mbp would be what kernel+drivers combo they use. I have another laptop and kernel 5.8 and nvidia 455 works perfectly. kernel 5.9 had problems with sleep.",1.0
+gep3xv1,k77gdq,Move the VM to SSD if possible. I've Win 10 VM running with 4GB RAM on conventional HDD without any noticeable lag.,1.0
+gepd4f0,k77gdq,"https://github.com/Fmstrat/winapps/blob/main/docs/KVM.md
+
+Best setup of Windows 10 VM I have used.",1.0
+gepel8f,k77gdq,"That's interesting, I've only ever used VM's through Virtualbox. How has your experience been using KVM?",1.0
+gepi7up,k77gdq,"I would say it is more complicated to set up then VirtualBox, but certainly running Windows 10 in a VM is much better, whereas VirtualBox runs Windows poorly in a VM. 
+
+Great for Linux, not great for Windows.",1.0
+gepja5a,k77gdq,Disable 3D acceleration for starters,1.0
+gept41t,k77gdq,"Checklist:
+
+* Put your VM disk in an SSD. IO is pretty much always a bottleneck, and even the cheapest SSD will outperform any HDD in random IO
+* Make sure you use the same CPU layout, some hypervisors do this automatically, others like KVM have checkbox explicitly use the same vCPU as your real CPU.
+* It's worth noting that Virtualbox's Video Memory uses the hosts's RAM, not VRAM, therefore there's still a memcpy() needed to diplay the video. So I'd say you'd be better of just using the default \~24MB, unless you are using like 8K virtual displays.
+* Make sure you are giving the VM only real cores, not hyperthreading or SMT cores, as those pretty much have no effect on the VM, and will probably actually harm your performance. For example, in an i7-7820HK processor, it has an 4C/8T configuration, so the VM should have, at most, 4C.
+* Use the VirtIO drivers, you'll probably need to reinstall the OS to fully enjoy these, but either way, if the VM cooperates with the hypervisor, certain expensive operations, like emulating SATA, etc, might be skiped, which can improve latency, CPU usage, etc.
+* Use a debloater script to remove the crapware Windows 10 has.",1.0
+gep48ez,k77a9f,"Linux in reality is just a kernel. Rest of the distro is made up of many other components, including major items from GNU project.
+
+Some users prefer to use the formal label GNU/Linux however in your day-to-day it's easier to just refer to the whole distro as LINUX. 
+
+Use whatever you like!",3.0
+gep4hp6,k77a9f,"The term GNU/Linux can be kinda misleading. Linux refers to the Linux kernel, whereas GNU refers to the earlier GNU project from which many components are taken. GNU isn't the only major organization contributing to Linux as a whole, so we might as well keep adding to the name, making for something like GNU/Linux/X/SystemD/KDE/Qt. Some Linux distributions use very little if any GNU code, but are essentially the same operating systen nonetheless and compatible with software made for other Linux distributions. Operating systems that use GNU projects, on the other hand, but non-Linux kernels, will be incompatible with much of the software for Linux.
+
+""Linux"" is a single, easily memorized word that roughly describes a group of similar and compatible operating systems. So most people use that.",3.0
+gepaj9p,k77a9f,Some people like to fight over things. GNU is a project that has created tools and licenses to promote a development model in the interest of the user. Linus used that license (GPL) for his project but he tried to set itself apart from the GNU ideas because he wanted to attract corporations more than users. Corporations have very different goals than the GNU project. The battlefield is ready.,2.0
+gep52th,k77a9f,"They are actually called that by people who feel it's important to keep the work of GNU alive in the name. At the heart of it is arguments over philosophy of Free Software, Open Source Software and why to some people the differences between the two are very important. In the Linux groups I am and most that I'm aware of, in the GNU part is rarely used and I don't care how many times I'm told I'm wrong.",1.0
+gepje14,k77a9f,"""We"" don't.
+
+There are a lot of components just as worthy as GNU of being tagged onto the name.  It would quickly get ridiculously convoluted if we tried.
+
+Names should be simple.  *Descriptions* are where you put the details.",1.0
+gep1zaq,k76z99,"The first of these PPAs isn't available for anything newer than 18.04, and the second one isn't available for anything newer than 18.10. IMHO you should delete them.",3.0
+gep2k9u,k76z99,"Ok, Thanks",1.0
+gepb9et,k76z99,"I'm having this as issue with Sonarr, I was wondering how to manually disable only allowing signed installations &amp; make an exception.",1.0
+gepdwzu,k76z99,What distro you have?,2.0
+gepg7al,k76z99,"Raspbian. I just removed it from the list though. I assumed the repository it was attempting to use is incompatible.
+
+I'll start again, fresh. Thanks",2.0
+gep3zsz,k76mnh,Ummm it looks like you have it set to read only,1.0
+gep9w24,k76mnh,"That's what I thought, but when I remove that and enter my credentials in Windows, I can't even get in and get an error saying its not accessible.",1.0
+gepad68,k76mnh,"You need to change it to read and write, I don't know how that would be worded in the command though",1.0
+gepdakc,k76mnh,"Try this:
+
+    [My-Server]
+    comment = Samba on Ubuntu
+    path = /home
+    available = yes
+    read only = no
+    browsable = yes
+    public = yes
+    writable = yes
+    force group = pedges
+    valid users = pedges
+    admin users = pedges
+    create mask = 0755
+
+one thing to note is the file system permissions also effect the ability to read and write to locations.",1.0
+gepf5jp,k76mnh,"Thanks, I'll give that a shot!
+
+For reference , how does one check the file system permissions of a user and folder?",1.0
+gepjb4h,k76mnh,"In the folder and parent folder do this in a terminal
+
+    ls -al
+
+You will see the permissions and owner / group, as you're sharing your home folder you'll have permission.",1.0
+gepfz5s,k76mnh,Confirming your suggested changes worked. Thank you!,1.0
+gep0jle,k76a0k,"Do you know what you did prior to this happening? Something that may have triggered this behavior?
+
+Last resort option would be to simply load back a backup. You do have timeshift backups right? You can hold down space bar to enter boot menu. Enter Recovery mode and see id you van load your timeshift backup.",3.0
+gep3ku7,k76a0k,"Hi! I haven't used it for about 2 days. As soon as I turned it on this problem arose. And I haven't done much in the last few days (some updates proposed by pop\_shop, some programming in js with vscode, libreoffice write, firefox, nothing more).",1.0
+gepk6jt,k76a0k,Does it automatically make these backups or do we have to set this up?,1.0
+gepkfiu,k76a0k,You should set-up backups. Linux Mint walks you through it but I don't think Pop!_OS does.,2.0
+gepos8b,k76a0k,"There is no backup. Not that I need it (in the end, the pain in the ass is reconfiguring everything), and then I could use a live one to recover the data. However I managed to access the terminal, `ctrl + f1` or something like that, with `startx` I access to gnome, but the graphics of the icons (different style) and the resolution (&lt;1080p) are ""wrong"". But the problem persists.",1.0
+gepkssb,k76a0k,"I'm not sure that this is helpful but it does seem like other people have  encountered this: https://bugzilla.redhat.com/show_bug.cgi?id=1807760
+
+The conclusion there is that ""Apparently, this might be a hardware issue after all."" So while you are seeing it as this kernel error, you might want to check your hardware. Perhaps something is physically loose or faulty and it is causing this error message. In that thread it was traced back to some issue with a laptop dock.",3.0
+gepp60p,k76a0k,"Hi, the Dell bios has an excellent internal system to verify the correct functioning of every single hardware component. I'll check and tell you.",1.0
+gepgir5,k76a0k,Have you changed power settings in the BIOS/UEFI? Otherwise I would google those last few lines with your motherboard make/manufacturer to see if there's a known issue. Is there another OS installed?,2.0
+gepicxp,k76a0k,"Hi! No, I have never changed anything, since i installed Pop\_OS! (about 7 months, maybe a little more). And no, there's no other distro installed in my ssd.   
+I searched on google, and it seems a problem that afflicts the Nvidia GPU, but I don't have any and I don't even have the Nvidia drivers...",1.0
+geopf8e,k740t9,"GNU is an operating system that implements POSIX (mostly).
+
+GNU can be built with different kernels. HURD is one, but there was also Debian GNU/kFreeBSD for some time. You can also run GNU on Windows with WSL (though WSL 2 runs GNU on Linux in a VM).
+
+Similarly, Linux can be used with different user-land software. Many Linux operating systems are not POSIX. For example, Android is a popular Linux operating system. There are also POSIX operating systems that use Linux and a user-lands other than GNU, such as Alpine.
+
+Because this two things can be used together, but can also be used with different components, it's useful to refer to that combination specifically in many contexts. Fedora, Debian, arch, and gentoo are all GNU/Linux operating systems. Alpine, Android, and dd-wrt are all Linux operating systems. Generally, when I'm talking about a feature of the kernel, I'll refer to Linux systems, because the feature will probably be present in all of them. But of I'm talking about Unix-like systems, I'll usually refer to GNU/Linux to differentiate it from other Linux systems.",5.0
+gep1qev,k740t9,"&gt;GNU is an operating system that implements POSIX (mostly).  
+&gt;  
+&gt;GNU can be built with different kernels. 
+
+i don't understand, GNU is the operating system and not linux?",1.0
+gep6ljo,k740t9,"Correct. 
+
+A car doesn’t need just an engine to run. It also needs wheels, windows, exhaust, a battery, electrical wiring, lights, etc. 
+
+Linux is the engine and GNU is the rest of the car.",8.0
+geoogwd,k740t9,"GNU stands for ""GNU is not unix"" it is an operating system developed by Richard Stallman in 1984, it waited a couple od years to be published, until 1991 when Linus Torwalds made Linux kernel, and they merged it together to make a stable Os, since Linux is just a kernel, and gnu is operating system, Richard Stallman argues that is only fair to be called, gnu/Linux, look up for. Free software foundation, wich is orgsnisation made by Richard Stallman, and you will find more answers",3.0
+gep1p9c,k740t9,"&gt;since Linux is just a kernel, and gnu is operating system, 
+
+i do not understand that, i thought linux was the operating system",1.0
+gep46cw,k740t9,"No it is not, Linux is a kernel and gnu is operating system",1.0
+gep4zwq,k740t9,"&gt;  Linux is a kernel and gnu is operating system
+
+i don't understand the difference",2.0
+gep5yax,k740t9,"if my memory is correct, the kernel is what interacts with/controls the system hardware and the operating system is everything that the user interacts with. together they form a full system",1.0
+gep65mu,k740t9,ok so the kernel is what the hardware uses to talk to the operating system is the operating system is what the user uses to talk to the kernel?,1.0
+gep7609,k740t9,"Sort of. I'll try my best to explain.
+
+Merriam-Webster defines an operating system as ""software that controls the operation of a computer and directs the processing of programs"". This includes displaying graphics, running games, compiling code, etc. One part of this control and direction is interacting with the computer hardware - the operating system needs to be able to tell the physical computer what to do in order for things to work. This is where the kernel comes in - the kernel is actually just one part of a complete operating system. Linux or GNU/Linux or whatever you want to call it is a combination of the Linux kernel and various pieces of GNU software. Together, they form a complete operating system. People tend to call this complete operating system ""Linux"" because of the Linux kernel that it runs on. It's worth noting that kernels and ""drivers"", which you might be familiar with, accomplish similar tasks but are very different things. Feel free to ask more questions if you have them. I'm not the most knowledgeable but I'm happy to help!",2.0
+geow282,k740t9,"&gt; calls itself an ""operating system"" [...] calls gnu a ""collection of free software"" so i don't get it, which one is it?
+
+Well an operating system is just a collection of software.",3.0
+gep0vz8,k740t9,"&gt; Well an operating system is just a collection of software.
+
+but isn't an operating system a collection of free software ""arranged"" in a particular way?",1.0
+gepf17t,k740t9,"While the folks in this thread are technically correct. I find saying Linux much easier and more people understand what I mean than if I say simply Linux than if I said GNU/Linux. Linux has become the de facto way to refer to GNU/Linux based operating systems and as such the vast majority of people simply say Linux, making Linux the name of the operating system in modern parlance, thus reducing gnu/linux to the realm of semantics. Yes it is technically correct, but no one wants their favorite OS to have a bad name.",2.0
+geoozm4,k740t9,"Linux is just an OS Kernel, not an OS. The Linux Kernel works with GNU(GNU is Not Unix) amd other projects to provide a fully functioning OS.
+
+Calling each Linux distribution as LinuxOS is like calling all of the Windows Operating system the NTOS(windows uses NT Kernel) or Calling all of the macOS versions BSD(macOS uses BSD).
+
+But people just kept calling it Linux so noe Linux refers both to the Kernel and all the different operating systems that happens to use the Linux kernel. IMO Calling all of the Linux distros as Linux OS is misleading. Each distro can be quite distinct from others and often use completely different software packaging systems. It would be better if we treated each distro as it's very own OS.",3.0
+geouz49,k740t9,"I'd just like to interject for a moment. What you're referring to as Linux, is in fact, GNU/Linux, or as I've recently taken to calling it, GNU plus Linux. Linux is not an operating system unto itself, but rather another free component of a fully functioning GNU system made useful by the GNU corelibs, shell utilities and vital system components comprising a full OS as defined by POSIX.
+
+Many computer users run a modified version of the GNU system every day, without realizing it. Through a peculiar turn of events, the version of GNU which is widely used today is often called ""Linux"", and many of its users are not aware that it is basically the GNU system, developed by the GNU Project.
+
+There really is a Linux, and these people are using it, but it is just a part of the system they use. Linux is the kernel: the program in the system that allocates the machine's resources to the other programs that you run. The kernel is an essential part of an operating system, but useless by itself; it can only function in the context of a complete operating system. Linux is normally used in combination with the GNU operating system: the whole system is basically GNU with Linux added, or GNU/Linux. All the so-called ""Linux"" distributions are really distributions of GNU/Linux.",2.0
+gep1449,k740t9,"ok, so first it was unix, linux, then gnu/linux? right?",1.0
+gep1ufc,k740t9,"&gt;Linux is not an operating system unto itself, but rather another free component of a fully functioning GNU system made useful by the GNU corelibs, shell utilities and vital system components comprising a full OS as defined by POSIX.
+
+i don't understand, why do we call GNU operating systems linux if linux came AFTER gnu?",1.0
+gep5js1,k740t9,"Linux is easier to say than GNU (GUH-new). 
+
+Probably not the only reason, but it’s the main reason I say Linux instead of GNU/Linux.",1.0
+gep53w5,k740t9,https://pediaa.com/what-is-the-difference-between-gnu-and-linux/,1.0
+gep5ua5,k740t9,"that article keeps saying that GNU is an ""operating system"" and ""operating systemS""
+
+i'm confused, is it a single operating system? or multiple?",1.0
+gepas7x,k740t9,This thread proves that you can lead a horse to water but you can't make it drink.,1.0
+gepf84v,k740t9,https://en.m.wikipedia.org/wiki/Kernel_(operating_system),1.0
+gepf91f,k740t9,"Desktop link: https://en.wikipedia.org/wiki/Kernel_(operating_system)
+***
+ ^^/r/HelperBot_ ^^Downvote ^^to ^^remove. ^^Counter: ^^303320. [^^Found ^^a ^^bug?](https://reddit.com/message/compose/?to=swim1929&amp;subject=Bug&amp;message=https://reddit.com/r/linux4noobs/comments/k740t9/what_is_gnu_what_does_gnu_stand_for_where_does_it/gepf84v/)",1.0
+gepgm6d,k740t9,"https://en.wikipedia.org/wiki/GNU
+
+https://www.gnu.org/",1.0
+gepgnfc,k740t9,"**[GNU](https://en.wikipedia.org/wiki/GNU)**
+
+GNU ( (listen)) is an extensive collection of free software, which can be used as an operating system or can be used in parts with other operating systems. The use of the completed GNU tools led to the family of operating systems popularly known as Linux. Most of GNU is licensed under the GNU Project's own General Public License (GPL). GNU is also the project within which the free software concept originated.
+
+[About Me](https://www.reddit.com/user/wikipedia_text_bot/comments/jrn2mj/about_me/) - [Opt out](https://www.reddit.com/user/wikipedia_text_bot/comments/jrti43/opt_out_here/) - OP can reply !delete to delete - [Article of the day](https://redd.it/k6wsfi)",1.0
+geoobdd,k73oai,"As far as I know this is (at least theoretically) possible if you use two USB drives, one with a Live USB image and another for the installation itself. 
+
+As a fallback you could look into Knoppix which is designed from the group up to work on a USB.",2.0
+georqpy,k71raw,"Xwayland currently doesn't support scaling of any kind, so X applications are very blurry when scaled by sway.
+
+There are proposals to add scaling features to xwayland but none currently released. At this time you'll get the best results with Wayland native applications and integer scale.",2.0
+gep4zgm,k71raw,"adding on to this, while fractional scaling doesn't work well in xwayland, firefox can be run as Wayland native after setting up the environment variable `MOZ_ENABLE_WAYLAND==1` to avoid blurring issues",1.0
+geoht0y,k6z9zs,"I would start over with the raid assembly.  There's a sequence.  You have to get a *consistent* definition of the raid device and then build an initramfs.
+
+I know it can be a little bit confusing how all the pieces fit and what order the dance steps are placed in so that you end up with an initramfs that knows how to assemble the raid and hand it off to Linux.
+
+1. Boot a live disk and assemble the raid.
+
+2. Then run `mdadm --detail --scan` and put the output of that in mdadm.conf  (and update fstab and /etc/default/grub accordingly)
+
+3.  Then chroot in and rebuild the initramfs and then run `update-grub`. (maybe rebuild the initramfs again once more for good measure?)",2.0
+genyrvi,k6z9zs,"The error is said there. Are you using the correct uuid?
+
+Edit: change the uuid in grub.cfg and fstab.",1.0
+genyx96,k6z9zs,I don’t know where to change it.  I’ve looked in fstab and Mdadm.conf and those don’t house the info that initramfs is looking at.  Where do I find that confit?,1.0
+genz3la,k6z9zs,"I believe you are using grub. Edit /boot/grub/grub.cfg and make sure the uuid is correct. The easiest way to boot in is to remove the uuid and replace it with the partition number, sort of like /dev/sdXY",1.0
+geo1dy8,k6z9zs,Thanks for helping on this.  Slight wrinkle here - it’s supposed to be booting a software raid1 Device. The line in fstab looks different than grub.  Grub is loading a uuid tied to md0 however fstab looks like it’s referencing just part of the array.  Does that sound right? I can post a log if that’s easier.,1.0
+geo1y3i,k6z9zs,I think it's best if you post your grub.cfg and your fstab root line. A quick question. Is this a fresh install?,1.0
+geo2spp,k6z9zs,"This is not a new install - I just happen to be making some changes to the disk configuration. Here are the various configs:
+
+[Grub.cfg](https://pastebin.com/bT8B5vf2)
+
+[fstab](https://pastebin.com/Y47fGRUX)
+
+[mdadm.conf](https://pastebin.com/YA8CFnnZ)
+
+I feel like my running of ""update-initramfs -u"" is what broke this.  Not sure what that command modified but perhaps the files will expose that.",1.0
+geo3mdm,k6z9zs,"try running blkid and replace the one in fstab with the output. grub.cfg seems fine.
+
+Edit: replace the root in fstab with the device number instead, sort of like /dev/sdXY. You could also generate an fstab file with the archiso but changing the root to the device number is probably easier.",1.0
+geo47bv,k6z9zs,I'm not sure which UUID to use since the RAID array shows UUID for each member of the raid array and also shows UUID of the logical drive the raid array creates.  Currently the UUID of the raid array is what is populated across the fstab and the grub conf.,1.0
+geo4j35,k6z9zs,"from your grub.cfg, try this. run lsblk and see what the first value is. that is probably the root and replace it in fstab.
+
+&amp;#x200B;
+
+edit: i think it's easier if you post your lsblk output here.",1.0
+geo5l5e,k6z9zs,"Hope this helps
+
+[lsblk output](https://pastebin.com/bbpTR3Cd)",1.0
+_,k6z9zs,,

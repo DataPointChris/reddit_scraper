@@ -1,0 +1,403 @@
+comment_id,post_id,comment,upvotes
+geparvu,k78tgc,"
+I see you've posted GitHub links to Jupyter Notebooks! GitHub doesn't 
+render large Jupyter Notebooks, so just in case here are 
+[nbviewer](https://nbviewer.jupyter.org/) links to the notebooks:
+
+https://nbviewer.jupyter.org/url/github.com/007Nick700/object-detection/blob/main/object%20detection%20tutorial%20test.ipynb
+
+https://nbviewer.jupyter.org/url/github.com/tensorflow/models/blob/master/research/object_detection/colab_tutorials/object_detection_tutorial.ipynb
+
+Want to run the code yourself? Here are [binder](https://mybinder.org/) 
+links to start your own Jupyter server!
+
+https://mybinder.org/v2/gh/007Nick700/object-detection/main?filepath=object%20detection%20tutorial%20test.ipynb
+
+https://mybinder.org/v2/gh/tensorflow/models/master?filepath=research%2Fobject_detection%2Fcolab_tutorials%2Fobject_detection_tutorial.ipynb
+
+
+
+------
+
+^(I am a bot.) 
+[^(Feedback)](https://www.reddit.com/message/compose/?to=jd_paton) ^(|) 
+[^(GitHub)](https://github.com/JohnPaton/nbviewerbot) ^(|) 
+[^(Author)](https://johnpaton.net/)",2.0
+gep7b4l,k6ygtb,"```
+image = tf.Variable(content_image)
+```
+
+Image is a variable initialized to equal `content_image`.
+
+```
+  with tf.GradientTape() as tape:
+    
+     loss = losss()
+     
+  grad = tape.gradient(loss, image)
+```
+
+You take the gradient of loss wrt image
+
+```
+#calculate the error between each image
+def losss():
+    
+    loss  = style_image - content_image
+    return loss
+```
+But the `loss` function doesn't use the image variable, it uses `content_image`. So the gradient can't reach your variable. You probably want that to be `loss = style_image - image`",1.0
+gep7bu1,k6ygtb,"Hello, suki907: code blocks using backticks (\`\`\`) don't work on all versions of Reddit!
+
+Some users see [this](https://stalas.alm.lt/backformat/gep7b4l.png) / [this](https://stalas.alm.lt/backformat/gep7b4l.html) instead.
+
+To fix this, indent every line with **4 spaces** instead. It's a bit annoying, but then your code blocks are properly formatted for everyone.
+
+An easy way to do this is to use the [code-block button in the editor](https://stalas.alm.lt/files/new-reddit-codeblock.png). If it's not working, try switching to the fancy-pants editor and back again.
+
+[Comment with formatting fixed for old.reddit.com users](https://np.reddit.com/r/backtickbot/comments/k7882u/httpsnpredditcomrtensorflowcommentsk6ygtbvalueerro/)
+
+[FAQ](https://www.reddit.com/r/backtickbot/wiki/index)
+
+^(You can opt out by replying with backtickopt6 to this comment.)",1.0
+gen4mbz,k6pv83,"The first thing you will need is a big dataset. Take photos of the documents. They should be taken exactly like later in the application. Next step is labeling the data. This means you annotate your images with bounding boxes and labels e.g. empty cell.
+
+It is important to have an equal number of boxes per class to prevent underrepresentation.
+
+I would start with ~100 images as a small evaluation set to test possible architectures.
+
+You have multiple classes and multiple ‚objects‘ (cells) per image. One current SOTA method for this is YOLO.",1.0
+genrj2c,k6pv83,"This is so informative, thank you very much. I am confused on what you mean by equal number of boxes per class; my perceptual reasoning is rubbish tonight. Could you please clarify? Or if it is alright with you, could I please privately message you? Hoping I understood the other parts of your advice correctly as well 
+
+Thank you!",1.0
+geoip68,k6pv83,"Feel free to message me :) 
+
+Here is a Medium article about the so called class imbalance problem: https://medium.com/quantyca/how-to-handle-class-imbalance-problem-9ee3062f2499
+
+I can recommend Medium for easy to understand articels about machine Learning!",1.0
+gemluo7,k6h9fr,I would be more interested on data of TF (Lite) running on NeuralEngine instead of the integrated GPU.,3.0
+gel3751,k6h9fr,You should test it on the M1 Macbook Pro with an Additional GPU Core and Active Cooling TBH,2.0
+gem4jpd,k6h9fr,"This Air is the upgraded model with an 8 core GPU (however, this particular network is not faster on the gpu). Also, as I show in the video ([https://www.youtube.com/watch?v=eRwt\_FXTdmg](https://www.youtube.com/watch?v=eRwt_FXTdmg&amp;feature=youtu.be)) the Macbook Air does not throttle during the whole time. Hence, the pro won't be any faster in the tests I was doing. I suspect that it does not throttle because the 4 performance cores are only used at about 50%.",3.0
+gen885t,k6h9fr,But why are they used only 50%? Where’s the bottleneck?,1.0
+gekw3rr,k6h9fr,I can't get it installed! After three days trying I gave up.,1.0
+gely72j,k6h9fr,"It’s literally one line in the terminal
+
+/bin/bash -c ""$(curl -fsSL https://raw.githubusercontent.com/apple/tensorflow_macos/master/scripts/download_and_install.sh)""
+
+From: https://github.com/apple/tensorflow_macos",0.0
+gem1h8p,k6h9fr,"Yep, thats the first thing I tried.",2.0
+gem3gw7,k6h9fr,Yup that doesn’t work as of recently due to numpy,2.0
+gem4ozz,k6h9fr,Make a fresh venv and just use the numpy they provide. That is how it worked for me.,3.0
+gem75ms,k6h9fr,"Hey. If you don't mind doing a step-by-step that would be great. I really tried so many different things and always got different errors, but always errors...",2.0
+gencnbz,k6h9fr,Here you go: [https://youtu.be/6W8pjnW65Q8](https://youtu.be/6W8pjnW65Q8) (How to install TensorFlow and NumPy on Apple Silicon),3.0
+gem6xhs,k6h9fr,Start from a new venv.,1.0
+gems6et,k6h9fr,"Sorry, but please can you help me? I've been trying to install this for so long now without success! I'm studying machine learning, but finding the whole installation process (for this and other packages) very complex for my level of knowledge. I really don't know much about managing environments.
+
+So I created a new virtual environment and activated it. When I try to install Tensorflow using the single line below, it asks me for the "" Path to new or existing virtual environment \[default: /Users/\*my\_name\*/tensorflow\_macos\_venv/\]"".  Wouldn't accepting this default create a fresh virtual environment anyway, thus negating the need to create one in advance?
+
+/bin/bash -c ""$(curl -fsSL [https://raw.githubusercontent.com/apple/tensorflow\_macos/master/scripts/download\_and\_install.sh](https://raw.githubusercontent.com/apple/tensorflow_macos/master/scripts/download_and_install.sh))""
+
+Also, I tried entering the path to my virtual environment, but then I get an error...
+
+If you could give me some guidance on how to make this work I'd be very grateful!
+
+EDIT: another error:  
+
+\&gt;&gt; Installing bundled binary dependencies.
+
+ERROR: numpy-1.18.5-cp38-cp38-macosx\_11\_0\_arm64.whl is not a supported wheel on this platform.",1.0
+gend04w,k6h9fr,Try to follow the steps in the new video I made ([https://youtu.be/6W8pjnW65Q8](https://youtu.be/6W8pjnW65Q8)) and report back if you still get an error.,2.0
+gene04c,k6h9fr,"Hey, thank you for doing this! You've no idea what a major headache this has been. I even put my machine learning course on hold out of frustration!
+
+Unfortunately I'm still getting the following error though:
+
+ \&gt;&gt; Installing bundled binary dependencies.
+
+ERROR: numpy-1.18.5-cp38-cp38-macosx\_11\_0\_arm64.whl is not a supported wheel on this platform.
+
+Any idea what this could be?
+
+EDIT: added full error message.",1.0
+geo9969,k6h9fr,Do you maybe run your terminal with Rosetta2 activated?,1.0
+geoorwu,k6h9fr,"I was asked to activate rosetta when I first bought the computer, but not sure what the scope of it is. I thought it worked system wise , but only when needed.",1.0
+gep014b,k6h9fr,"Ok, i asked because there are advises out there to check “run with Rosetta2” in the “get info” of the terminal. Obviously that shouldn’t be the case when you run the installer. I don’t know what’s wrong with your system. It worked literally out of the box for me. So it must be something you have installed that creates an interference with the tensorflow installer.",2.0
+_,k6h9fr,,
+genav71,k6h9fr,"Awesome video, thanks! Anyone else disappointed it performed way worse than an rtx 2060? The initial twitter thread on tf for mac claimed performance would be similar to gtx 1080 which should be similar to rtx 2060... but in reality it appears to be 4 times slower, and  that's despite debottlenecking RAM - video memory data transfer. Either the current implementation of tf doesn't utilize M1 properly or M1 is overrated.",-1.0
+gendl5t,k6h9fr,"I don't know where you read that claim, but to me it is unreasonable to expect the integrated GPU in a 10 watt laptop chip (the M1) can compete with a huge desktop graphics card that requires 175 watts. The M1 is not made for that. It is really impressive as a laptop chip and performs almost as well as the iMac Pro in some tasks, but it is only the entrance level chip after all.",2.0
+genmh9v,k6h9fr,"I don't think it's unreasonable as long as we speak about ballpark performance. Just now I am holding in my hands a tiny K210 chip claimed to deliver 0.8 Tops at ~0.5 W (inference, not training, obviously). It's all in the architecture. GPUs are designed to do a lot more than than TPUs, and you pay for that in complexity and power. M1 has the ""neural engine"" thing in it. Now, I don't know if it's singe/double-precision or not, but if it is, once tf can use it, I would imagine performance should improve, and, hopefully, significantly. The other thing that M1 boasts is shared access memory. Eliminating the need to transfer back and forth between the video RAM and general RAM should streamline batch processing.
+
+As much as I dislike Apple, I have to admit they are trying to do something very important. I don't know if M1 is the chip that will cause a revolution, but I can certainly see how Apple could woo ML enthusiasts if they play their cards right. I am not saying it's a substitute for a TPU server, but let's be honest, there are plenty of use cases in which one wouldn't say no to a GPU/TPU equipped laptop that delivers performance way outside of its class. Will this happen? I don't know. But I certainly like to dream this dream.",2.0
+geomf5x,k6h9fr,"Yes, you are right, I misunderstood your first comment. If you talk about ML performance of the neural engine vs ML performance of a GPU, then that should be a closer match. I just thought about ML performance of GPU &amp; CPU on the M1, which I didnt expect to be so good.",2.0
+genkeyl,k6h9fr,"Not so unreasonable since there is the Neural Engine and no data transfers and Apple's own claims about high efficiency.
+
+While I certainly don't expect Apple M1 to perform as well as a RTX2060 or GTX1080, giving the above and high price tag compared to Ryzen APUs, I would still expect it to worth the price.
+
+For the 1080 claim I think he talking about this thread:  
+[https://forums.fast.ai/t/deep-learning-on-apple-silicon/81840](https://forums.fast.ai/t/deep-learning-on-apple-silicon/81840)
+
+Some more performance tests here, but they don't compare it to the 1080:  
+[https://blog.tensorflow.org/2020/11/accelerating-tensorflow-performance-on-mac.html](https://blog.tensorflow.org/2020/11/accelerating-tensorflow-performance-on-mac.html)",0.0
+geommr7,k6h9fr,"Cool, thanks for the links. Sounds like he indeed talks about the GPU on the M1, where he got 1080 performance in some specific ML networks (he said it does not perform well under certain tasks). I could not find this performance he was talking about for generic feed-forward and convolutional networks. I would have to test a ResNet for that. However, when you compare just the stated 2.6 teraflops on the gpu of the M1 vs the 9 teraflops of a 1080, then it is hard to imagine to get the same performance in most networks.",1.0
+gekhxz1,k64oug,Maybe you can try tf.data.Dataset.from_generator?,1.0
+gekqpzt,k64oug,"Well, I'd still end up with a tensor since I have to pass a tensor into the training function in order to use the distributed strategy. I guess I'm just not sure how to convert that into the individual feature lists that I can iterate through.",1.0
+gei70ig,k5y2jv,nice! i'll watch! =),2.0
+geidavf,k5y2jv,Thanks :),2.0
+gegj08q,k5qt61,"I found the best way to debug is tf code is
+
+1. Compile model using run_eagerly = true
+2. Use tf.print
+
+Hope this helps. In you case the running eagerly will help.",1.0
+gefwcrs,k5n6sn,"I don't have much advice to give, except that I've had good experiences with installing anaconda and then installing tensorflow from the conda command line.",3.0
+gegi9mh,k5n6sn,"From the [install](https://www.tensorflow.org/install/pip), on Windows you need to install the Microsoft Visual C++ Redistributable.",2.0
+gegtttx,k5n6sn,[https://www.youtube.com/watch?v=zRY5lx-So-c&amp;t=793s](https://www.youtube.com/watch?v=zRY5lx-So-c&amp;t=793s) This video helped me to install tensorflow. This video is for windows but i use linux and i used the process explained in this video. Hopefully it works for you. Once its setup you can also install jupyter notebook in Visual studio and use that if you dont prefer pycharm.,1.0
+gefs0nl,k5mmzs,"Use keras functional API. Create the top branches individually then use Keras Concatonate function to combine the two branches, then finish the structure.  When you call Model on it, make sure to have references to the two separate input layers - you will need to pass those references as an array alongside the final output layer.  After that, just organize your input data. The input can be organized as an interable (I think?) or a dictionry that uses the names of the input layers. Let me know if you would like to see an example, I have one already built for this but am not at my PC yet today.",1.0
+gefsf7x,k5mmzs,"Oh, thank you a lot, i would definitely like to see an example since i'm very much still inexperienced. Also, i'm not in any hurry for this, so it's okay if i have to wait.",1.0
+gefynrv,k5mmzs,"So just a heads up, this was originally written for a Stack Overflow answer, so there may be some bits that are not strictly relevant to your situation. That said, I'll link the notebook [here](https://colab.research.google.com/drive/1vVF2tbzLFZ-9pZql1uT3SBTvNloMwFpp?usp=sharing) but include the important bits here.
+
+Here is the model structure. It's fairly simple to keep focus on the important parts, but swapping out the branches for the structure you want should be a fairly simple exercise.
+
+[Model Structure](https://i.imgur.com/pjfMbbx.png)
+
+Let me know if you run into any hangups.
+
+## Initial Model Setup
+
+    # The two input layers, we will need to maintain references to these to pass to Model later
+    # Note the assigned names of these layers and the output layer. They will be used to configure
+    # the input dataset with a dictionary later.
+    input_a = keras.Input(10,name=""initial_input"")
+    input_b = keras.Input(5, name=""secondary_input"")
+
+    # Adding a Dense layer following input_a
+    dense_1 = keras.layers.Dense(100, activation=""relu"")(input_a)
+
+    # Concatenate dense_1 with input_b, the concatenated layer will now have an output shape of the sum of the two layers output
+    # input_b output shape = 5
+    # dense_1 output shape = 100
+    # so output of concatenate is 105
+    concat = keras.layers.concatenate([dense_1, input_b])
+
+    # A dense layer following the concatenation
+    layer = keras.layers.Dense(256, activation=""relu"")(concat)
+
+    # Finally, the output layer, this will also need to be passed to Model
+    layer = keras.layers.Dense(10, activation=""softmax"", name=""output"")(layer)
+
+
+    # Keras needs to know the entrance and exit points of our model
+    # so when we call Model we can pass in these references or arrays if we have more than one
+    model = keras.Model([input_a, input_b], layer)
+
+    # Show the summary and plot the structure
+    model.summary()
+    keras.utils.plot_model(model, ""multi-output.png"", show_shapes=True)
+
+
+## Data preparation
+    # If you wanted normalized data, it might look like this
+    # a = tf.random.normal([1000, 10])
+    # b = tf.random.normal([1000, 5])
+
+    # The data here is arbitrary, replace it with your own data input pipeline
+    a = tf.ones([1000, 10], dtype=tf.dtypes.int64)
+    b = tf.ones([1000, 5], dtype=tf.dtypes.int64)
+    output = tf.random.normal([1000, 10])
+
+    # In this example, we're using a dictionary to map the separate inputs/outputs to their layers.
+    # Note that the names supplied by the dictionary match the names assigned to the respective layers earlier
+    input_dataset = tf.data.Dataset.from_tensor_slices(({'initial_input': a, 'secondary_input': b}, {'output': output})).batch(25)
+
+    # Alternatively, you could pass array data rather than a dictionary.
+
+
+## Training
+    # This part is similar enough now
+    model.compile(
+      optimizer=keras.optimizers.RMSprop(),
+      loss=keras.losses.CategoricalCrossentropy(),
+      metrics=['accuracy']
+    )
+    model.fit(full_dataset, epochs=75, verbose=1)",1.0
+geg0x46,k5mmzs,"Thank you very much, this is exactly what i needed. Certainly did not expect to recieve help so competent so quickly.",1.0
+geflrqd,k5lplj,"You won't be able to get Rocm to work on Windows. Why not try tensorflow-directml?, works fine for the most part, although the performance is not great yet.
+
+[https://pypi.org/project/tensorflow-directml/](https://pypi.org/project/tensorflow-directml/)",2.0
+gefmiw5,k5lplj,"Thank you so much!!! I didn't know this existed. Anything is better than raw CPU performance. Any clue as to why it gives me some warning about not being compiled for AVX2? Are there any precompiled binaries that include AVX2? I'm having issues compiling myself, and its not recomended.",1.0
+gefmr8i,k5lplj,"I have this warnings with AVX2, I don't see a problem with it, are you able to install tensorflow-directml?",1.0
+gefn2nm,k5lplj,"`C:\Users\nuzzl\Downloads&gt;pip install tensorflow_directml-1.15.3.dev200911-cp37-cp37m-manylinux1_x86_64.whl`
+
+`ERROR: tensorflow_directml-1.15.3.dev200911-cp37-cp37m-manylinux1_x86_64.whl is not a supported wheel on this platform.`
+
+&amp;#x200B;
+
+`C:\Users\nuzzl\Downloads&gt;pip install tensorflow-directml`
+
+`ERROR: Could not find a version that satisfies the requirement tensorflow-directml (from versions: none)`
+
+`ERROR: No matching distribution found for tensorflow-directml`",1.0
+gefnuaj,k5lplj,I seem to get this error when installing anything with pip,1.0
+gefoa3d,k5lplj,"Update, I think this is because I have python 3.9 instead of 3.7, switching versions now",1.0
+gefokl5,k5lplj,"Nope, still having this:
+
+  `Could not find a version that satisfies the requirement tensorflow-directml (from versions: )`
+
+`No matching distribution found for tensorflow-directml`",1.0
+gefpd30,k5lplj,"haha I had environment variables for two python versions. I set it to 3.7, it is installing now.",1.0
+geftspq,k5lplj,I think your error was installing the linux version on Windows.,1.0
+geg4uly,k5lplj,"Oh yes, I tried the linux one on accident but the same error was happening with windows version. It was because of wrong TF and Python version. 
+
+SO does TFJS-node simply use DirectML by default?",1.0
+gefppl8,k5lplj,Do I need to do anything now that I have directML installed with pip?,1.0
+geftpzc,k5lplj,"I don't think so, it should work just fine, but remember that you're using tensorflow 1.15.",1.0
+geg4auj,k5lplj,"Yes, I was actually using TFJS 1.7.4 because TF2 caused issues with the Deeplab model I'm using.",1.0
+gegbulm,k5lplj,"u/nuzzlet I don't think it works with TFJS, Tensorflow Javascript is more for inference, you should use a Tensorflow Lite model running with a CPU to see how it goes, are you trying to train a model or just run inference?",1.0
+gege6l9,k5lplj,"I'm not training models. I'm going frame by frame through hundreds of gigs of video, passing the frames to Face-ai.js, which uses pre-trained models to identify and recognize faces in an image.",1.0
+gefmtff,k5lplj,Could you post results CPU vs GPU on directml later?,1.0
+gefn5k7,k5lplj,"Definitely, if even get it to work. I'm only using pre-trained models to analyze thousands of pictures, but I want to get this working.",1.0
+gefk9lw,k55kuk,"I would assume it would have worked the other way around since V10.x was built for 10 series card. But TF 2.3 might not work well with 10.1. I would check https://github.com/tensorflow/tensorflow/issues/43236#issuecomment-692641790
+
+They are saying 10.2 might work if you want to redo the build. I’m curious, why CU 10.1",1.0
+gec4vi1,k4yn1m,[This guide](https://www.tensorflow.org/guide/keras/custom_layers_and_models) discusses the Keras subclassing API and the `call()` method.,1.0
+gebk4mi,k4yia5,"It works in this new tutorial:
+
+https://www.tensorflow.org/tutorials/distribute/parameter_server_training
+
+I wonder what's different about your setup.
+
+&gt; return strategy.distribute_datasets_from_function(ds_train)
+
+`ds_train` is a function here, right?",1.0
+gebr2m9,k4yia5,"Here is a bit more of the code ds\_train is what stores training parameters along with ds\_validation for the dataset validation, that is included in model.fit()
+
+    ds_train = tf.keras.preprocessing.image_dataset_from_directory(
+        ""./dataset/"",
+        labels=""inferred"",
+        label_mode=""int"",
+        # class_names=['0', '1', '2', '3', ...]
+        color_mode=""rgb"",
+        batch_size=batch_size,
+        image_size=(img_height, img_width),
+        shuffle=True,
+        seed=123,
+        validation_split=0.2,
+        subset=""training"",
+    )
+    
+    ds_validation = tf.keras.preprocessing.image_dataset_from_directory(
+        ""./dataset/"",
+        labels=""inferred"",
+        label_mode=""int"",
+        # class_names=['0', '1', '2', '3', ...]
+        color_mode=""rgb"",
+        batch_size=batch_size,
+        image_size=(img_height, img_width),
+        shuffle=True,
+        seed=123,
+        validation_split=0.2,
+        subset=""validation"",
+    )
+    
+    checkpoint_path = ""training/cp.ckpt""
+    checkpoint_dir = os.path.dirname(checkpoint_path)
+    
+    cp_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path,
+                                                     save_weights_only=False,
+                                                     verbose=2)",1.0
+gebr3l7,k4yia5,"Hello, DevTechs: code blocks using backticks (\`\`\`) don't work on all versions of Reddit!
+
+Some users see [this](https://stalas.alm.lt/backformat/gebr2m9.png) / [this](https://stalas.alm.lt/backformat/gebr2m9.html) instead.
+
+To fix this, indent every line with **4 spaces** instead. It's a bit annoying, but then your code blocks are properly formatted for everyone.
+
+An easy way to do this is to use the [code-block button in the editor](https://stalas.alm.lt/files/new-reddit-codeblock.png). If it's not working, try switching to the fancy-pants editor and back again.
+
+[Comment with formatting fixed for old.reddit.com users](https://np.reddit.com/r/backtickbot/comments/k4zwhz/httpsnpredditcomrtensorflowcommentsk4yia5help_on/)
+
+[FAQ](https://www.reddit.com/r/backtickbot/wiki/index)
+
+^(You can opt out by replying with backtickopt6 to this comment.)",1.0
+gec4wv7,k4yia5,"I have followed the tutorial many times, and I have not been able to get anything else than the previous error above.",1.0
+gebegv6,k4tvby,"can to you google? 
+
+var1.numpy()",1.0
+geahoff,k4rrxo,"A clarification - these message address people that develops tensorflow itself.
+
+However, if you contribute to other project we will be happy if you'll answer too.",0.0
+gea8kzh,k4prp8,hahah been there. what gpu,11.0
+geajs49,k4prp8,"Docker was the best way to do this for me. Get the tensorflow GPU image, extend FROM it in a docker file, and then call `docker run` with the flag `--gpus all`.",9.0
+geadaml,k4prp8,at least say what you have tried,6.0
+gea2wll,k4prp8,"Install the Nvidia Driver and You can use conda to install it
+
+Tutorial:
+
+https://towardsdatascience.com/tensorflow-gpu-installation-made-easy-use-conda-instead-of-pip-52e5249374bc",8.0
+gea5mgs,k4prp8,"I just struggled over the last weekend with getting tensorflow running again after upgrading to a 3090. In the end, the solution for me was cuda 11.0 and tensorflow-gpu==2.4.0-rc3 or tf-nightly-gpu.",3.0
+gebipfx,k4prp8,yeah out of curiosity is the driver/cuda bundle problem where the new drivers use a higher version of CUDA than TF demands?,1.0
+gecfo72,k4prp8,"I think you need to manually install cuda anyways, so you can set LD_CONFIG_PATH and PATH. My problem was that my previous ubuntu install that had worked well with cuda 10.1 and my 1080 just broke when I introduced my new 3090. After a reinstall (for my sanity) I saw that NVidia doesn't even offer cuda 10.1 for ubuntu 20. Trying to install 10.1 anyways gave me some gcc error that I didn't figure out. Then I found out tf 2.4 and nightly support cuda 11, so I went with 11.1 which was a mistake since it still asked for cuda 10 libraries. I jankily fixed that by renaming the corresponding .11 lib into .10 but I wasn't happy with the idea. Finally I realised that tf uses cuda 11.0 so I installed that and it seems to work well so far.",1.0
+gecz6g8,k4prp8,Yeah.  I went through these gyrations with my first bold on the 1080’s too.  Then NVIDIA caught up &amp; it worked out.  The pain of being an early adopter!,1.0
+gead6v6,k4prp8,"If your GPU [compute compatibility](https://developer.nvidia.com/cuda-gpus)is &gt;= 3.5 its pretty easy with conda, if its less than that you need to [build it from source](https://www.tensorflow.org/install/source), which is a MASSIVE pain in the ass and isn't guaranteed to work for newer releases of tensorflow",2.0
+geaxb4d,k4prp8,"yeah I've got all the installs sorted for OS. I think ubuntu 18.04 wants cuda 10.1, though you can squeak up into 11.0. The trick is making sure all your libcudnn and all that match.  
+  
+I have 3 OSes with different test drivers ready to stress test different project repos in production scenarios. I'm amazed how many ""state of the art"" neural networks still require something like python 2.7 and ubuntu 16.04. I mean come on people.",2.0
+gecxwo8,k4prp8,The real question is did that someone received $100 ?,2.0
+gea7wny,k4prp8,"Install Anaconda using directions and their script found [here](https://docs.anaconda.com/anaconda/install/linux/).
+
+Install the nvidia driver, which might be already installed.
+
+Execute:
+
+`conda create -n tf-gpu tensorflow-gpu cudatoolkit=10.2`
+
+That's pretty much it. Anaconda helps A LOT with dependencies.",4.0
+gea2zyp,k4prp8,have you tried 20.04? which GPU are you using?,1.0
+gead7gd,k4prp8,no why would you torture the poor person,3.0
+geamhr8,k4prp8,hahahaha I haven’t been using Ubuntu for a while now. maybe not the best solution,1.0
+gebiqrg,k4prp8,TF fine on 20.04,2.0
+geaagk9,k4prp8,dm,1.0
+gebe8ux,k4prp8,Ha! Thanks for the laugh buddy. Been there...,1.0
+ge9ka0q,k4mucl,"
+I see you've posted a GitHub link to a Jupyter Notebook! GitHub doesn't 
+render large Jupyter Notebooks, so just in case, here is an 
+[nbviewer](https://nbviewer.jupyter.org/) link to the notebook:
+
+https://nbviewer.jupyter.org/url/github.com/tensorflow/models/blob/master/research/object_detection/colab_tutorials/object_detection_tutorial.ipynb
+
+Want to run the code yourself? Here is a [binder](https://mybinder.org/) 
+link to start your own Jupyter server and try it out!
+
+https://mybinder.org/v2/gh/tensorflow/models/master?filepath=research%2Fobject_detection%2Fcolab_tutorials%2Fobject_detection_tutorial.ipynb
+
+
+
+------
+
+^(I am a bot.) 
+[^(Feedback)](https://www.reddit.com/message/compose/?to=jd_paton) ^(|) 
+[^(GitHub)](https://github.com/JohnPaton/nbviewerbot) ^(|) 
+[^(Author)](https://johnpaton.net/)",2.0
+ge9na9e,k4mucl,"Seems like mostly a problem with managing the environment?  Sometimes knowing the current working directory can be confusing in a colab session. I would recommend using Python's listdir or bash pwd to make sure your script is running in the appropriate directory, especially given that relative links are being used, it seems you've tried to install things yourself, but the script is checking for things and navigating directories too.
+
+The instructions for configuring a custom model for the OD API are here: https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/defining_your_own_model.md",1.0
+ge9p3dt,k4mucl,"Thank you, I will look into it! I think it is mostly a problem with managing the enviroment, yes.  I've already looked into the pathlib module and tried to change my current working directory inside the colab session but I couldn't quite figure out how to do it.",1.0
+ge9teqc,k4mucl,"So hold on, are you running the notebook in colab? Because if so, you’re basically running the notebook remotely from one of Google’s servers running Linux and won’t be able to access your local files. 
+
+If you want to run locally you will need to download the notebook and run it yourself using an app like JupyterNotebook. 
+
+Then, you will want to replace all the paths used in the notebook with your own local paths. If it’s easier, use only absolute paths (stored as variables) to avoid any nonsense with the current working directory. 
+
+Depending on if you’re on windows or Linux, you may also want to store those paths as variables using something like:
+
+    path = os.path.abspath(‘C:\tensorflow2\models\research\deploy’)
+
+Or whatever paths you want to use.
+
+Another option if you want to use your own data through google colab is to host it remotely on google drive and mount the drive in colab. This can be nice since you can then treat your drive as your work space. It’s a little bit of a hastle to set up but can be alright. Not the fastest runtime though",1.0
+ge9uzxj,k4mucl,"That must be it, I am running from colab! It actually makes a ton of sense now that you explain it. I'm just about done for today, but tomorrow I'm running the notebook from Jupyter first thing! 
+
+Thanks a ton!",2.0
+ge9v59w,k4mucl,Good luck! (:,1.0
+gedrjpd,k4mucl,"Running locally fixed that issue, Thanks! I'm still stuck however. The notebook uses a pretrained model and I'm trying to use a custom model, but I've got no clue how. And I doubt it'll be a quick change to the code. I found another notebook online, but it's for TF1. I tried migrating the code to TF2 bit I kept running into errors, so I'm not out of the woods yet.",1.0
+ge8t42r,k4h65d,"A NN starts with random weights, that's the reason",3.0
+ge8u7ko,k4h65d,"If you initialize with fixed points, even then you will find different result on each run. There are many reason for that. One is every time you are making different batches using model.fit() method. But don't bother much about the stochasticity. It's good to have stochastic result.",4.0
+ge8xizd,k4h65d,if you set the seeds to all of the random number generators that are used you will move closer to reproducability.,1.0

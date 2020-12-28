@@ -1,0 +1,135 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k7b5d0,mrtkp9993/QuantumComputingExamples - Quantum computing examples with Qiskit.,,1,python,2020-12-05
+k7b1ga,Why do people hate Django?,I have seen a bunch of posts in which people are hating on Django and saying they are nod a fan of it. Why is that? What do you guys hate about it?,2,python,2020-12-05
+k7avsh,Applying Software Engineering Principles To Your Data Science Tasks In P...,,3,python,2020-12-05
+k7ahxc,Building an Endless Spotify Playlist of the Greatest Albums of All Time,,4,python,2020-12-05
+k7a80c,Track Gold and Silver Prices: [Part 2] Database Integration,,2,python,2020-12-05
+k78nat,Getting Started with Google Geocoding API Tutorial In Python,,34,python,2020-12-05
+k77tdf,Wrote a Python decorator to generate a visual tree for recursive functions. Will appreciate some code review.,"Repo: [recursion-tree-plotter](https://github.com/nikhilkumarsingh/recursion-tree-plotter)
+
+Example:
+
+For a recursive function to calculate n-th fibonacci number, here is the output for `n = 5`    
+
+
+https://preview.redd.it/0zu9p54mjd361.png?width=663&amp;format=png&amp;auto=webp&amp;s=eb5e22ebce25d55f4a2e1291b4fa605017c0a85d
+
+&amp;#x200B;
+
+Feel free to read the code and point out any improvements. I might make a pypi package for it later.",8,python,2020-12-05
+k76irl,Golem Hackathon (Dec 8 to Jan 5)- P2P cloud computing infra/ 30k in prizes,"\- Build applications with our cloud computing platform.
+
+\- Over 30k USD in prizes.
+
+\- No blockchain experience required.
+
+\- Perfect for python devs
+
+Sign up here: [https://gitcoin.co/hackathon/golem/onboard](https://gitcoin.co/hackathon/golem/onboard)",0,python,2020-12-05
+k760wa,"I know Python, but after learning basic syntax","After learning basic syntax I never actually learned from videos. I just google how to do something something in pandas etc or refer blogs.
+
+I think learning from video is waste of a lot of time. But again since I only learn what I want to use. I have this fear of missing out.
+
+What are your thoughts on this?",4,python,2020-12-05
+k75abp,Would you watch this?,"Hey guys! I'm a Computer Science major and I'm currently working on my bachelor thesis project. It's essentially a ML algo trying to classify fake news. I'm super psyched about this project and I've been thinking about streaming the entire process, mainly because I think that you guys could help me a lot, and also because I might be able to provide some inspiration to up and coming programmers. I remember how terrified I was of the sheer amount of knowledge possible to aquire in this domain, so I wanna show people that this terror eventually becomes your dear companion and it actually is a big motivator to keep growing professionally. If you have some time, please let me know what you think in the comments.
+
+P.S. If you guys reply positively, I'm gonna link you my yt channel, so you can stay tuned.
+
+Edit: P.P.S Btw I'm not a streamer per se, I'm just an average Eastern European college kid.",6,python,2020-12-05
+k750k8,OOP and Python - What is your mental picture when you plan your project?,"What is your mental picture when planning out the ""cogs"" of your program? How do you determine the way you split up modules, packages, etc.. For example if you want to easily extend functionality how to you plan for that?
+
+  
+I have been using python for a couple of years now, scripts, automation, web scraping and the like and I want to make more complicated stuff but have yet to understand an approach that I can clearly wrap my head around.
+
+Thanks!",5,python,2020-12-05
+k74rvp,"A clean code to download cat images from Reddit's r/wallpapers using Python, Selenium and Geckodriver.",,22,python,2020-12-05
+k74qg0,python ideas,can you give me python ideas,0,python,2020-12-05
+k74m8a,pls can you give me python ideas,hi i am a begginer in python and i like hacking and want ideas fo hacking in python so can you pls comment ideas.,0,python,2020-12-05
+k74k7u,Where can i find a source that will teach me Python from scratch,"Hello everyone, hope you are having a wonderful day 
+I’m really interested in learning Python but i don’t know where to start, keep in mind that i have zero knowledge about it 
+So if you have any source that will help me to get started with Python that would be great",0,python,2020-12-05
+k749w9,Discovering the Y-Combinator with Python,"[Y-Combinator](https://en.wikipedia.org/wiki/Fixed-point_combinator) is a fixed-point (i.e. returning its own value i.e. a function applied to itself) combinator (think of it as a lambda expression that doesn't refer to variables outside its body). It is a construct that allows your programming language to run recursion even if your language didn't support recursion!
+
+It is a two line description in the language of lambda calculus, but might not be that simple to implement without copying code. Imagine if your version of Python said I am not gonna support recursion- could you still do recursion? That's what it's about. [In this post](https://www.lambdacircle.com/discovering-the-y-combinator-by-mistake-1-2/), I used Python to 'try to discover' it step by step, and I must say that it was a beautiful night, and that Python is really a language that you can easily use to 'think in'. Thought I'd share it here (my first post ever!). Hopefully, this will also motivate you to dig deeper into beautiful ideas like the lambda calculus, type theory, etc. etc. :)  
+
+
+[Link to the article.](https://www.lambdacircle.com/discovering-the-y-combinator-by-mistake-1-2/)  
+",16,python,2020-12-05
+k7431d,"Pycopy the small Python dialect v3.4.0: website launched, ""strict execution mode"" introduced",,2,python,2020-12-05
+k73xz9,I am searching for an existing script : Any python code out there that can filter research results on websites such as udemy..?,"Not searching for help making it, just need to know if it already exists",0,python,2020-12-05
+k73qiy,Automated Listing Ebay Photos for MTG (crops multiple pictures and confirms before listing),"[https://github.com/surdouski/mtg\_singles\_ebay\_listing](https://github.com/surdouski/mtg_singles_ebay_listing)
+
+&amp;#x200B;
+
+This is my first github open source project, please let me know if you have any questions.
+
+&amp;#x200B;
+
+Basic summary:
+
+\*\*\*
+
+ IMPORTANT NOTE: You must have ebay api keys to use this application, you can register for them here (it's free but takes 1-2 business days for them to authorize your request): [https://developer.ebay.com/signin?tab=register](https://developer.ebay.com/signin?tab=register)  
+
+\*\*\*
+
+1) Take photo of multiple MTG cards together
+
+2) Run mtg\_singles\_ebay\_listing with that image as input
+
+3) Confirm or reject the given card name, card set, card price combo for listing. Hitting confirm immediately posts it to ebay under your account.
+
+4) That's pretty much it, it's meant to be simple.",2,python,2020-12-05
+k722cn,Particle filter object tracker sample output,"Made a particle filter object tracker a couple of months ago. It was ok, but had a habit of losing track of the target object. I had time this week to think through some of its problems (mainly, image patch drift). Tried a couple of crude solutions. Output on this YT link:  [Object Tracking | Particle Filter | Active Track on Simulated Drone Camera - YouTube](https://www.youtube.com/watch?v=HT1Ydk4CvBc)",2,python,2020-12-05
+k71kyg,what is 4D printing technology and applications of 4D printing | AI Basi...,,0,python,2020-12-05
+k6z687,Python text based game movement,"I'm currently taking intro to scripting, and we are using python3. Our  main project is going to be a text based game. But for this week we are doing a sample project with basic movement through rooms in the game. They have given a dictionary of rooms and directions. I cannot seem to figure out how to code it. here is what I have so far.
+
+
+A dictionary for the simplified dragon text game
+The dictionary links a room to other rooms.
+
+
+Rooms = {
+        'Great Hall': {'South': 'Bedroom'},
+        'Bedroom': {'North': 'Great Hall', 'East': 'Cellar'},
+        'Cellar': {'West': 'Bedroom'}
+}
+
+
+def player_stat():
+    print('----------------------------')
+    print('You are in the {}'.format(currentRoom))
+    print('----------------------------')
+
+
+start player in Great Hall
+currentRoom = 'Great Hall'
+player_move = ''
+
+
+while currentRoom != 'Exit':
+    player_stat()
+    player_move = input('Enter your move:\n')
+    if player_move == 'Exit':
+        currentRoom = 'Exit'
+        print('Play again soon!')
+    else:
+        currentRoom = 'Great Hall'
+        player_stat()
+        player_move = input('Enter your move:\n')
+        if player_move == ('South' or 'south'):
+            currentRoom = 'Bedroom'
+
+I know I'm missing a lot of rooms, but I am trying to write it in increments. The above code does not let me get out of 'Great Hall' and the 'Exit' command does not exit the code. Any help will be greatly appreciated. 
+              P.S. I am not looking for someone to write the code for me but instead the correct way to actually layout and what code I need to use.",2,python,2020-12-05
+k6xurg,My first text editor!,"This is my first python text editor! It is still in development so i'm going to add more features later.
+
+Btw, this is mac only, sorry windows users.
+
+Github repo: [https://github.com/sertdfyguhi/disk](https://github.com/sertdfyguhi/disk)
+
+Some pictures for windows users: [https://imgur.com/a/cpOwsQ8](https://imgur.com/a/cpOwsQ8)",324,python,2020-12-05
+k6wro6,Saturday megathread: Share your resources!,"Found a neat resource related to Python over the past week? Looking for a resource to explain a certain topic?
+
+Use this thread to chat about and share Python resources!",2,python,2020-12-05
+k6ve2e,Python Code Rot and Bad Patches: The Blender Game Engine,,1,python,2020-12-05

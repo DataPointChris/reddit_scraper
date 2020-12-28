@@ -1,0 +1,117 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k73e37,What's wrong with my magic square program?,"    #include&lt;stdio.h&gt;
+    int i,j,temp;
+    
+    void magic_square(int n){
+    	int arr[n][n];
+    	for(i=0;i&lt;n;i++){
+    		for(j=0;j&lt;n;j++){
+    			arr[i][j]=0;
+    		}
+    	}
+    	
+    	arr[0][(n-1)/2]=1;
+    	int k,oi,oj;
+    	i=0,j=(n-1)/2;
+    	for(k=2;k&lt;=n*n;k++){
+    		oi=i; //store original i
+    		oj=j;
+    		if(i-1&lt;0){
+    			i=n;
+    		}
+    		if(j-1&lt;0){
+    			j=n;
+    		}
+    		if(arr[i-1][j-1]==0){
+    			arr[i-1][j-1]=k;
+    		}else{
+    			i=oi+1;
+    			j=oj;
+    			arr[i][j]=k;
+    		}	
+    	}
+    	
+    	//print
+    	for(i=0;i&lt;n;i++){
+    		for(j=0;j&lt;n;j++){
+    			printf(""%d "",arr[i][j]);
+    		}
+    		printf(""\n"");
+    	}
+    }
+    
+    int main(){
+    	int n;
+    	printf(""please input the length if magic square:""); 
+    	scanf("" %d"",&amp;n);
+    	magic_square(n);
+    }",0,shittyprogramming,2020-12-05
+k6y9k2,https://unitedaca.com/free-learn-python-fundamentals-for-data-science/,,0,shittyprogramming,2020-12-05
+k6lt6t,I turned my github feed into a Game of Life,,181,shittyprogramming,2020-12-05
+k4hyqk,Outsourcing Sort,"    fun OutsourcingSort(list:MutableList&lt;Int&gt;){
+        var sortedList = list
+        var sorted = false
+        while(!sorted){
+            for (i in 1 until sortedList .size){
+                if (sortedList[i] &lt; sortedList [i-1]){
+                    sorted=true
+                    Collections.copy(list,sortedList)
+                    break
+                }
+            }
+        sortedList = khttp.post(url = ""http://india.org/sort"", data = sortedList) 
+        // I dont care how long this takes, just keep telling them to figure this out until they get it right
+        // TODO figure out how much this should cost. Should be no more than 2 rupees per api call
+        }
+    }",62,shittyprogramming,2020-12-05
+k3qtjh,Need cool ideas,"I develop a python bot, i need cool functions for it, but my brain can't generate anything cool. So i think you can help me",0,shittyprogramming,2020-12-05
+k3i9p7,I made a program that gives me UNLIMITED storage!,,109,shittyprogramming,2020-12-05
+k2za18,Letting a PROGRAM decide what I EAT!,,0,shittyprogramming,2020-12-05
+k2xy4p,Scuffed-Utils,"Hello, I'm Honestly Nuts. I'm somewhat new to python, even though I've been learning it since march (mostly because I got carried away with learning c and other languages). So, I wanted to get back into python with a project. I recently had an idea to make a Coreutils implementation in python and maybe add a few original programs in it as well (things like a unit-converter).
+
+&amp;#x200B;
+
+**But** making a Coreutils implementation alone is like cutting a tree with a butter knife. So, I want you guys to contribute to this project. Maybe one day we can make this something big.
+
+This may look a bit/very nonprofessional because This is the first time I've asked people on the internet to contribute to a project.
+
+&amp;#x200B;
+
+##Lines That did not fit in the paragraph:
+
+&amp;#x200B;
+
+This way we can all get experience in working with people on the internet. I'm dumb. This is dumb.
+
+&amp;#x200B;
+
+[repo](https://github.com/honestly-nuts/Scuffed-Utils)
+
+&amp;#x200B;
+
+If you want to know something about me or ask me something then my Email is honeastlynuts@gmail.com (yeah I know it's misspelled)
+
+&amp;#x200B;
+
+[**Discord**]([https://discord.gg/nQp4uXkASP](https://discord.gg/nQp4uXkASP)) server for Very serious non-ironic discussions.",15,shittyprogramming,2020-12-05
+k12rzo,How to round down numbers in CSS,,387,shittyprogramming,2020-12-05
+k00wi2,To be safe allocate 5 bytes more than you actually need,,276,shittyprogramming,2020-12-05
+jzn12d,Shitty code in App store reviews,,349,shittyprogramming,2020-12-05
+jz02ql,I implemented a bad deep Q network to beat flappy birds hardest level | source code in the description,,65,shittyprogramming,2020-12-05
+jyjhk4,when your GC's runtime cost is measured in dollars,,372,shittyprogramming,2020-12-05
+jwl4y4,I made the absolute worst programming tutorial anyone can ever make,,122,shittyprogramming,2020-12-05
+jwduh4,Tried something new..Hope you like it...,,27,shittyprogramming,2020-12-05
+jvfaml,A gold mine an ex principal engineer left behind.,,241,shittyprogramming,2020-12-05
+jv375n,"Hot Tip: It's easy to remember which one is the right spelling of ""False"", because if you spell it Fales, your program Fails. So simple!",Based on a true story five minutes ago!,57,shittyprogramming,2020-12-05
+jugqs0,Over-engineering your code makes you seem smart. So you should probably do it.,,136,shittyprogramming,2020-12-05
+jtt4gm,Improve your rust code readability with this macro alias,"    macro_rules! hol_up {
+        ($( $arg:expr ),*) =&gt; {
+            panic!($($arg)*);
+        };
+    }",81,shittyprogramming,2020-12-05
+jtg53d,AI Builds an INSTAGRAM Account,,0,shittyprogramming,2020-12-05
+jszkpz,When the pressures of being 10x just overwhelm you,,131,shittyprogramming,2020-12-05
+js3822,The average Matlab experience,,275,shittyprogramming,2020-12-05
+jr5ecq,Help with MS SQL,"Hello, I've been learning SQL, and recently I've mastered SQL and learned everything about regular SQL. Then my friend told me about MS SQL. What is the difference between regular SQL and MS SQL so I can master that too?",38,shittyprogramming,2020-12-05
+jqowyj,What are some warning flags that indicate that the person you're dating is actually a compiler in disguise?,,184,shittyprogramming,2020-12-05
+jpz5qa,[object Object],[object Object],202,shittyprogramming,2020-12-05

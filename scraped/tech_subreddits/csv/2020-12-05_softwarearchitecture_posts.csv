@@ -1,0 +1,135 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k6jpbi,Architecting Large Scale Systems,"With architecting large scale systems, that comes with many complexities, some things are bound to go wrong. However, few forethoughts into architectural decisions can overcome obstacles and save substantial time and resources.
+
+This video is about how to think around large scale systems and select the right technology and teams. [https://www.youtube.com/watch?v=6pjGuuGsqxE](https://www.youtube.com/watch?v=6pjGuuGsqxE)",8,softwarearchitecture,2020-12-05
+k6199t,2. Simplify Essential Complexity and Diminish Accidental Complexity,,0,softwarearchitecture,2020-12-05
+k5y6qa,Question: TimescaleDB alongside Relational tables in Postgres,"Is it resonable to use TimescaleDB as an extension in Postgres, with other standard tables being used for read/writing at the same time?
+
+An example scenario would be writing telemetry from 50-100 devices into a timeseries hypertable, whilst at the same time having a REST api writing metadata into the ""relational"" tables, though much less frequently of course.
+
+Would I require some sort of message queue? I'm considering using the following setup: `MQTT -&gt; RabbitMQ -&gt; TimescaleDB` Is this overkill/not enough?  🤯 Go easy, it's my first time",7,softwarearchitecture,2020-12-05
+k5v608,"Some unexpected benefits from using a Kafka event streaming architecture to build a global payments network (++innovation, agility, developer experience)",,12,softwarearchitecture,2020-12-05
+k59de2,The Coaching Leader &amp; Architect,,13,softwarearchitecture,2020-12-05
+k58dgl,Build multiple docker images from single Dockerfile,"For one of my projects I  have to create different docker images depending the situation it will be used.
+
+For a while I have been struggling with multiple Dockerfiles, one for each build.
+
+However, recently I found a way to build different images from the same Dockerfile and though I'd share my thoughts:  
+[https://antus.se/multiple-docker-images-from-a-single-dockerfile/](https://antus.se/multiple-docker-images-from-a-single-dockerfile/)",4,softwarearchitecture,2020-12-05
+k55tg6,two questions for software architects," Hello everyone!
+
+I´m currently trying to find out what kind of problems software architects face when it comes to getting their body in shape. That´s why I wanted to ask you the following two questions:
+
+As a software architect, do you struggle with getting in shape?
+
+If so, what are the two biggest issues you are dealing with?
+
+I understand that this is a sensitive topic, so feel free to dm me instead of commenting!
+
+I´m doing this because I´m thinking of working as a fitness coach for busy professionals, but I´m just starting out so I want to be sure about the problems they experience :)
+
+Thanks so much in advance – looking forward to reading your answers!",0,softwarearchitecture,2020-12-05
+k4tt55,"Clean Architecture Pattern, Use Cases Using Use Cases Yay or Nay?","Hi all, 
+
+We're trying to create a work-project that lies heavily on Uncle Bob's Clean Architecture thoughts and for the most part, have been doing pretty well at it.  
+
+Current situation: We have a user interaction that required doing a certain number of steps that involve a few repositories, let's call it foo.  Pre-launch there was only 1 way for the user to do foo.  We narrowed it down to a simple use case (fooUseCase) and launched.  
+
+Now, in the name of usability, we want to do foo if the user does one of a few different actions.  So that it would do the action they want and in the course of doing that, it also does foo.  
+
+Are there reasons NOT to inject the fooUseCase into all the other use cases that require it? 
+
+In my head, it'll be easier to test and run.  This foo method is very basic and very extendable.
+
+However, I can see that any change to the fooUseCase would also change the rules of the consuming use cases as well, so we'd couple those use cases together",8,softwarearchitecture,2020-12-05
+k4obtx,What are the keys to become a Software Arquitect?,"Hey Guys. Software Engineer here and I'd like to ask the Senior Engineers or Software Architects what key you would consider essential to become a Software Architect and Design a good App arquitecture that could make it Scalable and efficient.
+
+Thanx  :)",1,softwarearchitecture,2020-12-05
+k4m466,Is UML diagram worth it?,"Hello everyone!
+
+I'm currently studying software modelling and have to draw a bunch of UML diagrams. While drawing the diagrams, I can't help but feel like UML diagram is very subjective. There can be many interpretations for a single UML diagram (my lecturer flip flop between what is acceptable UML diagram, what is not) and I feel that there is a lot of information that must be omitted in order to conform to the ""clean"" structure of the diagrams. 
+
+If UML diagram is as subjective and as lacking as I think it is, is it really worth investing a lot of time and effort to make detailed diagrams? 
+
+How does the big companies plan and structure complex systems?",11,softwarearchitecture,2020-12-05
+k4l8nm,Modular Monolith: Domain-Centric Design,,11,softwarearchitecture,2020-12-05
+k44fud,Stop Playing Whack-a-Mole with Your Kafka Event Streams!,,1,softwarearchitecture,2020-12-05
+k3uaxn,Real-Time Performance Monitoring with Flink SQL: AdTech Use Case,,2,softwarearchitecture,2020-12-05
+k3sldy,Configuration as code AND a REST API,"For fun I'm creating an internal permissioning system that, very simply, is just a namespaced key/value store.
+
+For example: A registered service can add a permission like `servicename-write` to a user who is registered and other services and users can operate on that data. 
+
+I realized while brainstorming what the backend would look like, that it would be super cool if it was possible to represent this as configuration as code, such that users could use the normal PR flow to submit changes to permissions AND have an API which is more convenient for a computer to interact with. But I don't think these two things can exist together as it creates a problem in ""where is the source of truth?"".
+
+I was thinking maybe its possible to autogenerate the files using the CLI which just reads the API in real-time, have the user edit them in their favorite editor, (how does a user get reviews?), and then having the user have a terraform style interaction where they would see the changes they're about to make before they make them, through a `plan` step of some sort. But it seems like reinventing the wheel a little and not a very straightforward interaction form the user's perspective. 
+
+Anyone have experience merging these two worlds?",5,softwarearchitecture,2020-12-05
+k3obzu,Master slave architecture for long running connections using websocket,"I have a use case where i to initiate long running websocket connections to a remote servers. These remote servers come and go. So i should be able to close the connections and create new ones from my code (spring boot app).
+
+I was thinking of a master slave architecture where master creates new thread which initiates ws connections and master destroys these threads and it finds out if corresponding remote server is gone. master will keep a map of remote server id and corresponding thread so it can control it.
+
+my multithreading is kind of rusty and would like to know if there's any better approach (in java 11)? I am also concerned about how will i keep a dynamic number of threads in my thread pool. I want to also know if there is overall better suited design pattern to solve this ( or a better solution that spring or any package provides)?",1,softwarearchitecture,2020-12-05
+k3ersf,Should I allow a third-party API ubiquitous language leak into my persistence model (DDD)?,"I'm currently tasked with implementing multiple third-party providers for a casino domain. These providers provide a set of slot games that can be played. The complexity is that each provider sends webhooks via HTTP to modify users balance/created bets in our system, this is the meat of each implementation.
+
+My question is, should the persistence table implementation be generic or by-provider? Each providers command handler in the infrastructure layer is completely different and requires different types of database checks before carrying out business logic in the domain layer, but the anti-corruption layer of mapping their request into our domain model is very similar between each provider. I'm uncertain about how future providers' webhook contracts will look.
+
+My question is, should I model the table structure more generically like this?
+
+CREATE TABLE third\_party\_game\_bets(remote\_id::varchar, webhook\_data::json)
+
+... or specific tables for each provider:
+
+CREATE TABLE provider\_one\_bets(remote\_id::varchar, user\_id::int, amount::integer, some\_other\_unique\_webhook\_param\_for\_provider\_1::varchar)
+
+CREATE TABLE provider\_two\_bets(remote\_id::varchar, user\_id::int, amount::integer, some\_other\_unique\_webhook\_param\_for\_providers\_2::varchar)
+
+The first solution makes for an easier time on the query side (CQRS) when displaying a players bets, but solution 2 is more flexible when integrating future providers that may require persistence level changes *(ex. a future provider may have an invariant where one of their parameters they send MUST be unique)*. What's your opinion?",16,softwarearchitecture,2020-12-05
+k2oqmx,"I'm an electrical engineer, inventor, entrepreneur, and patent attorney. Today I live stream on the topic of crowdsourced software engineering projects and Intellectual Property Rights","This lecture will cover the basics of what I have coined as Lean Intellectual Property Rights Protection (Lean IPR™), including covering the basics of patents, trademarks, copyrights, and trade secrets, as well as important and practical considerations and common pitfalls to avoid. Join me [live on Youtube](https://youtu.be/z8WgD914Qpk) at 4PM UTC. Please feel free to ask questions at anytime during the presentation. I will answer live questions on [discord](https://discord.com/invite/q55SYAQ).
+
+As a patent attorney, I have been helping the little people, the startups, universities and small inventors. I've helped startups get bought by the mega corporations and taught them how to keep the mega corporations away. My new mission through my startup OU812 Incorporated is to create the OU812 Open Innovation Engine™ to provide access to the patent system for the benefit of innovators throughout the world and based around a concept that we call OU812 Protected Open Source™.
+
+My background includes being a Special Forces USAF Pararescue candidate, a R&amp;D electrical engineer, inventor, entrepreneur, and patent attorney. I've been drowned, jumped out of perfectly good airplanes and worked on test requirements for Aegis surface to air and surface to surface missiles for General Dynamics, helped design flight computers for next generation YF-22 Raptor Advanced Tactical Fighter and built the first working Software Defined Radio (SDR) for Hughes Aircraft.
+
+This lecture was possible thanks to the generosity of [villamars.com](https://villamars.com). The Villamar Firm is a Professional Limited Liability Company (PLLC) law firm based in Virginia specializing in the practice of Intellectual Property Law, including patents, trademarks, copyrights, trade secrets and computer and internet law. We are also active on r/NexusAurora, feel free to ask questions you have.",1,softwarearchitecture,2020-12-05
+k2ijqp,What is software architecture exactly?,"I recently watched this talk by Robert C. ""Uncle Bob"" Martin [https://www.youtube.com/watch?v=zwtg7lIMUaQ](https://www.youtube.com/watch?v=zwtg7lIMUaQ) (I highly recommend it, he is a great speaker, keeps the you engaged and entertained)  and he says something like this: ""Architecture must scream what its goal is, your architecture must not show what technology (tools/frameworks) it is using."" He makes the comparison with real Architecture that an architect's blueprint shows what the design is whether it is a hotel, hospital, etc. so that us software engineers must do the same, when someone looks at our architecture they must see what it is: a shipping application, accounting  application, etc. So my question is software architecture just directories correctly named?",16,softwarearchitecture,2020-12-05
+k2bhor,Is there a serverless-cold-start equivalent problem with kubernetes?,"I have a Java spring application that runs on a ec2 instances today. In order to scale it, I’m evaluating serverless vs containers. 
+
+With serverless, using the application as-is is not possible due to the cold start problem. 
+If I were to containerize this application however, would scaling up containers be instantaneous, or would that have a similar cold-start-equivalent-problem as the serverless alternative (which really depends on how k8 handles scaling of containers, which I’m not aware of and would appreciate if you could point me to the right articles)? 
+
+Thanks!",3,softwarearchitecture,2020-12-05
+k1wtvd,"Discussion: Clean architecture and React, Redux, Thunk/Saga","Hi all!
+
+My question today is how to Kompliment uncle bobs clean architecture in the given tech stack...
+
+I've seen various approaches but they all involved creating usecases creating controllers etc...
+
+So today im only interested in the part from usecases to ui...
+
+As far as my understanding goes, if we use redux and thunk, then the thunk can act as the usecase and the redux actions would be more or less controllers and the reducers the presenters. Its not that clean imho but far more easy to implement...
+
+Also we can think of the wiring code (use dispatch and get state, or the HOC) as the presenters and controllers...
+
+Would love to hear what you think!
+
+PS. Yes I know that depending heavily on a librafy is seen as bad normally... but if i know, that whatever I do I will use that library then i think thats okay🤔",1,softwarearchitecture,2020-12-05
+k1m3i2,Don't put your resume ahead of your requirements - 97 Things Every Software Architect should know,,0,softwarearchitecture,2020-12-05
+k14qxc,Visual C4 Model Diagramming Tool?,"I've decided I really like the C4 model for architectural diagrams. I've started using Structurizr's browser based UI, but it seems to be a bit lacking in functionality. For example, when editing a diagram, I can't copy anything or create new models from the UI. I'd also like the ability to lock the diagrams and explore them visually, including zooming in from one level to the next.
+
+Are there any tools out there that are easy to visually build out a C4 model that can be interacted with? I'm tempted to create one myself, but I'd rather not if something already exists.
+
+Any suggestions?",13,softwarearchitecture,2020-12-05
+k0dq60,UX study: looking for people who design cloud/microservice architectures,"We’re looking for people who are responsible for designing cloud/microservice architectures in 50+ employee companies, to take part in our concept testing session and help influence our new product. The product aims to enable teams to rapidly iterate and collaborate on system designs. We will of course be giving out gift vouchers to thank you for your time.
+
+Please fill out the following screener form if you are interested in taking part.
+
+[https://forms.gle/smyfGZUyqHTNbsz38](https://forms.gle/smyfGZUyqHTNbsz38)
+
+Thanks!",1,softwarearchitecture,2020-12-05
+k068ah,Adding Software Architect Midproject,"I started working at a company a little over a year ago as a software engineer at a small company. About 8 months in, I was offered to become a software architect, a position that did not exist at the time.
+
+Has anyone been in or seen a situation similar to this? It’s been difficult for a few reasons and I’d love any feedback.
+- the role was essentially being covered by development leads before, so now it’s difficult “taking work back.”
+- being an engineer previously, being seen as respected and deserving of the role.
+- nobody really understanding what my role is supposed to be despite me and superiors trying to break that down.",9,softwarearchitecture,2020-12-05
+k05kgf,Automating Processes in Modern Architectures,,3,softwarearchitecture,2020-12-05

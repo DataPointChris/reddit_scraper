@@ -1,0 +1,394 @@
+comment_id,post_id,comment,upvotes
+gepog96,k7avsh,jesus this is terrible.  mods should ban these,1.0
+gepmpd3,k7ahxc,Awesome job!,1.0
+gepdgry,k77tdf,"Doing this as a decorator is an interesting idea and I'm a sucker for things that make us of Graphviz.
+
+Here you are showing the arguments(s) and result (in square brackets) as a label to the tree node.  You can pass in HTML to the label which provides a lot more flexibility in formatting those arguments.  Also consider displaying a counter in the node label to show the order each  was (first) called.
+
+Moving the result to be a label on the edge (arrow) could make the tree easier to read and more meaningful.",2.0
+gepdpzo,k77tdf,"Yeah I will try to provide support for any graphing library here. Btw, the counter is already there (in square brackets).",1.0
+geowy11,k760wa,There’s a balance to foundational learning and learning through actual practice. I think foundational learning never hurts anyone and I often find myself revisiting a foundational subject or topic even if I’ve been close to it for a while because it always helps me learn a better way to approach it.,5.0
+geox3qd,k760wa,"Thank you for replying. Yes, I feel sometimes that I might be missing the better way to do certain tasks.",1.0
+geoy3zm,k760wa,"foundational learning is great, but practical learning is the thing that's gonna take you the distance.
+
+Think about it this way, having good foundational learning will allow you to look at a problem and identify the concept required to solve it.
+
+Only practical learning will allow you to use those concepts to create a solution.",6.0
+geoxanz,k760wa,"Depends on the video. It's much faster to just look up how to manage a grid in python than watching a video on it.
+
+But I personally like videos on small projects that are live coded in 10-15 min because there you have something actually useful, you see how different things fit into each other and can tinker around with and extending it.",3.0
+geoxdwc,k760wa,I agree.,1.0
+geoy3ki,k760wa,I focus on documentation and stackoverflow,3.0
+geoyzsx,k760wa,"Same. I hardly ever watch videos. I'm not a great programmer, but at the level I am at  it is way easier to find a stackoverflow post on a question that I need answered than watch some 10 min video. I have the same fear, but since my code works most of the time so I try not to think about it 😅.",3.0
+geozdby,k760wa,I guess now I should do the same 😅😃,1.0
+gep75i5,k760wa,"I think if you don't bother to learn more broadly than your immediate needs, you are definitely going to miss out on things.  There are a lot of packages and libraries in Python that will make your life a lot easier, but you'll never find out about them because you don't even know they exist to google them.",2.0
+gepan73,k760wa,"Yes, that is the problem.",1.0
+geotst8,k75abp,"You don't need others approval to start a YouTube channel. The real question is is starting a YouTube channel and become a content creator is something you want to do? Being a YouTube content creator is hard work, and takes a bit of time to really build up your subscriber base.
+
+Either way, the decision is yours.",3.0
+geou38r,k75abp,"Yeah, I am aware of this, but it's less about getting a fanbase and more about meeting people and spreading good vibes in the weird world we live in right now, even if it's just one or two people. But you are right it's deffo a lot of work and grind. Thanks for the comment!",2.0
+gepoz4x,k75abp,he is right in doing market research,1.0
+geottnb,k75abp,I would watch it! I'm a beginner programmer and looking to improve so I would love to learn from someone who's better than me! A youtube link would be nice!,3.0
+geoww5c,k75abp,"Awesome! Here's my channel! I dunno if I'm gonna stream today. If I do, it'll probably not be on my thesis, though. I do however have to solve an internship interview task.
+
+https://www.youtube.com/channel/UCSg690PXwpHcMza0QnfqCvQ",2.0
+geotvtw,k750k8,"I start by trying to flesh out an idea a bit with words. I try to describe functionality and write out statements that should be true. 
+
+Usually I’ve thought about the idea for a while and the writing process helps to identify the best path forward. Sometimes I’ll completely stop from starting at all, which is valuable too. 
+
+Then I’ll grab some paper and draw boxes for key components of the application. Giving them names helps at this point. 
+
+From there I start to identify objects and data types and determine where any inheritance should occur if needed. 
+
+So my mental model is a visual model on paper. This process usually takes a while and a few pages of paper as I iterate. 
+
+Then once I start writing code, my goal always is to get the thing working as a walking skeleton first. Not engineering perfection or code supremacy. 
+
+I’ll tweak the application around the edges once the thing is working as well: efficiency, readability, trade offs, etc. 
+
+If I need to extend or feel like something needs to be more abstract, I will rework it at that point. 
+
+This is maybe not THE optimal approach but it’s what works for me on solo projects and with others. The people I respect the most as engineers all take a similar approach so I’m comfortable with it :)",5.0
+geouksy,k750k8,"My mental picture is my boss saying ""oh, it works, can you do something completely different than what it is now? It must be possible with just one if statement, right? Two hours for adding completely new concepts?! Why so long?!"" 🤣
+
+I am joking a bit, but this is not far from reality. My main challenge often isn't the complexity of the code as such, but the almost daily new requirements from the boss who has very little interest in understanding what is easy to do and what requires a big rework of the core code.
+
+Due to this, I often invest quite a lot of time in what I view as preparation - I have huge modules with dictionaries and I like to overdo with writing functions so that I end up with a code that will allow me to easily swap components without making big changes in the core logic.
+
+This highlights another thing - I think the way you approach it will always be determined to a noticeable extent by your specific case.",3.0
+geoud5x,k750k8,"Interesting thanks. I like the paper thing, ill try that. I too though aim for functionality soon as possible, then every step or addition from there adds functionality without breaking anything else. 
+
+For you what is the most pythonic public project you have seen? (github etc)",1.0
+gep6a03,k750k8,"I generally aim to start with something simple, and then refactor when stuff gets painful. Some schools of thought say to start with the simplest thing that could possibly work.
+
+The thinking is that you'll almost certainly have to change the code in ways that you didn't foresee. Rather than planning for all the problems you *think* you'll have, wait and see what problems you actually have, and keep the code simple until you know it needs to be more complex, so there's less to change when you do.
+
+One thing this does rely on, that a lot of developers struggle with, is writing good tests.
+
+Speaking a bit more personally, I also tend to hold off on making code object oriented until something pushes me in that direction. I tend to start with procedural code and just pass data around, until I encounter a need to bundle up some data items that often travel together, or need to encapsulate or abstract away some concept.",2.0
+gepoe9z,k750k8,"I sketch a UML class diagram containing just the classes names. Then I add their associations and dependencies. After that I add the main methods that each one needs to perform their functions as well as the indispensable attributes.
+
+It's all pen and paper for me in this phase.",1.0
+georaud,k74qg0,"Yes, be more specific if you want help.",3.0
+gep2ya2,k74qg0,"Yes, don't close too much them.",1.0
+geoq3g7,k74m8a,hack nsa bruv,2.0
+geoq83e,k74m8a,should i try,3.0
+geoq6qq,k74m8a,good idea,2.0
+gep19sb,k74m8a,NSA will remember that,1.0
+georel4,k74m8a,"(don't have any hacking ideas) but maybe make a encryption and decryption program for messages.
+
+Maybe this is too advanced but I had fun with it.
+I created a simulation of my inside temperature for my house and attic temperature. It had wall, ceiling, and roof insulation then I got the outside temperature from a weather API. I would then combine this data and for a given temperature schedule determine how long my furnace would run for. It ends up being within 5 to 10 minutes of the actual runtime every day.
+
+I guess the takeaway here would be maybe you could make a simulation of something or something along those lines.",1.0
+georydw,k74m8a,I saved [this post](https://www.reddit.com/r/Python/comments/j5731h/a_list_of_100_random_python_beginner_and_advanced/?utm_medium=android_app&amp;utm_source=share) a while back and thought it might be useful for you.,1.0
+geosdhg,k74m8a,Not hacking but it's pretty fun to make your own password generator and saver. You don't need mad programming skills and it's a nice way to learn about interfaces and turning code into executables.,1.0
+gep99we,k74m8a,"Keylogger is a good way to learn how to use librarys and objects, so many tutorials on internet if you need help",1.0
+geopk4b,k74k7u,https://www.tutorialspoint.com/python/index.htm,1.0
+geoq3on,k74k7u,"r/learnpython has a wiki with a lot of resources to learn Python: 
+
+https://reddit.com/r/learnpython/w/index?utm_source=share&amp;utm_medium=android_app",1.0
+georate,k74k7u,[http://www.practicepython.org/](http://www.practicepython.org/) is amazing for beginners that know nothing about python or coding in general.,1.0
+geoyauc,k74k7u,"[https://www.youtube.com/watch?v=rfscVS0vtbw](https://www.youtube.com/watch?v=rfscVS0vtbw) \- this should be enough to take you to the point of making real programs that make sense.
+
+[https://www.codewars.com/](https://www.codewars.com/) \- practicing over here should be enough to cement those concepts and introduce you to some new concepts.
+
+following these two should get you to an advanced proficiency in the language pretty fast",1.0
+geomxov,k7431d,"Website: https://pycopy.github.io/ (links to docs, binaries, etc.)
+
+Proposal for the ""strict execution mode"" for Python (implemented in this version): [as posted on python-ideas](https://mail.python.org/archives/list/python-ideas@python.org/thread/KGN4Q2EMOMGHLMUH4ITJB4ES7NR3FSB7/), [standalone](https://github.com/pycopy/PycoEPs/blob/master/StrictMode.md)",1.0
+geoyedk,k73xz9,"yeah, they do exist! they are based on clumping machine learning algorithms.
+
+user search history is tagged and that tagging is used for clumping.
+
+edit ( filtering in Instagram is a good example of this since it is based more or less on python)",2.0
+gep3xpd,k73xz9,"&gt;clumping machine learning algorithms
+
+This looks complicated, i though a simple web scrapping thing (as seen in automate the boring stuff with python) would work, without any learning machine tech.  
+Thanks for info though",1.0
+genttym,k6z687,apparently the command to write comments in python makes text bold here and they layout is not correct,1.0
+genyk12,k6z687,"&gt;while currentRoom != 'Exit': player_stat() player_move = input('Enter your move:\n') if player_move == 'Exit': currentRoom = 'Exit' print('Play again soon!') else: currentRoom = 'Great Hall' player_stat() player_move = input('Enter your move:\n') if player_move == ('South' or 'south'): currentRoom = 'Bedroom'
+
+If that is the way your actual code looks, that's your problem...",1.0
+genyo0d,k6z687,"No, I'm not sure how to post it here in the format that it actually is.",1.0
+genz7ty,k6z687,"Use a code block. It is one of the options in the editor.
+
+Also this post may be better suited in r/learnpython",1.0
+genzjvo,k6z687,"    
+    # A dictionary for the simplified dragon text game
+    # The dictionary links a room to other rooms.
+    
+    
+    rooms = {
+            'Great Hall': {'South': 'Bedroom'},
+            'Bedroom': {'North': 'Great Hall', 'East': 'Cellar'},
+            'Cellar': {'West': 'Bedroom'}
+    }
+    
+    
+    def player_stat():
+        print('----------------------------')
+        print('You are in the {}'.format(currentRoom))
+        print('----------------------------')
+    
+    
+    # start player in Great Hall
+    currentRoom = 'Great Hall'
+    player_move = ''
+    
+    
+    while currentRoom != 'Exit':
+        player_stat()
+        player_move = input('Enter your move:\n')
+        if player_move == 'Exit' or 'exit':
+            currentRoom = 'Exit'
+            print('Play again soon!')
+        elif player_move != 'South' or 'south' or 'Exit':
+            print('Invalid move.')
+            currentRoom = 'Great Hall'
+        elif player_move == 'South' or 'south':
+            currentRoom = 'Bedroom'
+            player_stat()
+            player_move = input('Enter your move:\n')",1.0
+geo1hw5,k6z687,"&gt;if player_move == 'Exit' or 'exit':
+
+Your if/elif conditions in your code are not valid. It would need to be something like this.
+
+
+    If player_move in [""exit"",""Exit""]:
+
+Or
+
+    If player_move == ""exit"" or player_move == ""Exit"":
+
+
+The first one checks if player_move is in a list. The second one is how you actually do an or condition.",2.0
+geo1xd2,k6z687,"    ----------------------------
+    You are in the Great Hall
+    ----------------------------
+    Enter your move:
+    Exit
+    Invalid move.
+    ----------------------------
+    You are in the Great Hall
+    ----------------------------
+    Enter your move:
+    South
+    Invalid move.
+    ----------------------------
+    You are in the Great Hall
+    ----------------------------
+    Enter your move:
+    
+
+this is what i get when i run bot Exit and South",1.0
+geo2qug,k6z687,Did you change your if/elif conditions like I showed in my previous comment?,1.0
+geo2ycc,k6z687,"&gt;If player\_move in \[""exit"",""Exit""\]:
+
+is what i changed it to. i cant get it passed the program putting out 'Invalid move.'",1.0
+geo372i,k6z687,You didn't put that part of your code in your post. Can you show the full while loop?,1.0
+geo3do8,k6z687,"    
+    # A dictionary for the simplified dragon text game
+    # The dictionary links a room to other rooms.
+    
+    
+    rooms = {
+            'Great Hall': {'South': 'Bedroom'},
+            'Bedroom': {'North': 'Great Hall', 'East': 'Cellar'},
+            'Cellar': {'West': 'Bedroom'}
+    }
+    
+    
+    def player_stat():
+        print('----------------------------')
+        print('You are in the {}'.format(currentRoom))
+        print('----------------------------')
+    
+    
+    # start player in Great Hall
+    currentRoom = 'Great Hall'
+    player_move = ''
+    
+    
+    while currentRoom != 'Exit':
+        player_stat()
+        player_move = input('Enter your move:\n')
+        if player_move != 'South' or 'Exit':
+            print('Invalid move.')
+            currentRoom = 'Great Hall'
+        elif player_move in ['Exit', 'exit']:
+            currentRoom = 'Exit'
+            print('Play again soon!')
+    
+        elif player_move == 'South' or 'south':
+            currentRoom = 'Bedroom'
+            player_stat()
+            player_move = input('Enter your move:\n')
+    
+
+this is the whole code",1.0
+geo3s2j,k6z687,"&gt;if player_move != 'South' or 'Exit':
+
+Again you can't write conditions like this. It would need to be
+
+    if player_move not in [""South"", ""Exit""]:",1.0
+geo54tc,k6z687,"    
+    # A dictionary for the simplified dragon text game
+    # The dictionary links a room to other rooms.
+    
+    
+    rooms = {
+            'Great Hall': {'South': 'Bedroom'},
+            'Bedroom': {'North': 'Great Hall', 'East': 'Cellar'},
+            'Cellar': {'West': 'Bedroom'}
+    }
+    
+    
+    def player_stat():
+        print('----------------------------')
+        print('You are in the {}'.format(currentRoom))
+        print('----------------------------')
+    
+    
+    # start player in Great Hall
+    currentRoom = 'Great Hall'
+    player_move = ''
+    
+    
+    while currentRoom != 'Exit':
+        player_stat()
+        player_move = input('Enter your move:\n')
+        if player_move not in ['South', 'south', 'Exit', 'exit']:
+            print('Invalid move.')
+        elif player_move in ['Exit', 'exit']:
+            currentRoom = 'Exit'
+            print('Play again soon.')
+        elif player_move in ['South', 'south']:
+            currentRoom = 'Bedroom'
+    
+
+okay so this appears to work so far. it lets me navigate out of the Great Hall. now i need to make navigation for bedroom and cellar.",1.0
+geo59tg,k6z687,is it possible to nest while loops?,1.0
+_,k6z687,,
+geo5i25,k6z687,Ok cool. For future posts like this you should post in r/learnpython,1.0
+_,k6z687,,
+geo4p0j,k6z687,"The trouble is...
+
+    elif player_move != 'South' or 'south' or 'Exit':
+
+You either have to check against each...
+
+    elif player_move != 'South' and player_move != 'south' and player_move != 'Exit':
+
+Or you have check if the move is in a list...
+
+    elif player_move is not in ['South', 'south', 'Exit']:
+
+I would rather check for legal moves instead of illegal moves...
+
+    elif player_move in rooms[currentRoom]:
+        currentRoom = rooms[currentRoom][player_move]
+    else:
+        print('Illegal move, try again')
+
+You might want to write a function that cleans the input so you don't have worry about 'South', 'south', 'S', 's'...
+
+    def clean_input(text):
+        if 'X' in text.upper():
+            return 'Exit'
+        elif text.upper().startswith('N'):
+            return 'North'
+        # more elifs for other directions",1.0
+geo2qff,k6xurg,"The only ""Mac-only"" part of your codebase is the file paths.  Use `pathlib`.",83.0
+geoaray,k6xurg,"I mean doesn’t os.path.expanduser work on windows too
+
+I know pathlib is nicer but I feel like you omitted the key point, which is to let python packages figure out where the user directory is and how paths should be formatted",19.0
+genv7xl,k6xurg,could you provide a screenshot of the software,77.0
+genxnei,k6xurg,"Considering this is a big project, I would split this up into multiple files and use imports to transfer functions between your new files. It might seem like more lines of code are desirable, but organization is more important. Good project though!",65.0
+geo18m2,k6xurg,"Are there benefits besides organization, such as running speed, etc?",7.0
+geo2p89,k6xurg,Your later self's sanity.,118.0
+geo6huo,k6xurg,That i can agree,15.0
+geovtri,k6xurg,"Not really, but there are only benefits. Better organization leads to better efficiency on the programmers part, as well as a potential for other people to contibute to the project without needing to spend hours understanding it.",4.0
+geovv51,k6xurg,"Thank you!  I certainly understand the latter benefits, I was just curious from a technical point of view if one way is speedier to execute than the other.",2.0
+geowez6,k6xurg,"Depends on the language, but I'm pretty sure most just piece your program back together anyway. From what I've been told, the C/++ include statement just tells the compiler to paste that entire library in that location before compiling, which is a minimal and compile-time-only dip in performance.",2.0
+geocek2,k6xurg,I’m pretty sure it looks more impressive to an employer looking at your code,5.0
+geod40n,k6xurg,"i am a windows user, so obviousely i cant use this app...... but if you can add some good screenshots of how your app looks then i can atleast look at it.....***and best wishes from me for your programming journey*** :)",13.0
+geoerxr,k6xurg,Your first? How many are you planning to make?,7.0
+geolkma,k6xurg,"Pretty neat, but there’s no reason for this to be Mac only, I got it running on Repl.it with very few changes.",6.0
+geo9xc0,k6xurg,"That is great BUT if I’m honest this is basically a portfolio of worst practices lolol 
+
+It is in no way a reflection on you, nor does it mean you’re not smart! You’re very smart.
+
+It’s just funny seeing these tendencies and remembering when we (in the past) got hammered either by TAs or on code reviews for doing similar stuff :)
+
+By that I mean the indents, the naming conventions, the use of globals, the monolith file encapsulating the entire app. And I also have a personal hatred of config files but that’s just me.",19.0
+geokz4c,k6xurg,"So let's give them some advice.
+
+OP use VSCode. Let it install n linter. Also install Pylance. It will help.
+
+Then before you carry on break your file into different modules. Modules should be like 'utilities', ''main' etc. Put all these into a new folder in your git called the name off the app and put a __init__.py there. Now you have an official python module.
+
+And as some people say, use pathlib, itl work on any PS then.",14.0
+gep9r8s,k6xurg,Files are modules.  `__init__.py` makes it a _package_.,1.0
+gep18fq,k6xurg,"Beginner projects kinda should be portfolios of the worst practices. If a beginner makes a clean project, they're probably more concerned with learning rules than being creative. Unless they've read a lot of code for some reason.",2.0
+gep7m6a,k6xurg,"Yup, I feel everybody’s been there. You have to write spaghetti code in order to understand how to prevent it!",0.0
+geo37q3,k6xurg,![gif](emote|free_emotes_pack|give_upvote),9.0
+geo99gh,k6xurg,What the hell is that?,28.0
+gep4528,k6xurg,"Snoomoji. Reddits take on animated whatsapp stickers, or gifs",2.0
+geooi0h,k6xurg,"Nice work! If you add [appdirs](https://pypi.org/project/appdirs/) as a dependency, adding support for Windows and Linux is as simple as using `appdirs.user_data_dir` in place of manually writing out the path!",3.0
+geot1di,k6xurg,"As many people are pointing out, this project will look a lot better and be a lot more organized if you were to split it into multiple files.",3.0
+geozom8,k6xurg,"I get this error when i run it,
+
+    macOS 11 or later required !
+    [1]    3672 abort      python3 disk.py
+
+I'm on MacOS 11.1 beta",3.0
+gep424e,k6xurg,"Rather than writing to the Users application config, why not just have the file in the same directory as main.py? It would make the entire application portable as well as cross platform.",3.0
+geog17q,k6xurg,Awesome project! Glad you are having fun with your projects amd learning.,2.0
+geohobg,k6xurg,"Fantastic stuff! Had trouble running it myself, but that's because my install of python doesn't seem to have tkinter working.
+
+This makes me want to have a way of commenting on already existing codebases. I have so much to say but no real avenue to say it :(",2.0
+geol5ha,k6xurg,Not bad. Good luck 🤞,2.0
+geop98h,k6xurg,Looks great! Keep it up👌,2.0
+geplsl0,k6xurg,![gif](giphy|YPyC6mU7geQrDzoCXA),1.0
+gep0kzo,k6xurg,"![gif](giphy|BtMgDj2mZLzws)
+
+Gif",2.0
+geo1uhk,k6xurg,It's always nice to work on personal projects but I gotta tell that is not how you write code. I do not mean to be discouraging but rather want to make sure that you are aware of this. I would suggest read a good Python book from start to end and then see how other people write code. Even if you are a beginner it should not stop you from using proper OOP logic. And when you know those basic things only then should you try more interesting projects like this one,2.0
+geo42mp,k6xurg,You should provide 2 or 3 examples of what you mean. Constructive feedback is helpful.,13.0
+geo4lec,k6xurg,"I think the commenter is being constructive enough. If OP cannot figure out how to write cleaner code, it's best for them to work on smaller projects to try and get better at it before doing something major. 
+
+I have nothing against the code. It's fine, it could be better but at this stage, it's still workable, but I still agree with the commenter.",6.0
+genut5w,k6xurg,"Nice, I will try it later ![gif](emote|free_emotes_pack|thumbs_up)",0.0
+genr7pl,k6xurg,Impressive,0.0
+geol53x,k6xurg,"You could still get my upvote bruv
+Rly nice work",0.0
+gep7m3w,k6xurg,"E
+
+![gif](giphy|26uTt19akcFxRFCy4|downsized)",0.0
+geogabh,k6xurg,![gif](giphy|3ohs7NuHL3gjbe2uGI|downsized),-2.0
+geoor93,k6xurg,Who at reddit hq thought this was a good idea?,5.0
+geo14zr,k6xurg,I'm trying to figure out why you would do this on a mac when there is 2 other operating systems with superior functionality and features.,-30.0
+geo422k,k6xurg,OP probably is working on a mac so it was easier for him,9.0
+geo6n9g,k6xurg,"Yeah i get that but i don't get why people still use mac's. To each there own i guess, when people realize what they're buying and the novelty wear off apple will die",-17.0
+geo7d4c,k6xurg,"I do hate apple with a passion, but even Ill admit there are valid reasons to use it (integration with phones, security, sleekness of design, all your friends/fam use it for facetime and imessage and such, etc)",3.0
+gepbnlb,k6xurg,"Ok there are things apple does right but security is not one of them. 
+
+https://youtu.be/aS2lJNQn3NA
+
+Let's just say if i were a hacker i could have a field day with this",2.0
+geoa7nd,k6xurg,"Just my opinion but I have been using macs for a few years now and they are just so much better in terms of something to code on and do work. Obviously if you are gonna be playing video games or something, mac is a stupid idea but otherwise they are great. I can get stuff done to a better standard and quicker on MacOS over Linux or Windows. I know I'll get a ton of downvotes for this but just wanted to put this out there.",3.0
+gepa5bc,k6xurg,"Ok first off PEOPLE ARE UPVOTING YOU
+
+Ok so the reason I dissagree with that is your probably using pycharm or VS, which pycharm should be the same between linux Windows and mac, but i believe VS is better in a mac then windows. This is why we do not use VS :). 
+
+The main reason I don't like apple isn't their devices (ok maybe a little bit), but how the company behaves. They are just a shitty company. They make devices that will inevitably break, are poorly engineered, and then make you buy a new device rather then repairing the old one. They are lobbying against a law that will require companies to have some form of responsibility for child/slave labor. They are fighting against a law to reduce child and slave labor -_-. I have a 10 paragraph rant i can find",2.0
+geodyoh,k6xurg,Any year now...,1.0
+gep842i,k6xurg,"My guess is 5-7 years, apple hopping on the ARM train isn't helping, the M1 is slower then a 3600x (last gen chip) and it has a gtx1050(equivilant) for graphics (what the hell you gonna do with that), people are praising apple for mediacracy. At this point they aren't even offering competative products.",2.0
+geosqhf,k6xurg,It what way is the functionality of python (and its standard / most used packages) limited by Mac os?,1.0
+gep6u40,k6xurg,I'm talking in general not just python,1.0
+geo446c,k6xurg,"Ur having a troll, right?",1.0
+geo4brx,k6xurg,I just really hate apple,1.0
+geo4hp1,k6xurg,Good contribution.,1.0
+geolobu,k6xurg,Edgelord is edgy,-1.0
+genswak,k6wro6,https://www.youtube.com/watch?v=tNlurLxcf68,1.0

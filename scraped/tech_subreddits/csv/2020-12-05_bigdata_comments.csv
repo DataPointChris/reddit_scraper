@@ -1,0 +1,20 @@
+comment_id,post_id,comment,upvotes
+gep3a0z,k70t7t,"Only the HMS connects to the backing database. The flume hive sink expects the thrift URL for the HMS:
+https://flume.apache.org/FlumeUserGuide.html#hive-sink
+
+Although it looks like it's using the original client and not the HS2. On top of that, it's unlikely hive is going to be a good sink if this is streaming data.",2
+geps0xn,k70t7t,"I see, thank you for your help. I do not have thrift setuo and I will have to find another solution most likely using something like sqoop.",1
+genam3s,k6kxub,"Yes, let me just Hadoop my way to a real time data pipeline /s/",5
+genc1il,k6kxub,So much BS in these articles. Don't bother,2
+gejzmpi,k6ae26,[https://openneuro.org/](https://openneuro.org/),4
+gekyycs,k6ae26,[https://academictorrents.com/](https://academictorrents.com/),2
+gecyzi6,k564bz,"Ranking these social media platforms was pretty hard when I didn't even know two of them and I still had to choose which one came in on 6. 
+
+Good luck with your survey tho :)
+(I do understand German but writing it scares me)",1
+gec8c8h,k52axy,"What an insightful article.  Data is important, who knew?",1
+geaq62a,k4n5sa,"Cool ... cool cool cool. Nothing in that article talks about the key issues working with a Big Data use case. A glaring obvious one is data gravity!! How well will this concept work when dealing at Petabyte levels of scale. I like that this introduces a responsibility model for tenants to manage their own pipelines and there are elements of continuous delivery but the entire article remains abstract from any real big data concerns which usually means either:
+
+* there isn't a big data use case in the first place
+* ignoring these will cause failure to implement, potentially after having paid expensive architects or an SI to develop a utopia strategy without volumetrics and genuine concerns addressed",2
+ge89ady,k4889a,Not sure what the criteria for the ‘best’ attributes are?,1

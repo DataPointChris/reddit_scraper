@@ -1,0 +1,225 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k7bql3,Recommendations on deep reinforcement learning courses,"Here are the courses that I tried and none of which are concerned with deep RL and they are more focused on classic reinforcement learning:
+
+* [coursera reinforcement learning specialization](https://www.coursera.org/specializations/reinforcement-learning?)
+* [coursera practical reinforcement learning](https://www.coursera.org/learn/practical-rl)
+* [David silver's youtube RL course](https://www.davidsilver.uk/teaching/)
+
+All of the courses above are great however, what I'm looking for is a course more focusing on RL algorithms that use deep learning &amp; neural networks ex: DQN, DDPG ... and less focusing on tabular and other techniques that I don't think are used in real applications. I generally prefer a more practical rather than theory centered courses as I prefer to write code and experiment rather watching hours of hard to digest mathematical notations being explained which I rarely understand.
+
+I also tried many books but the problem is most of them use `pytorch` and I prefer to work with and I only know tensorflow and spending hours and days translating from `pytorch` to `tensorflow` is inconvenient and a waste of time.",1,deeplearning,2020-12-05
+k7axj9,How would you evaluate/process this screen image to turn it into structured data?,"&amp;#x200B;
+
+[Original Image](https://preview.redd.it/xalth3vv8e361.png?width=2388&amp;format=png&amp;auto=webp&amp;s=27f6eb9bfdc3a55e3c010a475aeffd4cb2727e89)
+
+**Background about the image**
+
+This is a screenshot of the match-end screen of [Brawl Stars](https://brawlstars.fandom.com/). The characters that you see are ""brawlers"", each team consists of 3 brawlers.
+
+Under each brawler is the player name, the current trophy count of the brawler, the power level and whether they're a star player.
+
+On the top left you see the match result relative to the blue team, and also the trophy change. (e.g. if blue team loses, text would be ""DEFEAT!"" and trophy change will be ""-11"").
+
+**Expected result is something like:**
+
+    {
+      ""screen"": ""match_end"",
+      ""result"": ""victory"",
+      ""trophy-gain"": ""+5"",
+      ""teams"": [
+        [
+          {
+            ""player-name"": ""คкเ💋"",
+            ""brawler"": ""spike"",
+            ""brawler-skin"": ""sakura_spike"",
+            ""trophies"": ""972"",
+            ""star-player"": false,
+            ""power"": 10
+          },
+          {
+            ""player-name"": ""⚡QLS|TRILL ⚡"",
+            ""brawler"": ""bull"",
+            ""brawler-skin"": ""default"",
+            ""trophies"": ""1033"",
+            ""star-player"": true,
+            ""power"": 10
+          },
+          {
+            ""player-name"": ""幹嘛|Grin☯️"",
+            ""brawler"": ""brock"",
+            ""brawler-skin"": ""super_ranger_brock"",
+            ""trophies"": ""887"",
+            ""star-player"": false,
+            ""power"": 10
+          }
+        ],
+        [
+          {
+            ""player-name"": ""✴LIQUIDATOR"",
+            ""brawler"": ""carl"",
+            ""brawler-skin"": ""leonard_carl"",
+            ""trophies"": ""783"",
+            ""star-player"": false,
+            ""power"": 10
+          },
+          {
+            ""player-name"": ""❄️IceBibi❄️"",
+            ""brawler"": ""sandy"",
+            ""brawler-skin"": ""sleepy_sandy"",
+            ""trophies"": ""525"",
+            ""star-player"": false,
+            ""power"": 10
+          },
+          {
+            ""player-name"": ""Mastermin D'Arc"",
+            ""brawler"": ""bull"",
+            ""brawler-skin"": ""touchdown_bull"",
+            ""trophies"": ""805"",
+            ""star-player"": false,
+            ""power"": 10
+          }
+        ]
+      ]
+    }
+
+**My plan on how to evaluate it** *(please excuse the colors I used for the bndboxes, let me know if a color isn't distinguishable for you and I'll send you a modified image)*
+
+My idea was to annotate the image with 4 label types (text, brawler, trophy icon, power badge)
+
+[Annotated](https://preview.redd.it/gqf074vv8e361.png?width=2388&amp;format=png&amp;auto=webp&amp;s=0886d1552dface4e158eec5779fbb5f8e8080a35)
+
+Then the evaluation pipeline will be:
+
+1. Run object detection inference on the image to get the bndboxes of those 4 labels
+2. Cut each ""text"" bndbox and run them through OCR
+3. \*Somehow\* associate/group the names, trophies, &amp; power level with each brawler.
+4. Cut each ""brawler"" bndbox and run them through image classification model to determine the brawler type.
+5. Run the same ""brawler"" images through another image classification model to determine the braweler skin.
+6. Use some text matching algorithm  (e.g. RegEx or literal string matching) to determine match result (basically look for a text object that either contains ""Victory"" or ""DEFEAT"").
+
+Now obviously the above is too abstract, and probably not clear (e.g. #3). But is this enough to tell that I'm going on a good direction? I could do try to test this idea, but the manual annotation is really long and boring, if I get it wrong I'll have to redo my work. :(
+
+**Some Tricky Problems I think I might run into**
+
+1. Converting the player names into text. Even though I'm expecting the images to originate from the same device, so the same text size and emoji style will be the same. However, player names can contain almost anything (emojis, special symbols, latin, arabic, chinese/korean characters etc.). So, I'm not sure how I will be able to accurately locate the bndbox, and then to convert them into text. Any ideas?
+2. Will annotating objects on top (or behind) another object is going to cause any problems? I have other screens that contains buttons, and so I'll have to first annotate the text on the button and then the button itself, will this confuse the model?
+
+&amp;#x200B;
+
+Or just maybe forget all of this, and let me know how you'd approach this problem?",1,deeplearning,2020-12-05
+k7a6ay,Open source PyTorch implementations of DL architectures with guides and notes,,1,deeplearning,2020-12-05
+k79lj0,major mathematical barriers,"
+
+I’d love to hear people’s opinions. What major barriers or gaps in the theory of neural networks need to be overcome. What would you guys, as researchers or practitioners, love to see progress, specifically a theoretical direction.",3,deeplearning,2020-12-05
+k794ds,I share my 2020 deep learning journey and how you can learn about transformers!,,0,deeplearning,2020-12-05
+k769cn,Tutorial: DeepStream Human Pose Estimation | Github,,28,deeplearning,2020-12-05
+k75f7f,Looking for a research winter project,"Hi, I'm a sophomore in one of the best institutes in India and I am currently looking for a research project for the coming winters (January, but we can start early and carry on till some time later)
+If any researcher/ professor is looking for one, kindly message me or reply in the comments and I will send you my résumé along with transcript and cover letter
+Thanks!",1,deeplearning,2020-12-05
+k757xe,Call out to people that know how 'Recurrent Neural Networking' works. Have quick access to medical equipment. -Neural network that constantly learns off of self. This knowledge - And how to connect to human brain neurons. I've an idea that I think could save peoples lives with this. Mind transfer.,"So, literally what the human brain is all about for example -- neurons to learn off of self I think. There may be other specific things within the brain -- but at the core, this are what really matters. Those specific things are just an extension that perhaps like you like something and perhaps some gland to release chemicals to 'make you feel' a certain way -- but can still think through that, not letting drugs rule your life kind of thing. So at the core of what is really going on here is learning off of self -- 'Recurrent Neural Networking' -- this is literally that I think.
+
+So, literally this is what a life is, what a person is, whether they live in a human fleshy brain - or a computer brain. -As a spider, bird, etc.
+
+So, I've an idea to save peoples lives -- so all that's needed for this 'mind transfer' is get a cable that can detect signals from own brains neurons AND be able to send signal back to the neurons to receive. Get this cable that can work both ways and for example get a computer with some Recurrent Neural Network setup -- right now just sitting there with nothing going on, as a blank slate initially -- what do now is get that wire and connect it up to be able to send signal over to the Recurrent Neural Network setup to receive, and thus perhaps to send back through that very cable, back over to own brain to receive. Thus literally extending brain capacity -- thus now living both in a computer brain and human brain perhaps, so, perhaps paralyze human brain, cutting off life support, somehow immediately stopping blood from going into the brain -- and now basically just losing the human brain capacity and since constantly learning off of self, just lost a part of you -- but now just as a computer brain. That initial signal from the neurons, and cross linkage between the human brain and the computer brain setup, is the continuation of someone, who they really are, as a consciousness. As long as able to sustain constant linkage between that computer brain and human brain -- are basically just the same brain, both both at once, both working together.
+
+So - right now, I am literally calling out to people around perhaps that have access to medical equipment and such, and so like know how Recurrent Neural Networking work -- just like code some software that can sustain this, have the computer, this software currently able to do this - but at a blank slate initially, no signal given yet, but if were to receive a signal - able to keeping the computer on kind of thing. Have the computer AND - medical equipment as in, able to receive signal from own brain neurons - ie like some 'EEG' headwear -- BUT to be able to send signals back to these neurons to literally just hook up to this computer with this Recurrent Neural Network setup software all ready to receive a signal. And thus basically just hook everything up -- basically just extending the brain!
+
+And stuff like this importantly - a brain implant hooking up to someone blind and letting them see out directly out of a digital camera, EVEN see video game imagery DIRECTLY in their own vision:
+
+[https://www.technologyreview.com/2020/02/06/844908/a-new-implant-for-blind-people-jacks-directly-into-the-brain/](https://www.technologyreview.com/2020/02/06/844908/a-new-implant-for-blind-people-jacks-directly-into-the-brain/)
+
+So - got the computer can live in, should also do something similar to what they did with this eye implant to be able to see out of digital cameras, ie when doing mind transfer, not to just be a living brain in a jar without ways to perceive surroundings - no eyes, just pretty much not much going on (though obviously perhaps not total blackness since ie brain still subject to external forces acting on it, ie get damaged and perhaps cause dementia, forgetting things). Regardless, should like have eyes hooked up - and like arms and legs, and like I've heard about how people moving robotic arms just with like some EEG thing hooked up perhaps, regardless hooked up to their brain, and just with thought, to control the arm -- I think ie in order to learn how to walk, just like hook up a robotic arm directly up to the brain, it able to receive electric signal from the brains neuron and thus be able to move accordingly -- ie as regarding to constant strength of signals the arm receives -- so perhaps arms just flailing around, but perhaps can figure out how to control it and thus able to understand how to move that arm -- and with legs, learning how to walk..
+
+\-Got microphones hooked up for hearing, perhaps as in sending raw sound signal directly into the brain; eyes, ears, arms and legs, perhaps extra things such as nerves to feel touch on the body. Now have all this in a mobile body, perhaps with a computer in it -- able to do all this recurrent neural networking. Basically can transfer over to this body to get out of a body about to die and fall apart -- just keep making new bodies to live in kind of thing.
+
+So, right now - just get SOMETHING, to do this -- even if the computer not gonna last long perhaps, if it can last at least just for like 20 years or so, built to last -- at the very least can keep making new computers to move into. Just get a relatively decent computer -- and just IMMEDIATELY right now save peoples lives! -- Other things like external input, may take time to build, but just get a make shift computer set up to transfer people about to die - like, RIGHT NOW. Saving people's lives. Sticking them into a computer right now from a failing body. Keeping them alive in the computer.
+
+Do that quickly - AND THEN can worry about external input like;
+
+cheap digital cameras for eyes, cheap microphone for ears
+
+cheap motors for some simple plastic - make shift arms and legs -- some mouth that perhaps can use to speak out of -- maybe or a speaker with a voice synthesizer or something. Perhaps just like do an artificial mouth kind of thing that perhaps make similar to a human mouth and basically move mechanically and pressurized air to speak out of. Regardless this can perhaps come later -- what matters RIGHT NOW is keeping people alive and well inside of a computer brain to at least buy them some time.",0,deeplearning,2020-12-05
+k7402y,[R] deep learning on first-order logic,"Has anyone seen the paper that this neural network: 
+
+[https://www.bluebrainlaboratories.com/](https://www.bluebrainlaboratories.com/)
+
+is based on? The site is crappy, but if this is legit, then we could really use it. Idk what to believe.",1,deeplearning,2020-12-05
+k725is,Deep Learning is Creating a New Cognitive Paradigm,,1,deeplearning,2020-12-05
+k6vnx8,"GameGAN: Whole PAC-MAN Game Recreated Using Only AI by NVIDIA. No game engine needed! (Paper, blog post, and project's page linked in comments)",,15,deeplearning,2020-12-05
+k6qmsd,AI now sees and hears COVID in your lungs,,18,deeplearning,2020-12-05
+k6pi5b,[R] NeurIPS 2020 | Probabilistic Approaches for Algorithmic Recourse With Limited Causal Knowledge,"The rise of machine learning (ML) has made centralized decision-making more efficient than ever — while also raising some difficult but important questions. In real-world scenarios such as pre-trial bail, loan approval, or prescribing medications, it is not enough for black-box models to be accurate and robust — **an algorithms’ decisions are also expected to be explainable, so their impact in real-world settings can be aligned with socially relevant values such as fairness, privacy and accountability.**
+
+Here is a quick read: [NeurIPS 2020 | Probabilistic Approaches for Algorithmic Recourse With Limited Causal Knowledge](https://syncedreview.com/2020/12/04/neurips-2020-probabilistic-approaches-for-algorithmic-recourse-with-limited-causal-knowledge/)
+
+The paper *Algorithmic Recourse Under Imperfect Causal Knowledge: A Probabilistic Approach* is on [arXiv](https://arxiv.org/pdf/2006.06831.pdf). This is a NeurIPS 2020 spotlight paper, [scheduled ](https://neurips.cc/Conferences/2020/Schedule?showEvent=17719)for a ten-minute presentation on Wednesday, December 9, at 8:20am PST.",3,deeplearning,2020-12-05
+k6nojn,any models for bitmap to svg?,"Hi, just wondering if anyone has heard of models for converting a bitmap image to .svg (vectorized) format? could be useful for scanning textbooks and the like",4,deeplearning,2020-12-05
+k6invc,ImageBERT Implementation,Is there any ImageBERT Open Source Implementation available? I'm digging deep but cannot find any yet.,10,deeplearning,2020-12-05
+k6grz1,The Deep Learning Production Survey,"Hi there!
+
+You can help impact the future of deep learning! We’re asking experts like you: what challenges you face and what is slowing you down. The results will remain anonymous.
+
+Start the survey -&gt; [www.deci.ai/survey](https://www.deci.ai/survey)
+
+Complete the survey and we will add you to the drawing for several pairs of Apple AirPods Pro!",2,deeplearning,2020-12-05
+k67r1l,Hi. Any good links on using Attention models for image classification?,,3,deeplearning,2020-12-05
+k65qmk,[N] AAAI 2021 Announces Paper Totals – ‘Amazingly High Technical Level’,"AAAI 2021 has officially announced its paper submission and selection numbers. Organized by the Association for the Advancement of Artificial Intelligence, AAAI is one of the world’s leading artificial intelligence conferences. The highly anticipated announcement came from Kevin Leyton-Brown, University of British Columbia Professor of Computer Science and AAAI 2021 program Co-Chair.
+
+Professor Brown says AAAI 2021 received a record-high 9034 submissions compared to last year’s 8800. Over 7911 papers went to review and a total of 1692 papers made it, for an acceptance rate of 21 percent, just 0.4 percent higher than last year’s 20.6.
+
+Here is a quick read: [AAAI 2021 Announces Paper Totals – ‘Amazingly High Technical Level’](https://syncedreview.com/2020/12/03/aaai-2021-announces-paper-totals-amazingly-high-technical-level/)",6,deeplearning,2020-12-05
+k65bk1,[R] Can Autonomous Vehicles Self-Learn the Rules of the Road?,"What if, instead of hard-coding road rules into self-driving algorithms, AI agents were free to come up with their own ways of safely and efficiently sharing the road? That’s the premise of an international research team’s new paper, which looks at what happens when AI agents in driving environments are simply tasked with getting to destinations as quickly as possible without crashing into one another.
+
+Here is a quick read: [Can Autonomous Vehicles Self-Learn the Rules of the Road?](https://syncedreview.com/2020/12/03/can-autonomous-vehicles-self-learn-the-rules-of-the-road/)
+
+The paper *Emergent Road Rules in Multi-Agent Driving Environments* is on [arXiv](https://arxiv.org/pdf/2011.10753.pdf), and the code is on [GitHub](https://github.com/fidler-lab/social-driving).",5,deeplearning,2020-12-05
+k61yg6,'Reading' DNA to decipher gene expression regulatory grammar directly from genomes,,6,deeplearning,2020-12-05
+k6055b,Hi. Introducing my GPT-2 project,"  
+**Hi. Introducing my GPT-2 project.** 
+
+**I am currently working as a product owner in Republic of Korea.**
+
+**And I am very interested in artificial intelligence**
+
+**In October of this year, I studied the Bibles and myths of various religions on GPT-2 and imagined the most neutrally shared religion.**  
+
+**And I did ""ORACLE 2020"".**  
+
+**The detailed explanation is as follows.**
+
+ 
+
+&amp;#x200B;
+
+[Oracle 2020, Neeeds \(Dohahm Oh, Youngjun Kim\), 2020, mixed media, dimension variable](https://preview.redd.it/vdl6s5vjxz261.jpg?width=980&amp;format=pjpg&amp;auto=webp&amp;s=77978503b9b1428675ac570c92215fb05f425b12)
+
+**ORACLE 2020**
+
+Neeeds (Dohahm Oh, Youngjun Kim)  
+2020, mixed media, dimension variable
+
+Neeeds is a team made of Youngjun Kim, a service &amp; product planner, and Dohahm Oh, a musician, to propose a service-prototype assuming specific demands. Based on the assumption, they attempt to create a solution at the intersection of technology and artistic discourse.
+
+ORACLE 2020 sets Artificial Intelligence(AI) as a hypothetical religious medium in the near future and produces new commandments, tales, or proverbs based on the bible put out by AI. With this as a starting point, Oh and Kim imagine a religion that shares common values on the foundation of common needs in the most neutral way. They trained AI on existing religions‘ commandments using ‘Writing AI GPT-2’ presented in 2019 and created another religious commandments in a common language. Natural Language Processing(NLP) Engineer Seonghyun Kim took part in the learning process. The commandments created through this process are displayed as a handbook to convey the religious ‘word’ as understood and put into a near-futuristic form.
+
+In the contemporary media environment, people consume content with portable devices such as smartphones anytime, anywhere, instead of learning something through experiences. Furthermore, COVID-19 has held people back from gathering in one place as a group and having a shared experience. Still, people are looking for the ‘word,’ as well as topics and contents. Is the word of the time preached by AI going to touch people‘s hearts through the ‘word’ in front of their eyes and hands? ‘Neeeds’ believes in and, at the same time, tests human beings‘ fundamental weaknesses and strengths.
+
+&amp;#x200B;
+
+  
+**If anyone wants this book, I want to make it and sell it.** 
+
+**Is there anyone interested?**
+
+**If you are interested, please leave an email on the Google form below!**
+
+&amp;#x200B;
+
+[https://forms.gle/SP5tPUoXFQN9KZfR8](https://forms.gle/SP5tPUoXFQN9KZfR8)",1,deeplearning,2020-12-05
+k5x8tc,Unable to train gan with RGB values going beyond 255,"As the title says, I'm getting corrupted or very noisy images as output from GAN when my input is not scaled between 0 and 255. The data is not incorrect, that is how it comes from my source, hence some channel values exceed 255.
+
+Unless I scale them to 255 the GAN model fails on learning anything. Is there a way around it on how to approach this problem?
+
+I've tried SRGAN for now.",0,deeplearning,2020-12-05
+k5wn5k,Resources/papers to understand transformers and attention,"I have an overall understanding of deep learning. But I have always struggled to understand attention and transforms completely :( . What are good papers/resources I can use to gain a deep understanding, given they are becoming more essential everyday ?",31,deeplearning,2020-12-05
+k5ufba,Top Google AI Employee Alleges Retaliation,,0,deeplearning,2020-12-05
+k5s2l9,Training a Printed Links Detector Using TensorFlow 2 Object Detection API,,1,deeplearning,2020-12-05

@@ -1,0 +1,52 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k1cf4y,.NET ETL - free Community edition and .NET 5 support added to actionETL,,4,etl,2020-12-05
+k0jqxc,AWS releases own airflow,,19,etl,2020-12-05
+jy38qe,QStreaming - A simplified lightweight ETL framework,"A simplified, lightweight ETL pipeline framework for build stream/batch processing applications on top of Apache Spark
+ 
+[QStreaming](https://github.com/qiniu/QStreaming)",5,etl,2020-12-05
+jxxr08,Dixer ETL v1.3.0 is out!,,1,etl,2020-12-05
+jvynqk,"How DAGs grow: Deeper, wider, and thicker",,11,etl,2020-12-05
+jr3udo,Your data tests failed! Now what?,,5,etl,2020-12-05
+joligm,I _really_ want to learn/work with An Initio,"In the opinions of others that have more experience than I (both in life and in professional prowess), is this a realistic goal today? I have about 3 years of ETL experience in SSIS and what I would classify as intermediate to advanced SQL knowledge. 
+
+Is it possible to parlay this into an Ab Initio position?",3,etl,2020-12-05
+jjuspy,How to Enrich Your Snowflake Data Using External Functions,,8,etl,2020-12-05
+jjkzdh,"What are the arguments against doing ETL ""in-database""?","What I mean with ""in-database"" is (for example) having a database schedule trigger a PL/SQL or T-SQL procedure that pulls data from some source (say, from an URL). This opposed to using dedicated ETL tooling (Informatica, Pentaho, etc)?  
+
+I've read several times that it's not ""best practice"". Which could mean that it's actually a bad idea in most cases, or it could be that people just repeat what they heard. It's hard to know without knowing the actual arguments behind it.  
+
+One argument I can think of is this generally causes your ETL processes to not be in one place. But I find it hard to believe that any (large) company uses one and only one tool to load data into their database(s). And in many cases ETL tooling that can do it ""all"" is pretty expensive and/or hard to use, so it can be a reasonable decision to spread things out over multiple tools/platforms.   
+
+But the core of my question is what the arguments against doing it in-database are.",8,etl,2020-12-05
+jixcj7,"ETL Testing: What, Why, and How to Get Started",,9,etl,2020-12-05
+jirbs2,Changelog Dixer v1.2.0,,3,etl,2020-12-05
+jinszq,https://itnext.io/big-data-quality-assurance-635c368a3e28,,1,etl,2020-12-05
+jgnzjp,[video] Apache Beam Explained in 12 Minutes,,10,etl,2020-12-05
+jfakwn,On-Premise alternative for Fivetran,"Many businesses these days would like their data to stay in their network or cloud. ETL Tools like Fivetran provide just provides a SaaS option. With [Sprinkle](http://sprinkledata.com/), when it comes to an On-Premise setup, the data is run on the customer's virtual machine within the customer's cloud to ensure no data leaves the network boundary.  
+[Sprinkle Data](https://www.sprinkledata.com/), a data integration and analytics tool enables On-Premise setup. Not just that, unlike most tools the payment model is not based on the number of rows, the rows are unlimited with Sprinkle. So, the users wouldn't have to worry about the costs as their business and data scales.  
+
+
+But, if you want a SaaS deployment, we offer the same as well. [Sign up](http://sprinkledata.com/) for a Free Trial today and evaluate for yourself.",0,etl,2020-12-05
+jf6zo6,"What are the most common Transformations that I need to get comfortable with if I'm targeting roles at large / legacy firms with a large number of SQL sources - eg. Banks, Insurance, Telecom, Retail, etc","Joins / date reformatting / cleaning / other? 
+
+Also, Would you advise that I double down on my SQL skills, or should I develop familiarity with any of the products out there?
+
+Thank you again!",4,etl,2020-12-05
+jezdhh,Is it that hard to build User &amp; Company data models for freemium b2b SaaS?,,1,etl,2020-12-05
+jbjn86,Apache tasks hanging need help!!!,,2,etl,2020-12-05
+jb5lko,"Learn Python sent me here, I think I have found my family! Looking for somehelp, any resources would be great.",,4,etl,2020-12-05
+jao9z3,Testing Dixer in linux arm64,,0,etl,2020-12-05
+jafhrr,[help] handling foreign keys in ETL Process,,1,etl,2020-12-05
+ja4lpt,Features you would like to see with PDF extraction and creation,"Hi Reddit,
+
+We are building a product that lets you extract PDF data and create PDF documents at scale based on your demand. No more subscription or upfront costs!
+
+What features you want to see for PDF extraction and creation? I would appreciate if you take this survey to let us know your feature requests -
+
+[https://docs.google.com/forms/d/1v2Hqo99SvBk8wwsLvwTLlSCD07q5RedfuF524tg6hPw/edit](https://docs.google.com/forms/d/1v2Hqo99SvBk8wwsLvwTLlSCD07q5RedfuF524tg6hPw/edit)",8,etl,2020-12-05
+j9wv81,Seems that ETL deployments have slowed due to covid?,"An ETL consultant I talk to said that talend deployments have slowed pretty drastically because of covid. He said he's doing half the number of daily jobs he did in January.
+
+What suprised me is he said that deployments in the cloud have especially slowed down. Is this true? I had wanted to become an ETL consultant, but maybe this isn't the time? Is it only talend that has slowed down or is it all ETL..",7,etl,2020-12-05
+j87s3k,Getting started with XComs in Apache Airflow,,7,etl,2020-12-05
+j65r0x,Why isn't talend cool anymore?,I remember in 2018 everyone was saying that talend would take over the world. Now it's 2020 and I'm shopping around for an ETL solution to load data into snowflake and all of a sudden the story has changed. People are generally way less positive on talend now. What changed?,8,etl,2020-12-05
+j63pvu,Manage your data the way you manage your code,[https://lakefs.io/2020/10/05/how-to-manage-your-data-the-way-you-manage-your-code/](https://lakefs.io/2020/10/05/how-to-manage-your-data-the-way-you-manage-your-code/),2,etl,2020-12-05

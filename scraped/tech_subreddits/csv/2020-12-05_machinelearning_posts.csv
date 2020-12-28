@@ -1,0 +1,234 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k7bokn,[N] Clash at Machine Learning Conference Leaves Dozens Wounded [Satire],,3,machinelearning,2020-12-05
+k7b30o,[R] Predicting Month and Year of Marriage - suggestions welcome to improve the model and score,,1,machinelearning,2020-12-05
+k7a8w7,[P] An open-source visual data labeling tool,"I build a tool to Extracts objects from raw images to train machine learning or deep learning models.
+
+it uses deep learning to extract images. it can classify more than 80 objects and after classification, it put all the object to the corresponding folder. it's pretty easy to use and open source for more information check out the GitHub link below.
+
+GitHub: [https://github.com/YigitGunduc/data-labeler](https://github.com/YigitGunduc/data-labeler)",1,machinelearning,2020-12-05
+k77sxz,[D] Timnit Gebru and Google Megathread,"First off, why a megathread? Since the first thread went up 1 day ago, we've had 4 different threads on this topic, all with large amounts of upvotes and hundreds of comments. Considering that a large part of the community likely would like to avoid politics/drama altogether, the continued proliferation of threads is not ideal. We don't expect that this situation will die down anytime soon, so to consolidate discussion and prevent it from taking over the sub, we decided to establish a megathread.
+
+Second, why didn't we do it sooner, or simply delete the new threads? The initial thread had very little information to go off of, and we eventually locked it as it became too much to moderate.  Subsequent threads provided new information, and (slightly) better discussion.
+
+Third, several commenters have asked why we allow drama on the subreddit in the first place. Well, we'd prefer if drama never showed up. Moderating these threads is a massive time sink and quite draining. However, it's clear that a substantial portion of the ML community would like to discuss this topic. Considering that r/machinelearning is one of the only communities capable of such a discussion, we are unwilling to ban this topic from the subreddit.
+
+Overall, making a comprehensive megathread seems like the best option available, both to limit drama from derailing the sub, as well as to allow informed discussion.
+
+We will be closing new threads on this issue, locking the previous threads, and updating this post with new information/sources as they  arise. If there any sources you feel should be added to this megathread, comment below or send a message to the mods.
+
+# Timeline:
+
+----
+
+**8 PM Dec 2**: Timnit Gebru posts her [original tweet](https://twitter.com/timnitGebru/status/1334352694664957952) | [Reddit discussion](https://www.reddit.com/r/MachineLearning/comments/k5ryva/d_ethical_ai_researcher_timnit_gebru_claims_to/)
+
+**11 AM Dec 3**: The contents of Timnit's email to Brain women and allies leak on [platformer](https://www.platformer.news/p/the-withering-email-that-got-an-ethical), followed shortly by Jeff Dean's email to Googlers responding to Timnit | [Reddit thread](https://www.reddit.com/r/MachineLearning/comments/k6467v/n_the_email_that_got_ethical_ai_researcher_timnit/)
+
+**12 PM Dec 4**: Jeff posts a [public response](https://docs.google.com/document/d/1f2kYWDXwhzYnq8ebVtuk9CqQqz7ScqxhSIxeYGrWjK0/preview?pru=AAABdlOOKBs*gTzLnuI53B2IS2BISVcgAQ) | [Reddit thread](https://www.reddit.com/r/MachineLearning/comments/k6t96m/d_jeff_deans_official_post_regarding_timnit/) 
+
+**4 PM Dec 4**: [Timnit responds to Jeff's public response](https://twitter.com/timnitGebru/status/1335017524937756672)
+
+---
+
+**Other sources**
+
+- [Googlers (and others) sign letter standing with Timnit](https://googlewalkout.medium.com/standing-with-dr-timnit-gebru-isupporttimnit-believeblackwomen-6dadc300d382)
+
+- [A claimed reviewer of Timnit's paper posts the abstract](https://www.reddit.com/r/MachineLearning/comments/k69eq0/n_the_abstract_of_the_paper_that_led_to_timnit/)
+
+
+- [A twitter thread of Timnit's contributions from Rachel Thomas](https://twitter.com/math_rachel/status/1334545393057599488)
+
+- [MIT Tech Review: We read the paper that forced Timnit Gebru out of Google. Here’s what it says](https://www.technologyreview.com/2020/12/04/1013294/google-ai-ethics-research-paper-forced-out-timnit-gebru/)
+
+- [Wired: A Prominent AI Ethics Researcher Says Google Fired Her](https://www.wired.com/story/prominent-ai-ethics-researcher-says-google-fired-her/)",86,machinelearning,2020-12-05
+k774hk,[P] GuitarLSTM: Tensorflow/Keras for deep learning models of guitar amps/pedals using LSTM.,,25,machinelearning,2020-12-05
+k774cf,[D] Any holiday gift ideas for AI researchers and programmers?,"I need to find holiday gifts for a handful of AI programmers. I am looking for gift ideas that are AI related, but in a fun way.  Any suggestions?",33,machinelearning,2020-12-05
+k76nfv,[P] Highlight document text with Extractive QA,,12,machinelearning,2020-12-05
+k7574p,"""[Research]"", ""[R]"", ""[Project]"", ""[P]"" Folks’Talks is a game where the computer acquires spoken language from a player."," [https://www.facebook.com/ToddlerTalkGame](https://www.facebook.com/ToddlerTalkGame)
+
+[https://youtu.be/XaowsgrK278](https://youtu.be/XaowsgrK278)
+
+Asking, recognizing the object and the phraze pattern, selecting correct answer from previous training session (245 samples only). Folks’Talks is a game where the computer acquires spoken language from a player. Acquisition starts from scratch like a real baby acquires his native language. Here I would like to describe the game’s preliminary development interface. The interface is made of 5 general sections (pink, green, blue, orange, and lilac), each with a specific purpose. The pink section shows various objects that should be described by a player so that the computer can acquire phrases describing these objects. The first page of the Pink section is for sound input. The next page of this section contains objects for a pointing quiz. The next page contains objects for a spacing quiz. There are additional pages for a society quiz, a time quiz and some more quizzes. The first page that shows objects is for a pointing quiz where the user can point at each of these objects and say phrases that describe these objects. Each of these phrases has a specific pattern. These phrases about these specific objects will be used for training, analysis and recognition using the TensorFlow and Essentia libraries. After the training process, the user can ask questions about these objects and the computer will select the right answer. All languages describe the world using the same three concepts: space, time, and society. So, Folks’Talks game will be suitable for any language. Starting from next month the development progress will be published on Patreon ( https://www.patreon.com/Folks\_Talks?fan\_landing=true). Patrons can access documented source code, watch videos about game functionalities and the development process, chat with creators, and try to train the virtual agent to acquire their own native language on a pre-alpha version of the game.",1,machinelearning,2020-12-05
+k753gp,[P] Data for generative models,**Is it legal to train a rnn model on songs from a particular artist/genre to produce new music? And similarly gans for images?**,9,machinelearning,2020-12-05
+k73s20,[R] deep learning on first-order logic,"Has anyone seen the paper that this neural network: 
+
+[https://www.bluebrainlaboratories.com/](https://www.bluebrainlaboratories.com/)
+
+is based on? The site is crappy, but if this is legit, then we could really use it. Idk what to believe.",1,machinelearning,2020-12-05
+k73a7a,[R] 6.7ms on Mobile with over 78% ImageNet Accuracy: Unified Network Pruning and Architecture Search for Beyond Real-Time Mobile Acceleration,"**Abstract:**  
+
+&gt;With the increasing demand to efficiently deploy DNNs on mobile edge devices, it becomes much more important to reduce unnecessary computation and increase the execution speed. Prior methods towards this goal, including model compression and network architecture search (NAS), are largely performed independently and do not fully consider compiler-level optimizations which is a must-do for mobile acceleration. In this work, we first propose (i) a general category of fine-grained structured pruning applicable to various DNN layers, and (ii) a comprehensive, compiler automatic code generation framework supporting different DNNs and different pruning schemes, which bridge the gap of model compression and NAS. We further propose NPAS, a compiler-aware unified network pruning, and architecture search. To deal with large search space, we propose a meta-modeling procedure based on reinforcement learning with fast evaluation and Bayesian optimization, ensuring the total number of training epochs comparable with representative NAS frameworks. Our framework achieves 6.7ms, 5.9ms, 3.9ms ImageNet inference times with 78.2%, 75% (MobileNet-V3 level), and 71% (MobileNet-V2 level) Top-1 accuracy respectively on an off-the-shelf mobile phone, consistently outperforming prior work.  
+&gt;  
+&gt;Link: [https://arxiv.org/abs/2012.00596v1](https://arxiv.org/abs/2012.00596v1)",25,machinelearning,2020-12-05
+k71pgj,[D] Interesting techniques that can be implemented on personal budget,"While the recent focus of AI has been refining pretrained large models (both CV and NLP), compute efficient models have some of the most interesting applications out there.
+
+I would like this thread to discuss papers/applications that people find interesting and can be trained on a personal budget (Colab/ a single moderate GPU etc). This would generate more interest, awareness and perhaps new research avenues.
+
+To name a few:
+(1) Neural Radiance Fields - a small dense network maps pixel positions and viewing angles to their RGB and illuminance values. From limited amount of images a continuous view model can be created. (Just read a new paper PixelNeRF which uses CNNs to reduce number of images required even further)
+
+(2) SIRENs - Another intrinsic model that maps coordinates to RGB values. Can be used for audio, video and image modeling. Uses Sine as activation function.
+
+(3) Stylized Neural Painting - Creates paintings from images using brush parameters instead of pixels. Also supports addition of adding style transfer in the mix.
+
+(4) OIL - Observational Imitation Learning - Uses multiple teachers (PIDs, fuzzy logic rules etc) and learns a neural network based policy that surpasses all at each instance.",3,machinelearning,2020-12-05
+k70l26,[D] Accuracy between TensorFlow model and TensorFlow Lite model,"There are several issues (Ex: [1](https://github.com/tensorflow/models/issues/9143),[2](https://github.com/tensorflow/tensorflow/issues/40000),[3](https://github.com/tensorflow/tensorflow/issues/20980),[4](https://github.com/tensorflow/tensorflow/issues/21921)) submitted in GitHub complaining accuracy drop when convert the TensorFlow model to TensorFlow Lite model. Want to know whether this is a general issue. Are there any reasons for that?",1,machinelearning,2020-12-05
+k6zt2n,[D] TextRank - Research Paper Walkthrough,"TextRank – is a graph-based ranking model for text processing which can be used in order to find the most relevant sentences in text and also to find keywords in an unsupervised way 🔥 
+
+Research Paper Walkthrough - https://youtu.be/2l6Fa767kEw
+
+
+⏩ Title: TextRank: Bringing Order into Texts
+⏩ Link: https://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf
+⏩ Author: Rada Mihalcea and Paul Tarau
+⏩ Organisation: University of North Texas",7,machinelearning,2020-12-05
+k6yk3s,[P] Simple PyTorch Image Quality,"Hi! I am currently doing an internship (R&amp;D) in a company that relies heavily on computer vision. During my work, I realised that, in most internal projects, the image quality assessment (IQA) metrics were either rewritten from scratch, copy-pasted from another project or borrowed from some open-source implementation (for example `pytorch-mssim`, `pytorch-lpips`, ...). In fact, it seems to be the case for a lot of R&amp;D projects in the CV field: everyone uses different IQA implementations.
+
+Therefore, in order to help CV researchers (and others), I created `piqa` (https://github.com/francois-rozet/piqa). It is a collection of measures and metrics for image quality assessment in various image processing tasks such as denoising, super-resolution, image interpolation, etc.
+
+The metrics implementations are based on the original papers and/or on official code releases. I tried to make them as concise and understandable as possible while leveraging the efficiency of PyTorch. By the way, every metric (until now) is fully differentiable and supports backpropagation.
+
+Also, the documentation (https://francois-rozet.github.io/piqa/) is automatically generated! (what a time to be alive!)
+
+Hope it'll help some of you guys (and girls) ;)
+
+EDIT: I've renamed the package to `piqa` (previously `spiq`) !!",36,machinelearning,2020-12-05
+k6y3tt,[D] Why is GPU utilization so bad when training neural networks?," I was talking to a friend about GPU training of neural networks and I wanted to say something along the lines of: ""GPUs get about 75% compute utilization when neural network training"". I did not have a good source to cite so I decided to calculate the compute utilization of common neural network training. Spoiler Warning: utilization is waaaaaayyyyyy worse than I thought.
+
+TLDR: Doing the math (see below), I calculate that a A100 GPU gets about 16% utilization when training ResNet50 on ImageNet. BERT Large training gets about 37% utilization on both A100 and V100 GPUs.
+
+How / why do GPUs get such bad utilization when training neural networks? Every time I've heard someone say something like: ""GPU are designed for graphics, not machine learning."" I've always thought: ""sure, but GPU's are really good at machine learning anyway."" Apparently, this is not that true... Or am I just an idiot and everyone has always known that GPUs get about 16% utilization when training ResNet50 on ImageNet?
+
+Alternatively, find my mistake:
+
+Compute utilization = used FLOPS / available FLOPS
+
+Available FLOPS (from: https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/nvidia-ampere-architecture-whitepaper.pdf):
+
+\- V100 (using Mixed Precision) = 125 teraFLOPS
+
+\- A100 (using Mixed Precision) = 312 teraFLOPS
+
+Note: available FLOPS reports multiplies and accumulates as separate FLOP so marketing can inflate all FLOPS counts by a factor of about 2. While many online FLOP estimates of networks report a FLOP as just a multiply for our network FLOP counts we must take accumulates into account. While many online FLOP estimates of networks online report validation FLOPs, I'm going to show training compute utilization therefore layers such as BN also need to be taken into consideration.
+
+Used FLOPS = FLOP/samples \* samples/sec
+
+FLOP/samples:
+
+\- ResNet50 training FLOP/samples = 3 \* 8.2GFLOP
+
+\- BERT Large training FLOP/samples = 3 \* 366.5GFLOP
+
+Note: Reporting 3 \* forward pass FLOPS to account for forward, backward, and update pass. If I made a mistake, this is probably where it happened. If you have you have more accurate FLOP counts for these networks let me know what type of utilization numbers you get.
+
+samples/sec (from: https://developer.nvidia.com/deep-learning-performance-training-inference):
+
+\- ResNet50 (on 1x A100): 2,084 images/sec
+
+\- ResNet50 (on 8x A100): 16,114 images/sec
+
+\- ResNet50 (on 8x V100): 11,180 images/sec
+
+\- BERT Large (on 8x A100): 836 sequences/sec
+
+\- BERT Large (on 8x V100): 354 sequences/sec
+
+Compute utilization = used FLOPS / available FLOPS = (FLOP/samples \* samples/sec) / available FLOPS:
+
+\- ResNet50 (on 1x A100)  = 3 \* 8.2GFLOP  \* 2,084images/sec / (1 \* 312teraFLOPS) = 16.4% utilization
+
+\- ResNet50 (on 8x A100)  = 3 \* 8.2GFLOP  \* 16,114images/sec / (8 \* 312teraFLOPS) = 15.9% utilization
+
+\- ResNet50 (on 8x V100)  = 3 \* 8.2GFLOP  \* 11,180images/sec / (8 \* 125teraFLOPS) = 27.5% utilization
+
+\- BERT Large (on 8x A100) = 3 \* 366.5GFLOP \* 836sequences/sec / (8 \* 312teraFLOPS) = 36.8% utilization
+
+\- BERT Large (on 8x V100) = 3 \* 366.5GFLOP \* 354sequences/sec / (8 \* 125teraFLOPS) = 38.9% utilization
+
+These are for Nvidia advertised numbers and the quoted samples/sec are from Nvidia optimized models ie it probably does not get better than that. 
+
+Last thought: When Nvidia introduced their new GPU (the A100), in order to increase processing throughput they about doubled the memory bandwidth and about doubled the FLOPS. For BERT Large training this resulted in about double the processing throughput; for ResNet50 ImageNet training this resulted in about a 1.5x increase in processing throughput. Did they need to double the FLOPS count to achieve this or would have just doubling the bandwidth increased the processing throughput by the same amount and the resulting utilization would have just doubled. This wouldn't have resulted in perfect utilization, but it would have been a utilization improvement, you would still get the same throughput gains and wouldn't have to increase the number of available FLOPS (which just go unused anyway).
+
+Caveat: larger (specifically wider models) get better utilization. Wide versions of GPT3 might get 50% - 70% (ish) utilization which is still not super great.",14,machinelearning,2020-12-05
+k6y0b9,[D] Synthetic control with forecasting,"A question regarding Difference-in-Differences. Could we use a model to forecast the counterfactual outcome after treatment administration. In other words,  
+
+
+1. Fit a model on the data of the treatment group before the treatment administration
+2. Forecast  the outcome for the treatment group after treatment administration (hopping it will give E\[Y\_1(0)|T=1\])
+3. Subtract the observed E\[Y\_1|T=1\] from forecasted  E\[Y\_1(0)|T=1\])
+
+So there is no need for control group (compared to Diff-in-Diffs) and no need for donor group (compared to synthetic control). I feel that this method is not robust external shocks. Will be very grateful having a comparison of (Pros and Cons)",1,machinelearning,2020-12-05
+k6wdwx,"[P] Latest TensorFlow 2.4rc4 wheels with CUDA 11, TensorRT and Python3.8"," I built some new wheels for [Tensorflow 2.4rc4](https://github.com/tensorflow/tensorflow/releases/tag/v2.4.0-rc4) with CUDA 11, cuDNN 8 and support for TensorRT 7.2 in case anyone finds them useful.   
+
+
+You can find them here:  
+ [https://github.com/davidenunes/tensorflow-wheels](https://github.com/davidenunes/tensorflow-wheels)   
+
+
+I'll also (most likely) be building a wheel for the 2.4 version when it comes out.  
+
+
+Since I build these on Arch you might need glibc 2.32 which comes with ubuntu 20.10 I believe  
+or upgrade glibc to 2.32  
+
+
+shameless plug of my [Github Sponsors profile](https://github.com/sponsors/davidenunes)  in case anyone finding these useful wants to contribute to my coffee  addiction 🤣☕ or support these builds and related projects.",2,machinelearning,2020-12-05
+k6wd1b,[P] I made classical music using neural networks,"I made some classical music using an LSTM in tensorflow and some gpu acceleration. The model was trained on a variety of classical artists (Bach, Beethoven etc) and the predictor tried to make a song of the same genre. I'd greatly appreciate it if you took 1-2 minutes to listen to a snippet of each song and simply rate it. I'll link the survey here: [https://forms.gle/7aF2j9W9ak5kKBTU8](https://forms.gle/7aF2j9W9ak5kKBTU8)
+
+Thanks!",3,machinelearning,2020-12-05
+k6trg5,[P] Introducing Fastpipeline,"Hi guys, introducing Fastpipline, something similar to sklearn pipelines but more generic. It automatically serializes the data from each of the pipeline steps. It detects if a run has taken place (with the same data and same code) and reuses the previous output at each of the intermediate steps. This will save you a lot of time when each of the steps is time-consuming and you don't want to handle serialization+loading+versioning yourself. You can find the documentation here: [https://shashank-yadav.github.io/fastpipeline/](https://shashank-yadav.github.io/fastpipeline/)",0,machinelearning,2020-12-05
+k6t96m,[D] Jeff Dean's official post regarding Timnit Gebru's termination,"You can read it in full at [this link](https://docs.google.com/document/d/1f2kYWDXwhzYnq8ebVtuk9CqQqz7ScqxhSIxeYGrWjK0/preview?pru=AAABdlOOKBs*gTzLnuI53B2IS2BISVcgAQ).
+
+The post includes the email he sent previously, which was already posted in this sub. I'm thus skipping that part.
+
+\---
+
+### About Google's approach to research publication
+
+I understand the concern over Timnit Gebru’s resignation from Google.  She’s done a great deal to move the field forward with her research.  I wanted to share the email I sent to Google Research and some thoughts on our research process.
+
+Here’s the email I sent to the Google Research team on Dec. 3, 2020:
+
+\[Already posted [here](https://www.reddit.com/r/MachineLearning/comments/k6467v/n_the_email_that_got_ethical_ai_researcher_timnit/)\]
+
+I’ve also received questions about our research and review process, so I wanted to share more here.  I'm going to be talking with our research teams, especially those on the Ethical AI team and our many other teams focused on responsible AI, so they know that we strongly support these important streams of research.  And to be clear, we are deeply committed to continuing our research on topics that are of particular importance to individual and intellectual diversity  -- from unfair social and technical bias in ML models, to the paucity of representative training data, to involving social context in AI systems.  That work is critical and I want our research programs to deliver more work on these topics -- not less.
+
+In my email above, I detailed some of what happened with this particular paper.  But let me give a better sense of the overall research review process.  It’s more than just a single approver or immediate research peers; it’s a process where we engage a wide range of researchers, social scientists, ethicists, policy &amp; privacy advisors, and human rights specialists from across Research and Google overall.  These reviewers ensure that, for example, the research we publish paints a full enough picture and takes into account the latest relevant research we’re aware of, and of course that it adheres to our [AI Principles](https://ai.google/principles).
+
+Those research review processes have helped improve many of our publications and research applications. While more than 1,000 projects each year turn into published papers, there are also many that don’t end up in a publication.  That’s okay, and we can still carry forward constructive parts of a project to inform future work.  There are many ways we share our research; e.g. publishing a paper, open-sourcing code or models or data or colabs, creating demos, working directly on products, etc. 
+
+This paper surveyed valid concerns with large language models, and in fact many teams at Google are actively working on these issues. We’re engaging the authors to ensure their input informs the work we’re doing, and I’m confident it will have a positive impact on many of our research and product efforts.
+
+But the paper itself had some important gaps that prevented us from being comfortable putting Google affiliation on it.  For example, it didn’t include important findings on how models can be made more efficient and actually reduce overall environmental impact, and it didn’t take into account some recent work at Google and elsewhere on mitigating bias in language models.   Highlighting risks without pointing out methods for researchers and developers to understand and mitigate those risks misses the mark on helping with these problems.  As always, feedback on paper drafts generally makes them stronger when they ultimately appear.
+
+We have a strong track record of publishing work that challenges the status quo -- for example, we’ve had more than 200 publications focused on responsible AI development in the last year alone.  Just a few examples of research we’re engaged in that tackles challenging issues:
+
+* [Measuring and reducing gendered correlations in pre-trained NLP models](https://arxiv.org/abs/2010.06032)
+* [Evading Deepfake-Image Detectors with White- and Black-Box Attacks](https://arxiv.org/abs/2004.00622)
+* [Extending the Machine Learning Abstraction Boundary: A Complex Systems Approach to Incorporate Societal Context](https://arxiv.org/abs/2006.09663)
+* [CLIMATE-FEVER: A Dataset for Verification of Real-World Climate Claims](https://arxiv.org/abs/2012.00614)
+* [What Does AI Mean for Smallholder Farmers? A Proposal for Farmer-Centered AI Research \[forthcoming\]](https://medium.com/people-ai-research/q-a-ground-truth-supporting-farmers-with-machine-learning-b95796d5196b)
+* [SoK: Hate, Harassment, and the Changing Landscape of Online Abuse](https://research.google/pubs/pub49786/)
+* [Accelerating eye movement research via accurate and affordable smartphone eye tracking](https://www.nature.com/articles/s41467-020-18360-5/)
+* [The Secret Sharer: Evaluating and Testing Unintended Memorization in Neural Networks](https://arxiv.org/abs/1802.08232)
+* [Assessing the impact of coordinated COVID-19 exit strategies across Europe](https://science.sciencemag.org/content/369/6510/1465)
+* [Practical Compositional Fairness: Understanding Fairness in Multi-Component Ranking Systems](https://arxiv.org/abs/1911.01916)
+
+I’m proud of the way Google Research provides the flexibility and resources to explore many avenues of research.  Sometimes those avenues run perpendicular to one another.  This is by design.  The exchange of diverse perspectives, even contradictory ones, is good for science and good for society.  It’s also good for Google.  That exchange has enabled us not only to tackle ambitious problems, but to do so responsibly.
+
+Our aim is to rival peer-reviewed journals in terms of the rigor and thoughtfulness in how we review research before publication.  To give a sense of that rigor, this blog post captures some of the detail in one facet of review, which is when a research topic has broad societal implications and requires particular AI Principles review -- though it isn’t the full story of how we evaluate all of our research, it gives a sense of the detail involved: [https://blog.google/technology/ai/update-work-ai-responsible-innovation/](https://blog.google/technology/ai/update-work-ai-responsible-innovation/)
+
+We’re actively working on improving our paper review processes, because we know that too many checks and balances can become cumbersome.  We will always prioritize ensuring our research is responsible and high-quality, but we’re working to make the process as streamlined as we can so it’s more of a pleasure doing research here.
+
+A final, important note -- we evaluate the substance of research separately from who’s doing it.  But to ensure our research reflects a fuller breadth of global experiences and perspectives in the first place, we’re also committed to making sure Google Research is a place where every Googler can do their best work.  We’re pushing hard on our efforts to improve representation and inclusiveness across Google Research, because we know this will lead to better research and a better experience for everyone here.",284,machinelearning,2020-12-05
+k6s5k9,Investigating Learning in Deep Neural Networks using Layer-Wise Weight Change,,3,machinelearning,2020-12-05
+k6qw9t,[D] Model interpretability techniques to improve XGBoost performance?,"I'm looking for ways to improve the performance of my XGB regression model by understanding it better (explainability/interpretability) and applying business knowledge. What techniques have you used in the past that have yielded actionable insights?
+
+Background: I've read a number of XAI papers as well as [Molnar's book](https://leanpub.com/interpretable-machine-learning) (highly recommended), and I've implemented [SHAP](https://shap.readthedocs.io/en/latest/index.html) as well as some of my own functions. But I find that it is nevertheless rare for these techniques to lead to insights that improve model performance.",3,machinelearning,2020-12-05
+k6pis9,[R] NeurIPS 2020 | Probabilistic Approaches for Algorithmic Recourse With Limited Causal Knowledge,"The rise of machine learning (ML) has made centralized decision-making more efficient than ever — while also raising some difficult but important questions. In real-world scenarios such as pre-trial bail, loan approval, or prescribing medications, it is not enough for black-box models to be accurate and robust — **an algorithms’ decisions are also expected to be explainable, so their impact in real-world settings can be aligned with socially relevant values such as fairness, privacy and accountability.**
+
+Here is a quick read: [NeurIPS 2020 | Probabilistic Approaches for Algorithmic Recourse With Limited Causal Knowledge](https://syncedreview.com/2020/12/04/neurips-2020-probabilistic-approaches-for-algorithmic-recourse-with-limited-causal-knowledge/)
+
+The paper *Algorithmic Recourse Under Imperfect Causal Knowledge: A Probabilistic Approach* is on [arXiv](https://arxiv.org/pdf/2006.06831.pdf). This is a NeurIPS 2020 spotlight paper, [scheduled ](https://neurips.cc/Conferences/2020/Schedule?showEvent=17719)for a ten-minute presentation on Wednesday, December 9, at 8:20am PST.",2,machinelearning,2020-12-05
+k6kl20,"[R] Generalized Object Detection on Fisheye Cameras for Autonomous Driving: Dataset, Representations and Baseline",,2,machinelearning,2020-12-05

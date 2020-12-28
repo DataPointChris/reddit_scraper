@@ -1,0 +1,545 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k78tgc,Error trying to run inference on a saved model,"Hi,
+
+I made a post a couple of days ago when I was struggling with the same project and I got great help, so I figured I'd give it another shot. I'm kind of a noob at coding/tensorflow and I need to get a webcam object detector running with a custom model for school. Before going for the webcam I figured I'd try simple classification first. Turns out, it's not that simple. Not for me at least. I managed to train a custom network and now I'm trying to run inference. I found a notebook on how to run inference on a pre-trained model (link: [https://github.com/tensorflow/models/blob/master/research/object\_detection/colab\_tutorials/object\_detection\_tutorial.ipynb](https://github.com/tensorflow/models/blob/master/research/object_detection/colab_tutorials/object_detection_tutorial.ipynb))
+
+I tried to modify that code to run with my own saved model and came up with this: [https://github.com/007Nick700/object-detection/blob/main/object%20detection%20tutorial%20test.ipynb](https://github.com/007Nick700/object-detection/blob/main/object%20detection%20tutorial%20test.ipynb)
+
+In the last code block I'm getting a bunch of errors that I can't seem to find a fix to. It states:
+
+"" Failed to get convolution algorithm. This is probably because cuDNN failed to initialize, so try looking to see if a warning log message was printed above. ""
+
+First thing that comes to mind is that cuDNN isn't compatible with CUDA, but it is. I'm running Cuda 10.1 and cuDNN 7.6 and I managed to train my model with it.
+
+Would anyone happen to have an idea as to what is wrong here? The original notebook with the pre-trained model worked fine untill I changed it. 
+
+The only things I've changed are the ""Loader"" code block, the paths to the label map/test images and the name of the model(model\_name) under ""Detection""
+
+&amp;#x200B;
+
+Thanks in advance!",3,tensorflow,2020-12-05
+k6ygtb,ValueError: No gradients provided for any variable: ['Variable: 0']," 
+
+hi i'm wanting one image to turn into another with every training step.
+
+First
+
+* load 2 images (source, target)
+* we calculate the error between each image
+* We optimize the output image so that it looks more and more like the target image.
+
+but when trying to run it gives me this error
+
+ValueError: No gradients provided for any variable: \['Variable: 0'\].
+
+What am I doing wrong?
+
+&amp;#x200B;
+
+    import os
+    import tensorflow as tf
+    # Load compressed models from tensorflow_hub
+    os.environ['TFHUB_MODEL_LOAD_FORMAT'] = 'COMPRESSED'
+    
+    import IPython.display as display
+    
+    import matplotlib.pyplot as plt
+    import matplotlib as mpl
+    mpl.rcParams['figure.figsize'] = (12,12)
+    mpl.rcParams['axes.grid'] = False
+    
+    import numpy as np
+    import PIL.Image
+    import time
+    import functools
+    
+    
+    def tensor_to_image(tensor):
+      tensor = tensor*255
+      tensor = np.array(tensor, dtype=np.uint8)
+      if np.ndim(tensor)&gt;3:
+        assert tensor.shape[0] == 1
+        tensor = tensor[0]
+      return PIL.Image.fromarray(tensor)
+    
+    
+    def load_img(path_to_img):
+      max_dim = 512
+      img = tf.io.read_file(path_to_img)
+      img = tf.image.decode_image(img, channels=3)
+      img = tf.image.convert_image_dtype(img, tf.float32)
+    
+      shape = tf.cast(tf.shape(img)[:-1], tf.float32)
+      long_dim = max(shape)
+      scale = max_dim / long_dim
+    
+      new_shape = tf.cast(shape * scale, tf.int32)
+    
+      img = tf.image.resize(img, new_shape)
+      img = img[tf.newaxis, :]
+      return img
+    
+    
+    def imshow(image, title=None):
+      if len(image.shape) &gt; 3:
+        image = tf.squeeze(image, axis=0)
+    
+      plt.imshow(image)
+      if title:
+        plt.title(title)
+    
+    
+    content_image = load_img(""/content/source.png"")
+    style_image = load_img(""/content/target.png"")
+    
+    
+    
+    plt.subplot(1, 2, 1)
+    imshow(content_image, 'Content Image')
+    
+    plt.subplot(1, 2, 2)
+    imshow(style_image, 'Style Image')
+    
+    
+    
+    image = tf.Variable(content_image)
+    
+    def clip_0_1(image):
+      return tf.clip_by_value(image, clip_value_min=0.0, clip_value_max=1.0)
+    
+    opt = tf.optimizers.Adam(learning_rate=0.02, beta_1=0.99, epsilon=1e-1)
+    
+    
+    
+    #calculate the error between each image
+    def losss():
+        
+        loss  = style_image - content_image
+        return loss
+    
+    @tf.function()
+    def train_step(image):
+      
+      with tf.GradientTape() as tape:
+        
+         loss = losss()
+         
+      grad = tape.gradient(loss, image)
+      opt.apply_gradients([(grad, image)])
+      image.assign(clip_0_1(image))
+    
+    #train
+    train_step(image)
+    train_step(image)
+    train_step(image)
+    tensor_to_image(image)
+    
+    
+    
+    ---------------------------------------------------------------------------
+    ValueError                                Traceback (most recent call last)
+    &lt;ipython-input-3-172e90c94500&gt; in &lt;module&gt;()
+         11 
+         12 
+    ---&gt; 13 train_step(image)
+         14 train_step(image)
+         15 train_step(image)
+    
+    8 frames
+    /usr/local/lib/python3.6/dist-packages/tensorflow/python/framework/func_graph.py in wrapper(*args, **kwargs)
+        971           except Exception as e:  # pylint:disable=broad-except
+        972             if hasattr(e, ""ag_error_metadata""):
+    --&gt; 973               raise e.ag_error_metadata.to_exception(e)
+        974             else:
+        975               raise
+    
+    ValueError: in user code:
+    
+        &lt;ipython-input-3-172e90c94500&gt;:9 train_step  *
+            opt.apply_gradients([(grad, image)])
+        /usr/local/lib/python3.6/dist-packages/tensorflow/python/keras/optimizer_v2/optimizer_v2.py:513 apply_gradients  **
+            grads_and_vars = _filter_grads(grads_and_vars)
+        /usr/local/lib/python3.6/dist-packages/tensorflow/python/keras/optimizer_v2/optimizer_v2.py:1271 _filter_grads
+            ([v.name for _, v in grads_and_vars],))
+    
+        ValueError: No gradients provided for any variable: ['Variable:0'].",1,tensorflow,2020-12-05
+k6pv83,Any ideas for how to put together my ML project idea? I want to do something in Tensorflow that can scan photos to recognize missing information on forms," Hi folks, I am pretty new to ML but I've been teaching myself Python and Tensorflow via Coursera/some books and I really enjoy computer vision.
+
+I need help figuring out the architecture of this idea I have...anyone willing to spare some thoughts please? I work at a bureaucratic organization and one of my functions is to check paperwork for missing fields or errors. The applications I check are usually 3-4 pages but I want to try for the first 2 pages only.
+
+My idea: create a model that could have a photo uploaded to recognize which info is missing (blank spaces) or incorrect (for example, a signature that's too big which needs to be in a certain bounded box, incomprehensible writing, etc)
+
+I'd then like to add on a graphical part to the model which would box in red what info is missing or needs attention..
+
+I don't know how I would do this though - I figure a CNN would be involved but I'm struggling to figure out how to structure this
+
+If you were me, what would you do? I thought I'd start by putting together dozens of fake applications myself with varying levels of info (some filled out entirely, some half filled out, some missing just 2 boxes of info) and using those images to train.
+
+Any pointers, please??
+
+I am soooo lost tbh. I am a newbie so any guidance would be super appreciated
+
+(I'm basically trying to figure out how to automate myself out of a job - while I can scan these applications,, I miss things here and there, and my job would be easier if I could have the vital info to review somehow highlighted first rather than reading the entire thing). I only know a bit of Python so I'd be looking to do it in this language.
+
+Thank you!!!!!!",1,tensorflow,2020-12-05
+k6o2cz,Uber Engineering Releases Horovod v0.21: New Features Include Local Gradient Aggregation For TensorFlow v1 and v2,"Horovod announces its v0.21 and brings many powerful new features to the Horovod community, making training deep learning models faster and easier than ever before.
+
+[Horovod](https://eng.uber.com/horovod/) was open-sourced in 2017, and it has grown to become the standard solution for scaling deep learning training to hundreds of GPUs. Horovod can reduce training times from days or weeks to hours or minutes by adding a few lines of Python code to an existing TensorFlow, PyTorch, or Apache MXNet training script.
+
+Summary: [https://www.marktechpost.com/2020/12/04/uber-engineering-releases-horovod-v0-21-new-features-include-local-gradient-aggregation-for-tensorflow-v1-and-v2/](https://www.marktechpost.com/2020/12/04/uber-engineering-releases-horovod-v0-21-new-features-include-local-gradient-aggregation-for-tensorflow-v1-and-v2/) 
+
+V0.21.0: [https://github.com/horovod/horovod/releases/tag/v0.21.0](https://github.com/horovod/horovod/releases/tag/v0.21.0)",2,tensorflow,2020-12-05
+k6h9fr,"New ""hardware-accelerated"" TensorFlow fork for the Apple M1 is fast!","&amp;#x200B;
+
+https://i.redd.it/lp2hlt6tu4361.gif
+
+For more details see the [full video](https://youtu.be/eRwt_FXTdmg), which also shows how a medium size convolutional neural network runs on the gpu of the M1 and how it compares to a dedicated desktop graphics card (Nvidia RTX 2060).",34,tensorflow,2020-12-05
+k668z6,debugging gradients,How I can debug tape.gradient() . I am getting none as output. How I can debug this function step by step?,1,tensorflow,2020-12-05
+k64oug,How to convert a Tensorflow Dataset into an iterable form when using a distributed strategy?,"I'm trying to use Tensorflow's distributed strategies to train a stock trading model. The data is intraday data, and I'm breaking it up so that each training step is an entire day's worth of data (with many individual sub-steps happening within that day). The model I'm creating is actually two models that will work and be trained together. I need to pass the features for both of those models, as well as data used to calculate what the reward should be (as I'm using RL). Before training, I loop through all the days that need to be trained on and call a function that returns these three elements. I then convert this data to a tensor using `tf.data.Dataset.from_tensor_slices(tf.ragged.constant(combined_features))`, with `combined_features` being the combined data for all days that are being trained on.
+
+What I'm confused about is how to separate that data in the training function into the three lists of data. I also need to be able to iterate over the datasets since I need to walk through each step for that day and complete training on it. I saw there's a `Dataset.as_numpy_iterator()` function, but it says that it can only be used in eager mode. Due to performance reasons when using distributed strategies, eager mode isn't an option for me.
+
+Any help would be much appreciated!",1,tensorflow,2020-12-05
+k5y2jv,I published a video where I explain how autoencoders work easily 🎧 🤖,"In my new video, you can learn how AutoEncoders work in an intuitive way. You’ll learn about representation learning, latent space, and other fundamental concepts. I also explain how Autoencoders are applied to important tasks such as data generation and denoising.
+
+This video is part of  a series called “Generating Sound with Neural Networks”. In this series, you’ll learn how to generate sound from audio files 🎧 🎧 using Variational Autoencoders 🤖 🤖
+
+Here’s the video:
+
+[https://www.youtube.com/watch?v=xwrzh4e8DLs&amp;list=PL-wATfeyAMNpEyENTc-tVH5tfLGKtSWPp&amp;index=3](https://www.youtube.com/watch?v=xwrzh4e8DLs&amp;list=PL-wATfeyAMNpEyENTc-tVH5tfLGKtSWPp&amp;index=3)",25,tensorflow,2020-12-05
+k5qt61,Can someone please answer this question for me 🥶,[https://stackoverflow.com/questions/65119069/why-am-i-getting-the-nonetype-object-is-not-callable-error-when-i-apply-mo](https://stackoverflow.com/questions/65119069/why-am-i-getting-the-nonetype-object-is-not-callable-error-when-i-apply-mo),0,tensorflow,2020-12-05
+k5n6sn,Help with setting up Tensorflow in IDLE?,"Hello anyone who is more knowledgeable than me in this... title says it all i have used pip3 install tensorflow to attempt to install tf but i seem to be recieveing the following callback errors when attempting to do ""import tensorflow as tf"":
+
+Traceback (most recent call last):
+
+File ""C:\\Users\\manny\\AppData\\Local\\Programs\\Python\\Python37\\lib\\site-packages\\tensorflow\\python\\pywrap\_tensorflow.py"", line 64, in &lt;module&gt;
+
+from tensorflow.python.\_pywrap\_tensorflow\_internal import \*
+
+ImportError: DLL load failed: The specified module could not be found.
+
+&amp;#x200B;
+
+During handling of the above exception, another exception occurred:
+
+&amp;#x200B;
+
+Traceback (most recent call last):
+
+File ""C:/Users/manny/AppData/Local/Programs/Python/Python37/Tensorflow [Example.py](https://Example.py)"", line 1, in &lt;module&gt;
+
+import tensorflow as tf
+
+File ""C:\\Users\\manny\\AppData\\Local\\Programs\\Python\\Python37\\lib\\site-packages\\tensorflow\\\_\_init\_\_.py"", line 41, in &lt;module&gt;
+
+from [tensorflow.python.tools](https://tensorflow.python.tools) import module\_util as \_module\_util
+
+File ""C:\\Users\\manny\\AppData\\Local\\Programs\\Python\\Python37\\lib\\site-packages\\tensorflow\\python\\\_\_init\_\_.py"", line 40, in &lt;module&gt;
+
+from tensorflow.python.eager import context
+
+File ""C:\\Users\\manny\\AppData\\Local\\Programs\\Python\\Python37\\lib\\site-packages\\tensorflow\\python\\eager\\[context.py](https://context.py)"", line 35, in &lt;module&gt;
+
+from tensorflow.python import pywrap\_tfe
+
+File ""C:\\Users\\manny\\AppData\\Local\\Programs\\Python\\Python37\\lib\\site-packages\\tensorflow\\python\\pywrap\_tfe.py"", line 28, in &lt;module&gt;
+
+from tensorflow.python import pywrap\_tensorflow
+
+File ""C:\\Users\\manny\\AppData\\Local\\Programs\\Python\\Python37\\lib\\site-packages\\tensorflow\\python\\pywrap\_tensorflow.py"", line 83, in &lt;module&gt;
+
+raise ImportError(msg)
+
+ImportError: Traceback (most recent call last):
+
+File ""C:\\Users\\manny\\AppData\\Local\\Programs\\Python\\Python37\\lib\\site-packages\\tensorflow\\python\\pywrap\_tensorflow.py"", line 64, in &lt;module&gt;
+
+from tensorflow.python.\_pywrap\_tensorflow\_internal import \*
+
+ImportError: DLL load failed: The specified module could not be found.
+
+&amp;#x200B;
+
+&amp;#x200B;
+
+Failed to load the native TensorFlow runtime.
+
+&amp;#x200B;
+
+Any help would be appreciated!",5,tensorflow,2020-12-05
+k5mmzs,Stitching together complex network with several inputs with keras.,"So, my task is to give a rating to another's algo image segmentation job using ground truth segmentation map and rating from the human expert. As i've failed to obtain any similarity metric what would correlate with the rating well enough, it's time for neural networks. Of course i could just train an autoencoder from which i will then obtain a latent representation of an image and see if those features give me better results (in fact i know they will from another person's solution to the same problem), but i also want to try a bit of a different approach. I want a network which would consist of two CNN's, for expert mask and for evaluated algo mask, which would at the fully connected part be concatenated and then use that combined vector to predict ratings. So it's sort of like a letter Y if that makes sence. The idea here to make both CNN backpropagate jointly and actually make use of rating ground truth when training CNNs, thus hopefully achieving better result. So, i know it's a valid network architecture, but how do i actually code something like this in keras? I could just write it in raw tf, but i don't want to go insane just yet. I guess the part i have the question with is how to make the model object process several inputs which would start in different branches, rest of it is fairly straightforward and i can probably figure it out on my own.",1,tensorflow,2020-12-05
+k5mjbd,How do I use DirectML with Tensorflow.JS,Just installed TensorFlow-DirectML with pip. What else do I have to do to get started?,1,tensorflow,2020-12-05
+k5lplj,Compile TF for ROCM (amd gpu) on windows?,"Has anyone done this? Would love to use my R9 290 for TF so I don't have to buy an nVidia just for CUDA support.
+
+When using bazel to build TF v1, I get a ""error\_gpu\_disabled()""",2,tensorflow,2020-12-05
+k55kuk,Status: device kernel image is invalid even though PTX kernel is available for lower compute capability,"Getting the above error on a custom build of TF 2.3 on Ubuntu 20.04 (built in NVidia Docker against CUDA 10.1). I had to build it myself because official TF binary releases dropped support for many common compute capabilities.
+
+So I figured I would chose the default suggestion for compute capabilities in the build script, namely 3.5 and 7.0, assuming the 3.5 kernels would be compatible to all newer GPUs.
+
+Now, it works fine on a 2070 which has CC 7.5. However it does not work on a 1080 (CC 6.1)  and I get ""device kernel image is invalid"". But the build contains both PTX and ELF kernels for sm\_35 and sm\_70, I have verified this with cuobjdump. I would assume the sm\_35 PTX kernels should be compilable to binary code for the 1080 by the driver, right?
+
+If I do CUDA\_FORCE\_PTX\_JIT=1 it ALSO stops working on my 2070 - even though it has PTX and ELF kernels for sm\_70 as mentioned above.
+
+  
+Also, it takes a long time (maybe 30s) after calling tf.compat.v1.Session() for the error to show up so apparently it is an issue with PTX JIT compilation. I have tried deleting the cache (.nv) and raising the cache size, same thing happens.
+
+&amp;#x200B;
+
+Can anyone shine some light on this issue?",2,tensorflow,2020-12-05
+k54r4s,Predicting numerical values from numerical and categorical variables with Tensorflow 2.x,,0,tensorflow,2020-12-05
+k4yn1m,Tensorflow 2.0 Documentation,"This may be a dumb question, but what is the difference between argument and call arguments. I am looking at the LSTM documentation ([https://www.tensorflow.org/api\_docs/python/tf/keras/layers/LSTM](https://www.tensorflow.org/api_docs/python/tf/keras/layers/LSTM)) and I am confused by this",1,tensorflow,2020-12-05
+k4yia5,Help on ParameterServerStratagey() Value Error,"Hello, I am relatively new to TensorFlow, I have been able to train models on a single machine, but want to train using multiple machines to decrease total train time. I have been receiving this error, from my worker nodes, but can not seem to get it to fix itself. I have been trying to use a ParameterServerStrategy.
+
+    ValueError: The `experimental_distribute_dataset` method must be called inside a 
+    `tf.function` passed to `create_per_worker_dataset` of 
+    `tf.distribute.experimental.coordinator.ClusterCoordinator`
+
+I have found many articles that are based on using ParameterServerStrategy, but most of them just copy each other and none of the content is original. The lines that are mentioned in the error are here:
+
+    model.fit(ds_train,
+              epochs=20,
+              validation_data=ds_validation,
+              callbacks=[cp_callback],
+              batch_size=batch_size)
+    
+    model.save('saved_model/my_model')
+    
+    coordinator = tf.distribute.experimental.coordinator.ClusterCoordinator(strategy)
+    
+    @tf.function
+    def per_worker_dataset_fn():
+        return strategy.distribute_datasets_from_function(ds_train)
+    
+    
+    per_worker_dataset = coordinator.create_per_worker_dataset(per_worker_dataset_fn)
+    per_worker_iterator = iter(per_worker_dataset)
+
+Any help whatsoever would be appreciated!",1,tensorflow,2020-12-05
+k4tvby,how convert tf.Variable to numpy?,"how do i convert a tf.Variable to numpy
+
+&amp;#x200B;
+
+var1 = tf.Variable(4.0)
+
+&amp;#x200B;
+
+I want retrun \`\[4.0\]\`",1,tensorflow,2020-12-05
+k4syni,Softmax loss ignores masking and zero input.,"I have a model:
+
+    inputs = layers.Input(shape=word_shape, name='input') 
+    
+    masking_layer = layers.Masking(mask_value=0, input_shape=word_shape)(inputs) 
+    
+    x = layers.Bidirectional(layers.SimpleRNN(70, return_sequences=True))(making_layer) 
+    
+    output_layer = layers.TimeDistributed(layers.Dense(36, activation='softmax'))(x)
+    
+    model = keras.Model(inputs, output_layer , name=""unnown_experimental"") 
+    
+    model.compile(optimizer='adam', loss='categorical_crossentropy')
+    
+
+So **masking\_layer** works right upto **output\_layer** but when *softmax activation* receives a timeframe where all the features are zeros it just calculates and I get nonsence as the return.
+
+How to make this softmax activation leave the null timeframes alone and ignore them?",1,tensorflow,2020-12-05
+k4rrxo,Tensorflow developers - please participate in a survey,"I'm a PhD student, working on [code quality](https://arxiv.org/pdf/2007.10912.pdf) and its [improvement](https://www.cs.huji.ac.il/~feit/papers/Refactor19PROMISE.pdf).
+
+I'm conducting a survey on motivation and its outcome in software development.
+
+If you contributed to a GitHub repository as a developer in the last 12 months , we ask for your help by answering questions about your contribution and motivation.  
+
+
+Answering [these questions](https://huji.az1.qualtrics.com/jfe/form/SV_73wu35ICXBWm07j) is estimated to take about 10 minutes of your time.  
+
+
+Three of the participants will receive a 50$ gift card.",1,tensorflow,2020-12-05
+k4ro4c,Keras and Object Detection API,"I'm not a TensorFlow engineer so this may be wrong, but I am hoping someone can tell me if I'm on the right track or what I need to do.
+
+I was giving a model that I was told was trained in Keras. When I inspect it, I get this:
+
+    # saved_model_cli show --dir saved_model.pb --tag_set serve --signature_def serving_default
+    
+    The given SavedModel SignatureDef contains the following input(s):
+      inputs['conv2d_input'] tensor_info:
+          dtype: DT_FLOAT
+          shape: (-1, 64, 64, 3)
+          name: serving_default_conv2d_input:0
+    The given SavedModel SignatureDef contains the following output(s):
+      outputs['dense'] tensor_info:
+          dtype: DT_FLOAT
+          shape: (-1, 3)
+          name: StatefulPartitionedCall:0
+    Method name is: tensorflow/serving/predict
+
+The problem is my software runs inference and expects a model like this:
+
+    The given SavedModel SignatureDef contains the following input(s):
+      inputs['image_bytes'] tensor_info:
+          dtype: DT_STRING
+          shape: (-1)
+          name: encoded_image_string_tensor:0
+      inputs['key'] tensor_info:
+          dtype: DT_STRING
+          shape: (-1)
+          name: key:0
+    The given SavedModel SignatureDef contains the following output(s):
+      outputs['detection_boxes'] tensor_info:
+          dtype: DT_FLOAT
+          shape: (-1, -1, 4)
+          name: detection_boxes:0
+      outputs['detection_classes'] tensor_info:
+          dtype: DT_FLOAT
+          shape: (-1, -1)
+          name: detection_classes:0
+      outputs['detection_classes_as_text'] tensor_info:
+          dtype: DT_STRING
+          shape: (-1, -1)
+          name: detection_classes_as_text:0
+      outputs['detection_multiclass_scores'] tensor_info:
+          dtype: DT_FLOAT
+          shape: (-1, -1, 3)
+          name: detection_multiclass_scores:0
+      outputs['detection_scores'] tensor_info:
+          dtype: DT_FLOAT
+          shape: (-1, -1)
+          name: detection_scores:0
+      outputs['image_info'] tensor_info:
+          dtype: DT_INT32
+          shape: (-1, 6)
+          name: Tile_1:0
+      outputs['key'] tensor_info:
+          dtype: DT_STRING
+          shape: (-1)
+          name: Identity:0
+      outputs['num_detections'] tensor_info:
+          dtype: DT_FLOAT
+          shape: (-1)
+          name: num_detections:0
+    Method name is: tensorflow/serving/predict
+
+My issue is how to convert the model I was giving to have the needed inputs/outputs? I found this ([https://stackoverflow.com/questions/55373048/tensorflow-how-can-i-add-an-image-decoder-node-to-my-graph](https://stackoverflow.com/questions/55373048/tensorflow-how-can-i-add-an-image-decoder-node-to-my-graph)) and I think it can be used for the input but I'm not sure about the output. I'm assuming it's using the Object Detection API so somehow I need to convert the Keras model into an Object Detection API model?",2,tensorflow,2020-12-05
+k4prp8,I will give $100 to the first person who can get Tensorflow using a GPU on my fresh install of ubuntu 18.04.,Thank you. It was solved by someone!,34,tensorflow,2020-12-05
+k4oc00,Making the Printed Links Clickable Using TensorFlow 2 Object Detection API,,3,tensorflow,2020-12-05
+k4mucl,Trying to run an image classifier on a custom model,"Hello everyone,
+
+First of all I'm pretty new to python and TF so my apologies If I'm asking really dumb questions.So far I've trained a network by follow the guide found in this video:[https://www.youtube.com/watch?v=cvyDYdI2nEI](https://www.youtube.com/watch?v=cvyDYdI2nEI)
+
+After exporting the inference graph I wanted to test the model using this colab notebook:[https://github.com/tensorflow/models/blob/master/research/object\_detection/colab\_tutorials/object\_detection\_tutorial.ipynb](https://github.com/tensorflow/models/blob/master/research/object_detection/colab_tutorials/object_detection_tutorial.ipynb)
+
+I don't fully understand it however. I downloaded the TF object detection API from github and I have it saved locally on C:\\tensorflow2\\models. Whenever I run the code block below it still starts cloning, yet I already have it? Perhaps I need to set a path to it? I just don't know how.
+
+https://preview.redd.it/i3bpif90dl261.png?width=951&amp;format=png&amp;auto=webp&amp;s=a96dc6bb49a1d14cf42a9130bde05b9a5959d232
+
+Further down by ""Loading Label map"" I'm greeted with the same problem. I try to set the path to my label map and test images but they are not found:
+
+https://preview.redd.it/iorei8wnel261.png?width=1296&amp;format=png&amp;auto=webp&amp;s=d236d9b88c1c6587c37eab75cf164838e5dec8be
+
+My last question is how I would have to set the object detection model to my trained model. It is a .pb file so I believe that is correct?
+
+&amp;#x200B;
+
+https://preview.redd.it/tbgx1mr1fl261.png?width=627&amp;format=png&amp;auto=webp&amp;s=1c8e2ccfa99767fb36cc4506e67e42d66ae1678e
+
+EDIT: I managed to get the directories recognized by running it locally instead of in Colab. However I'm still not quite sure how to load my own model in there, as the code is made for pretrained models. I've been trying to find an example but I haven't found anything I can use yet.
+
+As far as I can tell I don't need this code block at all, as I'm not trying to download a pretrained model but instead use a custom one?
+
+https://preview.redd.it/nr4byj98rs261.png?width=1367&amp;format=png&amp;auto=webp&amp;s=a0aac6f18b9e0dce24e321a56c3827d5abb644cf
+
+I found another IPYNB here that uses custom models:   
+[https://github.com/TannerGilbert/Tutorials/blob/master/Tensorflow%20Object%20Detection/object\_detection\_with\_own\_model.ipynb](https://github.com/TannerGilbert/Tutorials/blob/master/Tensorflow%20Object%20Detection/object_detection_with_own_model.ipynb)
+
+However it's for TF1 and I'm using TF2. I've tried migrating the code to TF2 but I always run into some sort of error.
+
+Thanks in advance, and again sorry if I am asking really dumb stuff.",2,tensorflow,2020-12-05
+k4h65d,Tensorflow model.fit() reproducibility,"`import tensorflow as tf`
+
+`RANDOM_SEED_CONSTANT = 42  # FOR_REPRODUCIBILITY`
+
+`tf.random.set_seed(RANDOM_SEED_CONSTANT)`
+
+&amp;#x200B;
+
+`# Prevent NHWC errors` [`https://www.nuomiphp.com/eplan/en/50125.html`](https://www.nuomiphp.com/eplan/en/50125.html)
+
+`from tensorflow.keras import backend as K`
+
+`K.set_image_data_format(""channels_last"")`
+
+&amp;#x200B;
+
+`from tensorflow import keras`
+
+`from tensorflow.keras import datasets, layers, models`
+
+&amp;#x200B;
+
+`(train_images, train_labels), (test_images, test_labels) = datasets.cifar10.load_data()`
+
+`train_images, test_images = train_images / 255.0, test_images / 255.0 # Normalize pixel values to be between 0 and 1`
+
+`# Create a simple CNN`
+
+`model = models.Sequential()`
+
+`model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 3)))`
+
+`model.add(layers.MaxPooling2D((2, 2)))`
+
+`model.add(layers.Conv2D(64, (3, 3), activation='relu'))`
+
+`model.add(layers.MaxPooling2D((2, 2)))`
+
+`model.add(layers.Conv2D(64, (3, 3), activation='relu'))`
+
+`model.add(layers.Flatten())`
+
+`model.add(layers.Dense(64, activation='relu', kernel_initializer=tf.keras.initializers.Zeros()))`
+
+`model.add(layers.Dense(10, kernel_initializer=tf.keras.initializers.Zeros()))`
+
+`print(model.summary())`
+
+&amp;#x200B;
+
+`model.compile(optimizer='adam',`
+
+`loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),`
+
+`metrics=['accuracy'])`
+
+&amp;#x200B;
+
+`model.save_weights('myweights.h5')`
+
+`history =` [`model.fit`](https://model.fit)`(train_images, train_labels, epochs=1,`
+
+`shuffle=False,`
+
+`validation_data=(test_images, test_labels))`
+
+1563/1563 \[==============================\] - 7s 5ms/step - loss: 2.3028 - accuracy: 0.0957 - val\_loss: 2.3026 - val\_accuracy: 0.1000
+
+`model.load_weights('myweights.h5')`
+
+`history =` [`model.fit`](https://model.fit)`(train_images, train_labels, epochs=1,`
+
+`shuffle=False,`
+
+`validation_data=(test_images, test_labels))`
+
+`model.load_weights('myweights.h5')`
+
+1563/1563 \[==============================\] - 7s 4ms/step - loss: 2.3028 - accuracy: 0.0964 - val\_loss: 2.3026 - val\_accuracy: 0.1000
+
+`history =` [`model.fit`](https://model.fit)`(train_images, train_labels, epochs=1,`
+
+`shuffle=False,`
+
+`validation_data=(test_images, test_labels))`
+
+1563/1563 \[==============================\] - 7s 4ms/step - loss: 2.3028 - accuracy: 0.0964 - val\_loss: 2.3026 - val\_accuracy: 0.1000
+
+Results:
+
+The 3 [model.fit](https://model.fit)() runs give me identical results except for the train accuracy. What is the reason for this difference? I am trying to understand sources which might impede reproducing results from models. Apart from random seed, dense layers initialization, what else am I missing?",2,tensorflow,2020-12-05

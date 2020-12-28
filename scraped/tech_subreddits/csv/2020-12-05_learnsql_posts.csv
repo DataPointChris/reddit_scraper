@@ -1,0 +1,416 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k6nrc7,Assistance Learning SQL - Discord Server,,6,learnsql,2020-12-05
+k6ni4t,How to pull rows based on max date of a column," 
+
+I want to pull IDs from the most recent quarter (which would be 2020Q3 in this example). My query along with current and desired output is below.
+
+Use Database1
+
+Select [Roster.ID](https://roster.id/), Max(Roster.Quarter)
+
+From: BeneficiaryHelper ROSTER
+
+Group by
+
+[Roster.ID](https://roster.id/)
+
+My current output:
+
+📷
+
+Desired output:
+
+📷",5,learnsql,2020-12-05
+k65m0f,SQL video tutorial (free) for absolute beginners -- focusing on data science/analytics,,26,learnsql,2020-12-05
+k5ftak,SQL Server: How to skip weekends when using DATEADD?,"Let's say a company has a project assigned on '2020-12-7' (a Monday), and they're told they have 8 days to get it done. The company doesn't work on weekends, so that means the due date isn't 7+8 (the 15th, a Tuesday), but rather the 18th (a Thursday).
+
+The common solution I've seen is ""If it ends on a Saturday, add 2; if it ends on a Sunday, add 1."" But that only helps me if I *END* the calculation on a weekend. In the above example, the numbers are still off.
+
+&amp;#x200B;
+
+Does anyone have any idea whatsoever on how I can calculate the end date based on a start date and the number of days out, not counting weekends as 'days'?",7,learnsql,2020-12-05
+k56pj7,Window functions and subqueries,I was just wondering if anyone can suggest me some good resources for window function and subqueries,3,learnsql,2020-12-05
+k4vem5,SQL Queries for Mere Mortals 4th Ed: Chapter 12 example problem,"All,
+
+About a full week into SQL learning and am working through SQL Queries for Mere Mortals. I am on aggregate functions right now and am having a difficult time understanding the rationale behind a solution in the book (I am learning in T-SQL).
+
+&amp;#x200B;
+
+The problem is as follows:
+
+*“List the last name and first name, in alphabetical order, of every bowler whose personal average score is greater than or equal to the overall average score.”*
+
+There is a Bowlers table (containing basic personal info) and a bowler\_scores table that contains score information for individual games. Both tables contain a ""BowlerID"" unique identifer number linking bowlers to games. 
+
+The solution given is as follows:
+
+&amp;#x200B;
+
+SELECT Bowlers.BowlerLastName,
+
+Bowlers.BowlerFirstName
+
+FROM Bowlers
+
+WHERE (SELECT AVG(RawScore)
+
+FROM Bowler\_Scores AS BS
+
+***WHERE BS.BowlerID = Bowlers.BowlerID***)
+
+&gt;=(SELECT AVG(RawScore) FROM Bowler\_Scores)
+
+ORDER BY Bowlers.BowlerLastName,
+
+    Bowlers.BowlerFirstName
+
+&amp;#x200B;
+
+The part I don't understand is bolded. How would this result in determining whose average rawscore is higher than average?
+
+&amp;#x200B;
+
+I appreciate any help you kind people can provide.",6,learnsql,2020-12-05
+k4pdw2,Why should you use an ORM (Object Relational Mapper)?,"Budding web developers learning [Model-View-Controller frameworks](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) are taught that they should use an Object Relational Mapper (ORM) to interface with their databases. But the “why” is often brushed aside or omitted entirely, leaving a fledgeling programmer with burning questions like ”What are ORMs, anyway?” and “What problems do they solve?”
+
+ORMs are a class of tools that facilitate interactions between a programming language and a relational database management system. They can range in complexity and opinionation from a simple set of abstractions for interactions with relational databases (SQLAlchemy Base) to fully opinionated tools for mapping database rows to language structs (Django ORM, SQLAlchemy ORM). To get a better understanding of how ORMs work, it’s helpful to work through the kind of problems they can solve.
+
+This article aims to explain the use of ORMs by examining the kinds of problems they can solve and the advantages they have over alternative approaches: [https://monadical.com/posts/why-use-orm.html](https://monadical.com/posts/why-use-orm.html)",2,learnsql,2020-12-05
+k4orx5,How to save pre- and post- merge data?,"When merging two tables, I want to use OUTPUT to save the value of the record BEFORE and AFTER it is updated. How can I do this?
+
+&amp;#x200B;
+
+*Example*:
+
+Let's say I have this table:
+
+Foo:
+
+|a|b|c|
+|:-|:-|:-|
+|1|2|3|
+
+&amp;#x200B;
+
+And table Bar:
+
+|a|b|c|
+|:-|:-|:-|
+|1|7|7|
+|2|2|1|
+
+&amp;#x200B;
+
+And table StoredRecord:
+
+|a|old\_b|new\_b|
+|:-|:-|:-|
+|*empty*|*empty*|*empty*|
+
+&amp;#x200B;
+
+And the following merge statement:
+
+    MERGE Bar as TARGET
+    USING Foo as SOURCE
+        ON (SOURCE.a = TARGET.a)
+    WHEN MATCHED
+        UPDATE
+            SET  b = SOURCE.b
+                ,c = SOURCE.c
+    WHEN NOT MATCHED
+        INSERT (a, b, c)
+        VALUES (SOURCE.a, SOURCE.b, SOURCE.c)
+    
+    OUTPUT a, TARGET.b, SOURCE.b INTO StoredRecord
+    
+    ;
+
+...I get an error saying:
+
+`The multi-part identifier ""TARGET.b"" could not be bound.`
+
+Is there a way I can use OUTPUT to get the value, pre-merge? If not, is there a clean workaround?",2,learnsql,2020-12-05
+k4m9an,Can anyone help explain why my query is incorrect?,"I'm a total noob trying to practice with w3resource, but the editor doesn't give out error statements which makes it really difficult to know what I'm doing wrong. 
+
+The question is: ""Write a query in SQL to display the list of players scored number of goals in every matches""
+
+There are three tables: a goal_details table with goal_id, match_no, player_id, team_id, goal_time, goal_type, play_stage, goal_schedule, goal_half
+
+a soccer_country table with country_id, country_abbr, country_name
+
+a player_mast table with player_id, team_id, jersey_no, player_name,  posi_to_play, dt_of_bir, age, playing_club
+
+
+The query I wrote:
+    select player_mast.player_name, goal_details.player_id
+from (goal_details inner join player_mast on 
+goal_details.player_id = player_mast.player_id)
+where goal_details.player_id 
+in (select count(*), goal_details.player_id
+from goal_details
+group by goal_details.player_id
+having count(*) &gt; 1)
+
+Here's a link to the question and schema in case I explained very stupidly: https://www.w3resource.com/sql-exercises/soccer-database-exercise/sql-subqueries-exercise-soccer-database-6.php
+
+I'm a total noob even after taking several courses, so maybe this isn't for me, but I'd appreciate the help",1,learnsql,2020-12-05
+k3q7bs,Help with Like argument,"Hi, I want to use the like argument however some of my data contains plural versions. I want to be able to create a single argument that is like ""%test %"" that means that there must be a space after the word (to eliminate the s) before there is another character. Can anyone advise how to do this?",7,learnsql,2020-12-05
+k3n9fr,returning the results for a count,"I have been trying to answer this question: What are the customer ID and name for customers that have made any order containing only one product?
+
+I used:
+SELECT c.customerID, c.customerName,
+             COUNT (ol. orderID) AS 'product qty'
+FROM Customer_T c, OrderLine_T ol
+GROUP BY c.customerID, c.customerName, ol.orderID
+HAVING COUNT (ol.orderID) = 1;
+
+the orderline table has the following attributes: orderID, productID, and orderedquantity 
+
+
+
+The results keep giving me 60 rows but when I look at the orderline table, there should only be about 5 rows. Does anyone have any advice for this problem?",1,learnsql,2020-12-05
+k3euaw,"What to use with MAX(), WHERE or HAVING","This is what I've understand from w3 site
+
+MAX is an Aggregate  function, https://www.w3schools.com/sql/sql_groupby.asp
+
+Having is used with aggregate functions https://www.w3schools.com/sql/sql_having.asp
+
+But, they are using WHERE in syntax, https://www.w3schools.com/sql/sql_min_max.asp
+
+
+Update: 
+After posting this question, I found this stack overflow answer https://stackoverflow.com/a/9253267
+
+Is it correct to assume, that MAX() is to be used with HAVING, when it's part of condition
+And with WHERE when its in SELECT?",4,learnsql,2020-12-05
+k3aixs,"Display all employees name except the name who are teachers. Can't use ""EXCEPT"" Clause here, so need an alternative of ""EXCEPT"" clause.",,7,learnsql,2020-12-05
+k38yjz,Can someone help me with this join? I want an array inside one object - sqlite,"Hey I am using sqlite and I want to create a query which returns me an object like this:
+
+    {
+    id : 1,
+    language: JavaScript,
+    frameworks: [{frameworkobject}]
+    }
+
+My current query returns me for each framework one row.
+
+            SELECT 
+            languages.id,
+            languages.long AS language,
+            languages.icon AS languageIcon,
+            frameworks.long AS framework,
+            frameworks.icon AS frameworkIcon
+            FROM languages
+            LEFT JOIN frameworks ON languages.id=frameworks.language_id;
+
+I tried to use a `GROUB BY` with `CONCAT` but it did not really work out.
+
+Here is what I tried:
+
+            SELECT 
+            languages.id,
+            languages.long AS language,
+            languages.icon AS languageIcon,
+            GROUP_CONCAT(frameworks.long, frameworks.icon) AS frameworks
+            FROM languages
+            LEFT JOIN frameworks ON languages.id=frameworks.language_id
+            GROUP BY languages.id, languages.long, languages.icon;
+
+The output of this is not really helpful though, it looks like I get something like this:
+
+    {
+    id : 1,
+    language: JavaScript,
+    frameworks: ""STRING WHICH HOLDS ALL THE VALUES""
+    }
+
+&amp;#x200B;",3,learnsql,2020-12-05
+k37i8f,How to use 2 tables together,"So I have 2 tables
+
+Table Order: 
+
+order_id, order_From_Date, order_To_Date, order_on_Date
+
+
+Table Codes: 
+
+Codes_id, Valid_From, Valid_to, Code_Created_Date
+
+So the codes refer to discount codes, 
+I have to find the no of orders made using each code",3,learnsql,2020-12-05
+k31q7e,What is the proper way of keeping track of the number of times x happens?,"Let’s say I have a button, and I want to know how many times it’s been clicked , or an option selected or whatever. Or even the number of times I Practiced piano throughout the day.  The thing doesn’t matter as much as how do I add something like this to a database?",2,learnsql,2020-12-05
+k2zccd,QQ about SQL query flows,"Hey All!
+
+I've recently started learning SQL and I had a quick question regarding it's order of operations. I usually like to create outlines for quick reference when writing queries but so far from what I can tell the order more or less goes as follows:
+
+* SELECT
+* FROM
+* GROUP BY
+* WHERE
+* HAVING
+* ORDER BY
+* LIMIT
+
+can anymore confirm or provide any additional thoughts? 
+
+Thanks in advance!",1,learnsql,2020-12-05
+k2wazv,Database design project,"Hello, I'm looking for some assistance on a project that I am currently undertaking.
+
+I'm new to this subreddit but also to database design and I am not entirely sure if I have my DBDL designed correctly to where it would be in 3NF at the least. I enjoy learning so if someone could help me to understand the normalization process and help to correct my DBDL I would greatly appreciate that.  
+Also another question, is it possible to make an AutoNum a primary key, why or why not?
+
+Thank you!
+
+    CustomerBalance (CustomerNum(PK), YTDSales, CurrentBalance, CreditLimit)
+    FK – CustomerNum  Customer, CustomerShipTo
+    
+    Customer (CustomerNum(PK), CustomerName, Address1, Address2, City, State, Zip, TerritoryNum, EmployeeID)
+    FK – EmployeeID  SalesRep
+    FK – TerritoryNum  Territory
+    
+    CustomerShipTo (CustomerNum(PK), STName, STAddress1, STAddress2, STCity, STState, STZip, TerritoryNum, EmployeeID)
+    FK – EmployeeID  SalesRep
+    FK – TerritoryNum  Territory
+    
+    Employee (EmployeeID(PK), LastName, FirstName, Address, City, State, Zip, Position)
+    Inventory (ItemNum, Description, Price, YTDUnitsSold, UnitsOnHand, UnitsAllocated, ReorderPoint, MinOrder, LeadTime)
+    
+    ItemVendor (ItemNum(PK), VendorNum(PK))
+    FK – ItemNum  Inventory
+    FK – VendorNum  Vendor
+    
+    ItemOrder (OrderNum(PK), ItemNum(PK))
+    FK – ItemNum  Inventory
+    FK – OrderNum  Order
+    
+    Invoice (InvoiceNum(PK), InvoiceDate, OrderNum, ShipDate, Shipped)
+    FK – OrderNum  Order
+    
+    Order (OrderNum(PK), ItemNum, Price, NumOrdered, Amount, SubTotal)
+    FK – ItemNum  Inventory
+    
+    SalesRep (EmployeeID(PK), LastName, FirstName, Address, City, State, Zip, Position, TerritoryNum)
+    FK – TerritoryNum  Territory
+    
+    Territory (TerritoryNum(PK), State)
+    
+    Vendors (VendorNum(PK), VendorName, Address, City, State, County, Zip)
+    
+    WorkOrder (OrderNum(PK), OrderDate, CutomerNum, EmployeeID)
+    FK – CustomerNum  Customer
+    FK – SalesRep  EmployeeID",2,learnsql,2020-12-05
+k2leoq,Completely New To SQl,"Hi Guys,
+
+Im a Biz Econ Student that needs SQL to survive. I want to pass the MS MTA basic SQL certification thing, but im sure as hell not paying $2k to do so. The language looks pretty easy, it reminds me of STATA/IC for econometrics. Im wondering what the best and most affordable way to start is, and i'm completely open to literally just working with MySQL or something right off the bat and just playing with databases and practicing with scenarios. 
+
+All pointers are appreciated thanks!",6,learnsql,2020-12-05
+k2ior2,Correlated Query to validate constraints on data import - Kind of Lost,"So as part of an assignment we need to take some tables we built, and design correlated queries to verify constraints when data is imported. I understand the basis of a correlated query, that makes sense. What I don't understand is the logic behind it. For instance, say I have an employee table as so:
+
+	EmployeeID INT IDENTITY(1,1),
+	FirstName VARCHAR(50) NOT NULL,
+	LastName VARCHAR(50) NOT NULL,
+	Title VARCHAR(50) NOT NULL,
+	ManagerID INT NULL,
+	Salary DECIMAL(10,2) NOT NULL,
+	FK_Address INT NOT NULL
+
+Using a correlated query how would I be able verify that each line is unique? Im turning to reddit as a last resort in this case. 
+
+I really appreciate the help and thank you in advance.",2,learnsql,2020-12-05
+k276ea,Multiple joins question,"I've been searching for this answer online but haven't found anything that clearly states what I need it to.
+
+When doing multiple joins, what are you joining to?
+
+&amp;#x200B;
+
+ 
+
+`SELECT country.country_name_eng, city.city_name, customer.customer_name`  
+`FROM country`  
+`INNER JOIN city ON city.country_id = country.id`  
+`INNER JOIN customer ON customer.city_id = city.id;`
+
+&amp;#x200B;
+
+Is the second join impacted by the first? Or is it just an inner join between customer and country tables?
+
+&amp;#x200B;
+
+Hope this question makes sense!",3,learnsql,2020-12-05
+k25ebf,New table with row counts,"I have 5 different tables, and I would like to know how to create a new table, called \`total\_counts\` which has 5 columns each with the total row count from the individual tables. So, something like
+
+|Flights\_2015|Flights\_2016|Flights\_2017|Flights\_2018|Flights\_2019|
+|:-|:-|:-|:-|:-|
+|223541|251782|233658|124738|5546789|
+
+My data is flights for each year from 2015 to 2019, so I would like a table which just gives me the total number of flight in each year.
+
+I have tried variations of the following:
+
+    create table total_counts
+    as select COUNT(*)
+    from flights_2014 as ""2014_count"", flights_2015 as ""2015_count;
+
+I can get the counts for an individual year, but I can't seem to give the columns a heading, nor can I figure out how to do it for all my tables.
+
+Thanks.",1,learnsql,2020-12-05
+k24opf,Top Selling Products Per Month,"Hi everyone,
+
+Just looking for pointers to get a table showing the top 20 selling products on our webstore per month.
+
+I have written a view which gives me everything that sells per month but I am unsure how to limit it to show top 20 selling products for November, October, September,etc (the site launched on July 1st so there isn't years of data to go back through yet)
+
+    SELECT TOP (1000) ROW_NUMBER() OVER ( ORDER BY [Month] desc) AS RN,
+           [MONTH],
+           [ItemCode],
+           COUNT([ItemCode]) AS QtyLines,
+           [WebCategory],
+    	  
+          SUM([QTY]) As TotalQty,
+          SUM(CAST([NET] AS DECIMAL(10,2))) AS TotalNet,
+          SUM(CAST([VAT] AS DECIMAL(10,2))) AS TotalVat,
+          SUM(CAST([TOTAL] AS DECIMAL(10,2))) AS TotalRevenue,
+          SUM(CAST([COST] AS DECIMAL(10,2))) AS TotalCost,
+          SUM(CAST([MARGIN] AS DECIMAL(10,2))) AS TotalMargin , 
+          ROUND(SUM([Margin]) / Sum(NULLIF([TOTAL],0)), 4) * 100 AS MarginPercentage
+          
+    	FROM [Server].[dbo].[View_Detailed_WebSales]
+      WHERE InvDate &gt;= '2020-07-01' AND InvDate &lt;= getDate()
+      GROUP BY [Month], [ItemCode], [WebCategory])
+    
+     ORDER BY [Month] desc, [QtyLines] desc
+
+I have added row numbers as some similar questions have had responses where row numbers are a way to solve this.
+
+     Select *
+      FROM (SELECT TOP (1000) ROW_NUMBER() OVER ( ORDER BY [Month] desc) AS RN
+           ,[MONTH]
+    	   ,[ItemCode]
+    	   ,COUNT([ItemCode]) AS QtyLines
+    	   ,[WebCategory]
+    	  
+          ,SUM([QTY]) As TotalQty
+          ,SUM(CAST([NET] AS DECIMAL(10,2))) AS TotalNet
+          ,SUM(CAST([VAT] AS DECIMAL(10,2))) AS TotalVat
+          ,SUM(CAST([TOTAL] AS DECIMAL(10,2))) AS TotalRevenue
+          ,SUM(CAST([COST] AS DECIMAL(10,2))) AS TotalCost
+          ,SUM(CAST([MARGIN] AS DECIMAL(10,2))) AS TotalMargin  
+          ,ROUND(SUM([Margin]) / Sum(NULLIF([TOTAL],0)), 4) * 100 AS MarginPercentage
+          
+    	FROM [Server].[dbo].[View_Detailed_WebSales]
+      WHERE InvDate &gt;= '2020-07-01' AND InvDate &lt;= getDate()
+      GROUP BY [Month], [ItemCode], [WebCategory]) as t
+      WHERE t.RN &lt;=20
+    
+     ORDER BY [Month] desc, [QtyLines] desc
+
+Above is my somewhat feeble attempt at finding what I am looking for but all it returns is 20 results.
+
+Am I moving in the right direction?
+
+Any advice would be massively appreciated.
+
+Thank you!",1,learnsql,2020-12-05
+k23e2b,Can I use trigger with ON UPDATE/DELETE ?,"I'm having issue with cascade path due to a table referencing twice another one and thus can't use ON DELETE on the foreign keys, so I wanna use trigger instead, but triggers are triggered only before/after queries like INSERT, UPDATE or DELETE.  Do ON UPDATE/DELETE actually produce one of those queries, activating the triggers?",1,learnsql,2020-12-05
+k20mir,Pull Data from Multiple Databases,,5,learnsql,2020-12-05

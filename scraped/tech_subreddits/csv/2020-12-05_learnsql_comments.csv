@@ -1,0 +1,504 @@
+comment_id,post_id,comment,upvotes
+gemmz2s,k6ni4t,"your images don't work, but i didn't need them
+
+try this --
+
+    SELECT roster.ID
+      FROM BeneficiaryHelper AS roster
+     WHERE roster.quarter = 
+           ( SELECT MAX(quarter)
+               FROM BeneficiaryHelper )",2
+geehtfh,k5ftak,"    SELECT * FROM your_table WHERE ((DATEPART(dw, date_created) + @@DATEFIRST) % 7) NOT IN (0, 1)
+    
+    Or look here:
+    https://stackoverflow.com/questions/7388420/get-datediff-excluding-weekends-using-sql-server",4
+geerg89,k5ftak,"the easiest way is with a **calendar table**
+
+here's a google search for this subreddit -- https://www.google.com/search?q=site%3Areddit.com%2Fr%2Fsql++%22calendar+table%22
+
+or you could google the larger internet -- https://www.google.com/search?q=%22calendar+table%22",3
+ged8s0e,k56pj7,[https://www.red-gate.com/simple-talk/sql/learn-sql-server/window-functions-in-sql-server/](https://www.red-gate.com/simple-talk/sql/learn-sql-server/window-functions-in-sql-server/),2
+gedmdjp,k56pj7,"* [Window Functions in MySQL](https://dev.mysql.com/doc/refman/8.0/en/window-functions.html)
+* [Subqueries in MySQL](https://dev.mysql.com/doc/refman/8.0/en/subqueries.html)",1
+geb1yl4,k4vem5,"maybe it's just me, but i can't understand a query if it isn't properly indented, so often i end up doing this myself, which isn't a bad thing, because i can learn it as i indent it
+
+    SELECT Bowlers.BowlerLastName
+         , Bowlers.BowlerFirstName
+      FROM Bowlers
+     WHERE ( SELECT AVG(RawScore)
+               FROM Bowler_Scores AS BS
+              WHERE BS.BowlerID = Bowlers.BowlerID )
+        &gt;= ( SELECT AVG(RawScore) 
+               FROM Bowler_Scores )
+    ORDER 
+        BY Bowlers.BowlerLastName
+         , Bowlers.BowlerFirstName
+
+the line that you bolded is called a **correlation condition**
+
+the first subquery in your WHERE clause is a **correlated subquery** which means that you can think of it as being executed for each row
+
+so the `BS.BowlerID` inside the subquery is correlated to the `Bowlers.BowlerID` of the outer query
+
+so for each row of `Bowlers`, their average score is calculated from the `BS` table
+
+the other subquery in the WHERE clause is not correlated, which means it's executed only once, before the main query even begins... its result, which is the average score of all bowlers, is then available to compare to each bowler's average
+
+helps?",3
+geb36k2,k4vem5,"I have spent some days reading online stuff on SQL and I was thinking in seek for some formatting style, but now I will use your style, is really easy to follow.  Thanks!",2
+geb7uh7,k4vem5,thanks!,1
+geb8jrx,k4vem5,"I've checked out a few Youtube videos on Subqueries and Correlated Subqueries and realized that there is a chunk of info that I have yet to learn. 
+
+Thank you for your explanation. It was incredibly clear.",2
+gebaykw,k4vem5,thanks!,1
+geb30nm,k4orx5,"I already had the ID of the entry I was merging stored in a local variable (it's a parameter for the stored procedure, called '@id' below), so the fix I ended up doing was something akin to
+
+(tl;dr: Save the original record in a staging table, then use the record's id to merge the original value back into the desired table):
+
+    DECLARE @oldEntry table(
+        a int
+        ,oldB int
+    );
+    INSERT INTO @oldEntry
+        SELECT @id, b
+        FROM Bar
+        WHERE a = @id
+    
+    MERGE Bar as TARGET
+    USING Foo as SOURCE
+        ON (SOURCE.a = TARGET.a)
+    WHEN MATCHED
+        UPDATE
+            SET  b = SOURCE.b
+                ,c = SOURCE.c
+    WHEN NOT MATCHED
+        INSERT (a, b, c)
+        VALUES (SOURCE.a, SOURCE.b, SOURCE.c)
+    
+    OUTPUT a, SOURCE.b INTO StoredRecord
+    ;
+    
+    MERGE StoredRecord as TARGET
+    USING @oldEntry as SOURCE
+        ON (SOURCE.a = StoredRecord.a)
+    WHEN MATCHED
+        UPDATE
+            SET oldB = SOURCE.oldB
+    ;",1
+ge9o2ks,k4m9an,"I would remove the count() in the select statement of the sub query.
+
+I’m also no expert, but I believe you have to specify *what* you’re counting, e.g. you’d need to do count(goal_id) &gt; 1;",2
+gea290c,k4m9an,"&gt; you have to specify what you’re counting
+
+you can use `COUNT(*)` to count rows",3
+gea2h50,k4m9an,"your query --
+
+    select player_mast.player_name
+         , goal_details.player_id 
+      from (
+           goal_details 
+    inner 
+      join player_mast 
+        on goal_details.player_id = player_mast.player_id
+           )
+     where goal_details.player_id in 
+           ( select count(*)
+                  , goal_details.player_id 
+               from goal_details 
+             group 
+                 by goal_details.player_id 
+             having count(*) &gt; 1 )
+
+looks okay to me, except for the parentheses in the FROM clause of the outer query
+
+however, you haven't achieved one of the requirements, which is to show the number of goals
+
+**edit**; wait, i see the problem -- when you use `IN (subquery)`, the subquery has to return only one column
+
+FYI i would not trust any course that still uses sql syntax from **28 years ago**
+
+    FROM goal_details a, soccer_country b, player_mast c
+    WHERE a.team_id=b.country_id
+    AND a.player_id=c.player_id",1
+gea2tif,k4m9an,"Thanks.
+
+I actually learned from a different resource, but felt like I needed more practice. Do you have any recommendations on where I can find better practice questions?",1
+gea3co9,k4m9an,"please make sure you re-read my reply, i was editing it when you posted
+
+&gt; better practice questions?
+
+have you tried sqlzoo,net",1
+gea7pz8,k4m9an,"thank you for the help. edit: I actually realized the query doesn't work without also selecting the player_id in the subquery, so I'm not sure whether my approach here is fundamentally wrong
+
+&gt; have you tried sqlzoo,net
+
+yeah I've worked through sqlzoo and sqlbolt, both were good but I still feel like I need more",1
+ge4nqai,k3q7bs,Have you tried it? Sounds like it might work depending on how your data is formatted.,2
+ge60p8s,k3q7bs,no unfortunately i get no results,1
+ge5wtsa,k3q7bs,"thanks all, my problem is this doesn't work because there are some values that are \[word\] test \[word\] as well as \[word\] tests \[word\] and also \[word\] test.  Unfortunately when I add a space it returns no values.",2
+ge7wajp,k3q7bs,"It might be that the space in your data may not be the same space as on your keyboard. If somehow how could copy that character into your code that might be okay.
+
+Otherwise you can turn to regular expressions depending on the type of Sql you have.",1
+ge7wehr,k3q7bs,"Another thing you have to be sensitive about is the capitalization of the words you are searching for.
+
+You can also use ilike for case insensitive search depending on the Sql you use.",1
+ge5xq6e,k3q7bs,"which database?  some are case sensitive, yours might not be
+
+anyhow, you want
+
+    WHERE column LIKE '%test %'
+       OR column LIKE '%test'",2
+ge60b6z,k3q7bs,"yeah thanks for that I have something similiar:
+
+where column like '%test%' and column not like '%tests%'
+
+however was trying to do it within one statement (to make it as efficient as possible)",2
+ge70aj7,k3q7bs,"&gt; however was trying to do it within one statement (to make it as efficient as possible)
+
+WHERE conditions operate on each row separately -- the cpu required to resolve compound conditions is trivially greater than to resolve single conditions... trivially
+
+the far larger component of efficiency is whether an index can be utilized
+
+since you would not typically index the entire column which this LIKE test or tests will operate on, the real inefficiency is not the compound condition",2
+ge5987w,k3q7bs,"That sounds like it should work. Just be careful with the case of the word you’re looking for. Depending on the dialect of SQL you’re using, you may have to write the “test” word exactly as it appears in your data. For example, if the data you’re looking for is stored as  ‘Test ‘ and you type ‘%test %’ or ‘%TEST %’ you may not get any results due to the differing capitalizations/cases of the letters.",1
+ge59lik,k3q7bs,"Or, you could eliminate the % at the end of the like statement. Example: LIKE ‘%test’  this will only return values that end with the word/letters you input after the %",1
+ge6lvvp,k3q7bs,"Use ltrim() and rtrim() functions on column.
+First Make your data without white spaces",0
+ge4wa75,k3n9fr,"first of all, before tackling the question of only one item in an order, you need to learn how to write an SQL join properly
+
+this --
+
+    FROM Customer_T c, OrderLine_T ol 
+
+is a **cross join** because you've forgotten the join condition
+
+please, learn explicit join syntax, which was added to the SQL standard *twenty-eight years ago*
+
+example --
+  
+      FROM table1
+    INNER
+      JOIN table2
+        ON table2.fk = table1.pk",1
+ge342np,k3euaw,"more or less, yes",2
+ge43yne,k3euaw,HAVING is used to filter groups/aggregations.,1
+ge1fs3m,k3aixs,"Try:
+
+    SELECT ename
+    FROM employee
+    WHERE ename NOT IN (SELECT name FROM teacher)",11
+ge249zb,k3aixs,"Several good answers in this thread so far.
+
+The biggest concern I have is the join/comparison between employee.ename and teacher.name. This is one of the big reasons to eliminate redundancy in your database design. If the employee.ename is Miller, Robert but the teacher.name is Bob Miller, you are going to have a mess if that's how you are matching people.
+
+A better approach would be to put a foreign key in teacher, employee\_id so that there is an easy (and quick) match between the tables. 
+
+One other thing I would recommend would be to split name into two fields: first name (or given name) and last name (or family name). It doesn't necessarily improve your matching problem (though I suppose it does very slightly), but it does make things easier down the line. For example, if you wanted to create a directory of employees and group them by last name, you have no way to do it. You might think 'Oh. I'll just split on the space.' but you have to deal with John St. Martin and Marcos de la Rosa.",4
+ge24aw6,k3aixs,"**I found links in your comment that were not hyperlinked:**
+
+* [teacher.name](https://teacher.name)
+
+*I did the honors for you.*
+
+***
+
+^[delete](https://www.reddit.com/message/compose?to=%2Fu%2FLinkifyBot&amp;subject=delete%20ge249zb&amp;message=Click%20the%20send%20button%20to%20delete%20the%20false%20positive.) ^| ^[information](https://np.reddit.com/u/LinkifyBot/comments/gkkf7p) ^| ^&lt;3",1
+ge1hlra,k3aixs,Select * from employees left join teachers using (id) where teachers.id is null...,5
+ge2edf9,k3aixs,"    select * from employee e
+    left join teacher t on t.tid = e.eid
+    where t.tid is null;
+
+This assumes that the teacher is a subset of the employee table and that the ids match up. It's a... weird way designing that table given that you have faculty and salary in both... 
+
+What this does is takes the employee table and joins it to the teacher table.  The where clause only keeps the rows where there is not a clean join, ergo only employees who are not teachers.",2
+ge2lolp,k3aixs,"Does it join the teacher table to the employee table, or does it join the employee table to the teacher table? If that makes sense",1
+ge3cdjz,k3aixs,From is always first. In this case the employer table. So you take the whole of the employer table and join it to the teacher table.,1
+ge1q6by,k3aixs,Not Exists is a good option,0
+ge1yrvm,k3aixs,"As far as i can say:
+A. Exception join (all rows in tableA not in tableB) 
+Select a.* from tablea a exception join tableb b on a. Key=b. Key
+
+B. Clause NOT IN
+C. Clause NOT EXISTS
+D. LEFT JOIN
+
+Select a.* from tablea a left join tableb b on a.Key=b.Key where b.key is null",0
+ge1lk7q,k38yjz,"try this --
+
+    GROUP_CONCAT( frameworks.long || frameworks.icon ) AS frameworks",1
+ge1a0nt,k37i8f,"select count(o.order_id) as total, c.codes_id as code
+
+FROM order o
+
+inner join codes c on c.codes_id=o.code_column_on_order_table",0
+ge1ivk2,k37i8f,"Could you explain the last line, it went over my head",1
+ge1mdny,k37i8f,never mind... /u/drnoggins obviously forgot to look at the table layouts you kindly provided in your post... also forgot GROUP BY,2
+ge1m32c,k37i8f,"&gt; I have to find the no of orders made using each code
+
+    SELECT c.codes_id
+         , COUNT(*) AS number_of_orders
+      FROM codes AS c
+    LEFT OUTER
+      JOIN orders AS o
+        ON o.order_on_Date
+           BETWEEN c.Valid_From AND c.Valid_to  
+    GROUP
+        BY c.codes_id",0
+gdz4kx7,k31q7e,A table of timestamps and event names.,3
+ge10a22,k31q7e,"Here are two possible ways to do this.
+
+1. [Create a table](https://sqlref.com/reference/ddl/create/create_table.html) with the following columns, and each time an event happens, [insert a row](https://sqlref.com/reference/dml/insert.html) to the table: \[`event_id`, `event_type_id`, `time_of_event`\].
+   1. `event_id` would be the primary key of the table, and could be a UUID or auto-incrementing integer.
+   2. `event_type_id` would be a foreign key to a table event\_types, which would be good for [normalizing](https://www.geeksforgeeks.org/introduction-of-database-normalization/).
+   3. Doing it this way would allow you to [create an index](https://sqlref.com/reference/ddl/create/create_index.html) on any of those columns to speed up queries.
+2. Just store all (or some) incoming HTTP requests as a [JSON column](https://www.postgresql.org/docs/9.4/datatype-json.html), or use a document storage DB like [MongoDB](https://www.mongodb.com). This offers the most future flexibility, but takes up the most space.",1
+gdz67gb,k31q7e,"A real world example for something like this if you have a web front end is to use a trigger. Say you have a social media site and you want to know how many people ""liked"" a post. Querying a huge table to count the number of people that clicked the ""like"" button would be inefficient and slow. So you could create a trigger to increment or decrement a counter variable every time a row is added or removed from the table.",1
+gdzdbty,k31q7e,"What would be the data I stored? What the other person suggested, something like:
+
+id 1, event 'like' date today at 4pm
+
+id 2, event 'like' date today at 430pm
+
+I'm over simplifying it mostly because I don't want to do a full date.  I hope you get the gist of what I am asking.",1
+gdzlb8k,k31q7e,"Yep, exactly. So in the trigger scenario I described that trigger would only work when a row is added or removed from the ""likes"" table. So the rows are still added to the table like you described. Likely with some metadata like a timestamp, user id, and other info. The trigger is only there to keep a running count in an efficient way.",2
+ge10z4c,k31q7e,"&gt;Querying a huge table to count the number of people that clicked the ""like"" button would be inefficient and slow
+
+I disagree - that is exactly what data warehouses are for.
+
+Keeping a running count of how many people ""liked"" something isn't a bad idea, but it starts to break down when you introduce edge cases, so it should be refreshed periodically with a base table.
+
+Example: what happens if someone ""likes"" a page, but then deletes their account? Does their like still count? At that point, the ""like"" counter can start to drift away from being accurate.",1
+ge0gv43,k2zccd,"no, that's wrong
+
+this is the correct order --
+
+    FROM
+    WHERE
+    GROUP BY
+    HAVING
+    SELECT
+    DISTINCT
+    ORDER BY
+    LIMIT",2
+ge2669d,k2zccd,"does the select have to go so far down? I usually like to put it at the beginning of my query so I know which columns I'm selecting and from which tables, or does it really matter?",1
+ge31zxy,k2zccd,"&gt; does the select have to go so far down?
+
+what?  um, no... wait a sec
+
+i thought you were referring to the order of *execution*
+
+the actual order of *syntax* is as follows --
+
+    SELECT [DISTINCT]
+    FROM
+    WHERE 
+    GROUP BY
+    HAVING  
+    ORDER BY
+    LIMIT/OFFSET",2
+ge38rcl,k2zccd,"Ahhh, yes. This is what I was getting at. I’m trying to make a cheat sheet / outline to give my queries more of a mad lib approach so I can plug in tables/columns appropriately",1
+gdzk6cy,k2zccd,Yup that looks about right.,1
+gdxkgib,k2wazv,"Another thing to note also is that each customer is assigned one sales rep and each sales rep is assigned to the territory in which the customer resides. Each territory can have more than one customer and sales rep.
+
+Also, each order can have more than one item in the order, this is what was throwing me for a loop mostly, trying to figure out how to design the database around that.",1
+gdutbp4,k2leoq,"Free resource, and pretty good too: https://mode.com/sql-tutorial/",4
+gduxipn,k2leoq,gorjus,2
+gdw63x4,k2leoq,This.  I'm a Data Analyst and this is how I learned enough to get started writing reports/queries.,1
+gdv42cy,k2leoq,Great question! I’ll be watching the answers.,1
+gdw2jao,k2leoq,"[https://stacylaray.wordpress.com/2015/09/21/i-want-to-become-a-sql-server-dba-do-you-have-any-books-you-recommend/](https://stacylaray.wordpress.com/2015/09/21/i-want-to-become-a-sql-server-dba-do-you-have-any-books-you-recommend/)
+
+[https://www.reddit.com/r/SQL/comments/egugzh/what\_is\_the\_most\_efficient\_method\_for\_becoming/ff2fe4p/?context=3](https://www.reddit.com/r/SQL/comments/egugzh/what_is_the_most_efficient_method_for_becoming/ff2fe4p/?context=3)",1
+gdsl3c0,k276ea,"The second join is affected by the first in two senses:
+
+1. The first join exposes the data from the city table to the second join. That is, without the first join,  you could not do the second at all since there is nothing to tell the query where to get the city.id FROM.
+2. Since each is an INNER JOIN, there the first join does not have some of the data, it will not be returned by the second. That is, there may always be cities for customers, but if there is not a country defined for the city (for whatever reason), then you will not get those results. The more likely scenario is the reverse - where there may be a customer without a city defined - unless enforced either in your database or code.
+
+A join statement adds the joined table to the FROM clause. You can think of your joined query kind of like this:
+
+SELECT blah  
+FROM country, city, customer  
+WHERE city.country\_id = country.id AND customer.city\_id = city.id;
+
+Now,  you may look at that and think 'Hey. That looks simpler than dealing with the joins.' And it may be for very simple queries. But it will rapidly spiral out of control - particularly if you have situations where you want to combine INNER JOINs with LEFT JOINs (as in the possible cases I cite in number 2 above).",3
+gdsl44q,k276ea,"**I found links in your comment that were not hyperlinked:**
+
+* [city.id](https://city.id)
+* [city.country](https://city.country)
+* [country.id](https://country.id)
+* [customer.city](https://customer.city)
+
+*I did the honors for you.*
+
+***
+
+^[delete](https://www.reddit.com/message/compose?to=%2Fu%2FLinkifyBot&amp;subject=delete%20gdsl3c0&amp;message=Click%20the%20send%20button%20to%20delete%20the%20false%20positive.) ^| ^[information](https://np.reddit.com/u/LinkifyBot/comments/gkkf7p) ^| ^&lt;3",2
+gdsjixm,k276ea,"    FROM country
+
+      country1name country1size
+      country2name country2size
+
+    INNER JOIN city
+
+      country1name country1size cityAname cityApop
+      country1name country1size cityBname cityBpop
+      country1name country1size cityCname cityCpop
+      country2name country2size cityFname cityFpop
+      country2name country2size cityGname cityGpop
+
+    INNER JOIN customer
+
+      country1name country1size cityAname cityApop cust101
+      country1name country1size cityAname cityApop cust102
+      country1name country1size cityAname cityApop cust103
+      country1name country1size cityBname cityBpop cust202
+      country1name country1size cityBname cityBpop cust204
+      country1name country1size cityCname cityCpop cust555
+      country1name country1size cityCname cityCpop cust556
+      country1name country1size cityCname cityCpop cust557
+      country2name country2size cityFname cityFpop cust801
+      country2name country2size cityGname cityGpop cust935
+      country2name country2size cityGname cityGpop cust936
+      country2name country2size cityGname cityGpop cust937",1
+gdsk3o7,k276ea,"You keep limiting. So start with the whole of country, then you end up only with those that have a city in the city table where the coutnry_id = the country.id.  Then you limit the table to just those country/cities that have a customer.
+
+If you were to add left joins, for example left join the customer table, you'd end up with every country/city and then the cities that happened to have customers would have one row per customer.  Usually I'd start the other way because its easier to conceptualize but that would give you different results when you start introducing left/right/outer joins.",1
+gdsk4lo,k276ea,"**I found links in your comment that were not hyperlinked:**
+
+* [country.id](https://country.id)
+
+*I did the honors for you.*
+
+***
+
+^[delete](https://www.reddit.com/message/compose?to=%2Fu%2FLinkifyBot&amp;subject=delete%20gdsk3o7&amp;message=Click%20the%20send%20button%20to%20delete%20the%20false%20positive.) ^| ^[information](https://np.reddit.com/u/LinkifyBot/comments/gkkf7p) ^| ^&lt;3",1
+gdsb1sv,k25ebf,"    SELECT ( SELECT COUNT(*)
+               FROM flights_2014 ) AS ""2014_count""
+         , ( SELECT COUNT(*)
+               FROM flights_2015 ) AS ""2015_count""
+         , ( SELECT COUNT(*)
+               FROM flights_2016 ) AS ""2016_count""
+         , ( SELECT COUNT(*)
+               FROM flights_2017 ) AS ""2017_count""
+         , ( SELECT COUNT(*)
+               FROM flights_2018 ) AS ""2018_count""
+         , ( SELECT COUNT(*)
+               FROM flights_2019 ) AS ""2019_count""
+
+you didn't mention which database you're using
+
+some databases don't require a FROM clause, as above
+
+if yours does, perhaps you can say `FROM dual`
+
+let me know what works for you",3
+gds3v9t,k24opf,"you forgot to partition your row numbers
+
+you didn't say what ""top seller"" means, but judging by your ORDER BY clause, it's based on highest `SUM([QtyLines])`
+
+so that's what goes into the row number specification instead of `ORDER BY [Month] DESC`
+
+    SELECT *
+      FROM ( SELECT ROW_NUMBER() OVER 
+                    ( PARTITION BY [Month]
+                                 , [ItemCode]
+                                 , [WebCategory]
+                      ORDER BY SUM([QtyLines] DESC ) AS RN
+                  , [Month]
+                  , [ItemCode]
+                  , [WebCategory]
+                  , COUNT([ItemCode]) AS QtyLines
+                  , SUM([QTY]) AS TotalQty
+                  , CAST(SUM([NET])    AS DECIMAL(10,2)) AS TotalNet
+                  , CAST(SUM([VAT])    AS DECIMAL(10,2)) AS TotalVat
+                  , CAST(SUM([TOTAL])  AS DECIMAL(10,2)) AS TotalRevenue
+                  , CAST(SUM([COST])   AS DECIMAL(10,2)) AS TotalCost
+                  , CAST(SUM([MARGIN]) AS DECIMAL(10,2)) AS TotalMargin  
+                  , ROUND(100.0 * SUM([Margin]) 
+                                / SUM(NULLIF([TOTAL],0)), 4) AS MarginPercentage
+               FROM [Sage200_HomecareLive].[dbo].[PCAL_Detailed_WebSales]
+              WHERE InvDate BETWEEN '2020-07-01' AND GETDATE()
+             GROUP 
+                 BY [Month]
+                  , [ItemCode]
+                  , [WebCategory]   ) AS t
+     WHERE t.RN &lt;=20
+    ORDER 
+        BY [Month] DESC
+         , [QtyLines] DESC",2
+ge8v9p7,k24opf,"&gt;SELECT \*FROM ( SELECT ROW\_NUMBER() OVER( PARTITION BY \[Month\], \[ItemCode\], \[WebCategory\]ORDER BY SUM(\[QtyLines\] DESC ) AS RN, \[Month\], \[ItemCode\], \[WebCategory\], COUNT(\[ItemCode\]) AS QtyLines, SUM(\[QTY\]) AS TotalQty, CAST(SUM(\[NET\])    AS DECIMAL(10,2)) AS TotalNet, CAST(SUM(\[VAT\])    AS DECIMAL(10,2)) AS TotalVat, CAST(SUM(\[TOTAL\])  AS DECIMAL(10,2)) AS TotalRevenue, CAST(SUM(\[COST\])   AS DECIMAL(10,2)) AS TotalCost, CAST(SUM(\[MARGIN\]) AS DECIMAL(10,2)) AS TotalMargin, ROUND(100.0 \* SUM(\[Margin\])/ SUM(NULLIF(\[TOTAL\],0)), 4) AS MarginPercentageFROM \[Server\].\[dbo\].\[Detailed\_WebSales\]WHERE InvDate BETWEEN '2020-07-01' AND GETDATE()GROUPBY \[Month\], \[ItemCode\], \[WebCategory\]   ) AS tWHERE t.RN &lt;=20ORDERBY \[Month\] DESC, \[QtyLines\] DESC
+
+Hi u/r3pr0b8
+
+Yes, sorry. You are right, I am using highest line quantity as top seller.
+
+Thank you for your help!
+
+I get an incorrect syntax error for this line
+
+&gt;ORDER BY SUM(\[QtyLines\] DESC ) AS RN",1
+ge8yz1l,k24opf,"&gt; I get an incorrect syntax error for this line
+
+shoot, i guess i got confused
+
+try relacing that line with this one --
+
+    ORDER BY COUNT([ItemCode]) DESC ) AS RN",2
+ge9axa7,k24opf,"The syntax error is gone but it returns all the results rather than the top 20 results.
+
+Really appreciate the help!",1
+ge9cn3f,k24opf,"&gt;  it returns all the results rather than the top 20 results
+
+so you have numbers in the `RN` column even though you've got that WHERE condition in there?",1
+ge9j9sg,k24opf,"Yes, the RN for each line is '1'",1
+gea1taj,k24opf,"shit... the partition has to be by month only
+
+     SELECT *                               
+      FROM ( SELECT [Month]                                                     
+                  , [ItemCode]                                                  
+                  , [WebCategory]                                               
+                  , COUNT([ItemCode]) AS QtyLines                               
+                  , SUM([QTY]) AS TotalQty                                      
+                  , CAST(SUM([NET])    AS DECIMAL(10,2)) AS TotalNet            
+                  , CAST(SUM([VAT])    AS DECIMAL(10,2)) AS TotalVat            
+                  , CAST(SUM([TOTAL])  AS DECIMAL(10,2)) AS TotalRevenue        
+                  , CAST(SUM([COST])   AS DECIMAL(10,2)) AS TotalCost           
+                  , CAST(SUM([MARGIN]) AS DECIMAL(10,2)) AS TotalMargin         
+                  , ROUND(100.0 * SUM([Margin])                                 
+                                / SUM(NULLIF([TOTAL],0)), 4) AS MarginPercentage
+               FROM [Sage200_HomecareLive].[dbo].[PCAL_Detailed_WebSales]       
+              WHERE InvDate BETWEEN '2020-07-01' AND GETDATE()                  
+             GROUP                                                              
+                 BY [Month]                                                     
+                  , [ItemCode]                                                  
+                  , [WebCategory] ) AS t                                      
+     WHERE ROW_NUMBER() OVER                     
+           ( PARTITION BY [Month]           
+             ORDER BY SUM([TotalQty] DESC ) &lt;= 20                                                            
+    ORDER                                                                       
+        BY [Month] DESC                                                         
+         , [QtyLines] DESC",2
+gecx9ra,k24opf,"Thanks so much @r3pr0b8. 
+Due to your help, I've gotten it done. 
+
+SELECT ROW_NUMBER() OVER (PARTITION BY [Month] ORDER BY [Month]) Sort, 
+                           [Month]                                                     
+              , [ItemCode]                                                  
+              , [WebCategory]                                               
+              , COUNT([ItemCode]) AS QtyLines                               
+              , SUM([QTY]) AS TotalQty                                      
+              , CAST(SUM([NET])    AS DECIMAL(10,2)) AS TotalNet            
+              , CAST(SUM([VAT])    AS DECIMAL(10,2)) AS TotalVat            
+              , CAST(SUM([TOTAL])  AS DECIMAL(10,2)) AS TotalRevenue        
+              , CAST(SUM([COST])   AS DECIMAL(10,2)) AS TotalCost           
+              , CAST(SUM([MARGIN]) AS DECIMAL(10,2)) AS TotalMargin         
+              , ROUND(100.0 * SUM([Margin])                                 
+                            / SUM([NET]), 4) AS MarginPercentage
+           FROM [Server].[dbo].[Detailed_WebSales]       
+          WHERE  InvDate BETWEEN '2020-07-01' AND GETDATE()                  
+         GROUP                                                              
+             BY [Month]                                                     
+              , [ItemCode]                                                  
+              , [WebCategory] Having SUM([QTY]) &lt;&gt; 0
+                       ORDER BY [Month], SUM([NET]) desc",1
+gedm06c,k24opf,what happened to the top 20 requirement?,1
+gedpmag,k24opf,"Sorry, that is in the where clause too",1

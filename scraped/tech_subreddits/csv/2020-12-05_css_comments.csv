@@ -1,0 +1,243 @@
+comment_id,post_id,comment,upvotes
+gepdb3f,k798cz,"With so many web dev technologies and languages out there it can be overwhelming to get started in web development. And if you are already a web developer you may find it difficult to keep up with new technology and trends. This web development roadmap will help guide you in deciding what technology and languages you should learn about in 2021 and beyond. We will cover all of the most popular languages and technology, focusing on full-stack development. We will also look at the current trends to look out for in 2021. There's no better time to start than now!
+
+If you are just starting out or even thinking about starting a career in web development, look no further. This roadmap and complete guide will help you understand what you should be focusing your time on.",-1
+geozb3g,k76lal,"There are browser plugins that let you run whatever arbitrary CSS you want. Just combine that with a font-family rule that has !important.
+
+Edit: Here's an out-of-the-box solution that uses OpenDyslexic, which is a font designed to have the same effect your client is getting from Comic Sans: [https://chrome.google.com/webstore/detail/opendyslexic-font-for-chr/cdnapgfjopgaggbmfgbiinmmbdcglnam?hl=en](https://chrome.google.com/webstore/detail/opendyslexic-font-for-chr/cdnapgfjopgaggbmfgbiinmmbdcglnam?hl=en)",14
+geozuks,k76lal,You can probably search for dyslexia browser extensions,7
+gep9qtu,k76lal,"Yes. Just make a CSS entry that adds this to all pages.
+
+
+* {
+  font-family: Comic Sans;
+}",2
+geozyu1,k76lal,"Wait. Is this just on your client’s browser and not in the site code? If so, you should be able to go into settings or add a plug-in. If you’re making a site and every font is comic sans, that’s not going to go over well with UX. Personally, I’d close the site as soon as I saw it.",1
+geptd9w,k76lal,Comic sans is actually much easier to read for people with dyslexia. Something to do with the letters being different widths.,1
+gep2h7k,k76lal,One foul swoop is right,1
+gep3qrc,k76lal,Chaotic Evil. Nice.,1
+gepjeza,k76lal,"In your CSS file just add:
+
+`body {`
+
+`font-family: ""comic sans"";`
+
+`color: #C8A2C8;`
+
+`}`
+
+Make sure to include the actual font in your HTML first",1
+geo9g3w,k71mds,"body * {
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+-webkit-tap-highlight-color: transparent;
+}",31
+geo9zel,k71mds,Thanku so much 😊,3
+geos79g,k71mds,"Would this be considered to ""broad"" and not efficient?
+
+(due to the \* selector)",1
+geosn5g,k71mds,Yes. But the question was about removing the blue effect and this will serve the cause. If OP cares about efficiency he would apply it only to the relevant class,2
+geoss61,k71mds,"Yes I can see that and I am not questioning the end result here. 
+
+Just asking about performance.
+
+&amp;#x200B;
+
+Thanks for your answer!",2
+geouygq,k71mds,MDN says it should not be used though.,1
+gep0nu1,k71mds,"MDN says a lot of things, haha",0
+geoz7g0,k71mds,I wouldnt remove it because it's going to be bad UX based off of no feedback on where a user has tapped.,2
+gep55p4,k71mds,"Well it seems more bad UX with that bluish effect. Can you take me an social media website where they have used it? If I click on the below buttons (share, comment etc) then also this effect comes up.",-1
+geowvhm,k71mds,"While I get that you want to disable it, its there for a reason. Consider replacing it",1
+gep57f7,k71mds,"Replacing it with?
+If I click on the below buttons (share, comment etc) then also this effect comes up.",1
+gepeq0e,k71mds,"There is a reason it is there: To show that something has been pressed. If you just remove it, you are removing an indication that some users may be relying on. So if you remove it, you should make sure there is some other indication in its place. This is also why you should only remove the effect on specific classes, not from everything as the top comment suggests.",2
+gepd7fr,k71mds,This might be an issue with your markup. Are you nesting clickable elements?,1
+geo6yyi,k716d9,I'm guessing that your JS is both removing and adding their visibility. It should only be handling the latter. The elements being animated should be rendered with a class that makes them hidden and offset. The JS should only remove that class.,1
+geobays,k716d9,"I'm using Elementor, so I'm not sure what it's doing really.  It does look like if you've visited the page, a refresh does things correctly.  But the first time you go to the page it reveals the text before doing the animation fade-in.
+
+The only instance of something ""visible"" was the about us div, which doesn't fix the problem if I change it to ""hidden"".  The rest of the stuff is also marked ""visible"" but I can't easily edit it.  I'd have to figure out where it is in the theme/elementor files.",1
+gelw1c6,k6nnuk,"Not possible yet. Soon, I hope. With below pseudo-class selector.
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/:has",1
+gelxm09,k6nnuk,"I'm not sure whether I've explained my issue correctly, but my &lt;a&gt; and &lt;img&gt; tags are separate, one isn't within the other if that makes sense? 
+
+I see now that I could have included the closing tags within my example to clearly show this. Will edit now.",1
+gem1o0f,k6nnuk,That pseudo-class selector does exactly what you describe. It's just not widely available right now.,1
+gemebru,k6nnuk,"Ah, I see. I'll bookmark that link and keep checking to see when it's available. Thanks.",1
+gem4k7f,k6nnuk,"Sorry dude, I can't recreate this. Need more info. Do you have fixed widths send on columns? I'm assuming your table data is being generated from a server response so you can't use `nth-child` without JS intervention?
+
+If it helps, anchor tags are by default set to inline. Maybe changing it to `display:block` has some effect?",1
+gemey9q,k6nnuk,"I tried this, but then my `a` tags were displayed underneath the `img` tag. 
+
+`nth-child` seems to be the way to go here as I can target the columns where this is an issue. Thought it may be possible to solve with just one piece of CSS. `td img ~ a` did solve it in some areas but created issues in others. 
+
+Appreciate you taking the time to help out, thanks.",1
+gem867h,k6nnuk,"Whitespace property only affect inline elements, taking either the image or the anchor tag out of the inline flow will achieve what you want.
+
+`td &gt; img {display:block}`, `td &gt; img + a {display:block}` or `td &gt; img + a {float:left}` will all work.",1
+geocn6u,k6nnuk,"You can't do this in contemporary CSS, but it's trivial in JS.
+
+    [... document.getElementsByTagName('td')].filter(td =&gt;
+        [... td.getElementsByTagName('img')].length &gt; 1 &amp;&amp;
+        [... td.getElementsByTagName('a')].length &gt; 1
+    );
+
+Use that to attach a class name
+
+    [... document.getElementsByTagName('td')].filter(td =&gt;
+        [... td.getElementsByTagName('img')].length &gt; 1 &amp;&amp;
+        [... td.getElementsByTagName('a')].length &gt; 1
+    ).classList.toggle('hasBoth', true);
+
+Now you can just hook the class `.hasBoth`",1
+gelxmbj,k6nnuk,"There are a few different ways of looking at it and not all are purely CSS based.
+
+1. If some of the table cells are special, they can be indicated by a class name in the markup. That's not exactly necessary, but it does arguably most accurately reflect what you're saying: ""These cells are different.""
+2. If your structure is absolutely sure to be exactly as reflected, then you could target the `a` with something like `td &gt; img + td &gt; a`. That'll only style an `a` that comes immediately after an `img` within the same parent `td`.
+3. If each table has a specific column that you want to give the same treatment, you could pick a default for the `nth-child` approach and stick a class name on any table that differs. That might be `td:nth-child(3) { ... }` and `.special-column-4 td:nth-child(4) { ... }`.
+4. You may also want to take a closer look at the need for padding. Without an example, it's impossible to tell exactly what you're going for and what an alternative may look like, but it sounds a bit like you're thinking of this as the only way to do exactly what you're after. It could be worth taking a step back and trying to figure out if there's an alternate way of achieving the result you need that might be a bit more elegant, just by letting the contents flow within their cell.",1
+geme3w9,k6nnuk,"I had some initial success with `td img ~ a` but then ran into some problems elsewhere on the site with `td`s that had `span` after the `img` and `a` tags. 
+
+I think the solution here is for me to use `nth-child` on the columns I'm having this issue with. I was initially trying to see if I could solve the issue with a single piece of CSS code. 
+
+Appreciate your response, thanks.",1
+gem20gk,k6nnuk,This is a perfect answer. Go with #1 unless you have a specific reason not to.,0
+gelure4,k6nnuk,Remindme! 6 hours,0
+geluuxv,k6nnuk,"I will be messaging you in 6 hours on [**2020-12-04 22:09:13 UTC**](http://www.wolframalpha.com/input/?i=2020-12-04%2022:09:13%20UTC%20To%20Local%20Time) to remind you of [**this link**](https://np.reddit.com/r/css/comments/k6nnuk/how_to_target_td_cells_with_both_img_and_a_tags/gelure4/?context=3)
+
+[**CLICK THIS LINK**](https://np.reddit.com/message/compose/?to=RemindMeBot&amp;subject=Reminder&amp;message=%5Bhttps%3A%2F%2Fwww.reddit.com%2Fr%2Fcss%2Fcomments%2Fk6nnuk%2Fhow_to_target_td_cells_with_both_img_and_a_tags%2Fgelure4%2F%5D%0A%0ARemindMe%21%202020-12-04%2022%3A09%3A13%20UTC) to send a PM to also be reminded and to reduce spam.
+
+^(Parent commenter can ) [^(delete this message to hide from others.)](https://np.reddit.com/message/compose/?to=RemindMeBot&amp;subject=Delete%20Comment&amp;message=Delete%21%20k6nnuk)
+
+*****
+
+|[^(Info)](https://np.reddit.com/r/RemindMeBot/comments/e1bko7/remindmebot_info_v21/)|[^(Custom)](https://np.reddit.com/message/compose/?to=RemindMeBot&amp;subject=Reminder&amp;message=%5BLink%20or%20message%20inside%20square%20brackets%5D%0A%0ARemindMe%21%20Time%20period%20here)|[^(Your Reminders)](https://np.reddit.com/message/compose/?to=RemindMeBot&amp;subject=List%20Of%20Reminders&amp;message=MyReminders%21)|[^(Feedback)](https://np.reddit.com/message/compose/?to=Watchful1&amp;subject=RemindMeBot%20Feedback)|
+|-|-|-|-|",0
+gelva2p,k6nb89,"CSS frameworks are basically developed to help those developers who don't want to spend much of their time on developing design and converting it to CSS.
+
+You can import any CSS framework in your project using a single script tag and start using it. If you check the documentation of any framework, they'll have predefined classes that you can apply on HTML elements.
+
+Each CSS framework have a design system that they follow. For eg: use Material.io if you want to make a UI similar to Google's products. Tailwind is relatively a new framework that has become popular in past 1-2 years among developers.
+
+However, it's up to you if you want to develop your project using pure css or using a framework over it. I would recommend making projects using pure CSS for a beginner.",3
+gelvrpo,k6nb89,Awesome thanks for the explanation and advice.,2
+geo041a,k6nb89,"Google css frameworks. There are many available, each has its own merits and strengths. As you understand css more you may want to create your own.",2
+gelrqk9,k6mvji,[https://css-tricks.com/custom-scrollbars-in-webkit/](https://css-tricks.com/custom-scrollbars-in-webkit/),1
+gelxvem,k6mvji,"I did: `::-webkit-scrollbar-track:horizontal {border-radius: 5px;background: #292828;}`
+
+, but nothing is happening. What am I doing wrong here?",1
+gem5sa1,k6mvji,"Yeah, strange indeed. I usually don't touch the scrollbar styles so just discovered it's not as easy as I thought.
+
+[https://codepen.io/RoundMidnight/pen/zYKrvPK](https://codepen.io/RoundMidnight/pen/zYKrvPK)
+
+I tried a few things out and the styling happens to work, as you can see in my codepen, when you set properties to several elements, not just one.
+
+Weird enough. If someone has an explanation on the how and why, I'd be interested too.",1
+gellu6g,k6lnyp,Pming if you don’t mind,1
+gelpuc8,k6l0f8,"Fyi, State of CSS exists. 2020 came out today. 
+
+https://2020.stateofcss.com",5
+gelxpke,k6l0f8,Done ✌,1
+gelb5zl,k6ivmq,"The `clip` property is deprecated. You should use `clip-path` instead, alternatively with `clip` set before for IE compatibility.",1
+gelelup,k6ivmq,"Hey, thanks, I have updated the article to use clip-path instead. Was not aware clip was deprecated.",2
+gelf7vm,k6ivmq,You’re welcome! And it’s a cool little demo you made 😊,1
+gekuvqx,k6he53,"You can't change/add/remove HTML elements using CSS. For this purpose you'll have to use JavaScript with its *innerHTML* property for example (and for simple changes, well, it's not hard).
+
+However, depending of what you're looking for, you may achieve something with CSS only. If you want some content to appear only on hover, you can include this content in your HTML, and then show it only on hover, with CSS properties like display, visibility, opacity, whatever suits your goal.
+
+What do you have in mind?",2
+gekvxcy,k6he53,"thanks a lot! tried something with what you had told, works now!",1
+gekwr08,k6he53,You're welcome ! :),2
+gekk5ew,k6dkav,"To answer your main question, yes it's very common that a flex item can also be a flex container.
+
+Take a look at the first example found here: [Nested Flex Containers with Flexbox](https://www.quackit.com/css/flexbox/tutorial/nested_flex_containers.cfm) it's doing the same thing, but in a lot less convoluted manner than the example you're working  with, w/o the excess html structure and pretenses of creating a table or grid structure. Chances are, if you're doing something like that it could be better achieved with CSS Grid anyway - which was actually made for 2-dimensional web layouts. Flex is one-dimensional, and can only flow in one direction at a time, which is why you would nest containers. The main container in both examples has the default flex-direction of row like we read, left to right. Say you have 3 divs or ""columns"" inside that container, and you want them each to have a vertical card layout, so up and down, you can make those divs display: flex and also give them a rule of flex-direction: column. So your main divs are layed out on the main horizontal axis of flex, while the content of those divs goes from top to bottom like you want, and since they are already flex containers you can use all the other flex properties to control this card layout as well.",3
+geksnoz,k6dkav,"Oh, I see. Now it makes sense. I had no idea it worked like that. It seemed at the time like there were too many flex containers.
+
+Thanks a million for explaining it like you did, and for providing that link. You've been a great help!! I'd throw you some riches if I had any coins.",2
+gejs8xs,k67wk7,Do you have width: 100% or maybe display: block?,1
+gek53cx,k67wk7,Hard to say without seeing your CSS + markup. Is the middle card positioned absolutely?,1
+gek5s3h,k66laa,20 lines of CSS in to a 16 min video,1
+gen5j4k,k66laa,"Did you make this video? If so, thank you for sharing. It’s a helpful tutorial for anyone who may need it. Idk why people gotta be rude about it.",1
+gen5nsh,k66laa,"I'm glad you liked it!
+I put a lot of effort on making it!",2
+gek0op2,k66laa,"WHAT YEAR IS IT?! Seriously, this fad is a bit passe.",-2
+geirlfe,k635lb,"You can use `::before` and `::after`
+
+[https://codepen.io/vladblkvs/pen/poEgeWe](https://codepen.io/vladblkvs/pen/poEgeWe)",7
+gej4ki7,k635lb,thanks,2
+geih81d,k635lb,You can use border top right radius and border bottom right radius to achieve that,0
+geiktyg,k635lb,Border radius on which element? Should I add some green elements above and below selected item and give them border radius in order to imitate such effect?,1
+geiopgf,k635lb,"Yeah, or I’m not sure but maybe you can try negative border radius on the white element",0
+geir9k8,k635lb,Is it even possible to use negative border radius? I don't think so.,1
+gej7bnr,k635lb,"Yeah, not possible, then apply border radius to bordering green elements, that should do",1
+gejjywn,k635lb,"Keep swinging, maybe you'll hit something.",2
+gehqz98,k5yduz,"Not exactly an answer, but I’d head to the site on desktop and inspect the page with developer tools to see how they implemented it",28
+gei1zci,k5yduz,That's a genius idea! Thank you.,0
+gehtw7g,k5yduz,"You can do it with one container. Borders can be customized by side (top, bottom, left, right). Border-radius can as well.",15
+gei4t9p,k5yduz,"That's good to know, thanks you. Some items in this game have a silver border top and right with a gradient/fade towards the bottom left that looks nice imho, can't wait to see what abominations I can create along the way :)",2
+gehrs0y,k5yduz,"That would be extremely easy in CSS. Essentially just a rounded container/div/button/whatever you want it to be,",12
+gei4vex,k5yduz,Thank you I'll give it a go later.,2
+gehrshm,k5yduz,"Of course it can be done with css, just add a small container above bigger one and adjust its border radius and color first one would have border radius on top left/right and bigger container on bottom left/right",5
+gei9c2e,k5yduz,This some sort of Runescape API? O.o,3
+gei9hxk,k5yduz,"It's an idle game called melvor, it's on steam, mobile and Web I believe, its very good.",2
+gehzbkh,k5yduz,"Yup, you can do this with css, specifically box-shadow
+
+https://jsfiddle.net/kzfsuqa6/",2
+gei49jr,k5yduz,"Thank you, with this code you are spoiling me! The last time I built a personal page macromedia fireworks was da bomb and chrome effect 3d bubble buttons were so cool...... Shudder.",2
+gei5ux1,k5yduz,Runescape?,2
+gei9mdz,k5yduz,"It's an idle game called melvor, it's on steam, mobile and Web I believe, its very good.",2
+geih2qo,k5yduz,Looks like an idle game copy of rs,2
+gejhpcw,k5yduz,Top border and border radius can do that I think,2
+gejvdc8,k5yduz,"In order to get their appearance, probably the easiest approach is:
+
+1. Use `border-radius` to achieve the rounding
+1. Use a background gradient to get the 2-band color (you don't want to use an actual border because you won't get the flat cut bottom)
+1. A stop at 0, a stop at 4-or-so, a second stop at 4-or-so, and a stop at 100 should do.
+
+So:
+
+    div#foo { 
+      background: black;
+      background: linear-gradient(180deg, 
+        rgba(23,235,47,1) 0%, 
+        rgba(23,235,47,1) 6px, 
+        rgba(191,191,191,1) 6px, 
+        rgba(191,191,191,1) 100%
+      );
+      border-radius: 6px;
+    }
+    
+    &lt;div id=""foo""&gt;
+      lorem ipsum&lt;br/&gt;dolor sit amet
+    &lt;/div&gt;",1
+geka0q7,k5yduz,"Why not just use 
+
+    div {
+        border-top: 5px solid #52c084;
+        border-radius: 5px
+    }
+
+Seems to be a cleaner solution",2
+geltumh,k5yduz,because that gets the corners wrong,1
+gempwnm,k5yduz,Not Sure what you mean (?)  [Relevant codepen](https://codepen.io/opus13/pen/KKgVOPw),2
+gemq4z4,k5yduz,"Oh.  Look at that.
+
+I expected a different outcome, because I'm used to the border being smaller than the cut, which would make sort of a downwards half-circle looking thing
+
+But when it's the exact same size as the cut and there's only a top, the corner algorithm ends up losing the circle entirely.
+
+Short answer?  ***I was wrong***.  You're right, that's a better approach.
+
+The entire reason I was using the background was to get away from a subtle error that doesn't actually exist.",1
+gekfigy,k5yduz,Yes that's can be done easily. You can use div elements or just nav with ul menu and style your items as you want. For images you can make yours as svg or using ready icons.,1
+gehyslb,k5yduz,[deleted],-2
+gei4hol,k5yduz,I have a desktop for games and stuff I was  just playing this game on mobile and thought I liked the look of the containers and wondered if I could use it on my page.,1
+gehhg9k,k5xhdf,"Right click the element you want to change, find css that has the highest specificity being applied to it, copy and paste that selector into your css file in your theme and adjust what you want. Sounds like you want font-size and don’t-weight CSS adjustment. Quick google search will show you those.",1
+gehlpx5,k5xhdf,"The thing is I cannot find the exact selector for the author of the post name, it looks like every comment author name has the same selector.",1
+gei08yo,k5xhdf,"You would have to edit the theme itself to give the post author a distinction. Alternatively, you might be able to apply the style with JS. We would need to see your code to help you do that.",1
+geiq03l,k5xhdf,[deleted],1
+gekuzma,k5xhdf,"Thanks for your comment, if I use that and put my author name, then every person who comments with the same name will be affected.",1
+gehoayw,k5xhdf,"If you have access to the theme files you have access to change them unless your theme gets frequent updates which would overwrite any changes. If it doesnt update, just add a class to the element you want to change and add the CSS in your .css file for that class. If you’re finding it isn’t applying make it have a higher specificity by adding high level elements or other selectors before that so the style you want to take place overwrites the one you are potentially fighting",1
+gehocl7,k5xhdf,Sorry this was supposed to be in reply to your comment,1
+gehd9zo,k5wd5q,"Instead of “left” you can use a percentage value there to move it horizontally, so the first value moves it along x axis and second value moves it along y axis if that makes sense",1
+gei17mg,k5wd5q,"In that page, the background image is on the parent element, instead of the left-side element (which you think the background resides). i.e. the parent element which contains both the left and right side of the elements.",1

@@ -1,0 +1,217 @@
+comment_id,post_id,comment,upvotes
+gemes18,k6q7bf,"I am assuming you are talking about MongoDB Atlas. You can use the Atlas API for this. Refer this endpoint: [Get All Users in One Project](http://docs.atlas.mongodb.com/reference/api/user-get-all/)
+
+Of course if you don't care about programmatic access, you can open the Access Manager for the project and you will see all users in the project with their roles",1
+gelwvzn,k6mlsq,"you say your arbiter has priority==1...
+
+""*Changed in version 3.6:* Starting in MongoDB 3.6, arbiters have the priority 0. If an arbiter has a priority of 1, MongoDB 3.6 reconfigures the arbiter to have a priority of 0""
+
+also
+
+""Members with [priority](https://docs.mongodb.com/manual/reference/replica-configuration/#rsconf.members[n].priority) greater than 0 cannot have 0 [votes](https://docs.mongodb.com/manual/reference/replica-configuration/#rsconf.members[n].votes).""
+
+we don't know about your votes... maybe some of your servers have 0 votes?
+
+(from [https://docs.mongodb.com/manual/reference/replica-configuration/](https://docs.mongodb.com/manual/reference/replica-configuration/))
+
+Also check if all members are OK and can contact other members... I suspect maybe it's not the case, and triggering an election would break your cluster",1
+gem80bd,k6mlsq,"This is an older install of 3.2
+
+    ""_id"" : 5,
+    ""host"" : ""arbiter:27017"",
+    ""arbiterOnly"" : true,
+    ""buildIndexes"" : true,
+    ""hidden"" : false,
+    ""priority"" : 1,
+    ""tags"" : {
+
+My arbiter is 100% p1. Is this not properly configured for 3.2.22?
+
+  
+Im not sure what you mean my servers have 0 votes. My rs.status() shows all members are healthy, visible &amp; can communicate find with each other. Why can't MongoDB allow me to make a simple change to not elect specific nodes if there are plenty of other data bearing nodes with higher priority visible in the replset? This makes no sense to me. I have 5 members including the arbiter. My primary site members have p2 and my secondary site members have p1 including the arbiter. I should be able to change the secondary nodes to be p0 without any impact to the primary since no changes are being made to it.",1
+geoszq2,k6mlsq,"If mongodb determines that a leader election would result in no leader, it will not cause a leader election... I suspect it's what's happening... and it can happen if some members are not healthy or can't talk to other members: in case of a leader election, if members can't communicate, you would end up with no leader and a broken cluster.
+
+I would check your \`rs.status()\`, check the stateStr and lastHeartbeat... See if some members are unable to reach the rest of the cluster.
+
+I've had similar problems with clusters where member A can see member B but not the other way (because of firewall rules or DNS configuration issues).
+
+As for the votes, here's an example with 2 servers + 1 arbiter + 1 server without votes (because you need 2n+1 servers with votes)
+
+    	""members"" : [
+    		{
+    			""_id"" : 0,
+    			""host"" : ""db1.node.consul:27017"",
+    			""priority"" : 10
+    		},
+    		{
+    			""_id"" : 1,
+    			""host"" : ""db2.node.consul:27017""
+    		},
+    		{
+    			""_id"" : 2,
+    			""host"" : ""db3.node.consul:27017"",
+    			""arbiterOnly"" : true
+    		},
+    		{
+    			""_id"" : 3,
+    			""host"" : ""ovhdb2.node.consul:27017"",
+    			""votes"" : 0
+    		}
+    	]
+
+If your rs.conf() doesn't show votes:0, your problem is not votes ;-)
+
+rs.status() should tell you more",1
+gelgm1w,k6l2z8,"Best practice is to deploy the cluster in the same cloud provider as the rest of your infrastructure.
+
+The differences in disk size are based on the storage options from the cloud provider. While the larger disks on Azure might give you a boost with an M10, AWS and GCP have more flexibility when choosing how fast the storage needs to be.
+
+Hope this helps!",3
+gelp9si,k6l2z8,"Thanks for the reply u/FriedSoftShellCrab, It clears up a lot.",2
+gemdl9a,k6kqb6,"Not much ideas here, but I think the OS is terminating mongod. If you see the log file of mongod, you can see that in the initial stage, mongod started successfully, and was waiting for connections (12:43:11.175), but 2 minutes later (12:45:45.287), mongod received a signal with value 15, which means SIGTERM signal, that means another process (not the kernel) is rejecting mongod, after it is running.
+
+If you see the PID after that line as well (where it says kill(2)), it shows as 1, which means the root/init process, which means the top-level process stopped the mongod process. I am not sure why that is happening, but a wild guess is something more imp came up and the OS decided to stop the process.
+
+Could you share the config file for your mongod as well, just so that we can confirm that it has nothing wrong going on?",1
+gentau6,k6kqb6,"Thanks for the reply, you certainly seem to understand this more than me at least, haha  
+
+
+Config is just the default:
+
+    # mongod.conf
+    # for documentation of all options, see:
+    #  http://docs.mongodb.org/manual/reference/configuration-options/
+    # where to write logging data.
+    systemLog:
+    destination: file
+    logAppend: true
+    path: /var/log/mongodb/mongod.log
+    # Where and how to store data.
+    storage:
+    dbPath: /var/lib/mongo
+    journal:
+    enabled: true
+    # engine:
+    # wiredTiger:
+    # how the process runs
+    processManagement:
+    fork: true # fork and run in background
+    pidFilePath: /var/run/mongodb/mongod.pid # location of pidfile
+    timeZoneInfo: /usr/share/zoneinfo
+    # network interfaces
+    net:
+    port: 27017
+    bindIp: 127.0.0.1 # Enter 0.0.0.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net.bindIpAll setting.
+    #security:
+    #operationProfiling:
+    #replication:
+    #sharding:
+    ## Enterprise-Only Options
+    #auditLog:
+    #snmp:
+
+I do notice a reference to /var/run/mongodb/mongod.pid which doesn't exist on my machine. I don't really know linux too well, but that's something that's created when the process runs, right, rather than a file that should be there?
+
+&amp;#x200B;
+
+So you think the OS is stopping it from running? So am I right in assuming \`Job for mongod.service failed because a timeout was exceeded\` means mongo runs but servicectl doesn't get a reply from it, or something like that? I'm doing this on a server with WHM/cPanel so I wonder if it's some setting in there stopping it. Any ideas about how to proceed in finding whatever the problem is?",1
+geo4q2f,k6kqb6,Anything in mongod.log?,1
+geoldw2,k6kqb6,"Not sure, it's in the OP, unless there's another log I don't know about?",1
+geg883g,k5payl,What about a post.save() method on the model?,1
+gegu8lg,k5payl,"Not working, its not even triggering post save hook",1
+gehdqdr,k5payl,"I solved it by saving the document after updating , which would invoke pre save hook and hence generate the slug again. Hope it helps someone looking for the answer.",1
+geffgf8,k5bo8y,A Python script would probably do right?,2
+gehbqu5,k5bo8y,I guess... but I preferred to use bash.,1
+gefiejx,k5bo8y,"Is your deployment on Atlas or self managed? 
+
+https://docs.mongodb.com/datalake/reference/pipeline/out
+
+or mongoexport",2
+gehbgd3,k5bo8y,It is self managed. When I faced this challenge I wasn't aware that mongo offered such a migration tool!,1
+gehvs2f,k5bo8y,Atlas Data Lake is a new product that allows you to query data across mongodb cluster in Atlas and s3. But you have to be on Atlas to use it.,2
+geampj8,k4t02h,"I actually found a viable solution by using the query builder, where I store all the potential $or conditions in a separate array as we go through all the logic, and then at the end of the query builder, I check if I have one $or condition or multiple. If multiple, then I organize all those conditions with an $and condition. I don't know if this is useful to anyone else, but I'll just leave it here.",2
+gebx325,k4t02h,FYI every element in an $or is executed as a separate query on the backend. I figure it's worth mentioning just in case this has to be a scalable query.,1
+ge9xusr,k4ovdc,Compression?,6
+gea0odf,k4ovdc,"Good question. As someone else suggests:
+
+&gt; This value [storageSize] may be smaller than dataSize for databases using the WiredTiger storage engine with compression enabled.
+
+Adding to that, storageSize does not contain `indexSize`, so even without compression enabled it could be smaller than dataSize.
+
+[mongo db.Stats](https://docs.mongodb.com/manual/reference/command/dbStats/index.html)",1
+geahgeb,k4ovdc,MongoDB stores data in a compressed format and that explains.,1
+geb0d75,k4lyq2,"Thank you for the link! I didn't know about this operator, I'll consider it in the future (instead of Bitnami's charts which I don't recommend).
+
+As for backups, I've setup mgob ([https://github.com/stefanprodan/mgob](https://github.com/stefanprodan/mgob)) to take mongodb backups and send them to S3. But with EBS, the gold standard is volume snapshots instead... As for EBS volumes deletion prevention, I guess IAM is the solution: use a restricted account that can't delete EBS vols... but if you can't delete EBS I'm sure there's something else you can accidently delete... So volume snapshots are an OK solution imho.",2
+gectwq6,k4lyq2,mgod looks interesting.. are you using this for production deployments? also do you use it with s3 backups/restores?,1
+gef9ms1,k4lyq2,"Yes it's in production, deployed with helm, and it's sending backups to a Digital Ocean S3-like service (Spaces). I have not had to restore to production yet...",1
+ge8yv2o,k4impo,"you can do that for the newer versions. check the settings. 
+
+I don't remember exactly but suspect that those numbers are projections of the actual write rate. 8.5 is the time it will take to wipe out the last entry at the actual rate.",3
+ge90h0j,k4impo,"Thanks a lot!
+
+The setting is that one:
+
+https://docs.mongodb.com/manual/reference/configuration-options/#storage.oplogMinRetentionHours
+
+Configuring it now. Thanks again.",2
+ge90sit,k4impo,"no problem, and good luck",1
+ge84i1v,k4cwky,"yes, that's what the cloud is",8
+ge9kf57,k4cwky,Thanks,1
+ge8pows,k4cwky,Yeah. Just change the mongo uri to point to your db on atlas.,4
+ge9ker6,k4cwky,Sounds good thank you!,1
+ge184da,k396sn,"Yes, absolutely: https://docs.mongodb.com/manual/reference/program/mongoimport/
+
+You can also easily dump existing collections into json files.",1
+ge2ke64,k396sn,Do bear in mind though that JSON can't accurately represent everything BSON does so you shouldn't use mongoexport to save database backups. Use the mongodump command for that.,1
+ge1a2aj,k396sn,For running mongo commands you can use js files,1
+gdw2sxk,k2o71u,"shouldn't the sort be on product field? 
+
+can u include the pipeline u run?
+
+there is just Fetch, because you run match with an index, and require **another field** to sort, then MongoDB has to go about find the document, bc there is no link between indexes.",1
+gdyo7aw,k2o71u,"Thanks for the comment, I want to filter the docs and then sort the prices based on their inserted date in descending order. Thought mongo will first filter the products based on product id and then since there is a timestamp component to \_id, it would be able to sort based on \_id efficiently. I have a ""created"" field in prices as well and when I sort it based on that, I can see that if works as expected, that is, ""product"" index is used in match phase and few keys are examined as expected. But I don't get why mongo is not able to filter based on productid and then sort the filtered field based on \_id. This is the pipeline I run 
+
+    db.prices
+      .aggregate([
+        { $match: { product: ObjectId(""5fc1c4ed65fb2cbf839a0324"") } },
+        { $sort: { _id: -1 } },
+    ]);
+
+I am guessing I not understanding something well, any help on this is much appreciated.",1
+ge0rtf1,k2o71u,"To sort by date you need `_id:-1`
+
+That's correct.
+
+\`\_id\` will work as long as it was auto-generated by MongoDB.
+
+Also, explain shows the index is being used, and the calculation time is 0ms, what's not efficient?",1
+gdt3o37,k2aavy,"if you mean to find a value then this is simple
+
+find({[station.type.day:13](https://station.type.day:13)})
+
+for anything else please make some data samples and sample pf the data that you wish to retrieve.",1
+gdt901z,k2aavy,"
+Thanks for your response. I know the path, but not the value at the end. I know station.type.day but not 13. I want to get 13.
+    {station: {
+        type: {
+            day: 13}}}",1
+gdw6t8z,k2aavy,"Something like this.
+
+[https://mongoplayground.net/p/BuwEFOut38F](https://mongoplayground.net/p/BuwEFOut38F)",2
+gdw8gsm,k2aavy,"Thanks u/nimbus6446. If that's the best way to do it, then I probably should restructure things.",1
+gdwelev,k2aavy,"Yes if you wish to have that structure then yes.
+If this is sensor data then I would write this in a different menar.
+flat document with Id, Temp, Day, and time, 
+then you run an aggregation to get the min max..",1
+gdwt5wf,k2aavy,"OK, Thanks again!",1
+gdpg9xb,k1mgax,"Product attribute pivot tables are ugly, if your products are going to vary in attribute keys significantly, nosql is a nice feature.
+Your order collection can also contain all sku and product attributes in one doc, rather than hitting the db multiple times when building a view of the order.
+But you do you. Always factor overhead time in learning, trial and error, vs what's already muscle memory IMHO",1
+gdq639n,k1mgax,https://university.mongodb.com/,1
+gdt1l22,k1mgax,"on MongoDB University there's course for data modeling [https://university.mongodb.com/courses/M320/about](https://university.mongodb.com/courses/M320/about). There's section in the beginning guiding through defining your workload so you can better understand your requirements. I think if you go through it you will have a good idea for what kind of data structure will work best for you, maybe relational db will work just fine.",1
+gel0bqt,k1mgax,Thank you,1
+gdmj45m,k16pqo,"I believe so, I had to stand up a docker container to run charts on prem and connect it to my local cluster though.
+
+I don't think you can do it via Atlas, but I could be wrong about that.",1
+gdm90ws,k15d1b,If you’re using the SRV format for the connection string try the 3.4/standard format and see if that will work for you,2

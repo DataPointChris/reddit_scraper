@@ -1,0 +1,279 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k6xv6x,Adding more data-types into &lt;tr&gt;,"I have been looking around online but can't seem to find the right answer to this. I have a filterable table that uses javascript and &lt;tr&gt; looks like this &lt;tr data-type=""fish""&gt;. I want to create a similar script but with different filtering options. The question I cannot find the answer to is whether it's possible to add another data-type into &lt;tr&gt;? 
+
+I tried &lt;tr data-type=""fish, dog""&gt; and &lt;tr data-type=""fish"" ""dog""&gt; but those were just guess hoping they would work. 
+
+Hopefully this question makes sense and I appreciate any help! 
+
+Thanks!",3,html,2020-12-05
+k6lozk,December 7th Micro Web Dev Bootcamp,"Hi everyone! We only have 2 more days where sign up is open for our microbootcamp! We are teaching HTML, CSS, JS and Python in a one month period. We will teach you the basics of each language and show you how to build your own portfolio projects. Our goal is to help you continue learning on your own after our course and give you all the resources and knowledge you need to eventually get a remote job. 1 month is likely not enough time for you to achieve that, so we hope to equip you with as much understanding of the industry as we can and show you the fundamentals of each programming language.
+
+All the times are indicated on the form to sign up, so please feel free to check it out!
+
+[https://forms.gle/ipioTfy9SFfQpA1BA](https://www.youtube.com/redirect?q=https%3A%2F%2Fforms.gle%2FipioTfy9SFfQpA1BA&amp;redir_token=QUFFLUhqa01yYmljZ1hRSmx6YVhSOHA5WEM1Tk9lb3FyZ3xBQ3Jtc0tsVTNGNENiaEctWEtYd2p2dWVuUVV3LUlONXh2aGgxaS1mdFRsUEZ5TnJIRjlkVldNS1UtSkRVLWNLVEpIVmEwc0l4WVVRWDhmRmFHNXNmbkstdF93UHVLaFFOU1pDOHlSNVZyTlljbFc1WVJlRUdsdw%3D%3D&amp;v=Fa9LsqTkoiQ&amp;event=video_description)
+
+Here's a youtube video with more information! [https://www.youtube.com/watch?v=Fa9LsqTkoiQ&amp;t=2s](https://www.youtube.com/watch?v=Fa9LsqTkoiQ&amp;t=2s)",2,html,2020-12-05
+k6kzwq,Pulling a transcript from a video?,"
+Hi there!
+
+I'm learning Danish, and long story short, in Denmark they have a Julekalender every December - basically, a TV series told over the month with installments every day.
+
+As I am nowhere near fluent in Danish, I have been using an inline translator and pausing the video every 5 seconds to translate. It works, but it's slow and kinda laggy.
+
+I have been exploring the code on their video player, and I can find the current text on the screen, but I know they have to be pulled from somewhere. Basically, I just want to pull the entire transcript of the captions, so I can have a translation to refer to while watching instead of doing it manually.
+
+I'm pretty sure it can be done, I just need someone more versed in HTML to help me locate it. (I have some background in HTML, but it's been a while and this is a little over my head).
+
+Any help would be wonderful.
+Here's a link to the first episode that I'm trying to get the captions from: https://www.dr.dk/drtv/se/julefeber_221313
+
+Mange tak (thank you very much) in advance!
+
+ETA: Here is the line from the code that displays the text. When the current text on the screen switches, it disappears.
+&gt;&lt;div style=""color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.8); position: relative; inset: 0px; display: inline; writing-mode: horizontal-tb; unicode-bidi: plaintext;""&gt; Nej, nej, nej.&lt;/div&gt;",5,html,2020-12-05
+k6jvdj,Submit button style confusion,"Hey,
+
+i have a form
+
+    &lt;form action=""cgi-bin/script.cgi"" method=""get"" accept-charset=""utf-8"" id=""cgiform1""&gt;&lt;!--CSS einfügen--&gt;
+    	
+    		&lt;ul&gt;
+    			&lt;li&gt;Vorname:&lt;input type=""text"" name=""vorname""/&gt;&lt;/li&gt;
+    			&lt;li&gt;Nachname:&lt;input type=""text"" name=""nachname""/&gt;&lt;/li&gt;
+    			&lt;li&gt;Spitzname:&lt;input type=""text"" name=""spitzname""/&gt;&lt;/li&gt;
+    		&lt;/ul&gt;
+    		&lt;input type=""submit"" class=""submit-button""/&gt;
+    		&lt;input type=""reset"" class=""reset-button""/&gt;
+    &lt;/form&gt;
+
+and my prof gave us CSS code
+
+    input[type=submit] {
+    	font-size:0;
+    	width: 400px;
+    	height: 400px;
+    	border: cyan 5px solid;
+    	margin: 0;
+    	padding: 0;
+    	background: #0c0 (""bilder/submit.png"") 0 0 no-repeat;
+    }
+    
+    input[type=submit]:hover{
+    	font-size: 0;
+    	width: 400px;
+    	height: 400px;
+    	border: cyan5px solid;
+    	margin: 0;
+    	padding: 0;
+    	background: url(""bilder/submit.png"") 0 0 no-repeat;
+    }
+
+I expected to see a button with my chosen picture, but instead i only see a big green square.
+
+""bilder"" is the folder where i saved the picture submit.png. Did i do anything wrong?
+
+And what does  0 0 and no-repeat mean?",8,html,2020-12-05
+k6j98a,How to implement HTML inputs in a jquery - append - function with flex-elements," Hey all,
+
+i've got some problems with my first web project. I have there a flex-box with different flex-elements and buttons to delete some flex elements from the flex-box. Now i ""append"" flex-elements to my flex-box, this all works at the moment. But now i have inputs and i want these inputs append with my flex-elements (as classes) in my flex-box. So i don't see how i get the values of my inputs in my append function. maybe someone can help me, thanks in advance!!
+
+    $(document).ready(function ()
+    {
+        $(""#append"").click(function ()
+        {
+            $("".flex-box"").append('&lt;div class=""flexContact""&gt;  &lt;div class=""flex-element""&gt;&lt;/div&gt; &lt;div class=""flex-element""&gt;&lt;/div&gt; &lt;div class=""flex-element""&gt;&lt;/div&gt; &lt;div class=""flex-element""&gt;&lt;/div&gt; &lt;div class=""flex-element""&gt;&lt;/div&gt; &lt;div class=""flex-element""&gt;&lt;/div&gt; &lt;div class=""flex-element""&gt;&lt;/div&gt; &lt;div class=""flex-element""&gt;&lt;/div&gt; &lt;button id=""hide""&gt;X&lt;/button&gt; &lt;/div&gt;');
+    
+            $("".flexContact #hide"").click(function ()
+            {
+                $(this).parents("".flexContact"").hide(""slow"");
+            });
+        });
+    });",1,html,2020-12-05
+k6iqly,I need a table that doesnt move when i add pics/ text to it.,"[Heres my problem](https://www.pinterest.ph/pin/696439529875046422/?share=true)
+
+&amp;#x200B;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;title&gt;Table&lt;/title&gt;
+
+&lt;/head&gt;
+
+&lt;body style=""background-color:#101318;""&gt;
+
+&lt;center&gt;
+
+&lt;h1&gt; Table of Colors&lt;/h1&gt;
+
+&amp;#x200B;
+
+&lt;center&gt;
+
+&lt;table border width=1200 height=600&gt;
+
+	&lt;tr&gt;
+
+		&lt;td&gt;&lt;img src=""pop.jpg"" width=100 height=100&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;img src=""pop.jpg"" width=100 height=100&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+		&lt;td&gt;&lt;/td&gt;
+
+	&lt;/tr&gt;
+
+&lt;/TABLE&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;",3,html,2020-12-05
+k6h8ik,How to use radio buttons correctly?,"I've got a form with two radio buttons inside it and then a submit button, like this:
+
+    &lt;input type=""radio"" id=""Radio1"" name=""Radio1"" value=""Radio1""&gt;
+    &lt;label for=""Radio1""&gt;Radio1&lt;/label&gt;&lt;br&gt;
+    &lt;input type=""radio"" id=""Radio2"" name=""Radio2"" value=""Radio2""&gt;
+    &lt;label for=""Radio2""&gt;Radio2&lt;/label&gt;&lt;br&gt;
+    &lt;input type=""submit"" method=""POST"" value=""Submit""&gt;
+    &lt;/form&gt;
+
+But for some reason, I can check both the radio buttons at the same time. Why? Is there a bug in my code? I'm a beginner :) Thanks.",2,html,2020-12-05
+k6frb7,I want to develop a webpage and use it as CV,"Title. 
+
+I have experience in coding in Java and Python even SQL and although I had classes about HTML that were at the beginning of my degree I'm completely out of touch. 
+
+I recently had a class about UX/UI and utilized Figma so I took some inspiration to create designs that I would like to use as portfolio for future job applications. 
+
+My question are:
+
+-	What's the main language utilized in 2020?
+-	What's the best place for documentation/tutorials?
+-	How and where can I purchase a service to have the page running on the internet?
+
+Thank you so much and Best regards!",6,html,2020-12-05
+k6bva4,New to coding and have a question about html,I was watching a video on beginner html coding and at one point he put “&lt;meta charset=“UTF-8”&gt; and &lt;meta name=“description” content=“This is an awesome website”&gt; but nothing popped up on the practice website after I refreshed and added the code.Shouldn’t something be popping up? I double checked and triple checked but nothing would pop up except my original “hello world” text. What am I doing wrong?,2,html,2020-12-05
+k65g6m,What am I doing wrong here?,"[https://i.imgur.com/snlDp30.png](https://i.imgur.com/snlDp30.png)
+
+&amp;#x200B;
+
+I'm looking to display 3 photos per row, but once I get to the second row, the first two spaces are empty, and then 2 of the 3 photos are wrapped down to the next row.",2,html,2020-12-05
+k651nm,Scaling/positioning issues,"I am building a simple page for my ESL students to review vocabulary words at home. I expect the page will be used on PC, Mac, and tablets (both Android and iPad).
+
+&amp;#x200B;
+
+The problem I am having is, I will set the images in certain positions relative to the background (which is important for image context) and it will look fine on PC or Android tablets, but when we move to iPad, suddenly the image sizes are much smaller and they move higher up the screen.  See the two images for comparison (""good"" image is from Galaxy Tab S4, ""Double Plus Ungood"" image is from iPad Air2.)
+
+[https://imgur.com/a/Ugko3g6](https://imgur.com/a/Ugko3g6)
+
+How can I ""lock"" these images in the correct relative size and position so it will look the same no matter what screen I'm viewing it on? Do I need to use CSS Grid, or something else?
+
+Thank you for the help!",8,html,2020-12-05
+k64jgl,Why browser sync keeps ignoring my CSS but works perfectly with HTML?,"Today I decided it's about the time I get 'Sublime Text'. I connected it with chrome so I can see my work and to make it more efficient I also got browser sync so I can see in 'real time' what I am changing in html and css and I know these two are properly connected because every time I open the browser by right clicking on the html file and clicking 'Open in browser' the chrome browser shows the file properly with every change I have made in html and in css. But when I run the HTML file on browser sync it totally ignores the CSS file?Should I do something extra to make these two connect in browser sync also or what is the problem?   
+Thank you  
+I hope I make sense ",3,html,2020-12-05
+k63se0,HTML/CSS Tutor Available? (Intro Python/HTML/CSS),"Are there any experienced coders who has also done some instruction for beginners who would be willing to provide a few hours of advice and tutoring over Zoom?
+
+I'm working on a final web design project for my intro to coding class, and it uses basic python (django), html, and css. I've already done most of the work, but some parts of the website, design-wise, could be improved. 
+
+Willing to pay as well! Thanks!",0,html,2020-12-05
+k5yp4f,hello. i just learnt html today and can make basic web pages but need some help,"on the youtube videos, when they want to add an image, they just do img src=""example.jpg"". but when i try to do that it shows the broken image icon and the only way is to type the whole path to image like c:/images/example.jpg. is there any way to just type the name of the image",7,html,2020-12-05
+k5q09m,only one image map link is working out of 3,"https://jsfiddle.net/bw49rm6u/
+
+having trouble with image maps, i made three areas but only one of them is clickable. they used to have the same shape (rect) but when I couldn't click the other links I made it with diff shapes, still didn't work though. Anyone know why?",2,html,2020-12-05
+k5otig,Picture not showing with &lt;img&gt; tag,"I have a .png picture that I’m trying to insert into my personal html website and all I get is the alt rage I put in. The code is this: &lt;img src=“montage.png” alt=“5 of me in a picture” &gt;. The resulting page looks like [this.](https://24.144.189.90/portfolio/portfolio-index.html)When you click on the link, your browser won’t trust my self signed certificate so you’ll have to tell the browser that you acknowledge that it’s safe. The file structure looks like this:
+var = root level directory
+www = main Apache2 search directory
+html = webpage start
+portfolio = organizing folder
+portfolio-index.html = portfolio index file for not working picture
+montage.png = picture that won’t show up
+Does anyone have any idea how to fix this?
+
+Edit: FIXED! I didn’t have the correct permissions on the file for Apache to read the file. Fixed permissions and now my picture shows up. Thanks to all who help me try to figure this out",2,html,2020-12-05
+k5jqwn,Issue after New Domain Name,"I have a webserver being hosted on IIS. I recently moved the server to a new domain name, and now it wont properly load on any web browser.
+
+The first image is how it is supposed to load. The second is how it loads
+
+[https://imgur.com/a/qNQSnzR](https://imgur.com/a/qNQSnzR)
+
+EDIT: The HTML has not been edited between the 2 domain names.EDIT2: When opening through the server itself using its IP, it opens fine  
+
+
+EDIT 3: I hate darkreader
+
+&amp;#x200B;",1,html,2020-12-05
+k5jmtd,Adding a random int to a table cell using javascript,"I'm trying to create a table that contains info about students I created and for their student id, I want it to be a letter + random numbers (for example, X35321).
+
+This works for the first cell, but the other cells remain blank. Any idea how I can fix this? I posted the relevant portions of my code here.
+
+    $data = array();
+        $newquery = mysqli_query($connector, ""select * from users where usertype='2'"");
+        while($hold = mysqli_fetch_assoc($newquery)){
+            array_push($data, $hold);
+        }    
+        -------------------------------------------------------------------------------------
+    
+                 &lt;tr&gt;
+                    &lt;td id=""stID""&gt;&lt;script&gt;
+                         var y = Math.floor((Math.random() * 11111) + 99999);
+                        document.getElementById(""stID"").innerHTML = ""X"" + y;
+                     &lt;/script&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;?php echo $x['name']; ?&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;?php echo $x['email']; ?&gt;&lt;/td&gt;     
+                    &lt;td&gt;&lt;a class=""btn btn-info"" href=""grademaker.php?id=&lt;?php echo $x['id']; ?&gt;""&gt;Edit Grades&lt;/a&gt;&lt;/td&gt;       
+                 &lt;/tr&gt;",1,html,2020-12-05
+k5gu3r,How to build a game,"I have searched the web and I have found tutorials for websites, but not for games. Anyone know how to code a game??",12,html,2020-12-05
+k5cli9,only one image map link works out of 3,"hello! I need help with image maps, I put three links in clickable areas and I made the map using https://www.image-map.net/ . I copied the code but when I went to run it only one area was clickable. Idk what I did wrong, at first I thought it'd be because all the shapes were squares but changing the shapes to vary didn't help either. I tried doing a seperate &lt;map&gt;&lt;/map&gt; thing but that still didn't work out, sorry if that sounds confusing idk how to explain it. I'll also mention that the links I were making were just file paths, as this is a school project and the other things I'm linking are my other html files. Any help appreciated, thanks!
+
+(Also does anyone know how I can make it that the links don't open in another tab? I don't remember how I was able to do it before, thnx!)",1,html,2020-12-05
+k5brtj,Simple positioning question,"I am new to coding so bear with me. [https://codepen.io/toooortoise/pen/YzGyYOK](https://codepen.io/toooortoise/pen/YzGyYOK)   
+Can somebody please explain why in this case when you make the tab smaller (and the same I guess should happen in small devices) the border respects the max-width 15vw ; but the text inside it does not? Shouldn't the text which inside an element follow it's styling? How can I sync the positioning of the text within the box with the box itself?   
+If you want to see what I mean please open the codepen and make the tab small enough. Thank you",1,html,2020-12-05
+k59u9t,O have a question,Is there a free server for my website?,3,html,2020-12-05
+k529c3,Need help,"So, I’ve written code in html, and when I share the link that comes up when I open it on my computer, nothing shows up for them. How do I get a shareable link for my web page?",2,html,2020-12-05
+k4zpju,&lt;img&gt; tag not showing image on website,"I am working on my own website to host my portfolio but when I use my image tag, &amp;lt;img src=“/var/www/html/portfolio/portfolio-pictures/Montage.png” alt=“5 of me in a picture”&amp;gt; it only shows [this.](https://share.icloud.com/photos/0tUePqFuKwqVHaBhxoMoXfp-w) 1 I have checked the permissions but it still isn’t working. Does anyone have any idea of how to fix this?
+
+Edit:  I am also using a raspberry pi running raspbian and apache2 is the website serving software. The hierarchy go like this:
+
+Var-root level directory
+
+Www-where apache starts reading files and folders
+
+Html-main webpage folder
+
+Portfolio-portfolio folder to keep the website organized
+
+Portfolio pictures-again to keep things organized
+
+Montage.png-the actual picture.",8,html,2020-12-05
+k4q3zu,HTML details tag - how widespread?,I just discovered HTML's details and summary tags and want to build a collapsible page of book notes. Will they be supported by Firefox and IE in the future?,3,html,2020-12-05

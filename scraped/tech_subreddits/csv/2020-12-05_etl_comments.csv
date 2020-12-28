@@ -1,0 +1,220 @@
+comment_id,post_id,comment,upvotes
+gdiqqmg,k0jqxc,"Hopefully this pushes google to improve their implementation because I’ve been having quite the trouble with theirs. 
+
+I guess while I have the floor, does anyone know what could cause the scheduler stop scheduling when there are a large number of active dag runs? I’ve increase max_active_dag_runs, and many other things. The limit seems arbitrary, that is, it doesn’t stop scheduling at an even number, sometimes it’ll stop at 450 active runs, other times at 400. The scheduler still schedules and queues other dags, but nothing gets scheduled for the one with many active runs.",6
+gdiwds1,k0jqxc,And Microsoft with something that doesn't require you to manage k8s directly. Would be nice to have the trifecta.,5
+gdkx2v5,k0jqxc,Google? I thought airflow was Airbnb?,1
+gdl8iiz,k0jqxc,Developed by Airbnb but this is about a hosted/managed version of the software,1
+gdl90qj,k0jqxc,Google Cloud Composer is Airflow hosted on GKE.,1
+gb9gg6l,joligm,"Why Ab Initio specifically? Typically tools are just tools, the most important thing is what business problem you're trying to solve.",6
+gdsn2s1,joligm,"I've just heard so many war stories about how powerful and efficient it can be, and was really curious. They are also very hush-hush about their product, so you don't get to work with it unless you're at a company that deploys it",1
+gbaefoc,joligm,"Ab initio from what I understand was mostly script based as opposed to SSIS which was GUI driven. 
+
+I am assuming you need this knowledge for supporting existing ab initio application. If you looking to learn this to add to your skill set you may want to look at other modern tools in this space.",2
+gbayor4,joligm,"I'm actually just wanting to work with it purely out of curiosity. I've heard stories about how efficient it is when you use it correctly and just really want exposure to it more than anything. 
+
+I think the term is ""I'm falling for the meme""",1
+gbbf4df,joligm,"that AI stuff looks like garbage to me, but if you're into it, have at it.",2
+gb8nobq,joligm,"Title should read ""Ab Initio"" Autocorrect on Pixel phones should outlawed- very inaccurate",1
+gb9g8ej,joligm,Check title before posting?,2
+gb9k0h7,joligm,"Yeah, that was my mistake :(",1
+gadbedn,jjkzdh,"Efficiency is one.  I do work in Azure SQL database a lot, but I suppose my ETL tooling there is Data Factory.  For most applications I like this, though it’s not super-efficient for some uses but it’s usually the right size for me.  I’ve used Pentaho before.  Traditionally, for the ADF activities I use a three/four schema dB design for Ingest, normalization/transformation and post-processed layer.  It’s probably not the most efficient but for what I’m doing it works and covers our source control needs.  My group also does other ELT work and we use Databricks/Spark for a lot of those activities in conjunction with Data Factory.  All ties in to DevOps Git for CI/CD process.  One size definitely does not fit all.
+Knowing what’s out there and what works for the needs (cost-efficiency, overhead, transparency, controls, etc) is going to help make those decisions.  But there’s also a lot out there to try to keep current on everything. I try to be aware of these products and try not to chase too many rainbows.
+For in-database, on-premise work you’ll probably still find benefit from SSIS or another application to manage the ETL tasks.  
+With integrated ETL tools you can call all the procedures you want but you can also triggers and in many cases you can make API calls to handle other processing or sources parametrically.  Parameterization (?) provides for reusable assets and templates to speed efficiency and consistency in the approach to each problem.",9
+gadrnnx,jjkzdh,"100% agreed with these points.
+
+Also, there are some things that just aren’t really possible in an ELT framework. For example, if you need to make API calls to external services, build and train a machine learning model, or score data on existing machine learning model to name a few. These may or may not be available in an ETL tool (as touched on above), but they would be available if you were to say, be using Python to orchestrate both options.
+
+Depending on your use case, these may or may not be relevant, but it can lead to ELT working super well _except_ for these couple steps. You then start to see architectures like ETLT take shape, which isn’t inherently bad. The trade off now becomes “how do we decide what goes where” and without someone acting as a data architect and making those decisions with a bigger picture in mind, you get random transformation steps thrown across all levels of your pipelines for no reason.",3
+gae9k3f,jjkzdh,"Thanks for adding on here.  I agree with you, too.  Looks like a good discussion is going now.",2
+gb61qlq,jjkzdh,"Hi there, we are looking at doing something similar. Are you using ADF activities to orchestra copy data activities between the dB tables (ingest,transform etc) or are you using SQL stored procedures called from ADF? 
+
+Thanks",3
+gb7zh77,jjkzdh,"Doing both.  My general practice is to ingest, hash and call sproc to merge/update with changes recorded in history table.  Destination is pretty flat, though, since I am primarily migrating data at the moment.  Our analytics team has started leveraging temporal tables with benefits realized on as-was  states.  Of course, there are loads of other options for how this can go, and on one project I have now we need a higher level of normalization, and have started leveraging Data Flows in ADF to do more transformation in the process.",2
+gads8em,jjkzdh,Are you considering synapse workspace and SQL on demand and how you might be able to pivot from using azure SQL db? I'm currently modeling something out that does just that with azure analysis services on top as the end user query layer.,1
+gadsov9,jjkzdh,"This is generally referred to as ELT, and its downsides include:
+
+* Depends on the most expensive to scale component as a resource - the warehouse itself.  And sure, why this is component is typically very scaleable, and maybe autoscaleable with Snowflake, etc - it's also incredibly \*expensive\* to scale - in comparison to something like aws lambdas, kubernetes, etc. 
+* Can limit your transformation calculations to what's expressible in SQL - while SQL is an OK language it's a pretty horrible general purpose language, and when you need to perform a very complex transformation it's extremely weak in comparison to Python, Ruby, etc.  
+* SQL is messy and hard to test -  SQL transforms tend to become massive complex SQL queries that are hard to read, hard to debug, easy to get wrong, and hard to test thoroughly in any simple way.  Compare that to keeping each function transformation in Python, along with a docstring and coupling it with a dedicated unit testing class.
+* Can be slower than alternatives - many operations are \*much\* faster in a general-purpose programming language than via SQL on a database.    While you can scale up snowflake ($$$) or you can buy a big Redshift cluster you can instead simply kick off 5000 simultaneous Lambdas which will be \*far\* faster and unless you do it all the time could actually be free.   Beyond that some calculations are just faster in a compiled language than in SQL.
+
+There's also benefits to ELT, like the ability to leverage staff that only know SQL to do the transform work, but that's about it.",7
+gae60vv,jjkzdh,"How is first getting all data out of your database, transforming it with python or whatever and them pushing it back to the database faster than doing it all inside the database? I guess you do some specific things that are hard on a database but I struggle to think of examples.",4
+gaevof8,jjkzdh,"Oh, I think it's typically faster to stay in the database if your source &amp; targets are both already there.  Not always - sometimes a database just can't be convinced to use a merge join and insists on using a nested loop join when joining two 20 million row tables.  Sigh, that was mysql.
+
+But I think where you really see the difference is for the data that isn't in your database yet - data coming from kinesis, APIs, s3 files, etc.   Rather than replicate that into your database and then run huge queries (or millions of individual ones), it's much faster in my experience to scale-up your transform, maybe rejecting data you don't need, and then loading what's left.  Ideally in parallel.",3
+gae8l8k,jjkzdh,"I roughly agree with your point, especially the first time. It really is very dependent on the use case and setting then.  What I'm encountering, and I think a lot of other companies, is that a lot of modern SaaS applications do not provide direct access to their data in relational format (the backend database(s)) but only via REST (or SOAP) API's. When your use case is to (incrementally) copy that data, you're often not talking about millions and millions of rows a day. And often times (in my experience) complex transforms are not necessary, merely flattening/normalization.  
+
+I'd add that SQL is Turing complete, so it's just as 'strong' as Python or any other Turing complete language. It's just way more cumbersome to do certain things with it, as afaik you're limited to procedural style programming in a somewhat verbose manner.",2
+gaev4pc,jjkzdh,"It feels like about 1-10% of the transforms I run into are complicated.    That complexity can happen a number of different ways:
+
+* file structure complexity - need to recurse through DNS down to create flattened records, need to restructure a csv or json document embedded within another csv or json document - with many, many quotes and escaped characters.
+* field complexity - creating smart keys, translating some free-form text to specific codes, handling data with multiple encodings, looking up ip addresses against a lookup table of IP \*ranges\* - and then building a cache off the first 2 octets to speed that slow process up, maintaining an array or map within the record of field data quality and then rolling that up into a record-level data quality score, etc, etc.
+* business rule complexity - validating and cleaning up data in particular, things like ""use the maximum of these three dates, depending on the value of some other columns, but none can exceed this forth date.  If they do use the forth date -1 microsecond"".
+* performance-related challenges - there are plenty of applications that get million to many billions of events per day AND seek to deliver near real-time access to the results.  Say 30-300 seconds.   That's definitely achievable, and not difficult with ETL living outside the database.   When you talk to people that depend on ETL within the database instead of hearing ""ok, we can do this"" you're very likely to hear instead ""you don't know what you're asking for, you don't really need that, what you're asking for is unreasonable, we can't afford to do it, and it's a very bad idea"".
+
+I don't think these transforms are that uncommon, I think what's more uncommon is that people just refuse to consider them because they're too difficult using their tooling.
+
+And while SQL may be Turing complete - that's if you're using PL/SQL.  There you have primitive exception handling, lack of integration with third-party libraries (say for interpreting IP addresses, validating email addresses, etc).  If you're using SQL then  it's a big challenge to avoid building up massive and unreadable queries with zero code reuse.  And either way there's no testing frameworks and no real ability to test one field  transform at a time.
+
+EDIT: added performance bits",2
+gckki0k,jjkzdh,"For the csv files, one thing we do is use pipe delimited data when it is available for export out of the src. Saves a lot of headaches with text quality and the complexity of commas and quotes.",1
+gae720d,jjkzdh,Denounce SQL as complex and messy then suggest orchestrating 5k Lambda workers instead? Hmm,2
+gaevcvz,jjkzdh,"Lambda autoscaling is trivial.  It is more work to set up lambdas (mostly the obnoxious security profiles), but as long as you avoid going too fine-grained with them they're easy to write, and much easier to maintain than say 50,000 lines of SQL.",1
+gaji9w3,jjkzdh,"&gt; SQL is messy and hard to test - SQL transforms tend to become massive complex SQL queries that are hard to read, hard to debug, easy to get wrong, and hard to test thoroughly in any simple way.
+
+On this point, I would recommend checking out dbt (getdbt.com) -- it a FOSS tool that solves these problems.",1
+gajrxz1,jjkzdh,"My team is using dbt right now and I don't think it does:
+
+* Its schema &amp; data test runners are pretty good.  I don't think they have the ability incrementally test just the most recent data easily, so that will hurt at scale.   But in dealing with small volumes I think the SQL test runner is really good.
+* But the SQL transforms can still easily get to hundreds of lines of code that's very difficult to read.  You have to know SQL, and know it well to have any hope of understanding it.  And there's no ability to just test parts of potentially complex multi-step CTEs.  Instead you are limited to testing the final result or breaking your transform into multiple tables so that you can more easily isolate problems and not have engineers potentially lose an entire day trying to figure out where the extra row or rejected row occurred.
+* The Fishtown approach involves creating tables without worry about curation, since dbt hypothetically lets you see the data lineage and runs everything in order.   But once you've created thousands of tables out of a model that should have only dozens or at most a couple of hundred then you have an entirely different kind of disaster - with excessive costs, data quality problems due to inconsistent transforms, and maintainability nightmares (ex: ""a business rule change will require us to now modify 250 tables!"").   And the lineage it shows is not at the field level but at the table level - which is semi-useless.
+
+So, while DBT is the most recent silver-bullet in the data engineering space just like all the silver bullets that preceded it (ex: Airflow, Hadoop, Glue, Map Reduce, BigQuery/Redshift/Snowflake, Pandas, etc) - it's just a tool that solves part of the problem, and introduces new challenges along the way.",2
+gc5jlwb,jjkzdh,What about [Great Expectations?](https://greatexpectations.io/),1
+gc67vxg,jjkzdh,"Looks like a great tool, but I haven't tried it out yet.",1
+gajib24,jjkzdh,"**I found links in your comment that were not hyperlinked:**
+
+* [getdbt.com](https://getdbt.com)
+
+*I did the honors for you.*
+
+***
+
+^[delete](https://www.reddit.com/message/compose?to=%2Fu%2FLinkifyBot&amp;subject=delete%20gaji9w3&amp;message=Click%20the%20send%20button%20to%20delete%20the%20false%20positive.) ^| ^[information](https://np.reddit.com/u/LinkifyBot/comments/gkkf7p) ^| ^&lt;3",1
+gaepz55,jjkzdh,"The answer everyone hates to hear is ....""It depends"". Use the right tool for each job and use case.
+
+If all foreseeable use cases are simple enough to be handled easily in the db then go ahead.
+
+In my experience we do a lot of data integration from  below scenarios and doing most of it in the db has been a nightmare.
+
+* flat files, 
+* tcp/ip, 
+* web services
+* complex transformations (converting between business domain objects, generating different cardinalities e.g one-to-may, many-to-many; Lookups across several domains; 
+* Complex duplicate resolutions
+
+Our Sql stored procs have gotten convoluted. In addition we have single tenant infrastructure and its difficult to build and deploy sql artifacts  , we end up with 
+
+* different implementation of same logic across different clients. versioning problems
+* duplicated code across different deployments with no common parent code for easy updates.
+
+NonSql coded  solutions with commonality abstracted out through inheritance , versioned libraries of declarative dependencies(ala maven, gradle) would be better IMO.
+
+Scheduling and orchestration in my current experience would be better off handled by an enterprise scheduler or something like airflow that needs a plugin-type capability to communicate with different process types. We are using low level cronjobs and windows scheduler which are a nightmare with manual retries, notifications, logging, job dependencies. Database triggers impact performance. CDC tools like Debezium can make it easier to stream database log changes through Kafka to downstream processes.
+
+Scaling some databases horizontally can be relatively harder (esp relational dbs). Having separate compute logic allows easier addition of distributed processing",3
+gadiu5l,jjkzdh,If you can do all your ETL within a database do it 100%,6
+gae842i,jjkzdh,"If you ask me, this is 100% the path forward - especially in the case that you have a data lake.
+
+I wouldn't make the callouts to external services directly from the DB but I would have those services dump a local cache (daily job etc.) to an object store and then have the DB do load from the object store via ""external tables""
+(https://github.com/fishtown-analytics/dbt-external-tables)
+
+Main argument against is something like expense or expressiveness. 
+
+I would say that an optimized dbt orchestrated model can 100% handle for both those cases: 
+[dbt](https://www.getdbt.com/) 
+
+Granted - You can't support *volume* (TBs, PBs) without some amount of expense. Anything under that should be manageable with S3 Buckets and Redshift RA3 Nodes (Flex Compute / Store, i.e. Snowflake) without significant expense (200-500/month). If you don't even have that budget, your company isn't really wanting a data warehouse. (IMO)
+
+For the expressiveness case, so far there hasn't been anything that dbt with Jinja compile SQL can't express so far. It can handle type conversions, recursive sub-queries, and a lot more. So, I'd give that a shot. It's open core so you can always run it yourself if you don't want to depend on their cloud hosted service.",1
+ga86w70,jinszq,"Can't take any article seriously that confuses ""loose"" and ""lose""",1
+ga8ddc6,jinszq,Haha yes that hurt me too but still worth it.,1
+ga93slt,jgnzjp,"Thank you. 
+
+Is there a runner on the Microsfot Azure stack available??",1
+ga9gaz0,jgnzjp,"Hi there, yes! You can run Apache Beam on top of Azure Databricks.",2
+g9kfdsl,jf6zo6,"I love how optimistic you are. More common is: explaining why that data doesn't exist, explaining why you can't create data out of thin air, explaining how that legacy system destroyed all the data or stores it in a format that you can't do anything with.",4
+g9j46cs,jf6zo6,"Understanding dated technology that may need to be converted to new ETL tools. Date formatting, data validation, data type conversion, etc.",3
+g9kp9sc,jf6zo6,"Etl jobs such as Informatica
+
+Crontab jobs
+
+File permissions
+
+Sql select queries
+
+Sql views
+
+Sql join queries
+
+Shell scripts bash probably also posix sh and korn
+
+Ftp
+Sftp",2
+gcmi2ol,jf6zo6,"More likely double down on skills like:  
+1-parsing exotic formats from source systems that don't export data very well
+
+2-Monrach or other old timey report reformat software. These turn messy reports from legacy systems into tabular data.
+
+3-mostly understand the business. For example in Pharmacy you'll need to understand that fills and refills have another lower level of granularity thats unknown to the end users: refill-try. That refill might fail with a code that will be very useful for analysis. That's the level of detail you need to dig into.",1
+g8vy2wj,jbjn86,you’re gonna need to give us a reproducible dag file if you want this solved I think,2
+g8wfwp1,jbjn86,Sounds like you got some data skewness,1
+g8thvpv,jb5lko,"Maybe you could describe your use cases?
+
+For example, I run etl from multiple databases to postgres, using sqlalchemy (a library), and I run the etls as a cron job on kube. The job script itself checks for updates on each table.",4
+g8th0vj,jb5lko,"Depending on your uses, Airflow might be a good one to look at. Not sure what parts you’re looking to replace since the original post mainly mentions data migration.",2
+g8viop8,jb5lko,What are you trying to do and how is it failing?,2
+g8x7i4i,jb5lko,"I'm in a similar spot, have been looking at PETL, but am open to alternatives. Trying to read from multiple REST API's (real-time? and/or periodically), store on a local MySQL DB and make files available to Tableau Online for reporting.",1
+g9jxaoh,jb5lko,"We could use some more specific info.   A few things to consider include:
+
+* What's your team culture and skills look like?  Engineers that write code?  Place more value on code than commercial products?
+* What kind of data volumes do you have?  Python can handle large volumes but that requires multiprocessing which adds to complexity.
+
+And while Python works great for ETL, here's some pieces to consider, regardless of what technology you use:
+
+* Scheduling
+* Logging
+* Deployment
+* Testing
+* Pipeline design: 
+   * Separate extract, transform, load steps?
+   * Planning to persist data between steps and raw data?
+   * Any needs to perform change-data-capture (CDC)?
+   * How do you want to handle idempotency?
+   * Will you have complex dependencies between pipelines?",1
+gcixj4h,jb5lko,"Really good advise.
+In the end you want to start your day with:
+- Is the process ok? (Good looging info)
+- If something failed: Can I have a test for it and fix it so it doesn't happen again? 
+- Can I deploy the fix with confidence?",2
+gcmgicv,ja4lpt,Doesn't ocr cover this? Or we're looking at non-text properties?,1
+g8m9a81,j9wv81,"Talking to one person is a small sample size, so take their word with a grain of salt. I’m a data engineer (full time, not contracting) and have received as my requests from recruiters as ever.",3
+g8n3syl,j9wv81,"Full time/no contract and my team is busier than ever. If anything COVID has pushed more things into our queue. I’m not sure if our end users are just now realizing the impact ETL can have on their daily activities or if it’s by sheer coincidence. Turnover of work/deployments have slowed but I think that’s due to other reasons aka laziness, inefficiency, human error, business processes, etc.",1
+g8owu8o,j9wv81,Interesting perspective. Which etl tools do you use?,1
+g8ocrjb,j9wv81,"Talend is dying in general, as processes move to the cloud - either in GCP BigQuery / AWS Redshift directly, or maybe using Matillion for less experienced Data Engineers.",1
+g8owx6b,j9wv81,talend has a pretty good cloud offering. I don't  understand why the shift to the cloud would be a negative for them,2
+g99o44x,j9wv81,"Im curious on why ""Talend is dying in general"" , I think I probably agree but wonder if  based on the same arguments, could you please elaborate?",1
+g8acfx1,j87s3k,"Thank you for sharing, Marc!",1
+g8flwz2,j87s3k,"(not going to lie - I had to do a double take as I expected UFO :) )
+
+That's a very interesting though - thank you.",1
+g8zajhc,j87s3k,UFO?,1
+g91dchx,j87s3k,"It was a classic PC game from the 90's (the first one my father bought...).
+
+Ignore me - just being silly!",1
+g8zaigv,j87s3k,Happy to know you enjoy it :),1
+g7y9t9k,j65r0x,"I think it's because the three camps doing ETL work are heading in three different directions all of them away from on-prem gui-driven solutions:
+
+* Data Engineers - mostly build custom solutions to support complex environments with high availability, volume, variety, value, complexity requirements.  This crowd doesn't pay much attention to Talend.
+* BI Developers - mostly moving to SaaS products like Matillion.  Talend could possibly pick up this crowd with a better SaaS hosted story.
+* ETL Developers - kinda flirting once again with having the user build their own ETL solutions using products like DBT.  I think this crowd may reconsider this solution in a couple of years after they've built 100,000 lines of SQL.",6
+g7ya6or,j65r0x,We're looking at Talend FOR their saas product. What's wrong with Talend's saas story vs. Matillion?,2
+g7ynbeh,j65r0x,"To highlight Data Engineers, I have found this [road map](https://github.com/datastacktv/data-engineer-roadmap) very intriguing, where it could lend a hint as to why tools, software like Talend, SAP, Microsoft, Oracle, etc. are not being looked at",2
+g8397ja,j65r0x,That's fascinating - thank you for sharing that. Almost no mention of MS beyond AD.,2
+g7yaqjl,j65r0x,[deleted],-1
+g7ye1ix,j65r0x,ETL (extract transform load) is the process in which data gets moved from one place to another. DevOps is a workflow processes/methodology while an ETL is the pipeline to connect data from source to consumption.,4
+g8084id,j65r0x,[deleted],1
+g80b264,j65r0x,"Ah ok, my bad. I'm not aware of ETL being a buzzword, it will get used by managers who don't understand it. Which I guess counts but I haven't experienced it outside of my field, whereas ""blockchain"" was everywhere lol. 
+
+ETL might be ""hot"" since data work takes the longest time for data science, which is what I'm doing a lot of for my job. Now with data science is more established (imo), sustainability is a bigger consideration (need non-adhoc ETL) and hiring for the ""ETL guy"" is cheaper than a ""data engineer"" and hiring managers haven't separated data engineering from the base data scientist title. 
+
+I interviewed a bunch and started a new job a few months ago and personally wouldn't consider ETL a buzzword. Your mileage may vary",2
+g7ywptq,j65r0x,For me it’s because Matillion came in and upped the game.  We’ve been using it for 2 years and won’t look back. Speed is incredible and it’s easy to train staff.  We’ve also had excellent support.  Sure it’s lacking a little polish with broad enterprise features but we’ve worked around those and the situation is improving rapidly over time.,1
+g7xbt94,j65r0x,Fivetran came along,1
+g7xswzb,j65r0x,Stitch and fivetran are only relevant in certain workloads,4
+g89bocz,j65r0x,I’d like to know what does that really mean.,1
+g9l30gy,j65r0x,From my work FiveTran and Stitch are only really good at the data loading component but don't offer a full breath of features you would want with your ELT tools. They are pretty inflexible around Transformation - basic and limited by the number of connectors the business offers. LMK if you think differently?,1
+g7zf8b5,j65r0x,"IDK, maybe b/c they started spamming people's email and Reddit feeds? People don't like s#!&amp;ty, tone-deaf, cold-call marketing. F' Talend.",0

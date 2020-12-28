@@ -1,0 +1,393 @@
+comment_id,post_id,comment,upvotes
+gemwjxy,k6jpbi,Thanks. The author touched on many aspects; it complements well with various architecture books.,1
+gelii3e,k5y6qa,"No expedience in that domain, but curious. 
+Why chaining MQTT and RabbitMQ together?",1
+gempzjw,k5y6qa,"Good Q actually, because RabbitMQ has an MQTT adapter so can act as a broker as well as a message queue to buffer any dropped messages",2
+gehkzvx,k5v608,"Interesting stuff. I take it you're the OP, could you share some details about how this has improved your development environments and simplified things? I think I have some idea but it's a bit vague so it's hard to tell.
+
+I imagine the new-found freedom is a consequence of removing direct couplings from the execution of the code for handling your various use cases, is that correct? That is to say, by removing the need for direct API calls or launching subroutines for handling some intended side-effect of an operation, you just fire an event which saves you the trouble of having to mock/encapsulate those other flows into your original use case, or even having to have them in the same codebase entirely?
+
+If that is what you mean then that makes sense, but how is it different from the original approach of using RabbitMQ? Was the innovation just fully committing to an asynchronous messaging paradigm instead of relying on direct API coupling, was it some technical difference between the two products, or was it something in your approach that changed between your initial architecture using RabbitMQ and the new Kafka architecture?",3
+gekin1h,k5v608,"Hi u/Dwight-D,
+
+Thanks for your comments. Yes - indeed I was the OP.  
+Your points are valid and indeed we did realise benefit from reduced coupling (fewer direct APIs calls, independent microservices in favour of responsibility / side effect overload...)  
+
+
+But yes - it was also something technical in terms of Rabbit vs Kafka - the main point I was trying to articulate was the swiss army knife aspect to Kafka's data durability. The ability to replay events provided us a convenient state distribution capability on which to drive our query API layer. APIs can rehydrate state at start up in the form of Kafka msg replying. This enabled the removal of postgres and redis from our critical workflows.  
+If you consider Kafka's convenient support for horizontal scaling - via topic partitions - we were also able to replace the intra app coordination that we had been relying on hazelcast to solve. Throwing away four infrastructal dependencies in favour of a single one was the main benefit I was trying to highlight.   
+
+
+Having a single dependency simplified our maintenance headaches and reduced the required technical surface area against which a developer would be expected to master.   
+
+
+But developer experience also benefited from the reuse of patterns (such as the API Kafka state store example) that were built against our unified application dependency. As our microservices aligned to use Kafka it become easier to share event patterns in the form of common libraries.  
+
+
+I'm planning to write a follow up post to dig into more detail here. For example, the use of Kafka to drive state distribution across our global API layer required a few challenges to be solved. (e.g. optimising state rehydration with the use of light weight 'summary topics' that we configured to be eligible for aggressive broker compaction... and optimising our use of kstreams/rocksdb for efficient off heap caching) - will expand upon these points in a follow up, more detailed, article",2
+gekyc22,k5v608,"That's very interesting, thanks for elaborating. We're on the same stack but we are nowhere near a fully event-sourced architecture yet, we still rely on traditional relational databases and use Kafka mainly as a means of asynchronous communication in place of something like gRPC/REST for decoupling, but I think we've found a nice middle ground in terms of where we are with overall technical complexity. Glad it's worked out well for you, appreciate the write up.",1
+gefobvt,k59de2,Really liked this -- it touched on a lot of things I've been wondering about and struggling with.,1
+ged74kx,k59de2,"Check out this talk from GOTOpia Europe 2020 by Roy Osherove - Author of ""*The Art Of Unit Testing*"" and ""*Elastic Leadership. Growing self-organizing teams*"". You can find the full talk abstract below:
+
+In this session Roy looks at one of the biggest problems in technical work today: lack of training for tech leads and architects in skills such as leadership, people skills and becoming change agents in organizations. Roy will also cover the ideas of Elastic Leadership and how they can apply in many different software work situations.
+
+Things covered will include, among others:
+
+* How should you measure your success in your role?
+* What to do in difficult situations such as conflicts at work with peers
+* How to grow the people on your team to gain more skills
+* When to break the rules
+* When to make the rules
+* When to coach, and how",1
+gefc6if,k58dgl,"Agree it is clever, but my concern is a container image should get promoted unchanged from dev to prod. The concept is to create a 'machine' complete with app and its dependencies, to avoid any surprises in prod.",3
+gee98dw,k55tg6,Delete this and delete the same thing from the other 14 subreddits you spammed.,1
+geebyf5,k55tg6,[deleted],0
+geecdm9,k55tg6,Do you really think people are too dumb to realize you are spamming lots of subreddits for crappy self promotion with your 7 day old name that has no other posts? Go buy ads if you want to advertise.,2
+ged13zy,k55tg6,"Personally I’ve always been very sporty and working out and BJJ are my main hobbies other than coding.
+
+I can see there being a big market for simple but effective workout/diet plans for professionals who want to get in shape without spending hours every day. This can also transition pretty well to a more bespoke lifestyle/fitness coaching option for people looking for something a little more serious.
+
+For me training helps a lot with both focus and motivation that translates to my work and mitigates some of the issues with a very sedentary job.",1
+gegoui3,k55tg6,"I love to hear that you aleady found your balance! 
+
+Absolutely, a lot of busy people don\`t have the motivation or the time to work out or to do other physical activites, and for those it will be very helpful :)",2
+geb3kyt,k4tt55,"Do something like a trigger that’s decoupled from the actual flow of the other action. Launch this deliberately from the action that precedes it. Something like an asynchronous message queue or some kind of listener/observer pattern might do it.
+
+You don’t wanna mix the two executions together, creates more dependencies in terms of state, context in testing, also makes stuff more error prone and fragile. However, it is more straight forward and possibly easier to reason about coupling them directly. Depends on how you expect or want them to diverge and grow in complexity. 
+
+You may want one to fail the other or vice versa though, and then you may also couple them more directly.
+
+Be wary of side effects. Try to decouple them also into their own flows with their own rules and triggers etc, if the rules become more complex. 
+
+Or don’t, totally depends.",2
+gedeb5g,k4tt55,"hmmm, ok, Thanks! 
+
+Would this trigger happen at the controller level or the use case level? 
+
+also, any blogs or more in-depth writeups I can point to? We don't have triggers yet in this project, though the language supports it, and I can sell implementing it I think if I had something to lean on.
+
+Since I wrote this post I was doing some more diving and the fooUseCase is used in two places;  one is when it is manually called in a controller because of user action and the other is when it is called by the controller because the intended use case returns a specific type of non success/non failure result",1
+gednuo0,k4tt55,"Not sure I understand what you’re referring to by use case and controller in this context, there are different levels of abstraction at play here. Anyway, we have something I think is similar to what you’re talking about in that we have some side effects that are launched by various data updates where we want to keep the flows decoupled, I think it’s a similar principle. I will explain our solution and maybe that answers your question. 
+
+In our case, the conceptual trigger is that the new data has been validated and that the transaction has been committed to the db. At this point we treat the operation as a success. So in the code that performs the data update, if the transaction was successful we immediately after fire an event to trigger the side effects. 
+
+We launch an event with information about the operation onto a Kafka message queue, and a different service will listen to this event and as a result trigger the execution of the desired side effect. So they are completely decoupled, live in different code bases and could even be separate languages. The only thing they share is the message queue and a common event model. 
+
+There are many different technical solutions to achieve the same thing, the key concept here is that the code implementing the different flows is completely decoupled from each other.",1
+gee3zjg,k4tt55,"hmm, thanks, gave me something to think about.  I'm thinking of emitting an in-code event, putting the triggers where needed and then writing out a use case as a subscriber for a POC. We already use AWS SQS for our messaging/jobs in other functionalities so I can add it there. 
+
+On my service (A), we attach sub-objects to an object on another service (B).  the main object can be active or inactive.  If we try to assign a sub-object to an inactive object, we get an appropriate error.  That is our trigger.  In which case, all attachments need to be discarded (the foo case).  
+
+Now, we're going to learn when the A Object is deactivated and will need to discard our own sub-objects. This information may not be immediately received, so we have a few other use cases that will need to trigger the ""discard all attachments"" use case.",2
+gee6jp1,k4tt55,"Fair warning, I’ve never really worked with these caches or key-val stores in depth, but anyway:
+
+If you want to quickly communicate something like that you could consider a shared memory cache, like redis, or shared state store in a single process like a modularized monolith system. 
+
+You could map object id hashes to the validity, and have high level exception handlers (or something more optimized if you want minimal delay) to quickly invalidate the state of any given object. 
+
+Check the validness within some defined transaction boundaries and maybe utilize some locking mechanism if you want to be sure.
+
+I haven’t built anything exactly like this and I’m not sure I’m understanding you correctly. Using an asynchronous message system seems slightly slower and possibly less reliable, and also more complicated. Depends on your circumstances. 
+
+Anyway, cool problem. Hard to tell anything about the solution with so little context. Good luck!",1
+gecp8tb,k4tt55,"I agree with Dwight, events/observer pattern may suit you. That allows you to not consolidate already segregated functions that have single responsibility into having side effects for their consumers.",2
+gecmj0k,k4obtx,"*tldr; being able and know how to work on the big picture, and doing so by collaborating with other people (business and tech). Ideally based on experience.* 
+
+I've worked as a hands-on software architect for a few years. Used to work as a full stack developer who was often involved in architectural stuff. Total experience around 10 years.
+
+This might not be the answer you're looking for ""building a good app which is scalable and efficient""; in the end that is just the culmination of you knowing your stuff. Also it is dependent on so many things that it's not answerable as is. So here's a more general level answer of becoming a software architect. Few things I think are essential and appreciated traits in a software architect. Not so surprisingly, this is based on my experience.
+
+&amp;#x200B;
+
+* Experience. This is of course individual as people are different. But I'd say it would be good to have 5-8 years of experience working with variety of projects. You should know how tech things work in real life and also in general know how businesses work. After all you'll usually be the piece between tech and business. 
+* Versatility. You should be able to work on all aspects of the system and its dependencies. Note, this does not mean you should already know everything about everything. Just being able to handle the big picture and work with it. This includes different techs and architectural patterns.
+* Collaboration. You should be good at working with others. Business and tech. Otherwise it's likely your plans and designs fall short. 
+* Passion to learn new things. Not to say you should jump into new flashy stuff all the time, but you should be aware what could be possible. This way you can be better at choosing the right tools for your scenario. This is not just for architects, but often they are the ones who have to make final decision and the base &amp; plan. 
+
+Those are the first things I thought of. In my opinion the most essential is experience. Other things often grow on you while gaining that experience. If you want to specifically try to learn something, you probably should study architectural designs and patterns. It's also a good thing if you know your coding stuff and can justify things you do on that level too. One thing which has helped me a lot is to always ask **why** I'm doing something.  
+
+
+Here's a few books to read if you're into that kind of stuff:
+
+* A Philosophy of Software Design by John Ousterhout
+* Clean Architecture: A Craftsman's Guide to Software Structure and Design by Robert C. Martin
+* Clean Code: A Handbook of Agile Software Craftsmanship by Robert C. Martin
+* Domain-Driven Design: Tackling Complexity in the Heart of Software by Eric Evans",3
+gej9jf6,k4obtx,"Thanks a lot, man :)",1
+geabq54,k4obtx,!remindme,0
+geabtok,k4obtx,"**Defaulted to one day.**
+
+I will be messaging you on [**2020-12-02 19:01:11 UTC**](http://www.wolframalpha.com/input/?i=2020-12-02%2019:01:11%20UTC%20To%20Local%20Time) to remind you of [**this link**](https://np.reddit.com/r/softwarearchitecture/comments/k4obtx/what_are_the_keys_to_become_a_software_arquitect/geabq54/?context=3)
+
+[**1 OTHERS CLICKED THIS LINK**](https://np.reddit.com/message/compose/?to=RemindMeBot&amp;subject=Reminder&amp;message=%5Bhttps%3A%2F%2Fwww.reddit.com%2Fr%2Fsoftwarearchitecture%2Fcomments%2Fk4obtx%2Fwhat_are_the_keys_to_become_a_software_arquitect%2Fgeabq54%2F%5D%0A%0ARemindMe%21%202020-12-02%2019%3A01%3A11%20UTC) to send a PM to also be reminded and to reduce spam.
+
+^(Parent commenter can ) [^(delete this message to hide from others.)](https://np.reddit.com/message/compose/?to=RemindMeBot&amp;subject=Delete%20Comment&amp;message=Delete%21%20k4obtx)
+
+*****
+
+|[^(Info)](https://np.reddit.com/r/RemindMeBot/comments/e1bko7/remindmebot_info_v21/)|[^(Custom)](https://np.reddit.com/message/compose/?to=RemindMeBot&amp;subject=Reminder&amp;message=%5BLink%20or%20message%20inside%20square%20brackets%5D%0A%0ARemindMe%21%20Time%20period%20here)|[^(Your Reminders)](https://np.reddit.com/message/compose/?to=RemindMeBot&amp;subject=List%20Of%20Reminders&amp;message=MyReminders%21)|[^(Feedback)](https://np.reddit.com/message/compose/?to=Watchful1&amp;subject=RemindMeBot%20Feedback)|
+|-|-|-|-|",0
+ge9q1lh,k4m466,"I hated drawing diagrams when studying at uni. 
+
+However at work, I wish more people did them and now love it when I get a good diagram or get to draw one out and people understand what I am trying to explain.
+
+ No matter how much they try to explain and show, the massive benefit is when you come back a year later, 6 different people have worked on that area since and you no longer have any idea what it does, you have something to see what it does.
+
+It also really helps with new work when you have multiple people working on different areas towards one piece of functionality, you can all be on the same page all the time.",14
+ge9tcye,k4m466,"In general, yes, you must be able to draw comprehensible diagrams. The skill is in that last part and requires some experience to get right. 
+
+
+If the system is large and/or complex then you won't get everything into a single diagram, in fact trying to [fit it all into one diagram] will make it difficult to digest. 
+
+
+I like the C4 approach to layering diagrams - each layer providing more (or less, depending on your perspective) detail with a specific audience in mind. By acknowledging that you can't cram everything into one diagram you can instead focus on laying out the information of value at that layer. 
+
+
+For quick diagrams I'll also switch to something like Crows Foot notation especially where I'm really just laying out a data model.",9
+gea5w5a,k4m466,"I second the C4 model. 
+
+* [https://c4model.com/](https://c4model.com/)
+* [https://en.wikipedia.org/wiki/C4\_model](https://en.wikipedia.org/wiki/C4_model)",4
+gea5xgi,k4m466,"**[C4 model](https://en.wikipedia.org/wiki/C4 model)**
+
+C4 model is a lean graphical notation technique for modelling the architecture of software systems. It is based on a structural decomposition of a system into containers and components and relies on existing modelling techniques such as the Unified Modelling Language (UML) or Entity Relation Diagrams (ERD) for the more detailed decomposition of the architectural building blocks.   
+
+[About Me](https://www.reddit.com/user/wikipedia_text_bot/comments/jrn2mj/about_me/) - [Opt out](https://www.reddit.com/user/wikipedia_text_bot/comments/jrti43/opt_out_here/) - OP can reply !delete to delete - [Article of the day](https://redd.it/k48t1a)",0
+ge9rdap,k4m466,"If you manage to identify the correct entities and operations, the UML you draw will good enough for anybody to identify the flows for a usecase. 
+
+It really is worth the time you are going to spend on it. I can’t count how many times i looked at some codeflow and wondered if there was a uml (which ofc wasn’t). UML diagrams are not only a good practice, it is a very essential part of the design process. But it is hard work and boring though. Good luck! :)",2
+gea6g46,k4m466,"&gt; UML 
+
+As a game designer, when I see engineers trying to develop games, I often take what they tell me and turn it into a UML diagram.  Then I get incredulous looks - 'you got all that from what i told you'.  Yeah... I just drew the relationships from what you said and reduced things down to their tangible elements.
+
+I have an engineer friend that I haven't talked to in over a month because when he was struggling for his game, I made him an UML and it basically operates as his 'ToDo' list.  He has been unstuck since.  It also helped him to focus on building core elements rather than working on irrelevant stuff that was way over in left field - and have a way to visualize the relevance of said feature. (yet in a way that's not design locked)
+
+Basically, a UML diagram does just that - relationships between tangible elements.  Largely, good design is just tables, lists, and flows (and of course, a core experience.)
+
+And, goes without saying, in the absence of information, you will get all sorts of ideas.  Without describing flows and relationships, people will make shit up and make their own inferences... for better or worse.",2
+ge9w8lc,k4m466,"I draw diagrams like this constantly at work.   
+
+Diagrams are a key way to document a system. It serves as information to other team members and for your future self. I also need to pass diagrams to other groups for approval on architectural decisions.   
+
+The 100% specific UML intricacies is probably less important. I'm positive I break UML rules regularly. I would probably be better at my job if I didn't. Learning the basics is absolutely important. 
+
+UML diagrams are only 1 part of an overall system design. I have a dozen pictures of any 1 system. Sequence, flow, integration, and other styles. Then I will write up a document in English which the diagrams support. No 1 diagram is perfect - but together they document a system well. Also consider that different audiences care about different things. High level Enterprise Architects will care about the big picture. Developers may need to understand the minute details. Business Analysts need a different perspective. Etc... 
+
+A good software architect definitely needs UML skills. Study up!",2
+geb0bxg,k4m466,"Well, since I work in microservices world this uml is totally outdated. Simple diagrams using c4 or the aws architecture are good enough. The code is always changing, diagrams no. So use diagrams for high level ideas and document the code for the low level.",3
+ge9sn3g,k4m466,"Short answer, yes.
+Longer answer, you'll understand the benefits and uses of it when it comes time at work to perform modelling, whether it's UML or not. Having at least one standard under your belt is a great foundation for a long career in IT.
+
+After about 10 years of development I became an architect but throughout my career I used modelling, in fact some of my prized work were diagrams oddly enough. Something about seeing an entire workflow or architecture in a single picture is worth a thousand lines of code..",1
+ge9vzpv,k4m466,"There is one big advantage with UML: A consensus about the semantics. A dashed arrow is a ""depends"", for example. I try to use that when scribbling on a whiteboard as well.
+
+There is no clear consensus what is a ""good"" diagram. I consider it like a Powerpoint slide: You can make a very clear point and you can create an incomprehensible mess and you can do superfluous boring stuff. The number of boxes or lines is not the relevant factor here.
+
+I'm torn about the value of diagrams. Mostly I consider them a ""thinking help"" but not ""documentation"". Documentation which is comprehensible (without an explanation) requires prose.
+
+Planning an structuring complex systems? I have seen surprisingly low tech tooling like Powerpoint slides and pictures of whiteboards. If you want to spend the effort of documenting the whole system I believe it is a good idea to create one big model. If you describe the system with multiple diagrams from different views, there is no way you can keep it consistent for long. If the big model is UML or not is irrelevant. Most tools (e.g. Enterprise Architect) will provide UML though.",1
+geb3zdl,k4m466,"Yes it's totally worth it. Remember when you're going to be working in teams, you'll be around people with different backgrounds, motivations, capacity, if you can create an artifact which brings everybody's attention together your meetings are going to be much more effective.
+
+I can understand you being a technical person saying if it's not 100% right it's useless, let me tell you, that kind of thinking is useless.",1
+geb5xqr,k4m466,"It's a rite of passage for some developers.    They need to go through realizing that five hours of meetings later,  they should have just emailed a link to a diagram.",1
+gea88gb,k4m466,"UML is bullshit. When you draw them as detailed as the spec requires, you’re essentially writing your code in an inferior representation, and you don‘t gain anything from looking at them that you wouldn’t get faster directly from the code.
+
+The value of diagrams lies in their simplicity and *lack* of detail, the ability to quickly glance at them and getting a high-level understanding of the subject matter. If you strictly adhere to UML, you lose this benefit. However, the kinds of diagrams included in UML are very valuable. UML contains diagrams that offer several useful perspectives on your software, just keep the actual diagrams clean and don’t clutter them just to conform to UML. Also don’t shy away from inventing your own conventions if you need something that UML doesn’t offer.
+
+Obviously, all of this only applies to reality. At university do what your professors ask.",1
+ge55h3v,k3sldy,"Yes, have the configuration updates be submitted as database migrations that gets applied by way of CI/CD. Either with true CaC like `db.save(Permission(userId, permissionType))`, or native SQL if you wish.
+
+That way the source of truth is still unambiguously the database, but you manipulate the database in a reproducible fashion.
+
+Make sure your migrations are idempotent, ie don’t do updates, do delete + insert etc, at least while you can conveniently swing it. Sometimes update may be necessary, but try to make it as robust as possible and not so dependent on previous db state to apply new migrations. Will make it easier to reproduce in case you need to recreate the db for some reason.",2
+ge8jsj4,k3sldy,"Makes sense. It seems like mirroring the changes into a VCS would be difficult though. I'm starting to think that maybe I build the best parts of what version control would give me into the CLI.
+
+So mostly a review/approval/diff system. Which shouldn't be too hard. I like the idea of having both worlds, but I think actually making that a reality might be a bit more work than its worth. Especially if the API allows users to automate the interactions with the permission system in their own way.",1
+ge8n5ga,k3sldy,"I realized I missed a part of your question, sorry. I guess you could build some kind of circular system that regularly reads your DB, converts the data to DSL, and commits to your repo through some automated regular pipeline. But I don’t know exactly what it would be good for. 
+
+If you just want versioning and backups of your database I’m sure you can find a managed cloud provider which gives you this. What are you hoping to achieve?",1
+ge4kguh,k3obzu,"I'm not a Java developer, however I think you should take a look at [Netty](https://netty.io). It is a framework for  asynchronous event-driven applications.
+
+I haven't used Netty, but I use the Swift version of Netty, called NIO, which in part is developed by the same people as Netty.
+
+With Netty (or NIO) you allocate a group of threads that will be used to execute events. This way one thread can handle multiple connections and you won't run out of resources as fast as if you were to keep one thread per connection.
+
+Good luck!",2
+ge2gffg,k3ersf,"I love this question thanks for posing it. 
+
+while I respect your concern for a future provider invariant, if your core domain is a player management service with many upstream providers I would stick to your anti-corruption layer mapping approach. Especially if the current provider contracts change id much rather be upgrading your webhook clients at your convenience (or building resiliency there if contract changes are out of your control) rather than exposing your core aggregate and persistence. 
+
+Feel free to tell me how this is a bad idea, but my first approach for your example where a provider required some data not part of your aggregate, could you store it at the ACL layer and merge it when needed over the wire?",5
+ge2iagg,k3ersf,"This is actually one of the use cases currently if I understand your question correctly.
+
+One of the providers needs a representation of a player in the response with every webhook command they send us. To do this, I query the playerRepository on every request to get the entity, then put it through a reverse ACL to give them the DTO they want.
+
+High complexity integrations in this domain usually require an ACL going both ways, both mapping the incoming request to domain commands our system understands, as well as mapping our domain entities to a DTO the external system understands.
+
+I appreciate your response. Could you elaborate on this a bit more:
+
+**""Especially if the current provider contracts change id much rather be upgrading your webhook clients at your convenience (or building resiliency there if contract changes are out of your control) rather than exposing your core aggregate and persistence.""**
+
+&amp;#x200B;
+
+Are you suggesting the loose schema approach by storing json at the database level then mapping it through the ACL into our domain model whenever a providers command comes in (approach 1)? ... or add new tables with specific columns for each specific provider (approach 2)?
+
+&amp;#x200B;
+
+With approach 1 I might be able to get away with a generic repository for all providers, but I'm worried that a future feature will require the repository to diverge to provider-specific ones.",2
+ge4vths,k3ersf,"&gt;ne of the providers needs a representation of a player in the response with every webhook command they send us. To do this, I query the playerRepository on every request to get the entity, then put it through a reverse ACL to give them the DTO they want.
+
+You would gain a lot from a generic repository even if you manage to fit 80% of the providers to that generic structure. Other 20%, more complex providers can augment the existing structure with additional tables that point toward the generic structure (never from generic to specific). The code and API should follow the same pattern so that provider-specific logic (if it is unavoidable) would be clearly decoupled. At least I'd take such an approach where basic bets data would be in a similar structure and additional fields clearly separated.",1
+ge512v9,k3ersf,"Maybe this is really stupid and pointless, but if you have some common set of data and some that is unique you could try to find out the lowest common denominator in terms of shared properties, like `internal_id`, `external_id`, `timestamp`, `system_id` or something, and store that in a common table, and then store provider specific data in their own tables. 
+
+You could build a generic API for doing whatever common operations you have in your domain, and then you could build an adapter for each external system that does it’s own provider specific logic and then delegates to your common API for the shared logic. 
+
+This is only really meaningful if you can find some useful generic abstraction that’s reasonably self contained and provides value while still hiding some of the provider specific stuff away. Otherwise you’re just splitting up for your data for no good reason.",1
+gdugel7,k2ijqp,"I'm new to architecting my softwares but I know it goes beyond just creating and naming different directories.
+
+It involves the way each part of your app communicates with other and how data flows through your entire software.
+
+The essence is just to make it easier for the developer to properly structure their softwares for easier development and iteration.",7
+gducjkt,k2ijqp,"Visually yes, it is directories that represent your applications use cases, not the MV* n-tier conglomerate of patterns chosen. This is what uncle bob calls Screaming Architecture.  The most common pattern I've seen for this is vertical slice architecture. 
+
+Naturally though this is an oversimplification of what ""clean architecture"" is as there's some other critical aspects, like loose coupling and religiously applying the DIP.",6
+gduxbrn,k2ijqp,"If you like Bob’s talks you might also enjoy his book “Clean Architecture” which covers in more detail alot of whats covered in that talk. “Clean” Architecture also involves boundaries, de-coupling, layers, testing and test boundaries, and dependency rules.",6
+gdv476r,k2ijqp,"Woah, not at all. I've seen projects with a detailed folder heirarchy with a horrible architecture, and the best codebase I've ever worked in put most files in a single path.
+
+Software architecture is the design of code to perform desired tasks while enabling change and maximizing readability.
+
+Mostly it's about how to define interactions in the code so that objects are coupled loosely but still maintain high cohesion. Affording the most capability of change without over-abstraction.
+
+Software Architecture and design patterns go hand-in-hand; read the Gang of Four book (Design Patterns: Elements of Reusable Object-Oriented Software) to get a taste of what architecture is, and read Emergent Design to learn how to architect.",4
+gdvdsla,k2ijqp,"Directories have nothing to do with architecture, the relationship between different software modules is what shapes the architecture; if they are in folders and scattered into many files, or all the modules are in one file, it's irrelevant. 
+
+Also, a software module is a bunch of code that does one thing, however it might be organized: be it a class, a bunch of functions, bunch of classes, whatever.
+
+For example: I'm building a real-time, online multiplayer card game. So the first obvious thing that comes to mind, in terms of architecture, is I need two parts: 
+
+- A server, which holds the game state and coordinates clients, and
+- A client, which connects to the server
+
+Those, right there, are going to be my main software modules, and their relationship:
+
+    One server &lt;---&gt; many clients
+
+Surely, server and client are going to share some game-logic code, but those are the first boundaries.
+
+Now on to the next architecture choice: I'm going to need a game-logic module that just takes care of the game-state, game actions that modify those state, validation for those actions and so on.
+
+In my case, I decided that it's going to be a shared module between client and server (because I want to validate game actions both on client _and_ server), it's going to handle pure game logic only, and it's going to be thoroughly unit tested.
+
+What else do I need? Well of course the game UI! that's going to live entirely on the client side, and its roles are going to be: rendering a game state, and turning UI events into game actions to be sent to the server.
+
+At the end of the day, I'll have the following ""bird's view"" graph of my architecture:
+
+    Game-Logic &lt;- Server &lt;---&gt; Client -&gt; Game-Logic -&gt; UI
+
+This architecture seems to be working fine for my use case. What architectural changes would I need, if I wanted to extend the software to support many different card games, instead of just one? Exercise left to the reader!",3
+gdvg7pw,k2ijqp,I guess what you are describing here is more like system/solution architecture which is different than software architecture.,1
+gdvjugh,k2ijqp,"I think that is software architecture, just on a very macro level. What would be software architecture for you in the context of that example?",1
+gdvlkg4,k2ijqp,"To me software arch in your case is how you designed the game logic structure. I could be wrong or we could be both right. However, there is great [article](https://dzone.com/articles/solution-architecture-vs-software-architecture) talk about the difference between the two.",1
+gdw5nqh,k2ijqp,"Well, I don't agree that what I explained was solution architecture. See for yourself:
+
+https://en.wikipedia.org/wiki/Solution_architecture
+https://en.wikipedia.org/wiki/Software_architecture
+
+(In the software architecture article they even mention the server-client model)",1
+gdujv89,k2ijqp,[Software architecture documents the shared understanding of a software system](http://beza1e1.tuxen.de/definitions_software_architecture.html).,2
+gdvpx66,k2ijqp,"Software architecture is just how you organize things so they don't collapse under load. 
+
+This could be scaling up a dev team and parallel feature development, which require some organization of the file system, reducing hidden couplings, and making things easy to change without affecting parts of the system they shouldn't. 
+
+This may also be scaling up to serve client demand, ensuring that you can handle multiple instances of your process and that multiple services can interact to create a coherent system opaque to the end user. 
+
+This always means building in graceful failure modes and observability to you can see what is happening and that every small issue doesn't bring down your entire process. 
+
+As a side note, don't listen too much to ""Uncle Bob"". He's a blowhard that works on the principle of speaking the loudest and with the most confidence, and some of the things he says are pants on head stupid and most of the code he holds up as exemplars of ""clean"" are just bad, not only the objective sense but in the ""he can't even follow his own principles"" bad.",2
+gdtb2u7,k2bhor,"You're talking about the cold start problem with lambda, right? The reason for the cold start problem with AWS Lambda is they start up a completely new like instance or whatever they use sometimes when your Lambda is called. With Java this is an issue because Java just isn't that quick to start up (Python or Javascript don't have as much an issue because they're not compiled, or at least not 100% compiled I know Python can be pre-compiled partially).
+
+There could be some delay scaling up containers, that's true, but it's not the same as the cold start problem. The thing that happens with cold start is literally your request is waiting while the Lambda is loading up... with the containers being scaled up, the request can just go to a running container while another container starts.
+
+At least that's my impression of how it works. I don't implement EC2 or Lambda myself so I don't know for sure. But I know people don't complain about cold start issues with EC2. Yes if you get a *huge* spike out of nowhere then it will take some time for more containers to start up, that's true, but in practice you usually get a somewhat gradual increase in traffic anyways and that's why you don't hear people complaining about the cold start issue with EC2. But I'm in the same boat if you find any interesting articles about how EC2 auto-scales under the hood I'd be interested in reading them and please do share... I just know the practical side of it which is that yeah, it works, somehow, and people don't complain about the cold start problem with EC2.
+
+Also I'd recommend Fargate over just plain old EC2.",5
+gdtnys8,k2bhor,"This is an excellent answer.
+The only thing maybe to consider is how to ""speed"" things up, post deploy. Some of the strategies involve blue / green development with session drain. Other basic stuff is making sure that you warm up the cache and ensure that you don't have any long running orphan process.
+
+In K8s, there's a concept of Horizontal Pod Autoscaler, which might be utilized here, but really depends on the overall architecture.",1
+gdts3mq,k2bhor,"&gt; blue / green development with session drain
+
+What is this?
+
+&gt; Horizontal Pod Autoscaler
+
+Yeah for AWS [it looks like](https://docs.aws.amazon.com/autoscaling/plans/userguide/gs-configure-scaling-plan.html) you can pick the metric you want to scale on, so CPU usage would be a sensible choice, similar to Horizontal Pod Autoscaler. One of the authors of Site Reliability Engineering mentions that alarming on just CPU utilization is sufficient for garbage collecting languages rather than alarming on both CPU utilization and memory utilization, since when you get low memory usage you'll see frequent garbage collection which will increase your CPU utilization anyways, so yeah it makes sense to just set the autoscaling based on CPU utilization rather than trying to set it on both CPU utilization and memory usage.
+
+I think autoscaling is fine but you also just may not need it. I would recommend running 9 instances at a minimum just for availability purposes (3 per AZ) as this is recommended according to some doc I read somewhere. Then alarm on your CPU utilization and if you see it getting high, or you expect a large increase in traffic for some reason, you can set up autoscaling at that time (or set it up earlier than that, if it suits you).
+
+Tagging /u/incongruous_narrator since this is not a high level comment, but in part it's meant for him / her.
+
+I do think you might see a ""cold start"" kind of thing with EC2 if you get a very sudden traffic spike, which I guess is why ""predictive scaling"" is there. Predictive scaling is an autoscaling strategy which increases your instance preemptively based on past historical increases. If it's a real issue for you then yeah you could set up some sort of cache warming, but my guess is either a team knows they're gonna get an increase in traffic, so they can preemptively increase the number of instances, or they can select an autoscaling strategy that does everything automatically. If you have a minimum of 9 instances then it isn't like they will be at 100% utilization before a 10th one gets spun up, so it's probably not an issue except for a very few teams, or at least I wouldn't worry about it when first developing a new service (whereas Lambda cold start is definitely going to be an issue if you need to have quick responses to customers, even if you have low traffic levels).",1
+gdv5drw,k2bhor,"You should probably Google ""blue green deployment"", lots of info about it. We use it for deployment in two k8s clusters that service the front end of the app. When the new version comes online we enable session drain on the LB and gradually switch users over to the new version.",1
+gdzmwep,k2bhor,yep thanks :),1
+gdr68nx,k1wtvd,"With front end applications it's important to keep your UI codebase lean. Data stores like redux exist to store state across multiple components and build reactive UIs (i.e. a piece of data changes and the UI responds as if by magic). Displaying some piece of data in a particular way (transforming it, etc) is not a use case, that's just a UI concern.
+
+The UI is designed to gather input data for/display output data from something that is more use-case oriented like an API, backend, even some lower level JavaScript codebase completely uncoupled from the UI.
+
+Build your application without a UI first (maybe using a console as the UI) and then build the UI on top.",3
+ge0rvz5,k1wtvd,Hm... yes thats what I intended to do... but even with a console one could easily display redux data🤔 and since the fetching logic is exported into other classes even its possible to build that without redux (if one is willing to implement the wiring logic of redux thunk),1
+gdmrxl5,k14qxc,"You could use plantuml with the C4 extension
+https://github.com/plantuml-stdlib/C4-PlantUML",7
+gdn3c73,k14qxc,"Been using this for a while, didn’t realise that it’d be transferred to plantuml-stdlib though!",2
+gdoap89,k14qxc,The project has recently moved from a personal GitHub repo to something more community based ([see details](https://github.com/plantuml-stdlib/C4-PlantUML/issues/81)).,1
+gdm9nr5,k14qxc,"Is there anything wrong with a generic tool like draw.io? There's always good ol' fashion pen &amp; paper, but I understand the want for a digital asset.",2
+gdmc9z0,k14qxc,"I could be wrong, but I don't think draw.io understands the relationships between the items? I want to be able to extend the map analogy and be able to zoom in and out of the diagrams. So if I'm looking at a system context view, I can double click a container to be taken into the container view for that item.",1
+gdmd8y3,k14qxc,"Anything wrong with just creating another diagram? You might be able to add a link from an item to another diagram. Either way jt feels like a convenience not a requirement for c4. It would be on you to enforce the paradigms.
+
+I apologise but it's been awhile since I've used c4 but it just seems like a hierarchy of specialized concepts with parent child relationships. With that being said I don't see why you couldn't describe a c4 architecture using a text document with bulleted indented lists. Not as pretty of course not as good as communicating with just articulating a point.
+
+I've used archimate before for diagraming, they have a c4 option it seems:
+
+https://www.archimatetool.com/blog/2020/04/18/c4-model-architecture-viewpoint-and-archi-4-7/
+
+Again I could be off base here, was just trying to offer up a more free form solution :)",1
+gdmdq6p,k14qxc,"I'm just a visual person, I find it easier to build the architecture visually and I think being able to extend the map analogy would be useful for understanding.
+
+I appreciate the suggestions, thank you.",2
+gdme4t7,k14qxc,"That's why I love a blank sheet of paper (no lines or anything) and pen/pencil! Whiteboards of course to..
+
+Best of luck to you :)",1
+gdmeljt,k14qxc,"Yeah, whiteboards are great, but increasingly I need to share my whiteboard with others and to maintain and extend the models on them.",1
+gdmfcix,k14qxc,"You could use a paper as the master source and use ✏️ for adjustments just use an image parser with some custom logic to handle the conversation for you: https://opencv-python-tutroals.readthedocs.io/en/latest/index.html
+
+Best of both worlds amiright?",1
+gdoabtp,k14qxc,"The browser-based UI is a bit lacking in features I'm afraid ... as a result of the general trend away from UI-based tooling, and towards text/code ([diagrams as code](https://www.thoughtworks.com/radar/techniques?blipid=202010027) was recently mentioned on the ThoughtWorks Radar, for example).
+
+The DSL ([demo](https://structurizr.com/dsl)) is relatively straightforward and concise, so that would be my recommendation (this generates the same workspace under the covers, so you still get the same zoomable diagrams, etc). 
+
+If you're set on using a visual editor, perhaps take a look at diagrams.net/draw.io (there are some templates), Archi, or Sparx EA ... all of these are linked from [c4model.com - tools](https://c4model.com/#Tooling).",2
+gdglw7t,k068ah,"I went from software engineer to architect. It's a common move. (However we did have other architects already.)
+
+My recommendation is to start doing architecture stuff. Draw diagrams, benchmark code, document standards, and generally do architect jobs. This will bring you from daily development tasks to your new role. 
+
+I also like to pick 'important' pieces of code to implement myself. Either the most critical part of a system, or the new part that's undefined, or just something I find interesting. That keeps me involved with development (since I enjoy it). I also tend to develop POC work that may be throw away and 'template' type work that is used by the rest of the dev team as a framework of how to implement solutions going forward. 
+
+I also recommend looking towards the future. The current project is likely well on it's way. Focus on the next big thing. Understand what other work is happening at the company or what the team/business needs next. Start planning how to design solutions to help with that vision. 
+
+Learning is a big job too. Study software solutions that may help your company. Read about the differences between choices you'll need to make soon. Experiment with tools that may help your team. Learn what other companies in similar situations are doing. Anything you can do to keep pulse of the industry as a whole would help too. 
+
+Ideally you'll be able to offload some of the planning work from your lead devs. Just make sure to include them in the decision making - rather than straight up dictatorship. You may be the final word on design topics - but you are still a team. 
+
+&amp;#x200B;
+
+It would also help if your company defined the role of an architect. Having something written will not only help you focus appropriately - but give explanation to the rest of the team to understand your new role. It's not easy - as architect is super generic and can do a dozen different roles depending on the company/project. So keep it generic until you find what works best.",18
+gdif5d0,k068ah,"This brought me back to when I did this sort of work, I found your description very similar to my experience and would recommend the same advice. Well said ~",2
+gdi11ev,k068ah,Application architect or solution architect or both?,3
+gdhlvvk,k068ah,The role of a software architect is a leadership role. Make sure you ask the company for some leadership and soft skills training. Also this is a new job and it will take you 6 months to 1 year to start becoming good at it.,4
+gdgsjs3,k05kgf,I did not know computers can automate things.,2
+gdgvz4i,k05kgf,In general they allow you to replace 1 untrained worker with 2 software maintainers.,5
+gdfykox,k05kgf,"Check out this talk from GOTOpia Europe 2020 by Bernd Ruecker, Software developer at heart who has been innovating process automation deployed in highly scalable and agile environments of industry leaders such as T-Mobile, Lufthansa, ING and Atlassian. You can find the full talk abstract below:
+
+We’re slicing and dicing systems into ever-shrinking pieces from microservices to serverless functions that should be reactive and event driven. End-to-end processes now often require the integration of multiple components — but of course, without coupling them too tightly. In an e-commerce company, for example, a “customer order” might involve different services for payments, inventory, shipping and more. Many companies are slicing up their core business processes in the pursuit of modern architectures and running into unanticipated challenges along the way.
+
+This talk will foster your understanding of how (business) processes can generally be implemented and monitored. Bernd will compare different approaches, from batches over streaming to workflow engines. You will understand the impact on agility and what is different in modern architectures, as well as learning about choreography and orchestration. Of course, you will also see concrete examples and code!",1

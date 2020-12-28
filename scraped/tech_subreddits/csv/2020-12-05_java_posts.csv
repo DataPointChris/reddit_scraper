@@ -1,0 +1,82 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k76txa,How to check equality of two Strings in Java - the Right Way and digging deeper with JVM Bytecode,[How to check equality of two Strings in Java - the Right Way and digging deeper with JVM Bytecode](https://youtu.be/hBjst3FzIvw),0,java,2020-12-05
+k75a0z,obfuscate maven spring boot project,"I've been developing application in Spring Boot for a while, mainly I do these for learning purpose or personal project. I used to run those locally or in Heroku or my institute's server. But recently I got an offer. So I need to share the resultant project. But they aren't paying me that much, so I won't share code with them. How can I share those jars, but not allowing them to be decompiled. All I want is obfuscation. Can anyone give me some suggestions ?",3,java,2020-12-05
+k7551f,I made CQS Library for spring-boot,"I couldn't find anything read-to-use so I decided to share what I have done.  
+This is an approach that I have used in some of my projects and I think this is a nice introduction to code structuring.   
+[https://github.com/arttom/cqs-spring-boot-starter](https://github.com/arttom/cqs-spring-boot-starter)  
+
+
+I will welcome all the comments.",24,java,2020-12-05
+k6ud8i,What is the best testing framework for microservices,"Hello, 
+I am new to java but not to testing. I have started a new role to test microservices in java. 
+Can you help me shed some light on what could be the best framework to use for that?",41,java,2020-12-05
+k6qihb,Garbage Collection logs visualization and analysis,"Do you ever look at GC logs? I'm wondering if you do that manually with less/more or using any tools that parse and visualize GC logs and, if so, which tools you use.  Note that I'm aware of various tools that grab JVM metrics for heap, GC, threads, etc. from JMX, but I'm asking about GC and heap data that JVMs log to log files. Thanks.",15,java,2020-12-05
+k6li3c,Could you share your web app/service development pipeline?,"Disclosure: I come from a Desktop/UI/ML/Gamedev background, so basically no exposure to anything related to networking or web development (except cloud computing for ML). So I'm gonna apologize in advance for the rambling
+
+I'd like to understand: What kind of development pipelines are used in the real world? How do you build, test and deploy your application? How do you manage and monitor all your instances and servers? If I ask this question on google I get *bombarded* with advertisements from Microsoft, Amazon, Google etc.
+
+I'd like to gain an overview of all the possible workflows in the web space and maybe some suggestions on what to avoid. I stumbled upon beanstalk, but recently I saw a comment that said ""friends shouldn't let friends use beanstalk"". So I'm kinda lost, lol. If this is too abstract maybe I can provide some more specific questions:
+
+1. Is your application a standalone? Servlet? Docker image? Is it stored in a on docker hub or do you have a private docker registry?
+2. How do you deploy a new image/container/jar to the server? Do you have an automated CICD pipeline or do you do it manually? Do you run a script that pulls the latest code and builds it on the web server? Or do you just download it from a docker registry? Or do you use a service that automates all that shizzle for you?
+3. Heroku has this nice feature where I can upload a .war file over CLI and it will be directly deployed onto a tomcat server. It felt really practical, cuz I could include it into GitHub actions workflow and my new code will be ready to go. Is there some similar process for other platforms?
+
+Any help is greatly appreciated!!
+
+Edit: I'm mainly thinking about simple infrastructures. So I'm ignoring all that load balancing, caching, CDN etc. for now",11,java,2020-12-05
+k6jqyn,Jersey 3.0.0 released!,,44,java,2020-12-05
+k6gnyh,[JVM Advent #4] Project Loom and Structured Concurrency,,92,java,2020-12-05
+k66img,My first big project in Java,I made an xkcd desktop [client](https://github.com/clairebearz32bit/xkcdApp) because why not and it's been fun and helpful for learning it.,13,java,2020-12-05
+k65q2w,Either in Vavr,,0,java,2020-12-05
+k62xws,A crash happened outside the Java Virtual Machine,,13,java,2020-12-05
+k61x3f,Introducing Hibernate Reactive,,31,java,2020-12-05
+k611be,I Created a Visualization of 20 Sorting Algorithms with Java. Which one do you like most?,,215,java,2020-12-05
+k5vvfr,OpenAPI v3 generator for Spring Boot,,13,java,2020-12-05
+k5uxvo,JPlusOne - library for finding origin and context of JPA issued SQL statements,"Hi all, for the past few months I've been developing open source library named [JPlusOne](https://github.com/adgadev/jplusone) for correlating executed SQL statements with JPA operations (explicit calls, lazy-loading, flush on commit) which triggered them and with exact places in application source code which were involved in it. Collected data allows easy way of finding origin of JPA issued SQL statements and more specialized applications like detecting and asserting lazy-loading in JPA
+
+&amp;#x200B;
+
+[JPlusOne](https://github.com/adgadev/jplusone) can generate report for each integration test containing complete tree of JPA persistence related activity or just situations when i.e. lazy loading is occurring, potentially leading to N+1 SELECT problem. Moreover JPlusOne provides API which allows to write tests checking how effectively, from performance point of view, your application is using JPA in context of some business operation (i.e. assert amount of lazy loading operations, or SQL statements in general).
+
+&amp;#x200B;
+
+[GitHub - JPlusOne](https://github.com/adgadev/jplusone)
+
+&amp;#x200B;
+
+I hope you find it useful. Any feedback will be appreciated. Thanks.",50,java,2020-12-05
+k5qtv2,[JVM Advent #3] 4 Ways to convert Date to LocalDate,,8,java,2020-12-05
+k5qbar,Informix JDBC Licensing,Hey guys is anyone aware what sort of license the IBM Informix JDBC driver uses? I found [this](http://www-03.ibm.com/software/sla/sladb.nsf/lilookup/BBA01EA9D7F4162585257D8F0077DD5A?OpenDocument) but have been unable to make sense of it.,4,java,2020-12-05
+k5mhub,Skilling up as an experienced developer,"Hi all, 
+
+I want to know your thoughts on how to take development skills to the next level.
+
+I am a java spring developer in a corporate environment, i have learnt spring in this, my first, developer role over the past 3 years. I can build applications from scratch no issue, i'm great at drilling down on clients needs and building functioning and clear code. But i often feel that i can do all the basics but often see co-workers implement things in ways that seem more technical and use spring or java features that i wouldn't think to use.
+
+I think i'm a bit of a basic developer and want to take things to the next level, all the online courses and content i see is generally geared for beginners or specific problems, can anyone recommend ways of advancing? I can think of things that would be helpful like pair programming etc, but there isnt much opportunity for that in our company. I also don't have a particular area i want to advance in, its not like im just really lacking when it comes to multithreading for instance, instead its more of an overall 'is there somewhere i can practice or see advanced code and design being implemented?'. 
+
+thanks in advance",52,java,2020-12-05
+k5l5v8,Many doubts about reactor,"So, I'm trying learning reactor I'm so confused about it and i didnt find any information about my doubts on internet, that's why I'm creating this post, I will put my questions below and my code so you guys can run or debug.
+
+1º Why is the code inside nonBlockValidate() being executed in a separeted thread called ""Result.Thread\[parallel ... "" ? I have setted the numbers of threads to one in the main method using System.*setProperty*(""reactor.netty.ioWorkerCount"", ""1"").
+
+2 º Why if i use flatMapSequential with a maxConcurrency of 65000 aren't created 65000 threads on my computer ? Example, if a make request to endpoint /nonblock/{delay}/{n}, with a delay of 10000 and n of 65000, i will get the answers in 10 seconds, what's expected once i have setted 65000 in concurrency, but i haven't 65000 threads created on my computer, how that method work ? if i set the concurrency to 32500 and make the same request, i will get the response in 20 seconds, what is expected also, but i havent 32500 threads created on computer.
+
+&amp;#x200B;
+
+The Code : [https://gist.github.com/LuizFrra/70d9af60ebde69a520c00f61ae1e8185](https://gist.github.com/LuizFrra/70d9af60ebde69a520c00f61ae1e8185)",0,java,2020-12-05
+k5fbss,How long did it take you guys to finish the Oracle professional certificate ?,"Am starting my computer engineering from Jan (hopefully) and I heard from few people that java certificate from Oracle are kind of a must have. 
+
+I got intimidated by looking at the amount of courses. I was just wondering how long it takes to finish these courses all the way from the beginner ones. 
+
+
+Thank you!",4,java,2020-12-05
+k5d0ml,Amnesia – Data anonymization made easy,,20,java,2020-12-05
+k5c4r0,[JVM Advent #2] How to debug dependency conflicts in Maven and Gradle,,11,java,2020-12-05
+k5c3uz,How to build Jenkins plugins,,6,java,2020-12-05
+k59431,Advice for a side project,"I have this idea for a side project, which will basically need a minimal UI, and a backend (perform various periodic back ground tasks). So looked up trendy things like micronaut, quarkus, vertx etc. But the problem with those frameworks is I don't need all the features that come with being a ""microservice"".
+
+I just need a simple tool/framework to build this 1 project, and host it somewhere without having to deal with containers/kis/etc.
+
+How do you build modern full stack java apps, without it being a microservice.",1,java,2020-12-05
+k57tse,An overview of ActiveMQ architecture,,66,java,2020-12-05

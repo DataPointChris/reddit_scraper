@@ -1,0 +1,321 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k78knn,aws launcher,"\[Launch AWS Services from your macOS dock or Alfred\]([https://github.com/dfang/aws-launcher](https://github.com/dfang/aws-launcher))
+
+highly recommend if you use macOS and Alfred",1,aws,2020-12-05
+k764ti,The simplest way to use Cognito,"Hey guys, 
+
+I am a third-year Software Engineering student and am working on a personal project. I have limited experience with AWS but have been using react native to build a simple message board application. I'm up to the point where I need to enable authentication and authorization. I am also doing a few extra things so I'm currently using lightsail containers for web services with my goal being to incorporate Cognito as a means of allowing for social media login and to handle the overall authentication and authorization of the application. I have read the documentation and watched a few videos on Congito but I'm still struggling to understand how I can use it outside of API gateway and lambda, is it possible? If not are there any alternatives for this as I am not really confident in building an authentication system due to the possibility of sensitive information being comprised if i don't do it properly. 
+
+&amp;#x200B;
+
+Any suggestion such as videos or good code examples would be really appreciated. 
+
+Cheers lads :).",1,aws,2020-12-05
+k789hw,Autofailover for Lambdas invoked with CloudWatch trigger,"I have lambdas deployed in us-east-1 with CloudWatch triggers enabled and us-west-2 with triggers disabled. I’d like to design an architecture so that in the event of us-east-1 going down, the CloudWatch triggers in west will automatically be enabled so that my data pipeline is initiated with very little downtime. The architecture should also be able to fail back to us-East-1 if west goes down.
+
+I’m fairly new to AWS but I’m willing to learn! Thanks for the help!",2,aws,2020-12-05
+k78t62,SQS and DLQ,"I'm trying to configure SQS with a dead letter queue using Terraform but it's not working. I tried asking [this](https://stackoverflow.com/questions/65147211/sqs-all-message-goes-to-dead-letter-queue) question on stackoverflow but it's yet to be answered.
+
+Would here happen to know of a solution?",1,aws,2020-12-05
+k6zprr,Lambda Durations for ETLs,"The intent of my recently built ETL is for a single PowerBI dashboard be updated by multiple users from multiple locations. The current pipeline works like this:
+
+* User uploads xlsx or csv on Amplify Webapp, connected to S3
+* S3 triggers Lambda function
+* Lambda function utilizes Pandas, SQLAlchemy, and MySQL Connector to transform and push data to an RDS MySQL db
+* Typical raw csv or xlsx is between 8,000 and 15,000 rows w/ 53 columns
+* Typical duration to run the code is around 6800ms with 233 MB memory utilization
+* Currently running this off micro free tier instance
+
+This is my first ETL in the AWS ecosystem and using Lambda. I'm wondering if this seems like an unusually long time to require running a Lambda function for. Perhaps there are some best practices that I have missed the boat on. I am forced to deal with the xlsx / csv native format, and I used Pandas for the initial transform and cleaning because I had already written the functions before I wrote the code for the SQL.
+
+Also, I am using the .to\_sql method and SQLAlchemy create\_engine for pushing the data to a table in the db. \*Edit, perhaps it just because I'm on the free tier instance. Not too sure.
+
+Any advice would be appreciated. Thank you.",1,aws,2020-12-05
+k6ywoq,Help with Auto Scaling Group,"I want to have an S3 bucket where for every time a file is uploaded, a new instance is created, the instance does something and then it deletes itself.
+
+My idea here was to have a lambda function that adds a message in an SQS queue when a new file is uploaded. The condition in the auto scaling group could be to launch a new instance when this occurs. I don’t really know the details of what this will look like but think it should be doable. If not, please let me know why.
+
+The main problem I’m having is that when I upload an S3 file and an EC2 instance is ultimately launched, I want to be able to access that specific file from within the EC2 instance’s user data. Is there a way for me to associate the EC2 instance with the S3 file? 
+
+Ideally, I’d just be able to include the S3 file name in the SQS message and then pass the SQS message in as a variable in the EC2 user data. Or, maybe I could have a lambda function that figures out the ID of the EC2 instance that is launched based on a given SQS message (which would contain an S3 file name), and then add a tag to the desired S3 file containing the EC2 instance ID – the EC2 instance user data could then select the desired file based on which one has the correct tag. I have no idea if either of these options is possible, but these are just ideas I came up with. 
+
+Thank you for any thoughts you might have!",1,aws,2020-12-05
+k76jdk,CF Script Error,"I'm trying to create a S3 endpoint in CF.  I get the error "" Template format error: Unresolved resource dependencies \[${EnvironmentName} Public Routes\] in the Resources block of the template.""  I think the error refers to this section of code:
+
+      S3Endpoint:
+        Type: AWS::EC2::VPCEndpoint
+        Properties:
+          RouteTableIds:
+          - !Ref ${EnvironmentName} Public Routes
+          SecurityGroupIds: !Sub ${EnvironmentName}-Public-sg   
+          ServiceName: !Sub com.amazonaws.us-east-2.s3
+          VpcId: !Ref VPC
+
+Reviewing the [AWS documentation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html#cfn-ec2-vpcendpoint-securitygroupids), this syntax looks correct.  What am I missing here?",1,aws,2020-12-05
+k74j6e,Can I put a billing limit somewhere that block all my services once reached?,"Hi,
+
+I'm a dev, but just a person.  
+I'm trying things on aws, last night I made a lambda triggered by a SQS queue, what I didn't knew was that if the lambda fails the message stays in the queue and will keep triggering the lambda.  
+
+
+Now it was a small lambda and I caught it before going to bed.  
+
+
+But what if it got out of hand and generated thousand of dollars of expenses?  
+
+
+This would probably ruin my life, I doubt amazon would be like ""oh ok, you made a mistake"", they(ll probably lawyer up and bury me.
+
+&amp;#x200B;
+
+I looked everywhere but I can't find where to put a limit, looks like we can't.  
+Is there a way?  
+
+
+Thanks.",38,aws,2020-12-05
+k72ot4,login to aws via curl,"Hello.
+
+newcomer to aws world here.
+
+&amp;#x200B;
+
+i´m trying to send a curl command to create a default user pool in cognito like that :
+
+`curl -X POST --data aws-cognito-userpool-config.json -H 'X-Amz-Target:AWSCognitoIdentityProviderService.CreateUserPool' -H 'Content-Type: application/x-amz-json-1.1'` [`https://cognito-idp.us-east-2.amazonaws.com/`](https://cognito-idp.us-east-2.amazonaws.com/)
+
+&amp;#x200B;
+
+but it fails with the error : {""\_\_type"":""MissingAuthenticationTokenException"",""message"":""Missing Authentication Token""}
+
+seems to me that i need to do some sort of authentication in aws first, wich is fair enough.
+
+&amp;#x200B;
+
+but i have no idea on how to do it via in a curl approach.
+
+in summay : how do i ""login"" into aws via curl and how do i send the authentication in every operation after that?
+
+thanx",2,aws,2020-12-05
+k72b37,"Folks with hybrid architectures, is anyone running large database workloads across Direct Connect? Any issues?","E.g. client and server on opposite sides of the cross connect.
+
+We're looking at this as an anti-pattern but resolve is wilting to avoid it.  Just curious what others are doing. Thanks!",4,aws,2020-12-05
+k6yi6s,I am writing down the scope of our CI/CD pipeline to be developed using AWS native tools. What do you recommend?,"I am in the process of finalizing the scope of our CI/CD pipeline that will be using AWS native tools Codepipeline, code build, and such. The basic pipeline boilerplate is written in CDK and we love the choice so far. Now, we would like to define the final scope for it, and here's what we have got so far.
+
+I would love to know what tools/abilities are integrated into your CI/CD pipeline to ensure that we are looking at developing an enterprise-grade CI/CD pipeline.
+
+1. Pipeline per branch  
+2.  Build once, deploy many  
+ 3. Cross account deployment i.e Deployment to Different environments (dev/QA/prod) from tools account  
+ 4.  Pipeline behavior based on the branch name  
+ 5.  Test execution based on the stage/environment  
+ 6.  Integrate static code analysis  
+
+7. Manual approval by multiple people before deployment
+
+8.  Identifying Security code vulnerabilities in application source code from the pipeline (May be through Synk)
+
+9.  Identifying  AWS cloud formation security tests (May be through SecurityHub)
+
+10.  Allow developers to deploy feature branches in the common sandbox account from the CI/CD  
+ 11. Create dashboards for builds/deployments by sending events from the pipeline to the cloud -watch  
+ 12. Observe alarms when a test fails so that an automatic rollback happens in  that case   
+ 13.  Observe alarms when a config rule fails so that an automatic rollback happens in  that case
+
+14.  Dynamic pipelines per branch based on events  
+ 15. Support pre-view deployment stage  
+ 
+
+I would love to hear what can be improved/added in the current scope",5,aws,2020-12-05
+k71ymo,🦄The saga continues 12/8 at 1pm EST - AWS GameDay @ re:Invent 2020,"Come learn AWS hands-on and risk-free, network with other tech professionals, and have some fun! The Unicorn Polo League returns live to Twitch on Tuesday, 12/8 at 1pm EST. Claim your spot from the re:Invent [GameDay Site](https://virtual.awsevents.com/channel/GameDay/186983893?nc2=reinv20_m_hocgd) beginning 1 hour prior. Review this [FAQ](https://d1.awsstatic.com/events/AWS%20reInvent%202020%20GameDay%20FAQ.pdf) and see below for some more pointers. Additional video content is available at the GameDay site as well which will help you navigate the event. We are excited to see you there, and find out if you have what it takes to outdo the winners from the Asia-Pacific event last week!
+
+**Know-Before-You-Go**
+
+* Event is free, we will provide your team with an AWS account to work in
+* You need an Amazon.com account to complete a brief registration process and log in
+* We will be streaming live on [Twitch](https://www.twitch.tv/awsgameday), with an internal team playing along with customers and sharing tips and strategy. You'll also have the chance to meet the game developers in exclusive interviews.
+* No pre-registration
+* No pre-formed teams, we'll assign you to a team of 4 after you log in
+* First come, first served
+
+https://preview.redd.it/vpn7hs601b361.png?width=3200&amp;format=png&amp;auto=webp&amp;s=7bee1e9176565cf1dae394764c67816ff491b99d",9,aws,2020-12-05
+k702cl,How do you deal with the alert fatigue problem?,"Hello, I come from a security background where alerts are plenty. Plenty enough that alert fatigue is a well-recognized term.
+
+I would like to learn from you if you face an alert fatigue problem in the ops world. I can imagine that it is super easy to get visibility/observability in the cloud- you can use AWS CloudWatch metrics, you can use Splunk/SignalFx and tons of tools in the ops world to alert you when something goes wrong. How do you go about routing these alerts to the appropriate owner? ( I assume PagerDuty does a good job?) and more importantly, how do you go fine-tuning the alerts? 
+
+Are there tools available that can enrich the alert to add context and accordingly suppress them (or escalate if a certain context is present)?",3,aws,2020-12-05
+k6yrcv,Red Detector: Automated CVE Scanning for AWS EC2,[https://github.com/lightspin-tech/red-detector](https://github.com/lightspin-tech/red-detector),6,aws,2020-12-05
+k6xfnl,CDK pipeline for multiple branches at the same time,"I would like to have the CI-CD pipeline deployed for the develop and master branch at all times. Pipeline for feature branches to be created manually developers as and when needed.
+
+I am using the pipeline from [https://github.com/awslabs/aws-simple-cicd](https://github.com/awslabs/aws-simple-cicd)
+
+In project-config.json , we have :
+
+    ""Backend"": [   {     ""pipelineName"": ""backend"",     ""ccRepoName"": ""backend"",     ""branch"": ""master"",     ""type"": ""BitBucket"",     ""cron"": """"   } ], 
+
+Step 1. Pipeline deployed for branch master
+
+Step 2. Edit project-config.json and change branch name:
+
+    ""Backend"": [       {         ""pipelineName"": ""backend"",         ""ccRepoName"": ""backend"",         ""branch"": ""develop"",         ""type"": ""BitBucket"",         ""cron"": """"       }     ], 
+
+Step 3. Pipeline deployed for develop branch
+
+At this stage, it deletes the pipeline for the master branch and deploys it for the develop branch. How can we keep the pipeline for multiple branches at the same time?",9,aws,2020-12-05
+k6x5dz,Working to understand some growing pains,"I run a small education website (maybe a half-million requests per day, I think) that's seen some significant growth recently, and I'm hoping the folks here can help me understand a few growing pains...
+
+**First**: I've noticed that since we moved to an ALB I've been seeing some 502 errors -- maybe 15 per day at the request volume above. The errors seem to occur on random requests (they're not associated with any particular one), and I've determined that they're coming from the ELB rather than a target. Should I expect the occasional 502 error, or is this something that can be corrected?
+
+**Second**: In trying to understand that, I plotted the total number of requests and number of 502 errors. You can find that plot [here](https://imgur.com/a/wABW7S0). The 502 errors seem to track with the request count, which is not surprising I guess. But I'm pretty sure I don't understand the request count metric. Why does this cap out at 1? Am I maxing something out, and if I am, is that related to the 502 errors?
+
+**Third**: Posted about this earlier, but thought I'd include it as a bonus question here. In the past few days, I've seen enough disk activity on my database server that I'm going to zero volume idle time, while my SQL server isn't really seeing a remarkable amount of traffic. I've plotted what that looks like since Monday [here](https://imgur.com/a/trmcTlz), and am noticing that the peaks (which don't start at the same time) are getting broader as the week continues. Running ""top"" on the server when it's in a peak shows mysqld taking \~80% CPU. Next steps for me will be restarting the server tonight, and looking at non-peak mysqld CPU usage, but I'd welcome any other debugging tips from more experienced folks.
+
+Thank you so much for your time.",2,aws,2020-12-05
+k6w8e4,Using dynamically created parameter store values in template,"I am using Parameter inputs (Step 1) to create the desired Parameter Store values via Resources (Step 2) (example below). This all works like a charm as I don't have to manually create each Parameter Store value by hand.
+
+What I am also needing to do is then take those newly created Parameter Store Values - ""Resources"", and call them within another Resource as an Environment variable (Step 3).
+
+I have tried DependsOn in varying places, !Ref, !GetAtt to no avail. Anyone else Creating AND Using Parameter Store values within a single Template? YAML preffered.
+
+Step 1:
+
+Parameters:
+
+FriendlyName:
+
+Type: String
+
+Description: ""Shortened Name of Customer""
+
+SiteId:
+
+Type: String
+
+Description: ""6-digit unique identifier for the customer's individual site""
+
+STAGE:
+
+Type: String
+
+Default: dev
+
+AllowedValues:
+
+\- dev
+
+\- prod
+
+\- uat
+
+&amp;#x200B;
+
+NodeEnvParameter:
+
+Type: AWS::SSM::Parameter
+
+Properties:
+
+Name:
+
+!Sub
+
+\- '/doorways/${STAGE}/${FriendlyName}/${SiteId}/NODE\_ENV'
+
+\- { FriendlyName: !Ref FriendlyName, SiteId: !Ref SiteId, STAGE: !Ref STAGE }
+
+Step 3:
+
+ECSTaskDefinition:
+
+Type: ""AWS::ECS::TaskDefinition""
+
+Properties:
+
+ContainerDefinitions:
+
+\-
+
+Environment:
+
+\-
+
+Name: ""NODE\_ENV""
+
+Value:
+
+!Sub
+
+\- ""{{resolve:ssm:/doorways/${STAGE}/${FriendlyName}/${SiteId}/NODE\_ENV:1}}""
+
+\- { FriendlyName: !Ref FriendlyName, SiteId: !Ref SiteId, STAGE: !Ref STAGE }",1,aws,2020-12-05
+k6x3ti,Question about deploying api to aws,"So I currently have two instances:
+1 is a web server image (has sql, iis, and my html file)
+1 is a app server image (has node.js with body parser, sync my sql, and express installed and my js file)
+
+For some reason when I am listening on my port in the command prompt on my app server and I interact with my html file on my local computer nothing is happening and the information is not being received. 
+I believe it is a problem on my app server, possibly the connection with my sql database 
+Any and all advice is welcome",1,aws,2020-12-05
+k6q3gy,AMPLIFY/COGNITO | Creating a “course” group/object that users can belong to? Passwordless group?,"Hi, so I have three types of users: Admin/Principal, Teacher, and Student. I can create cognito groups or attributes to assign to the users. But if I wanted to give the Admin the ability to create a Class, and give a Teacher the ability to edit a class/add Students to a class. The class would have information like Course Description, List of Students, etc... what would be the best way to do that with Amplify/Cognito? 
+
+I’d like to assign one primary teacher to it who creates all of the information/adding students. 
+
+Groups seems like the most logical way but I don’t want to require a password for it?",2,aws,2020-12-05
+k6p8rp,Why would you recycle or refresh infrastructure frequently?," A question has come up and I have heard about people doing this practice of recycling (spinning up and spinning down) new infrastructure daily or multiple times per day. Is this best practice, if so why would you do it, what are the benefits?
+
+  
+Say, for example, we have a pair of web/app servers and I need to deploy a new customer onto the web/app servers - this process ordinarily involves us manually installing and configuring our software on the servers. We now have a powershell capability to do (most of) this. So would the automation simply perform the automation and run the installation etc. on both web app servers or would I recycle the infrastructure each time with a new deployment (immediate issue there I can foresee is a limited number of deployments you could do if each time it may take, say, 15 minutes to spin up).  
+Or would it be the case that you might deploy those configurations multiple times per day and then recycle the servers, say, once every evening - again, if so - why?
+
+  
+And this brings me onto my last point, if I am spinning up new instances either for the recycling or perhaps an autoscaling trigger. The new web/app server that is spun up has to join the existing ""cluster"" but be aware of the configuration it requires, ie. all the customers (tenants) ""instances"" of our application on the web/app - I assume we would have to maintain some sort of centralised configuration database (DynamoDB or such like) that holds all the config for the customers so that when the server spins up it can refer to the central config and deploy all the customers on there as required?",3,aws,2020-12-05
+k6ox03,t4g.micro free trial extended through March 2021,"So I've been playing around a little with the new t4g instances, and I just noticed that on the [t4 page](https://aws.amazon.com/ec2/instance-types/t4/) the text that used to say it had a free trial through December 31, 2020 now says that it's through March 31, 2021. I can't find any announcement of the longer trial anywhere, though.
+
+I'm a bit bemused (and/or confused) that [the FAQ page it directs to](https://aws.amazon.com/ec2/faqs/#t4g-instances) for additional details says ""March 31, 2020"" everywhere. I'm *assuming* that they just weren't being careful in their find/replace in updating the page, but that's part of why I was looking for some sort of official announcement since I'm not seeing consistent information. My month-to-date bill in the Billing Management Console is also still saying ""$0.00 per On Demand Linux t4g.micro Instance hour under 750 free hours/month of t4g free trial ending Dec 31 2020"" so it seems not everything is updated yet.
+
+Is this a typical thing when they introduce new instances, of giving free trials and then extending them? Are they likely to extend it further? Is adoption of the new instance maybe not as high as they were hoping for and they're trying to push it more somewhat?",5,aws,2020-12-05
+k6nf6j,"Project Layout with CDK, CodePipeline and multiple Lambdas","I'm working on a side project which involves a SPA web app, served by a S3 Bucket and multiple Lambdas written in python. I also want CI/CD using CodePipeline and the entire infrastructure should be defined by CDK. Mostly because I want to learn how to.
+
+But now I am a little confused how to 'correctly' lay out my project structure, especially the lambdas? Where do I put shared code for those lambdas, and where the test code? And how do run the tests and package the lambda and then deploy using the Pipeline?
+
+It would be great if someone could help me out a little, or just point me to some helpful tutorial, blog post, youtube video or stone tablet or something.",1,aws,2020-12-05
+k6mes3,question about shuffle sharding on aws,"this is about this post, [Workload isolation using shuffle-sharding](https://aws.amazon.com/builders-library/workload-isolation-using-shuffle-sharding/?nc1=h_ls).
+
+&amp;#x200B;
+
+&gt;When a problem happens, we can still lose a quarter of the whole service, but the way that customers or resources are assigned means that the scope of impact with shuffle sharding is considerably better. With eight workers, there are 28 unique combinations of two workers, which means that there are 28 possible shuffle shards. If we have hundreds or more of customers, and we assign each customer to a shuffle shard, then the scope of impact due to a problem is just 1/28th. That’s 7 times better than regular sharding.
+
+&amp;#x200B;
+
+what is the definition of impact and why is 1/28th ?
+
+IMO,  the impact of users is 1/8, the impact of workload 2/8 =&gt; 1/4
+
+yes, there are 28 possible shuffle shards. but when you deploy, you just can choose only one from 28
+
+can somebody explain this?
+
+Thanks!",1,aws,2020-12-05
+k6ljdl,"What is the analog of a Google Cloud ""Project"" in AWS?",,1,aws,2020-12-05
+k6sbnp,Service Control Policy not working as expected,"I created a SCP based on Brigid Johnson's re:Invent 2018 talk ""Become an IAM Policy Master in 60 Minutes or Less"" on YouTube. My policy is:
+
+        {
+            ""Version"": ""2012-10-17"",
+            ""Statement"": [
+                {
+                    ""Sid"": ""DenyUnapprovedActions"",
+                    ""Effect"": ""Deny"",
+                    ""Action"": [
+                        ""ds:*"",
+                        ""iam:CreateUser"",
+                        ""cloudtrail:StopLogging""
+                    ],
+                    ""Resource"": [
+                        ""*""
+                    ]
+                }
+        }
+
+I've applied the SCP to the root of my org structure and have logged on as an IAM user. This SCP policy should apply to my user. Yet I can create new users. I expected the SCP to prevent me from doing that.
+
+Can anyone help me understand what I did wrong?
+
+EDIT: I should have provided more context. The SCP policy is attached to the organization root and to all OU's within the organization. It is the only SCP used in my organization.",1,aws,2020-12-05

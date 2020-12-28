@@ -1,0 +1,618 @@
+comment_id,post_id,comment,upvotes
+gepqjq8,k73e37,Nice shitpost,1
+geliy5p,k6lt6t,"After crafting this highly useful program, I wrote a post on [medium](https://lucasreta.medium.com/cligol-and-gifeegol-d5509a154bf6) (sorry) detailing how one could follow in my footsteps.",19
+gemgrlw,k6lt6t,"Gosh. Medium has turned into shit, if we have to apologize like if its a PDF.",11
+gempk41,k6lt6t,I thought that was only an issue back when everyone used Adobe Reader and it slowed everything down.,3
+gempsm4,k6lt6t,Age showing again.,2
+gemswd5,k6lt6t,"Remember when websites used to warn you when a link went to a PDF?
+
+/u/flarn2006 remembers.",3
+gemunbh,k6lt6t,🙃,2
+genm2ys,k6lt6t,...does it involve meticulously planning your next twenty years of github contributions?,6
+gelqne3,k6lt6t,This is actually really cool! Are you sure you submitted to the right subreddit??,11
+gelucfz,k6lt6t,"Thanks, glad you liked it!
+
+Posted it here because even though it was fun doing it isn't useful, and because r/programming doesn't allow crossposting gifs.",5
+genc8e9,k6lt6t,The interesting yet thoroughly contrived and pointless is more than welcome 'round here. It's all part of the Shitty Way,2
+gem3p22,k6lt6t,"Great stuff!  Now do it without JS, i.e., using only well-timed commits, iterating once a year",6
+gemiuvd,k6lt6t,"I can criticize you for doing it if no one else wants to. It's the shittyprogramming subreddit after all.
+What makes it different from a simple console display game of life is that your display function translates x,y to a date and color to commit count. I think that's little effort for a little achivement. Barely worth the mental capacity to even discard the idea.",-1
+gemk5lo,k6lt6t,"I'm mad enough at myself for even having thought of it, worsened now that you point out discarding the idea was an option, instead of wasting time on such a shitty achievement.",4
+gemlixm,k6lt6t,"I feel you. I am full of these. Now my friends just sigh when I present them another contraption. the latest one was a fake md5 hasher that actually just encrypts so if your string is short enough, it keeps it aes ecrypted.",2
+geox8uw,k6lt6t,"Don't give in to the idea that shitty ideas do not need to be executed. 
+
+It can bring a lot of fun and learning. On top of that it's what makes you special.",2
+gea81t6,k4hyqk,what is this language,11
+gea92jy,k4hyqk,racism,41
+gea942h,k4hyqk,sounds fun I'll check it out,9
+geaahsh,k4hyqk,written by oracle,11
+geaa8t4,k4hyqk,kotlin,5
+geaavib,k4hyqk,I don't see the fun in OutsourcingSort,7
+geab2v8,k4hyqk,"its fun to save a bit of money for a drop in quality 
+
+- every pm ever",6
+geclm3e,k4hyqk,"Here, have a downvote for a boring post",-2
+gecngbb,k4hyqk,cool. have a downvote for this non insightful comment,2
+ged0mtb,k4hyqk,Don't be disrespectful. It's you who did a low effort and boring post. Now it should be you who also pay the price.,-3
+gedd912,k4hyqk,"huh dude? i cant tell if this is sarcasm or not. if not, then why is it that you can dish it out but dont want to take it also? just stop.",3
+geclliy,k4hyqk,"Agree, very lame meme attempt",0
+gecsd0b,k4hyqk,I thought this was going to be about using sleep calls and outsourcing the sort to the thread scheduler.,1
+geclmn5,k4hyqk,Really boring.,-1
+geb1f4a,k4hyqk,not funny,-6
+gebynmc,k4hyqk,aight,4
+ged0o18,k4hyqk,Agree,0
+ge3738o,k3i9p7,I hate this but I love it,22
+ge3bzcn,k3i9p7,"Lol, that seems to be the general consensus.",10
+ge3d2n9,k3i9p7,This doesn't belong in this sub. This is actually awesome programming.,33
+ge3d6wg,k3i9p7,"Well that's nice of you to say. thank you, I appreciate that.",11
+ge3rl62,k3i9p7,Yeah it's a bit ... eccentric but here is to make fun of actually awful code ~~we write~~ our colleagues write.,7
+ge4fo22,k3i9p7,"Maybe I'm just old, but these attention-grabbing ways of making videos are annoying. He does explain it just fine, though I would have personally liked a bit more detail. Personal opinion though, if this makes the kids interested in programming, then all good!",5
+ge7o3d4,k3i9p7,"I understand where you're coming from. I'm trying to have a balance of education (explanation) and entertainment. But from my experience it's hard to please one or the other. On one hand, if I explain too much, it's harder to reach the general audience I want. And if I explain too little, the videos lacks the full picture (and for people like us who appreciate the ""science"" behind it, it lacks the science). I recently uploaded a video where I tried to do both better (explain + entertain) and it was a 26 minute video, which some might like, but the general consensus is that I ""explained too much"" even though I really tried to limit the explanation. The program itself is simple, but the most interesting part to me was explaining how I actually got the data (by reverse-engineering the Door Dash Private API). 
+
+Incase you are interested: [Letting a PROGRAM decide what I EAT!](https://youtu.be/WPILHU3ERaU)
+
+Edit: Also, I have had the younger crowd reach out to me privately asking questions about the programs I have been uploading, so I agree with you and I'm also glad that it's getting people at the very least interested in software dev.",1
+ge53aub,k3i9p7,"Yes this is so good, unlike other tutorials I didn't fast forward this video.",3
+ge3rcy0,k3i9p7,"Next iteration: sequence of 4 QRCodes, 1 in the red channel, 1 in green, 1 blue, and 1 encoded as C64 cassette beeps and bops.",9
+ge4294i,k3i9p7,"you don't need a sequence of qr codes, you can just sum red, green, and blue codes into a single rgb frame. you can also be a bit more tricky and get an even higher bit depth",3
+ge9wxx5,k3i9p7,"Having 1 QR Code per frame, for each channel, including audio, was the point of my joke -- or suggestion, depending how you much time you have on your hands lol.",1
+ge4ffhk,k3i9p7,"I was thinking you could put a bit of error correction code in there to account for video compression, and basing that on QR codes makes sense. Just use as few pixels per block as is reliable.",1
+ge3xzc2,k3i9p7,Now we just need a way to disguise this into a normal video and it will never be stopped.,6
+ge41xzi,k3i9p7,"That's called steganography, and there are already tools for doing it.",8
+ge5aa2w,k3i9p7,Are there tools for doing it in a YouTube video that circumvents any compression YouTube might be doing to an uploaded video? I'm pretty sure YouTube strips any meta/unused data from the video file you upload so I doubt steganography data would persist.,2
+ge5e780,k3i9p7,"steganography involves embedding a message in another medium to conceal the fact that a message is even being transmitted. there are plenty of ways to do it that will work with a yt video. putting something in the metadata wouldn't really be steganography.
+
+a rudimentary example would be using the lowest bit of the a, r, g, and b channels in a PNG image to encode some other bitstring. that gives you 4 bits per pixel in a lossless format.
+
+since you use the least significant bit, the colours aren't really changed, so the image looks the same, but has a concealed message.",2
+ge47jcl,k3i9p7,Now also make use of the sound lmao,4
+ge4aoi3,k3i9p7,😂,1
+ge3tbb6,k3i9p7,"Each pixel can store up to 268435455 numbers, and we're using it to store just 2 of them. Nice!",10
+ge41u0r,k3i9p7,"ehh, no. if you're using the standard RGB32 color format, then each pixel can store 24 bits of useful information (8 bits are used for an alpha channel, which is not used in video formats).
+
+the black/white approach changes the bit depth of pixels to 1, so its efficiency in some sense is 1/24. not ideal, but not as inefficient as you imply.
+
+the problem is that the compression format for videos is lossy, so you need error correction techniques in your encoding format. so you could never achieve perfect efficiency with this technique. 
+
+the black/white approach is a rudimentary error correcting code. we can definitely do better, but some form of error correction is definitely necessary",7
+ge4aulm,k3i9p7,"I absolutely agree. When I first released the project, some people suggested using qr codes instead of single pixels. This way we can use the error correction already implemented by qr codes.",2
+ge4mn06,k3i9p7,"sure, although a more optimal approach would  probably take advantage of the compression algorithm used for YouTube vids. I think they operate in Fourier space, so it may be less error prone to also encode information in fourier space. this can be done using opencv
+
+not sure on the specifis though.",1
+ge51w5w,k3i9p7,"I haven't heard of Fourier space before, that's definitely something I need to look into. That's what's cool about sharing projects, there is always someone more knowledgeable that has some really cool input. Thank you for sharing.",1
+ge594wj,k3i9p7,"MPEG-4 specifically uses a discrete cosine transform. It's used to drop out high-frequency patterns in an images colours.
+
+This means that encoding pixel-by-pixel would probably be a lot more error prone, since noisy patterns might get dropped by the compression algo.
+
+You might have luck encoding data pixel by pixel up to some frequency threshold, then running an inverse, real-valued dft on a frame. that could make it robust against aggressive compression.",3
+ge6hzby,k3i9p7,It’s probably not wise to be dependent on the internal optimization of a company known for over engineering shit,1
+ge739ag,k3i9p7,? the DCT technique is a staple in image compression. its the core of JPEG and MPEG-4 frame compression,1
+ge4iidi,k3i9p7,I believe that there are some video formats which do support an alpha channel but youtube probably doesn't support that anyway,1
+ge5eg0z,k3i9p7,"it's actually moot, since mpeg-4 uses a completely different colorspace (Yuv)",1
+ge45n6y,k3i9p7,"You could probably increase the information density of each frame by going beyond just two colors for squares. If you had maybe 32 or 64 different colors, you could match each square to the value of the closest color.
+
+Alternatively, you could still encode the binary data just in the colors of the squares, but ignore the least significant bits of each square's color. So maybe just take the first 4 of the 8 bits used for each channel of the color in a certain spot, for instance. That would let the color change a certain amount before it starts affecting the important data bits.",3
+ge4amx2,k3i9p7,Oh that's and interesting aproach. I didn't think of that.,2
+ge5ek35,k3i9p7,"In general, this concept is called Hamming distance: the number of bit flips to convert one symbol into another.",3
+ge4w23t,k3i9p7,"Compression might not only change the color values but could also introduce artifacts. The problem is that you cannot test this after uploading, since youtube might re-encode your video with lower quality a few years later. I have some very old videos on youtube that used to be high quality but now are only available in potato quality.",3
+gdyovp1,k2za18,Wow you made a application that picks a random choice from a list of foods. Incredible.,3
+gdyr5y8,k2za18,"lol, thanks :)",1
+ge8va37,k2za18,"ah cool, you actually posted it here. I thought it'll get more upvotes tho...",1
+ge8z1az,k2za18,"I'm glad you thought so, that counts for something.",1
+gdz7uxs,k2xy4p,TL DR,10
+gdzga6l,k2xy4p,Making coreutils in Python that you can contribute to,4
+gdzti05,k2xy4p,What about programmers who are allergic to nuts ?,5
+ge1xo9s,k2xy4p,"Hmmm, very interesting.",1
+ge1maa6,k2xy4p,"This will be ultra slow, just saying",3
+ge1x7ht,k2xy4p,"Yes, but Richard Stallman did not think that when he founded GNU. Then why should we,
+
+If enough people contribute to this project then the development speed could be ultra fast.",2
+ge218xw,k2xy4p,"I'm not talking about development speed but runtime performance
+
+edit: just realised what sub we're on",7
+ge0azgl,k2xy4p,"U want to make a file Explorer? Or is it some kind of terminal? 
+
+I read a bit about gnu, but i dont get the big picture?",1
+ge0qr97,k2xy4p,"The GNU Coreutils is a set of core utilities that almost every Linux system runs, containing programs like cat, yes and cp. Everything needed to interact with a Linux system",5
+ge1xzak,k2xy4p,"Simplified: The GNU CoreUtils is a set of programs that are used to do basic tasks on the terminal.
+
+The project is a bit more complex than that but It's okay as a synopses.",2
+ge0qs5b,k2xy4p,I submitted an issue for you,1
+ge2bkz1,k2xy4p,"Non-shitty programming project I've been following is https://github.com/uutils/coreutils
+
+Coreutils in Rust AND cross-platform
+
+If you're trying to learn that project is probably worth contributing to more",1
+ge3q3jy,k2xy4p,"Nah mate, were doing it from scratch. *Also I don't know rust*",1
+gdlsk63,k12rzo,What monsters saw this and did not upvote it?,81
+gdm5qza,k12rzo,"https://stackoverflow.com/a/64921523/1516661
+
+It now has 69 upvotes. Nobody touch it.",40
+gdp7lvf,k12rzo,Pee pee poo poo,1
+gdme1h3,k12rzo,"This is fucking beautiful. Does the choice of mantissa matter here? Can you not just do 1e-322?
+
+Edit: does binary vs decimal cause the requirement? I can't seem to justify it, although I can kind of suspect where this is going",19
+gdosxj7,k12rzo,"That value is chosen because it’s approx 2^-1071, which when you multiply some double precision float by it will shift that number into the “subnormal range”, which will start rounding off binary digits.  I’m sure in practice 10^-322 will work fine as well if you try it.",5
+gdowvuz,k12rzo,"Ah thanks for the explanation. I suppose once the exponent is already at minimum, we start truncating the mantissa. Thanks.",1
+gdoxj1z,k12rzo,"Exactly!  Once the exponent is at the lowest level we can start inserting zeros into the mantissa to get even smaller numbers, at the expense of losing digits of accuracy.",2
+gdn2yhx,k12rzo,Simple maths. 1/1/1/1/1/1/1/1/1/1 is still one. Or am I being wooshed right now?,2
+gdn5sce,k12rzo,"1e-322 is 0.000000...000322 , not 1/1/1/1...  So I’d go for whoosh :)
+
+Edit: fuck knows why I put ‘322’ at the end. 1/(10^322) is what you’re after.",-7
+gdn8ev4,k12rzo,"&gt;1e-322 is 0.000000...000322
+
+Wrong, 1e-322 is 0.*&lt;321 zeros&gt;***1**",15
+gdosurk,k12rzo,"Yep, you’re right - posted my response whilst multitasking, will leave it and bask in shame",1
+gdnaogd,k12rzo,Wat? No! 1e-322 is 1 * 10^-322,6
+gdosscf,k12rzo,"Yeah, you’re right - serves me right for post comments whilst busy",1
+gdn7r8n,k12rzo,Oh sorry I'm being stupid,3
+gdot46u,k12rzo,"We both are mate, we both are",1
+gdo088f,k12rzo,"This is a two-liner to show how completely, ridiculously the whole web is fucked up.",9
+gdmnep5,k12rzo,Subtract .5 (if necessary) and convert to an integer? Is this not possible in CSS?,2
+gdn0a1c,k12rzo,No. There are no conditional statements or type conversions in CSS. It's not a programming language.,19
+gdn0d3n,k12rzo,*sad Turing machine noises*,20
+gdn3hrx,k12rzo,"But calc always rounds up. So subtracting .5 for proper rounding, or 1 for flooring works for non-integers.",6
+ge1zqfz,k12rzo,madlad,1
+gdmtm5c,k12rzo,"What's the ""third decimal point""? Don't numbers usually have at most one?",-1
+gdmw2mg,k12rzo,I think they mean the third digit after the decimal point,12
+gdmxf51,k12rzo,Would've helped if they wrote that then...,-5
+gdgki2h,k00wi2,"this... seems like a reasonable comment describing non-obvious behavior which prevents a bug from a chunk of well-tested, well-documented code? what’s the joke here",150
+gdgl5ai,k00wi2,"&gt;cJSON
+
+I think is the fact that you have to do it in order to safely use this library",56
+gdh4jhv,k00wi2,That's bits odd. Won't lie. But all in all cJSON is a pretty good library. Works well in embedded applications too.,12
+gdhshtg,k00wi2,Ambiguous memory requirements and embedded applications seldom go hand in hand.,20
+gdikxvq,k00wi2,"If such ""ambiguous memory requirements"" are not acceptable, json has no place in an application.",4
+gdiz59j,k00wi2,It's not ambiguous. It's X+5 ;),4
+gdjjx6d,k00wi2,"I know you're being cheeky, but if it's not in the API then there's no way I'm trusting a fudge factor.",2
+gdj7aub,k00wi2,Next you're going to be telling me that I can't put a Java runtime environment on my car's airbag ECU. Where does this slippery slope end?,1
+gdl7fqm,k00wi2,"It's not just a bit odd, it's 40 bits odd.",1
+gdmgmgt,k00wi2,👈😎👈,1
+gdgipsx,k00wi2,"Or 50 more to be *really* safe.
+
+But to be fair, I think cJSON does a pretty good job and I'm happy to allocate 5 extra bytes if it reduces complexity.",52
+gdgph4s,k00wi2,You know 5 bytes is safe if they even included a fuzzer as part of their testsuite,8
+gdh3gye,k00wi2,"I do this a lot, usually with 2 bytes.   Never know when you're going to make an off by one error.
+
+I'm also a fan or rounding up to some block size, or just always allocating the max, so you don't get as many random different sized blocks fragmenting the heap.",19
+gdj8xi4,k00wi2,"You, and your compiler too. IIRC C/C++ shorts store two bytes of data but allocate 4? Just an example. Stuff like this isn’t really bad code, it’s just that in almost all use cases you don’t care anymore about a couple of bytes, and there is only so much time in a developer’s day to fix small issues. 
+
+
+Honestly I wish more of the r/shittyprogramming stuff posted here had to do with incorrect application (oh hey I tried implementing design pattern X, but there was an unexpected consequence type of thing), rather than just “Look guys, my teacher made a typo on one of fifty assignments”, or “oh my god, a byte is being wasted, CAN YOU BELIEVE IT?” 
+
+Just honestly, like, who even cares?",2
+gdjcqip,k00wi2,"It's not bad code because it's wasting 5 bytes, it's bad code because the library is wrong about how many bytes it actually needs, and how do you *know* 5 bytes is enough?",3
+gdji9k1,k00wi2,"You’d have to ask the dev how they know the 5 extra bytes is enough. My guess? They probably measured how much they might be off by, and determined it was at most 5 bytes.",3
+gdjmsn3,k00wi2,"If that's the case then they can just add 5 bytes to their own estimate and then the library is memory safe. Tbf the whole note is confusing - I don't think it's about memory-safety at all, given that the buffer length is an argument. Also I would discourage this kind of reasoning in critical applications!",1
+gdj8yag,k00wi2,"Here's a sneak peek of /r/badcode using the [top posts](https://np.reddit.com/r/badcode/top/?sort=top&amp;t=year) of the year!
+
+\#1: [I mean, it's O(1) so who cares?](https://i.redd.it/mt30oxcitr851.png) | [114 comments](https://np.reddit.com/r/badcode/comments/hkxndd/i_mean_its_o1_so_who_cares/)  
+\#2: [The teacher didn't like my O(1) Fibonacci implementation...](https://i.redd.it/tzg6lyx0rza51.png) | [186 comments](https://np.reddit.com/r/badcode/comments/hrkm5t/the_teacher_didnt_like_my_o1_fibonacci/)  
+\#3: [Very innovative approach by 8yo me. What do all negative numbers have in common?](https://i.redd.it/4ximf9f0no251.png) | [165 comments](https://np.reddit.com/r/badcode/comments/gvsfln/very_innovative_approach_by_8yo_me_what_do_all/)
+
+----
+^^I'm ^^a ^^bot, ^^beep ^^boop ^^| ^^Downvote ^^to ^^remove ^^| [^^Contact ^^me](https://www.reddit.com/message/compose/?to=sneakpeekbot) ^^| [^^Info](https://np.reddit.com/r/sneakpeekbot/) ^^| [^^Opt-out](https://np.reddit.com/r/sneakpeekbot/comments/joo7mb/blacklist_viii/)",1
+gdjkrbo,k00wi2,"&gt;You, and your compiler too. IIRC C/C++ shorts store two bytes of data but allocate 4?
+
+I don't think is true. There are alignment requirements in most CPUs so you may have unusable padding bytes in some cases - but this is for speed, not for safety.",1
+gdjl6l8,k00wi2,"You may be right. That said the point still stands insofar that it will allocate enough bytes for the maximum possible value, whether you’re storing that value or not. Memory at the byte level is constantly wasted in some way",1
+gdjorlo,k00wi2,"You're right, but I don't consider this a problem of wasted bytes - this is a problem of poorly-specified functionality wrt. memory.
+
+From an information POV, these are different problems. The reason the compiler must allocate the full size of a numeric type for a variable is because the size must be decided by function run-time AND the variable must support the full range of values at run-time, since a) C compilers don't have to capability to statically infer the used ranges of variables and b) the value may depend in some way on external info, which is impossible to statically analyze anyway.
+
+However a program/function with ambiguous semantics (especially if it's about memory-safety, which may or may not be the case here) is definitely something that can be improved!",1
+gdjrp8k,k00wi2,"That’s true. I’m mostly being a bit defensive of the code here because I’ve experienced some similar peculiarities when working with Unicode and ASCII conversion in C++ recently. Storing c++ wide string in 7-bit narrow c++ strings for example often leads to a longer string than the original (for escaped format characters and stuff like that), and the exact byte size of the underlying wide char isn’t even standardized across systems, so I would assume similar issues may tie into the estimation problem here as well. It’s easy to look at the function and say “oh well that’s shitty programming”, but in the end none of us are really gonna go fix it ourselves either 🤷‍♂️
+
+I do agree that there’s room for improvement though!",1
+gdhujed,k00wi2,"This seems like a terrible idea. It doesn't understand the reason and mechanism are understood at all (if they are, the comment should link to an explanation or bug ID or something). If it is wrong by 2 bytes, who's to say it isn't, particularly in maliciously crafted examples, wrong by 2,000 bytes? If you don't understand why it is sometimes wrong, it is a bug you need to track down, understand, and then allocate exactly the amount really needed. Just adding 5 bytes and hoping that will be enough is not a good idea.",10
+gdjnwix,k00wi2,"The note is really confusing. How does the user know how many bytes they might need anyway? And why does cJSON need to estimate anything?
+
+It makes me think it's not about memory safety at all - my guess is that they check the estimate against the buffer length as an optimisation, to fail early before serialising much. If the estimate passes then serialisation is performed, returning a bool of whether it is truncated according to the buffer length argument. This means that the estimate can only be under and not over, in which case it might be fine? Or maybe the function returns true if the estimate passes, regardless of truncation, and so the extra 5 bytes is to ensure the data is a complete?
+
+Overall very confusing documentation!",2
+gdi705y,k00wi2,"Cool font, btw",1
+gdfwa8i,k00wi2,Lol,2
+gdgaeuq,k00wi2,Lel,0
+gdd5nlr,jzn12d,Huh. I thought the app store wouldn’t allow something like this.,37
+gdd5uzk,jzn12d,"I don't know, maybe it's sandboxed or something?  I've no idea about the app itself.",24
+gddwldk,jzn12d,"I don't know how this one works, but there have been projects that allow you to run arbitrary Python and Lua code for a long time.  What they don't allow is \*downloading\* arbitrary code.  So you can type (or paste) all the code you want in those apps, but they are (were?) prohibited from going out and downloading code.
+
+Actual compilers to native code seem like they'd be harder to get past Apple, but maybe this is just a wrapper around a web service or something where it's not actually running on-device at all?",13
+gdedrzn,jzn12d,I just installed and tried it and nothing is working without an internet connection. So I guess it isn’t local compiling anything and just sends it to some server that returns its stdout,8
+gdgl7s8,jzn12d,Reminds me of that time a guy did a talk about how PowerPoint is a programming language and should be banned from the Appstore,3
+gdd854d,jzn12d,"Ahahahahahahaha this is exactly what I needed. I hope that review gets taken down though, it’s unfair to the developers.",18
+gde2qi7,jzn12d,"Unless he just missed the '#' when he was selecting the code to copy, and it really did fail to compile perfectly good code. Not by any means a given though.",7
+gdya4yi,jzn12d,"I worked for a company that made children book apps. One review said audio didnt work. What was the problem? the user's volume was literally 0. Did the user remove the 1 star after we helped them out? hahahahhaha
+
+Some reviewers are just that stupid",1
+gde30eg,jzn12d,"""In app purchases""",6
+gde4f00,jzn12d,Just 99 cents for each #!,8
+gde6ai8,jzn12d,"This is c++, not python. In c++ you pay for each pointer.",6
+gdemt5q,jzn12d,"&gt; In c++ you pay for each ~~pointer~~ semi-colon.
+
+ftfy",-1
+gdeylts,jzn12d,Bad bot,3
+gdeymgv,jzn12d,"Thank you, MeLoveSigmundsdottir, for voting on Athandreyal.
+
+This bot wants to find the best and worst bots on Reddit. [You can view results here](https://botrank.pastimes.eu/).
+
+***
+
+^(Even if I don't reply to your comment, I'm still listening for votes. Check the webpage to see if your vote registered!)",2
+gdeyn43,jzn12d,"Are you sure about that? Because I am 99.99998% sure that Athandreyal is not a bot.
+
+---
+
+^(I am a neural network being trained to detect spammers | Summon me with !isbot &lt;username&gt; |) ^(/r/spambotdetector |) [^(Optout)](https://www.reddit.com/message/compose?to=whynotcollegeboard&amp;subject=!optout&amp;message=!optout) ^(|) [^(Original Github)](https://github.com/SM-Wistful/BotDetection-Algorithm)",1
+gddum1l,jzn12d,This guy has a lot to learn...,2
+gdffpo3,jzn12d,"Maybe that apps need a forum discussion for asking that  
+
+
+""Oh you have tried 5 times and still error, ask our community for help.  
+Try our premium membership! for 7 days""   
+
+
+Hhahaha",1
+gdg4x3s,jzn12d,Is this even a real person,1
+gdyaaqz,jzn12d,anger translator: Learn to code you dumbass!,1
+gdal2pr,jz02ql,This was very cool thanks for sharing!,4
+gdbfm5r,jz02ql,Very cool. I wonder if it might be a good idea to limit how often it can 'tap' to make it have to work within more 'human' parameters?,1
+gdbi3zp,jz02ql,Yeah good point. However it was already hard enough to get it where it is at :D maybe for a future project :) someone else also pointed out that the real flappy bird has some different and more difficult controls.,1
+gdbtm0p,jz02ql,Very cool!,1
+gd4d42q,jyjhk4,It's all fun and games until they upgrade the hardware and let it fly further... lol,63
+gd4dgs1,jyjhk4,Its fine we'll just let the end user test it in production,35
+gd4k78p,jyjhk4,That'll definitely end the user.,28
+gd591ao,jyjhk4,They just have to slow down the CPU a little...,10
+gd5prs4,jyjhk4,"That's what happened with a rocket once, except it was an overflow error and it caused the rocket to go off-course. They lost an expensive satellite.
+
+Though memory leaks are different from overflows; they are still issues you don't want.",8
+gd5ip9c,jyjhk4,Strap more ram to it,4
+gd6nxyy,jyjhk4,See it was funny without that stupid dog shit at the bottom. Why do people insist on fucking up perfectly good things?,-11
+gd6txty,jyjhk4,Sir we post memes here,26
+gd6ymzw,jyjhk4,"It's also a low-res screenshot of text, or did you not notice that?",0
+gcrtihu,jwl4y4,"You actually voiced over instead of writing into notepad, 0/10 and unsubscribed.",28
+gcrxq5n,jwl4y4,That is for the super advanced PHD level tutorial where i cover recursion at lightning speed,13
+gctbxio,jwl4y4,Can you go slower than lightning speed? I couldn't catch up unless we meet in a black hole or something.,3
+gctxxpw,jwl4y4,Just set the video to play at half speed and you should be good,2
+gcrxbka,jwl4y4,"thanks, my CS courses didn't cover randomness so this video was really helpful",12
+gcrxlo0,jwl4y4,glad I can help. Shout me out when you get a job at Google,6
+gcry1di,jwl4y4,"Teacher, I found a bug in this program. Even after 5 shuffles the list isn't random enough as I got two consecutive numbers in a row. Who should I email about this?",10
+gcs2p1h,jwl4y4,"its in the syllabus, which will be available 1 day before the final exam, which you have to pre-order 3 seconds before the semester started and it costs about $69420.",13
+gcsvutj,jwl4y4,Semester?  Will this also be offered as a two week boot camp?,2
+gcsxd8f,jwl4y4,yes of course. It has a guaranteed job offer upon graduation (wages may vary from $0/hr to $8 million per second),6
+gcsivms,jwl4y4,Nice,1
+gcs645p,jwl4y4,This is art.,3
+gcsxe6s,jwl4y4,Thanks. I always though programming was more artsy than most other art things,1
+gcsfb9c,jwl4y4,I was not ready for the theme switch.,3
+gcsxelo,jwl4y4,You mean the best part?,2
+gct55n4,jwl4y4,"You forgot to mention the part where you could make it a lot faster if it was in C, but that pointers are just too complicated.",1
+gct5vr7,jwl4y4,I dont even know what pointers are /Thano's voice,2
+gctpvsu,jwl4y4,"With how high you keep looking up at your IDE, RIP your neck",1
+gcuhsc8,jwl4y4,"""Don't ask what these key words mean.  Nobody knows, and if someone says they do, they're lying.""",1
+gcr7lqi,jwduh4,Isn't that a how to basic video?,3
+gcseggf,jwduh4,Yes..It is..,1
+gctvsf2,jwduh4,"Not really your content then, is it?",2
+gctyxki,jwduh4,You can say that...It was just for fun..,1
+gcpj23r,jwduh4,This is such a quality post I’m not sure if it qualifies as a shitty shitpost anymore!,7
+gcqqwj4,jwduh4,yeah i do this everyday,2
+gcpyr8k,jwduh4,"I'm in this video and I don't like it
+
+*issues DMCA takedown for use of likeness without permission*",2
+gcjj501,jvfaml,[deleted],101
+gcjwbtl,jvfaml,I can verify that was never the case. Maybe scared of this package [https://golang.org/pkg/encoding/json/](https://golang.org/pkg/encoding/json/)?,14
+gcjxnjf,jvfaml,"That still wouldn't explain why he didn't just write
+
+    Buffer.WriteString(""\""resource\"""")
+
+instead of using separate calls for every quotation mark...",17
+gckdmqt,jvfaml,"They very obviously are afraid of escaping characters and ""have seen some weird shit before.""  So in their mind, this was preventing a bug that creeps in from some strange edge case when in reality they just don't understand how string formatting actually works.",23
+gd523hl,jvfaml,"But that's the weird thing. They do escape some of the characters. The quotes are escaped:
+
+    buffer.WriteString(""\"""")",1
+gcjyw73,jvfaml,[deleted],7
+gcjzonn,jvfaml,"I highly doubt that this is in any way related to optimization. An access token request is usually done pretty infrequently, and it's going to be network bound. Trying to shave off a few microseconds with some weird string tricks would be insane in its own league. But I also highly doubt that more buffer write calls could ever mean faster code.
+
+Also, why not just use printf...? (or whatever equivalent Go has)",11
+gcna8tj,jvfaml,"&gt;Maybe there is some weird black magic optimization here
+
+Function call overhead would surely destroy whatever gains are being had.
+
+Back in the day, C compilers would notice when printf is being given a string literal, and replace the call with a call to fputs.  But that's still replacing one function call with another; this guy is replacing one function call with dozens...
+
+Maybe he was just really, really good at hiding his meth habits?",1
+gclwdh4,jvfaml,Performance should be measured by how many lines you have deleted,4
+gcjevvn,jvfaml,"I'm sorry but this should have the ""NSFW"" tag.",36
+gcjerom,jvfaml,I have so many questions,14
+gcjex5m,jvfaml,After all this? I have none.,10
+gcnahsb,jvfaml,"Same, but I don't actually want the answers, at least not without beer.",1
+gcjps32,jvfaml,"Well, at least it’s easy to read.",13
+gckvupv,jvfaml,"Despite the ugliness, this is much faster than json.Marshal.
+
+That said, what the actual fuck.",6
+gckj0mb,jvfaml,"I'm a chemical engineer that writes shitty scripts to automate things, but this is a whole new level",6
+gcjvot3,jvfaml,"Can someone please explain how you would make this code better?
+
+I suppose they can consolidate some commands into a single escaped cluster fuck, but besides that, what else can be done? 
+
+I don’t do a lot of web programming, but the times I have I was always passing around huge mega strings. How would you even get around that??",4
+gcjyg1r,jvfaml,"Well, first of all, they could've just used a JSON library to generate the JSON. But even if they didn't want to use a JSON lib, they could've used... idk, printf? Yeah I know, it's only been around for 50 years... Or even without printf, why write
+
+    Buffer.WriteString(""\""resource\"""")
+
+in three seperate lines? There is no conceivable reason for doing that.",11
+gclott8,jvfaml,"To be fair about the JSON library; the Newtonsoft JSON library for C# [doesn't even follow the json specification](https://github.com/JamesNK/Newtonsoft.Json/issues/818) correctly, on purpose. Yeah, I get that trailing commas are convenient but the parser on the other end in a different language doesn't think so.",2
+gck710v,jvfaml,He probably didn't know how to escape chars,-1
+gcjxkeg,jvfaml,"Something like 
+
+jwt := json.Marshal(&amp;config) 
+
+would do this in one line.",5
+gckh5h7,jvfaml,Well to be fair the core json marshal/unmarshal is extremely slow.,1
+gcknexp,jvfaml,How frequently does the jwt config change where the milliseconds of time improvement in rerendering 6-7 arguments using some non standard json marshaler matter?,7
+gcknk8g,jvfaml,Not to mention there is an easy way to override the marshaler and also fastjson library.,3
+gcmeopg,jvfaml,"This looks like golang so it doesn't even get the ""legacy code from a different era"" pass...",5
+gcjnh6s,jvfaml,Jesus Christ Reddit.,3
+gcmgz09,jvfaml,"Look, 99% code coverage.",3
+gcjpma6,jvfaml,Is this autogenerated hopefully?,4
+gcjvt1q,jvfaml,Nope not auto generated :(,7
+gcjj7r3,jvfaml,This is how you ruin Auth workflow maintainability,1
+gcl1nvc,jvfaml,Looks like he didn't realize you could escape special characters inline with other characters as part of one string,1
+gcn4qf2,jvfaml,"What, you've never written code with the intention of fucking with subsequent maintainer's minds? I usually add a comment that has might be relevant but in actual fact has very little to do with the implementation, and add mention of my Cairn Terrier, Stroustrup\* in there somewhere as well.
+
+\*He often makes it into particularly brain-dead Jira tickets as well.",1
+gcqvygy,jvfaml,This guy probably just hates your company,1
+gchlgeq,jv375n,Flase crowd checking in.,19
+gchetw4,jv375n,"const Fales = false;
+Fales == false; // true",13
+gchfgju,jv375n,I just set `false = False;` at the start of my program so my IDE autocompletes it.,9
+gchf122,jv375n,"""False""",3
+gchzyz5,jv375n,`&lt;script type='text/javcascript'&gt;alert('hello world');&lt;/script&gt; &lt;!-- why is this not working?! --&gt;`,2
+gci3nj0,jv375n,Ok but what about ```SafeL```?,1
+gci8foa,jv375n,"This is why you should always have aliases for lenght, widht, and weigth.",1
+gcigpft,jv375n,"#define flase false
+
+problem solved",1
+gciivhi,jv375n,No love for `fasle`,1
+gchcbs9,jv375n,Boring,0
+gcdcdvf,jugqs0,Some folks over-engineer their code as a way to secure their jobs. 😁,26
+gcdeu35,jugqs0,cant replace me if you dont understand my code,27
+gceb7qr,jugqs0,Exactly 🤖,3
+gcegv3k,jugqs0,Then they leave and you get handed a notebook full of gibberish and shopping lists and shit for handover haha,3
+gcfl3dg,jugqs0,That's a lot of work when you can just go the obfuscation and no comment route and get the same result.,1
+gccvw73,jugqs0,"javidx9 is one of the highest quality coding channels out there, absolutely love his videos.",17
+gce57q5,jugqs0,[Enterprise FizzBuzz](https://github.com/EnterpriseQualityCoding/FizzBuzzEnterpriseEdition) is a glorious example of this taken to the extreme.,16
+gcfhr42,jugqs0,"Okay though hear me out it's insane/unnecessary, but kind of an example of a bunch of design patterns in a Spring context.",3
+gcfurpv,jugqs0,If you like your design patterns presented in a needle &amp; haystack fashion I suppose it could be considered almost educational in places. I think the world will be a much safer place if its use is restricted to a demonstration of the perils of not knowing when to stop typing though!,1
+gelgmst,jugqs0,That's... that's *beautiful*.,2
+gcdhnf1,jugqs0,I won't lie I'm kind of guilty of doing this at times. I was taught horribly at University :(,6
+gcdl574,jugqs0,"It does seem to be the Uni grads that do this at my work tbh. A lot of my self taught devs write beautifully simple code, while the grads create these over engineered blobs. I constantly have to remind them, YAGNI!!
+
+That could just be at my work though, not saying it’s true everywhere",6
+gcdsbuf,jugqs0,"The problem with Uni is that typically you're graded on how much code you know rather than the quality of the code. I distinctly remember in year 2 coding a game which had multiple levels whereby you defeat the enemies, go through the portal and into the next level. I quite easily beat the other students who only had one level in their whole game, nobody else had something like I did. I showed a ton of technical skill getting this to work and as a result, got a high grade for my efforts.
+
+The code itself is fucking *shocking* and is an absolute mess, I struggled to read it myself when revisiting it. Most definitely not elegant or readable without great effort. But, like this video, I showed off how much I knew and it got me a good grade. However nobody at Uni tells you this isn't good code at all for real world scenarios.",3
+gcdyw2h,jugqs0,"I am a programming dunce and compete in contests.  I take hours to come up with absolutely bizarre, convoluted solutions to problems that work.  Then I look at the one line (python) solutions others have written and am embarrassed.",4
+gce98s6,jugqs0,"I like to think of this as the fizzbuzz effect. No matter what you think of, there's always someone out there who's done it more cleanly.",3
+gce0o5u,jugqs0,YAGN?,1
+gce5krb,jugqs0,"You Aren't Gonna Need It
+
+aka don't write code for a use case that might not happen.",8
+gce6fzd,jugqs0,"""sometimes I actually work with other people's code""
+
+I'm gonna have to revoke your ""One Lone Coder"" title",5
+gcdtnbc,jugqs0,"Even worse is when libraries or frameworks over-engineer their examples just to show off. I mean everyone wants to show what their framework can do, great. But don't bother with providing the code for it if it's completely illegible.",3
+gce2syr,jugqs0,"Oh, boy, thank you! I saw this video long ago and more than once since then I tried to reference it but couldn't ever find it again. Bookmarked!",2
+gce8qeo,jugqs0,Sometimes over-engineering is the only way to make the project interesting and motivating.,2
+gce9dj4,jugqs0,"This is a terrible video. The given examples of ""over-engineering"" are
+
+1) Getters/setters for everything. Almost never a bad idea, almost always a good idea, including this case.
+
+2) Namespaces. If you want your code to be reusable -- always use namespaces.
+
+3) Over-commenting. Never a problem (any decent IDE can hide comments), but one comment explaining a (seemingly) obvious thing can save a lot of time for someone using your code (including future you). 
+
+4) Unnecessary templates. Could be over-engineering, but in this case, they don't harm and may be useful. 
+
+5) Adding X ? true : false. Just making code shittier for the sake of it, has nothing to do with over-engineering. 
+
+None of the examples (except for templates abuse) have anything to do with real-live examples of over-engineering.",6
+gcff5xq,jugqs0,"i feel like you're being a little too on the other side here, either way even though his used examples are shitty, who cares about the re-usability of a dime-a-dozen class structure? and we all hopefully know the feel of what hes talking about in the video (unless you are the one making your code ugly)
+
+it's all about the use case, his example doesn't apply necessarily to his professional experience but it still illustrates the point. obviously that specific class is over-engineered for its specific use case, who cares if those practices are professionally ""good""",4
+gchdfg8,jugqs0,"&gt;and we all hopefully know the feel of what hes talking about in the video (unless you are the one making your code ugly)
+
+It's hard for me to relate in any way to this video. But it's ok, it's not his job to make everyone enjoy his video. But people new to programming can be extremely harmed in long run by seeing this. 
+
+&gt;obviously that specific class is over-engineered for its specific use case, who cares if those practices are professionally ""good""
+
+His example doesn't have use cases, it'd purely educational. And educational examples used to ridicule standard practices is a very strange idea.",0
+gcebiqr,jugqs0,post this comment in the youtube video,2
+gced22w,jugqs0,Youtube comments is a scary place :-) You can post my comment there if you want.,6
+gcex7rg,jugqs0,"&gt;	2) Namespaces. If you want your code to be reusable -- always use namespaces.
+
+I assumed he wasn’t being serious when he implied namespaces are overengineering. Anyone who has worked on a codebase with more than a handful of dependencies or a handful of developers knows how important namespaces are. 
+
+As the amount of code increases, the chance that there will be some naming collision also increases. Imagine if you went to commit this code but found out that there’s a different Shape class defined somewhere else in your codebase. Now you have two distinct definitions of the Shape class in the same codebase. That’s eventually going to break something. Using namespaces is an easy way to solve this problem.",5
+gcfoa6m,jugqs0,Though I suppose namespaces will not actually help you avoid name collisions within a single vocabulary. The exact same thought process that goes into placing two Shape class declarations into different namespaces is the exact same thought process that would otherwise name the Shape classes more appropriately.,2
+gcfsdxb,jugqs0,"Depends. Shape is not a particularly descriptive name, so in this case that's true. However one could easily imagine a situation where there are multiple components with similar (but different) functionality that could accidentally be named the same thing. Namespaces help in this case. 
+
+In a language without namespaces, you typically have to add some prefix to all the types and functions you define in order to prevent collisions. This can make the names very long. With a language that has namespaces, you can use namespaces to keep the names shorter.",2
+gchi1zj,jugqs0,"Yes - my point is they don't substantively prevent name collisions, it's mostly a convenience for name qualification. I suppose they do prevent them if the language supports namespace aliasing (e.g. `import X as Y`), which actually changes how a name is qualified as opposed to just being another mechanism for qualifying names. Additionally, in a compiled language a name collision is detected at compile time, so it's not as if one must act defensively against this case. Personally I see namespaces as much more useful for managing multiple vocabularies, e.g. using libraries.
+
+Anyway, neither my point nor the video's is that namespaces are bad; just that that clarity comes first, not using a check-list set of features that may be useful one day, maybe. That's what makes programming an art - to show what is important!",1
+gceexvc,jugqs0,"Hang on, I didn't watch the video but are they really claiming that **namespaces** are over engineering???
+
+Id like to see what this guy works on besides YouTube videos that doesn't benefit from namespaces...",3
+gcem3q3,jugqs0,"&gt;Hang on, I didn't watch the video but are they really claiming that namespaces are over engineering???
+
+Yeah.
+
+&gt;Id like to see what this guy works on besides YouTube videos that doesn't benefit from namespaces.
+
+I bet he's either a clown who has no idea about the standard practices or is a professional developer who always uses namespaces, but decided to make this clown video for attention.",-4
+gcduol8,jugqs0,"Oh no I've seen this video in my recommendeds so often but never noticed the typo in the thumbnail until now because it was always small but the reddit preview makes it huge
+
+Can't unsee aaaaahhhh",1
+gcfe55v,jugqs0,wait you can have getters and setters in C++? someone plz teach me this magic.,1
+gdjkths,jugqs0,"This is shittyprogramming after all, so:
+
+Install Python, just give up on doing anything big enough that you want getters in C++. That is just a way to invite misery.",2
+gcfqj1y,jugqs0,"People who wrote the GNU coreutils:
+
+They are bloated with useless arguments and tons of comments.",1
+gcdrwa3,jugqs0,"This is awesome. I'm going to post this to my team slack and hope some people take the hint. Seriously tho, this is good advice",1
+gdye37n,jtg53d,"Lol, I actually really enjoyed this and subscribed to see what you do next.",1
+gc5n0pk,jtg53d,WOW Great idea :),-1
+gc5orny,jtg53d,thank you!! :)),-1
+gc2ocvw,jszkpz,Back in my day we called this commitlogsfromlastnight.com,21
+gc2ompu,jszkpz,"Yep, indeed. Hence the inspiration link in the top right.  
+
+
+*(inspiration cause* [*commitlogsfromlastnight.com*](https://commitlogsfromlastnight.com) *isn't maintained anymore and the cron worker hasn't added any commits in 2 years)*",10
+gc4w38s,jszkpz,‚Fix: fuck you cors‘ speaks out of my soul,5
+gc462oa,jszkpz,"this site is pure gold! 
+made universal vars because fuck you
+wish it could chain the commits si we could see the glory of trying to fix something we just fucked up",4
+gc5sn5s,jszkpz,Fuck cors is right.,3
+gccgcr8,jszkpz,im not even close to a 10xer but my commits look like these too,2
+gbx2ooi,js3822,The worst thing I have ever experienced is simulink files with different versions of MATLAB. Absolute cancer,33
+gbxd2l7,js3822,"Right in the feels.
+
+Also the complete nonsensical idea behind the fact that the code you write inside the GUI / app builder is packaged in a binary, so any effort of tracking code via git goes down the drain.",8
+gbxiihb,js3822,"the file format is also pretty ""fun"". I had the ""pleasure"" of writing a parser and serializer for that format for a company that does pretty much everything with MATLAB and SIMULINK once.",9
+gbzxz44,js3822,What kind of monsters would do that?,3
+gc00fqe,js3822,"they effectively used matlab files as a data interchange format between different tools. some recorded data from things the company built, soms analyzed it, and produced new matlab files. They also had other data formats, and one of the internal tools needed import and export of matlab, since they at that time did the conversion manually in a second step.
+
+The mat file format is pretty wild:
+
+It's one big list of type, length, value blocks, one after another.
+
+the types are
+
+- Integer (8, 16, 32, 64 bit, signed and unsigned)
+- Double and Single precision float
+- Matrix
+- ""Compressed"" (really means zlib data containing matrix)
+
+Matrix is funny, since it contains a second header containing the rows, columns, and type of thing in the matrix. also, every matrix has a name, because of course it does.
+
+that is however a _second_ kind of type, with different constants for the same primitive data types I listed earlier. matrices come with a ""flags"" field that is left empty for most matrices. matrix only also has new data types such as CHAR. if I remember corrextly, there was some kind of weirdly hacked in unicode support as well, but that's badly documented (don't worry, the unicode support is not the best)
+
+the matrix header also contains the number of dimensions and the size of each of them. Matrices are stored in column first order, and if the complex flag is set, then the imaginary values are stored in column first order after the real part matrix. (yes, you can have complex CHAR matrices in the file format, I don't think they make sense)
+
+strings can only be stored as matrices. an array of strings is therefore a 2xN matrix, filled up with null bytes.
+
+yes, they store [""hello"", ""world""] as ""hweolrllod"".
+
+if you have a matrix containing different data types (e.g. in one column double, in one column complex long), then you get a matrix of 1x1 matrices. yes, that means you have a matrix header for ever element. talk about overhead.
+
+There's also the ""struct"" matrix type, which is a matrix where I believe each column also has a name. the names are defined inline before the data. there are a bunch more special types for sparse matrices and ""object"", but that's too much detail I think.
+
+every global variable in the .mat file must be a matrix (with the global flag set). the variable name becomes the matrix name, and if the variable was just a number it becomes a 1x1 matrix.
+
+Also, at the beginning of the file, after the magic number, there are a few hundred bytes of ignored data where you can write a plain text description into.
+
+This was Mat5. the newer Matlab 7.3 format I think uses HDF5.
+
+(EDIT: off by one in file format version)
+(EDIT2: fixed misremembered types)",5
+gc07t2j,js3822,"You lost me at ""they""...
+
+For real though holy crap I can't think of anything more awful. At least you had your job security",2
+gc12abf,js3822,"sadly, no. I was a summer intern at that company",3
+gc1nlky,js3822,"What the.....
+
+
+I'm glad you said ""was""",3
+gbxroal,js3822,I forgot I had repressed those memories. Thanks.,5
+gby5540,js3822,"The worst is workplace variables. I'm anal about putting ""clear"" at the beginning of all of my scripts now because I've turned in assignments that, unbeknownst to me, relied on workspace variables. Fuck that",14
+gbx69vt,js3822,"I don't get it. What is the issue here? The IDE takes a few seconds to load (so do all ""big"" IDEs for other languages) and it gives error messages if you mess up the code (isn't it *supposed* to do that?)",16
+gbxo4p8,js3822,"At least at my University, Matlab was run off of a network drive, making it impressively slow.",9
+gc0gfny,js3822,"We got the pleasure of using a severely outdated version, because that was the only thing there was a license for.",3
+gbxbed7,js3822,"No real issue there, i was just frustrated at matlab a few days ago. We got a school assignment with botched instructions and botched check script. This is just some nonsense i threw together for my fellow students to improve their mood a little",16
+gbyhdte,js3822,"Ok, and where's the shitty programming? Go to some other sub with your frustrations. Maybe some n00b programmering subreddiy",-13
+gbz16ci,js3822,"&gt; Ok, and where's the shitty programming?
+
+It's MATLAB; shitty programming is a given.",15
+gbyp8et,js3822,At 0:10? I can assure you that it’s pretty shitty comming from a noob,1
+gbza46h,js3822,Why is no one talking about Ainsley Harriott peeking over the hill!!,2
+gc0ux6b,js3822,What? That’s always been the windows background,3
+gbr7tsn,jr5ecq,"""Regular SQL"" is a joke in of itself isnt it",32
+gbr7z4s,jr5ecq,Surely,8
+gbtv1b8,jr5ecq,"Today I learned that some databases support regular expressions in queries, *including backreferences*. I threw up a little.",5
+gbr9av9,jr5ecq,"In MS SQL, instead of and/or/not gates for operators, there's just one operator called bill gates. Bill gates will fetch all input and never return anything.",73
+gbswoqa,jr5ecq,"MS SQL costs the same as SQL, but only makes 70% of what SQL makes.",22
+gbs1zin,jr5ecq,"You have T-SQL which is just like normal SQL but if you insert a customer called John Connor the server turns into robot and hunts them down.
+
+This causes locking while the process completes",11
+gbtcdyl,jr5ecq,"MS SQL is a bit like MY SQL but everything you do with it is owned by Micro$oft, instead of you (MYself).
+In regular SQL nobody owns the datas.",10
+gbttchp,jr5ecq,"Wait, in regular SQL nobody owns the datas? I didn't realize I learned communist software, I am disgusted.",7
+gbuozi7,jr5ecq,"No, the communist version is OurSQL.",4
+gbupdm0,jr5ecq,Is that the one by redgate?,1
+gc13btg,jr5ecq,"All languages are SQL, but some languages are more SQL than others.
+
+-George Orwell",1
+gbs0trn,jr5ecq,I prefer the prequel more.,6
+gbswrb0,jr5ecq,"To put it pretty simply, MS SQL was a sort of follow-up to SQL. All the same mechanics from the original SQL persisted in MS SQL, and the overall goal of MS SQL was the same as SQL - write queries, execute queries, rack up more and more data points. The four stakeholders that would hover about are seen in this version too. Executing a Power Query would make them avoid you. However, as the days go on, your queries would grow more complex, ETL jobs become less reliable, and successive Power Queries become less and less effective, to the point where it produces literally no business value. I don't want to get too technical here, but I'll leave you with the easiest way to distinguish SQL with MS SQL - you'll find MS SQL sporting a red bow and other accents, vs. SQL's plain, yellow scheme.",5
+gbttwez,jr5ecq,"I've heard that if you look at too many screens with MS SQL the whole thing eventually breaks, is this true?",1
+gbtlmu3,jr5ecq,"Its the same but during important database work MS Sql will insist that you upgrade immediately to enjoy their new security features. Then you can watch a blue screen for 6 hours that reads ‘99% done dont switch off your computer’.
+
+Immediately after the update your computer gets a virus.
+
+
+Its AIDS.",3
+gbszkaw,jr5ecq,Go to W3 School's website and make a meme about cross apply,2
+gbuwoi4,jr5ecq,"MS SQL is more specialized, but learning it will be faster since you already have regular SQL under your belt. Don't mistake it for PhD SQL though, that's more rigorous and will take a lot longer to finish - plenty of people have to drop out halfway.",2
+gbtzuz1,jr5ecq,"For starters, make sure you pronounce it properly: Miss Squill. Saying it like that will let people know you’re a pro Miss Squiller.",1
+gbts7um,jr5ecq,"MS SQL has way better support, where as SQL doesn't, at least in my company",1
+gbohbas,jqowyj,They give off a lot of warnings that you choose to ignore.,148
+gbpj7ms,jqowyj,"It's not your fault that you ignore them because it's 500 lines of ""You should know why it's wrong"".",33
+gbqh2ge,jqowyj,I see you're familiar with C++ and template metaprogramming.,9
+gbskif2,jqowyj,Is this a warning?  She seems to perform better for my coworker than me.,2
+gbohhj1,jqowyj,"When you write your tip on the receipt without an ""f"" at the end and she says there's no implicit cast from double to float.",110
+gboinfx,jqowyj,"What idiot uses floating point variables for storing currency? Use a decimal, damn it!",57
+gbpe0wh,jqowyj,Integer number of mills.  This is the way.,17
+gbs8wyv,jqowyj,Wrapped in a Currency class,2
+gcjfdmi,jqowyj,Store it in an integer as cents and just kill anyone who goes over.,2
+gbowv7l,jqowyj,"When they restate everything you are saying in simpler terms, but it's clear they have no big picture understanding of the conversation.",45
+gbpwf1p,jqowyj,They freak out over one missed period.,46
+gbp0xfy,jqowyj,She points out everything that is wrong with you and doesn't tell you how to fix it.,43
+gbrckwn,jqowyj,"Ouch, this one hits close to home",3
+gbrq15z,jqowyj,"Hello gcc, I'm home",3
+gbs8fw0,jqowyj,"Segfault me, daddy!",3
+gbosg1w,jqowyj,They won't KISS.,27
+gboinnp,jqowyj,Combining compiler *warnings* with enum *flags* to create the phase *warning flags* instead of using the proper phases: **warning signs or red flags.**,17
+gbom3y8,jqowyj,`gcc -Wall`: am I a joke to you?,20
+gbp3rxe,jqowyj,They see you as only an object,17
+gbp0xpd,jqowyj,You exchange a lot of text messages but never actually link up.,12
+gbpdg26,jqowyj,"Constant warnings about how your habits are to be deprecated in favour of better more sane standardised habits.Constantly moving around things in memory without your consent and then bitching at you about the pointers still referring to old addresses.Refuses to do things if you ask in the ""wrong"" way.Expects you to be compatible with every different dialect they support.Makes arguments against you using the full resources of the environment and entire scope of your stack, while you only have pre-approved access to resources and are forced to look only at one piece of the stack at a time.",9
+gbpmghm,jqowyj,When they only respond to your mistakes,6
+gbpcp20,jqowyj,The --suppress-warnings flag,7
+gbpvyal,jqowyj,-O3,5
+gbsk8r3,jqowyj,"They use up all your resources, and their output is a bunch of instructions.",5
+gbomrhp,jqowyj,They complain if you dont use cor'rect punctuation;,8
+gbp9w8d,jqowyj,when they have memory leak from the mouth,5
+gbom1yb,jqowyj,`-Wimpersonate-human`,6
+gbovs85,jqowyj,Can’t think of any but I do know you’ll be waiting forever for them to finish what they’re doing.,3
+gbpwccm,jqowyj,Gives you a gigantic list of all the things you are doing wrong.,3
+gbi4sbm,jpz5qa,NaN,45
+gbi6wka,jpz5qa,"Mmm, Indian bread...",24
+gbiidza,jpz5qa,undefined,5
+gbi6d8a,jpz5qa,Object object = new object() { Object = object},15
+gbiqti0,jpz5qa,can't get more meta than this,12
+gbir1xg,jpz5qa,It's the JS version of [removed].,7
+gbj0alw,jpz5qa,    undefined,3
+gbi6i0h,jpz5qa,console.error(object);,3
+gbiwniq,jpz5qa,"`typeof null === ""object""`",3
+gbkxhda,jpz5qa,sizeof(sizeof(object)),3
+gblells,jpz5qa,I \[object Object\] to this post.,3
+gbi6yx1,jpz5qa,[OBJECTION!!](https://i.ytimg.com/vi/W8QRExBfQhs/hqdefault.jpg),4
+gbl5zp1,jpz5qa,Pee poo,2
+gbiqkje,jpz5qa,_f_,1
+gblxgt1,jpz5qa,"Loling hard, via [XMLSerializer](https://developer.mozilla.org/en-US/docs/Web/API/XMLSerializer)",1
+gblxqbw,jpz5qa,"Laughing out loud, via [JSON\_decycle](https://github.com/douglascrockford/JSON-js/blob/master/cycle.js)",1
+gbmapzk,jpz5qa,"Why does it even do that? In 8 years of producing shitty javascript, i never quite bothered to find out. Like why not just object? And why between brackets?",1
+gbmew6o,jpz5qa,[[object Answer]](https://stackoverflow.com/a/25419538/3655565).,3
+gbkfbvr,jpz5qa,let isPostFunny = ( (0.1+0.2) === 0.3 );,0
+gbl5z4j,jpz5qa,poop,3

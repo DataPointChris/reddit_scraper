@@ -1,0 +1,84 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k70t7t,Need help connecting to a hive sink with metadata in mysql,"I am having issues connecting to the hive metastore using a hive sink.
+
+Here is how the metadata is configured in the hive-site.xml
+
+&lt;property&gt;    
+
+
+&lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
+
+&lt;value&gt;jdbc:mysql://localhost/metastore?createDatabaseIfNotExist=true&lt;/value&gt;
+
+&lt;description&gt;metadata is stored in a MySQL server&lt;/description&gt;
+
+&lt;/property&gt;    
+
+
+&amp;#x200B;
+
+What do i set the metastore property for the hive sink when preparing the flume config file?
+
+conf file:
+
+...
+
+agent1.sinks.sink-hive.type = hive
+
+agent1.sinks.sink-hive.hive.metastore  = ???
+
+...
+
+&amp;#x200B;
+
+I searched in my sql and it returned  this as the uri and tried passing it in but it doesnt work:
+
+javax.jdo.option.ConnectionURL=jdbc:mysql://localhost/metastore?createDatabaseIfNotExist=true",0,bigdata,2020-12-05
+k6rkyn,"Big Data Saves Lives, And Patient Safeguards Are Needed : UMass Amherst Research Study",,1,bigdata,2020-12-05
+k6kxub,5 Best-Performing Tools that Build Real-Time Data Pipeline,,1,bigdata,2020-12-05
+k6ae26,Where can I get MRI datasets?," Ideally,  I'd love to find MRI datasets from dementia patients, but open to any  source of MRI data. This is for PhD research, and your help would be  greatly appreciated. Thank you in advance!",5,bigdata,2020-12-05
+k62p8s,Top compliance controls for Kafka Connect,,0,bigdata,2020-12-05
+k62ar5,Behind the Scenes at the Scylla Developer Conference and Hackathon,,1,bigdata,2020-12-05
+k5xszv,"mahout ""clusterdump"" explained?","Hi there,
+
+I imagine this is quite a long shot but I'm currently in the process of using mahout (hating it). I'm clustering a bunch of text documents (tf-idf vector models) using cosine distance measure.
+
+I just cannot understand what the purpose is of specifying the distance measure when running the very last step, which in my case is clusterdump.
+
+I specified the distance measure as cosine during the actual kmeans step/s. If I do not specify the distance measure for clusterdump it defaults to squared euclidean. But then, in my mind, the kmeans clustering process has already been done and clusterdump is just about spewing out the results in a text file.
+
+The worrying this is, depending on whether i specify clusterdump to use cosine or euclidean or otherwise, the final outputs are very different.
+
+&amp;#x200B;
+
+Come to think of it, the results always feel pretty random to me - with no clear evidence that changing any of my hyperparameters (E.g. k value) is making anything consistently better or worse.
+
+&amp;#x200B;
+
+any advice on , specifically, the interaction between distance measure and clusterdump would be greatly appreciated.",2,bigdata,2020-12-05
+k5wl8t,Cream Consumption Ranking | TOP 10 Country from 1961 to 2013,,0,bigdata,2020-12-05
+k5win4,Fraunhofer IWM closes gaps in the mechanics of materials digital value chain,,0,bigdata,2020-12-05
+k5v3lf,Transforming Big Data to Competitive Intelligence for Achieving Competitive Advantage,,1,bigdata,2020-12-05
+k5oqt5,Flink + TiDB: A Scale-Out Real-Time Data Warehouse for Second-Level Analytics,,2,bigdata,2020-12-05
+k5fp58,"Video: How to get started with our free, hosted, cross platform Spark UI &amp; Spark History Server. This is but our first milestone towards replacing the Spark UI entirely with new metrics and visualizations. I'd love your feedback :) JY @Data Mechanics",,3,bigdata,2020-12-05
+k5b53p,Data Masking and Compliance for Apache Kafka,,7,bigdata,2020-12-05
+k5b0tc,Monte Carlo launches Data Observability Platform to prevent broken data pipelines,,0,bigdata,2020-12-05
+k581mn,5 Data Mining Algorithms for Classification,,7,bigdata,2020-12-05
+k564bz,A german college survey,"Umfrage für IT:
+
+Eine Studiengruppe des Journalismusbereichs HMKW Köln hat eine Umfrage für IT'ler erstellt. Die Umfrage bezieht sich auf das Verhältnis zum Wunscharbeitgeber.
+
+[https://survey.sogosurvey.com/r/bQxm4P](https://survey.sogosurvey.com/r/bQxm4P)",2,bigdata,2020-12-05
+k52axy,Why Big Data is the Most Revolutionary Development in Technology,,1,bigdata,2020-12-05
+k50s8j,Machine Learning vs Learning Data Science,,5,bigdata,2020-12-05
+k4tjxd,Speeding up data collection to help save the Great Barrier Reef: Researchers hope by ramping up data collection it could help save what is left of the reef.,,5,bigdata,2020-12-05
+k4n5sa,Data Mesh Applied: How to Move Beyond the Data Lake with lakeFS,,4,bigdata,2020-12-05
+k4kkix,An interview about how the Equalum platform is architected to provide streaming data integration workflows with a no-code interface.,,1,bigdata,2020-12-05
+k4injr,Analytics Insight Predicts 3 Million Job Openings in Data Science in 2021 | Analytics Insight,,3,bigdata,2020-12-05
+k4g924,Share your massive data analytics challenges get a $50 Amazon gift card,SQream is giving a $50 Amazon gift card to data professionals who share their analytics challenges in a 60-second selfie video. [https://sqream.com/blog/massive-data-revolution-video-challenge](https://sqream.com/blog/massive-data-revolution-video-challenge/),2,bigdata,2020-12-05
+k4889a,12 Best Big Data Tools in 2020 - CLOUDit-eg,,2,bigdata,2020-12-05
+k46ong,The precisionFDA COVID-19 Precision Immunology App-a-thon is now live!,"Participants in this App-a-thon will help enhance informatics analysis tools and develop innovative applications and pipelines that elucidate the relationship between molecular data such as immune repertoire composition by sequencing and COVID-19 disease-relevant factors. 
+
+If you have any questions about the App-a-thon or precisionFDA, please feel free to post them in this thread, and we will respond as quickly as possible. The App-a-thon submission period is open until January 29th. For more information and to get started, visit the challenge site [here](https://go.usa.gov/x76cv)!
+
+Additionally, if you’d like to learn more about how next-generation sequencing has advanced the study of adaptive immunology, consider registering for the annual Adaptive Immune Receptor Repertoire Community Meeting on December 8-10, 2020: [https://whova.com/web/acmv\_202012/](https://whova.com/web/acmv_202012/)",4,bigdata,2020-12-05

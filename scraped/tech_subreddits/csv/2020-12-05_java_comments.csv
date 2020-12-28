@@ -1,0 +1,894 @@
+comment_id,post_id,comment,upvotes
+gep4gpj,k76txa,Why not make videos in your native language with English subtitles?,1.0
+gep5prs,k76txa,"I think English speaking people won't like Bangla video with English subtitle, so I have separated videos for two languages in two different channels: [https://www.youtube.com/channel/UCOYx3sxzOd-i\_GoUGTCI0JA](https://www.youtube.com/channel/UCOYx3sxzOd-i_GoUGTCI0JA)",2.0
+gep5l41,k76txa,"Hi, thanks for your suggestion.
+
+Yes, I do that. I have started creating video in my native language Bangla on the following channel:
+
+[https://www.youtube.com/channel/UCOYx3sxzOd-i\_GoUGTCI0JA](https://www.youtube.com/channel/UCOYx3sxzOd-i_GoUGTCI0JA)",1.0
+geouwni,k75a0z,"Use proguard - as long as your java version is &lt;14. I would suggest not processing anything other than your own classes.
+
+https://medium.com/@ijayakantha/obfuscate-spring-boot-2-applications-with-proguard-a8a76586b11f",2.0
+geoz7tq,k75a0z,"Do they just want to use the API? Or juste execute the jar?
+
+Also be wary of any reflection or references to class names/packages by string may be broken by obfuscation.
+
+Is ""offer"" here a job offer, or some kind of software deal. If it's a job offer to show skill, I don't think it'd even be worth the effort, usually easier for them to write their own, instead than de-compile then reengineer the result back into a real internally usably component again.",3.0
+gep0kas,k75a0z,"That doesn’t seem very obfusticated, and would be trivial to make changes. Based on the poor examples in that article. 
+
+I’d advocate checking if there are more extreme settings (long variable names for instance). 
+
+I’d also advocate extreme obfustication by including ALL dependency classes into your jar, then processing the whole thing. When ‘Spring’ is called ‘agdjdixndjdj’ it’s going to be much harder to unpick, and hard to apply upgraded versions too.",3.0
+gep7tpl,k75a0z,"Kindly look into https://www.zelix.com/, this is the tool I have used for java maven project. Hope this helps you.",1.0
+geox5fz,k7551f,"There is a library called axon for cqrs, that has a spring boot starter as well.",6.0
+geoy67g,k7551f,"I've encountered it before but my understanding was that it is more for CQRS and Event Sourcing. It is much more \`heavy\` in my opinion, while I wanted something more light and simple, focusing only on CQS.",7.0
+geppgcw,k7551f,"Axon supports CQRS and ES, though you don't have to use ES if you don't want on the command side. It's quite a ""light"" extension to spring as you can just bring in the core but they've solved the abstractions to handle scalability problems that occur in systems like this. It quickly gets into sharding of data streams to properly push state mutations from command to query side and scale the ingestion of that data. E.g. investigate their tracking processors used to ingest events from command side (event log) and build your read views for the various query side read views. When you investigate that you'll see what true CQRS means as it's not just having different method/objects for command and query.",2.0
+geoxasr,k7551f,Axon is amazing but I wish they had an integration with DynamoDB.,1.0
+geppyl2,k7551f,"For what part? If talking read views, you can do this as it's just standard spring so use whatever spring-dynamo code you want. If talking for it's own persistence of event log and tracking tokens then dynamo isn't the most effective storage for that and a SQL store or their custom axon-server are better suited. It's not to say you couldn't use dynamo for that stuff, just it's not recommended. They used to and may still have support for mongodb but it was recommend in their docs to not use it and they went into why doc stores aren't a good fit for that purpose.",1.0
+geo5c7z,k6ud8i,How no one has mentioned junit and mockito is incredible.,33.0
+geoxosl,k6ud8i,"OP is asking specifically for frameworks for microservices, so I think it's easy to assume he does not mean unit testing in general.",4.0
+gendr6y,k6ud8i,"What kind of tests are we talking about?
+
+a) Functional tests - spinning up the entire stack and exercising the public UI / API
+
+b) Integration tests - with transient/external (to the company) services mocked or stubbed?
+
+c) Unit tests? What framework are they built with? Does it offer testing support see: [Spring](https://spring.io/guides/gs/testing-web/)
+
+Your question is very broad.
+
+Some cool tools that I've used in the past are:
+
+* [Spock](http://stinspockframework.org/) \- testing framework
+* [OKHttp](https://square.github.io/okhttp/) \- http client assuming that's what you system is communicating over
+* [MockServer](https://www.mock-server.com/) \- I would encourage building your own stubs
+* [Awaitility](https://github.com/awaitility/awaitility) \- if you need to test async stuff
+* [Cucumber](https://cucumber.io/) \- BDD framework",24.0
+genlg7p,k6ud8i,Check out Spring Cloud Contract,6.0
+gen1lig,k6ud8i,"Depends on what do you want to test. If you are trying to test your REST API, I used restassured in the past.",9.0
+genn4kt,k6ud8i,I also recommend RestAssured for integration tests.,3.0
+genyjsb,k6ud8i,"I find RestAssured and Spock can be both elegant and expressive
+
+https://stackoverflow.com/questions/36719439/rest-assured-with-spock-and-groovy-as-integration-test",3.0
+gen1rpb,k6ud8i,Thank you,2.0
+gen1zyu,k6ud8i,Check out Karate DSL,9.0
+genj1aj,k6ud8i,I use testcontainers and cucumber for the integration and end2end testing.,4.0
+geovj0w,k6ud8i,"Well, as it is always the case - the answer is “it depends”.
+
+Junit and Mockito are good and universal tools, so you can use those for more or less any types of tests.
+
+If you are using Spring framework, it has a very good documentation and examples of how to write tests for it - https://docs.spring.io/spring-framework/docs/4.2.0.RC2/spring-framework-reference/html/integration-testing.html .
+
+If you need database for tests - H2 is a handy tool.
+
+Please take a look at the following website: https://www.baeldung.com/integration-testing-in-spring",4.0
+genekie,k6ud8i,Wiremock + Pact for testing between microservices. Integration tests for your app may it be spring or quarkus or whatever flavour + assertj.,6.0
+gengrx4,k6ud8i,"&gt; Wiremock + Pact for testing between microservices.
+
+This kind of sounds like you may be doing synchronous communications between µservices. Surely you aren't though right?",-4.0
+genhtsx,k6ud8i,thats how the world works bud,3.0
+gensnhs,k6ud8i,"If synchronous communications is being used between microservices then the point of microservices has been missed. What used to be a insanely fast in-memory method call is now an error prone and relatively slow network call (a couple of orders of magnitude slower, at least). 
+
+There simply is no point in using a microservices architecture if there is synchronous communications between them.",4.0
+genupao,k6ud8i,"OT, You can do async method calls without microservices. Actually you'd get async and no network overhead.
+-&gt; Async is not the point of microservices.",3.0
+genxc5l,k6ud8i,"&gt; Async is not the point of microservices.
+
+Decoupling so services can be developed independently and do one job and do it well is the point of microservices. Async communications and each microservice having its own DB is how you achieve that.
+
+I am baffled how there can be any disagreement about this, if you have synchronous communication between microservices you have taken a step backwards. It simply makes no sense.",-4.0
+geoomcr,k6ud8i,"&gt; Decoupling so services can be developed independently and do one job and do it well is the point of microservices. Async communications and each microservice having its own DB is how you achieve that.
+
+What does whether the communication is asynchronous or synchronous have to do with how independently the microservices can be developed? 
+
+Whether or not the call is made synchronous or not, you still need the same amount of API bindnig between the two microservices: one message with the request,  one message with the response and an agreed upon protocol for exchanging these messages. Once that's fixed, neither of the two teams behind the microservices need to coordinate with the other team for anything, and there's not _more_ protocol to agree on with synchronous message exchange than with asynchronous message exchange.
+
+Sure, with synchronous message exchange you do limit the called microservice's ability to hand the message off to some other microservice and then just forget it, with the request message and response message being handled by two different ends of a microservice chain. Still, how often does that _really_ cause any significant friction in the development of the system? That's more of a corner case (how often is a microservice-chain with separate in/out nodes the right architectural choice?) and not something that's anywhere near to being ""the point of microservices.""
+
+ETA: Actually, let me expand on that a little. I don't want to come off as if I'm criticizing or am opposed to asynchronous calls in any way. An asynchronous messaging architecture has a lot of good sides and microservices often lend themselves very  well to such architectures. I just think it's over-egging the pudding to say that ""if it's not asynchronous, it's not microservices."" The point of microservices is as much if not more to decouple development teams and deployment concerns  as it is about the actual _technical_ interactions. It's not like it's in any way impossible to write a distributed monolith with asynchronous message passing between the elements, after all.",6.0
+geph5ax,k6ud8i,"I think what is getting lost in the weeds here is that in microservice architecture there is simply _no need_ for synchronous communications. You should never have the need for request/response between your microservices. If you do the problem domain hasn’t been split up correctly. Each service has the data they need in their own database. They get this data and keep it in sync (eventual consistency) by listening for asynchronous events from other services.
+
+Not all apps are suitable for this architecture and “monolith” shouldn’t be seen as a bad word. Some apps are just better suited as a monolith.
+
+If a monolith has been split up into microservices and there is synchronous communication between them then this is a giant step backwards. There is no getting around this and no one could possibly argue otherwise with a straight face.",2.0
+geplp79,k6ud8i,"&gt; I think what is getting lost in the weeds here is that in microservice architecture there is simply no need for synchronous communications. You should never have the need for request/response between your microservices.
+
+Even within an architecture that's based on microservices and eventual consistency, there might crop up 'nodules' where a synchronous request-response might just be a better mental fit to the problem space. Like, say, the system is about to make a payment through to an external system, and the business rules state that in order to make a payment you have to log the payment in an audit log, and the payment itself must include a reference to the audit log statement. Well, you need to send a message to the audit log _and_ you need to get the audit log reference for that message _before_ you can do anything more. Sure, it's _possible_ to do this in an asynchronous manner, but would you really want to? Doesn't a synchronous message exchange with request - response just seem the natural mental model for situations like this?",1.0
+gepewry,k6ud8i,You're ETA is exactly my point. Nicely elaborated.,1.0
+gep1lf5,k6ud8i,"&gt;What does whether the communication is asynchronous or synchronous have to do with how independently the microservices can be developed?
+
+Things that need to communicate synchronously cannot be independently developed. If you need to ask why, just ask me here and wait until I tell you.",0.0
+gep4xrt,k6ud8i,Two services that need to _communicate_ can't be entirely independently developed. That's why you need to agree on a protocol and strive to keep that as unchanging as possible. Whether that protocol is synchronous or asynchronous doesn't make a difference to how dependent the two teams are on each other.,2.0
+geperhw,k6ud8i,It's actually even harder to develop independently when asynchronous communcation is at play... Thanks god you're not interrupting me here midsentence.,1.0
+geo04g9,k6ud8i,"In other words, synchronous communication between microservices is literally building a monolith based on http calls. If I'd met that in a company, I'd prefer building a monolith than microservices weakened by the network and calls latency.",5.0
+geoz6s2,k6ud8i,Bikesheddis Maximus.,3.0
+gepgyna,k6ud8i,"&gt; Decoupling so services can be developed independently and do one job and do it well is the point of microservices. Async communications and each microservice having its own DB is how you achieve that.
+
+Like most things in life, it isn't black and white. Sure in an ideal world you could have a totally decoupled, event driven architecture  with no blocking calls at all, but we live in the real world.
+
+There are consequences for our design decisions, and one big cost is complexity. This is the trade off we must always balance as software architects. We need to be pragmatic with every decision we make, not just follow what I call BOA (blog-oriented-architecture). I've seen companies go under due to the big dog trying to make the perfect system.
+
+I also built a great microservice platform that handled thousands of requests a second (with some calls between services being blocking).
+
+A general rule a thumb I follow, favor async wherever possible, but more importantly build a system that meets the current business objectives and is maintainable and expandable, pragmagitcally.",1.0
+gepf43a,k6ud8i,The point of microservices stretches far beyond sync/async communication,0.0
+geoxfqi,k6ud8i,Haven't seen performance testing mentioned yet. I can highly recommend Gatling for that,2.0
+geobgx6,k6ud8i,"Are you using Spring and/or Spring Boot? If so, are you using standard threaded Spring Framework or Webflux? Are you looking for something to test APIs? Do you want something to test APIs during compile/build time or during runtime after a server is already up and running? Do you want to test API contracts? Functionality? Load? If so, what kind of load?
+
+In other words, the answer to your question varies based on what you want to do. There are lots of frameworks and tools to support a lot of different things.",1.0
+geoe4dt,k6ud8i,"Karate DSL is very powerful if you want to do restful testing.  
+
+
+Bonus: the html report contains the request/response to troubleshooting regressions is really easy since you can compare to the request/response from the last passing build  
+
+
+[https://github.com/intuit/karate](https://github.com/intuit/karate)",1.0
+geormkd,k6ud8i,"For testing RESTful API, we are using [Groovy](http://groovy-lang.org/) and JUnit 5 (Maven project). Groovy simplifies the code of handling JSON and XML payload. We also use [Karate framework](https://github.com/intuit/karate) but debugging in Groovy code is much easier in IntelliJ.",1.0
+geoux04,k6ud8i,"Include security testing in it. This is an area most often overlooked both by developers and testers but one of the first things a client would ask for. 
+
+Pentest is not the only place for security testing.",1.0
+gemkdb0,k6qihb,"[VisualVM](https://visualvm.github.io/), [Flight Recorder](https://www.youtube.com/watch?v=7z_R2Aq-Fl8), Netbeans GC [profiler](https://netbeans.org/kb/articles/nb-profiler-uncoveringleaks_pt1.html) and Eclipse's [GCMV](https://marketplace.eclipse.org/content/ibm-monitoring-and-diagnostic-tools-garbage-collection-and-memory-visualizer-gcmv#group-details)",4.0
+gemksnx,k6qihb,Do they parse \*GC logs\* though?  I was under the impression they just grab data from JMX.,1.0
+gemlydr,k6qihb,"I think they can also do it, but yeah it has been a while. I am mostly on .NET nowadays, so sorry if it isn't correct info.",2.0
+geoyy16,k6qihb,They don’t parse the logs,1.0
+gen3pip,k6qihb,I often use https://gceasy.io/,3.0
+gen4iu6,k6qihb,&lt;shameless plug&gt; We had Censum for exactly this purpose at jClarity (we got acquired by Microsoft).  We’re interested in talking to folks who want early previews on its evolution &lt;/shameless plug&gt;,3.0
+genyd6a,k6qihb,Look at GC logs during stress testing. Visualized with [GCViewer](https://github.com/chewiebug/GCViewer).,2.0
+gen00jx,k6qihb,I once was able to fix an annoying memory leak in an integration app by analysing the GC logs so it has its uses.,1.0
+geo0ur3,k6qihb,Did you just eyeball them or did you use any tools for that?,1.0
+geom0mw,k6qihb,Universal GC log analyzer,2.0
+geofngo,k6qihb,Dynatrace is top-tier for monitoring,1.0
+gelizgw,k6li3c,"1. I think the last 5 years or so, almost all the services I worked on were Spring Boot services deployed as docker containers, mostly on kubernetes. Most companies use private registries, for example the ones provided by Google or AWS.
+2. Automation all the way. I can't remember the last time I did this by hand. It's pretty easy to automate with some experience, so there's really no reason not to. I've used Jenkins, CircleCI and Gitlab and the latter is by far my favorite. 
+3. Sure, but it's typically abstracted behind docker containers. There's really no reason to be tied specifically to .war files on different platforms. Building a docker container is not more complex than building a .war.",11.0
+gelk01l,k6li3c,"Thanks for the response! I didn't know about Kubernetes and it seems to do exactly what I want.
+
+Another question that might be a bit silly. If I use kubernetes, how do I tell it that a new docker image is available? Does it check itself if there's a new version? Or do I send it a signal during the CD?",3.0
+gelmjb4,k6li3c,The latter. You basically update a resource definition that has the image and version number and when that differs from what is currently there it pulls the new image and does a rolling deploy of that new version.,3.0
+gem18gb,k6li3c,"&gt;3. Heroku has this nice feature where I can upload a .war file over CLI and it will be directly deployed onto a tomcat server.
+
+This is standard for most Java servlet containers. You don't need heroku for that.",2.0
+gem8oft,k6li3c,Sketch -&gt; Decompose -&gt; Develop -&gt; Test -&gt; Beta release -&gt; Incorporate feedback -&gt; Release,1.0
+gel9p2g,k6jqyn,So basically this release is just about jakartification?,10.0
+gellg5v,k6jqyn,Well wouldn't that be a breaking change that requires a new version following semantic versioning?,20.0
+gemphi3,k6jqyn,Jakartapocalypse.,3.0
+gel8fou,k6gnyh,"This is a really good article, IMHO. It is lucid and cogent. It even acknowledges some of the more horrible APIs like CompletableFuture&lt;T&gt;, calling them messy. (I remember it had literally dozens of methods, all which seemed to do mostly the same thing, wait until result is available and then do something. I've no idea how they are different, or when to use which.)
+
+It is a pity that a lot of the virtual thread behavior needs to be explicitly invoked, so that we can benefit from it, and not all threads can be simply virtual starting from whenever Loom is merged. Still, it should be easy change for most programs, and we get a concurrency story where it just happens without having to pepper all our code with async, await, or chained callbacks. It is what I envy from Go, but not enough to seriously consider using the language for anything.",10.0
+gemj2x0,k6gnyh,"The problem with  CompletableFuture  is not that is has dozens of methods. They look scary, but once you understand the logic behind them, it is not difficult to decide the right method. The real problem is that CompletableFuture forces a less intuitive programming model, and there are practical problems like uninformative stacktraces.",9.0
+gempddc,k6gnyh,"I'll one up this.
+
+A big issue with the CompletableFutures API is that while they cover 90% of scenarios, there's a 10% that causes them to be pretty awkward to work with.
+
+Take, for example, conditional logic.  Let's say you want to eagerly load 2 values, with a third value that is also eagerly loaded to determine which of the two to use.
+
+While it is possible to construct such a monstrosity with completable futures, it is really difficult and ends up looking pretty ugly.  This is a case where async/await style logic ends up being a whole lot cleaner than CompletableFutures (And I imagine loom will be similarly cleaner as you can simply join the 3rd task and cancel the future that doesn't apply).
+
+You could technically do the same thing without loom, however, you'd run the real risk that in the wrong circumstance you'll end up exhausting your current thread pool leading to a pool starvation issue.  The ""right"" way to do that using the same logic is with ManagedBlockers to grow the underlying pool as needed.  Unfortunately, that only works if the current thread is on a forkjoin pool.  If it isn't, you are potentially SOL.
+
+Then, of course, there is all the problems of getting ExecutorServices wired and setup properly throughout an application.
+
+Loom is going to make all of this SO much better for the IO bound apps I'm typically writing.  It will be amazing to not need to worry about executor service management and issues.",7.0
+gemfvji,k6gnyh,"&gt; all threads can be simply virtual starting from whenever Loom is merged.
+
+I expect that in practice there's going to be some tradeoffs involved with this new feature; it would be a little intrusive if such a switching-out happened without the coder's explicit consent.  Maybe an `+X:&lt;foo&gt;` switch to request such a change might be viable?",2.0
+gemzfwe,k6gnyh,The Loom team deserves a raise.,7.0
+geli1lb,k6gnyh,that's completely irrelevant but I have learned java as a teen from the java core series from this author and it's nice to read something from him again,0.0
+geno631,k6gnyh,Great book,1.0
+geleylu,k66img,"Your project structure should at least have the source under ""src"", and at least an Ant build file to be able to easily build it when checking it out (wait for it, any moment somebody will show up and tell me that I'm stupid for suggesting Ant and that you should use Maven). Having said that, you could also use Maven, however, I loathe the longer build times of it for simple projects.
+
+---
+
+Having said that, your should put your classes into a package, like ""com.github.clairebearz32bit.xkcdapp"".
+
+---
+
+Personally, I like to have the `main` method in a separate class `Main`. That makes it very easy to spot where your application starts.
+
+---
+
+    final String title = ""Java xkcd Client - v0.0.1"";
+
+Methods, members and classes without an access modifier are by default `package-private`. I'd strongly advised against using `package-private` because it limits visibility to the current package only, which easily leads to an unhealthy coupling of classes. Make them `private`, `protected` or `public`.
+
+---
+
+Your names are good, I like that, though, they could be slightly better. With the exception of ""n"", which oddly enough is the only thing without a proper name. Also ""setImg"", don't shorten names just because you can, it does buy you nothing except makes the source slightly harder to read.
+
+---
+
+Your members are all `public`, they should at least be `protected` or `private` and if you need to expose some of them, expose them as functionality through methods.
+
+---
+
+The difference between `int` and `Integer` is that one of them is a primitive data type (pass by value) and the other is a class (pass by reference). Converting between them is called [boxing](https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html).
+
+The most important difference between the two is, that the later adds to the garbage your application creates, as it is a class instance that must be cleaned up at some point. If possible,  use the primitive type and try to convert as little as possible between them.
+
+---
+
+In `setKeybindings` you are not using the comic number you saved previously, but instead parse the test of the textfield.
+
+---
+
+In `setComicScale` you're not using lambdas.
+
+---
+
+You could use method references instead of lambdas, personally I prefer that. For example:
+
+    quitItem.setOnAction(this::onQuit);
+    
+    // ...
+    
+    comicNumber.setOnKeyPressed(this::onComicNumverKeyPressed);
+
+    // ...
+    
+    private void onComicNumberKeyPressed(KeyEvent event) {
+        if(key == KeyCode.UP) {
+            showNextComic();
+        } else if (key == KeyCode.DOWN) {
+            showPreviousComic();
+        }
+    }
+
+---
+
+Having said the above, your formatting is odd in a few instances. Normally you'd keep the `else if` on the same line as the closing parentheses of the parent `if`.
+
+---
+
+Overall, looks like a very, very good start.",7.0
+gelrf35,k66img,"Thank you so much for the feedback! Tbh this is exactly what I needed, I’ve only been using Java for about a month now. The reason for the else if formatting is because I came from C and just personally feels less cluttered and easier to read. I definitely know the controller class is an absolute clusterfuck but that specific advice will be very helpful. My hope is that today I can clean up a lot of it as well as provide a better javadoc. Thanks for the feedback!!",3.0
+gem5tpb,k66img,"You're welcome. Code reviews is one of the things I love to do.
+
+ &gt; Storing comics locally on SQL database.
+
+I'd recommend using [H2](https://www.h2database.com/html/main.html) for that. It is written completely in Java (unlike SQLite), and if you've used something like PostgreSQL you'll feel right at home because it sports all the datatypes of it (not like SQLite which only has, three or so).
+
+ &gt; Cross platform executable.
+
+Mh, regarding that, currently you're using JavaFX, which might or might not require builds for each platform. Swing would not require that.
+
+I'm not sure whether JavaFX is still included in the JRE, I don't think so, so you'd need to bundle it with the application for every platform.",2.0
+gem84md,k66img,"I don't think that it's bundled with JRE, though I don't really want to rewrite the UI code. As you recommended earlier I'm probably gonna go with something like ant for it. As for the SQL I am definitely going to check that out and again thanks for the help",1.0
+gemmrfc,k66img,"Oh, and before I forget given that you come from Python/C. The package of the source file is normally enforced through the directory structure. Most compilers will complain if the class with the package ""com.example.project.module"" is not in the path ""SOURCE_DIR/com/example/project/module"". Same goes for class and filenames. The class ""SomeTestStuff"" is expected to reside in ""SomeTextStuff.java"". One also does not put multiple classes in the same file (inner classes are something different).
+
+Now that I explain that, Java has a lot of conventions which one is expected to follow, either by tools or peers. [Oracle still has a good overview of the conventions]
+(https://www.oracle.com/java/technologies/javase/codeconventions-contents.html) which is only slightly dated (like the file header with name/author/date is not a thing you should do). Using an IDE like [Eclipse](https://www.eclipse.org/ide/) can already remove a lot of the burden here, as it simply ""does its thing"".",1.0
+gejg2gt,k66img,"
+&gt;&gt; *Currently, the only system with an executable is Windows, but I intend to create applications with UNIX and macOS support*
+
+That kind of thing sounds perfectly suited to the [*jlink.online*](https://github.com/AdoptOpenJDK/jlink.online) service.
+
+Have you considered using it for that?",4.0
+gejsbic,k66img,"Not really, a simple shell script may prove to be enough though I will definitely check that out, thanks! I used launch4j to create an exe",1.0
+geld7vc,k66img," &gt; That kind of thing sounds perfectly suited to the jlink.online service.
+
+I miss the time when we did jars that worked everywhere...
+
+Oh yeah, it uses JavaFX. What's the state on that? Do we now need to do different releases packages for each platform like with SWT?",1.0
+gelrf01,k66img,"&gt; JavaFX...What's the state on that?
+
+[*Alive and kicking*](https://gluonhq.com/).
+
+&gt; Do we now need to do different releases packages for each platform
+
+To the [*best of my knowledge*](https://docs.gluonhq.com/#_platforms), yes:
+
+&gt;&gt; *Gluon builds for a specific client platform are required to run a specific host platform (e.g. Windows native build has to run on Windows, an iOS native build have to run on macOS)...*",2.0
+gem58sw,k66img," &gt; To the best of my knowledge, yes:
+
+That's sad...",1.0
+geme7co,k66img,"That's only required for _native_ clients. Otherwise, it's Java and doesn't need to be built:
+
+&gt; Gluon applications can run on various platforms. These applications can run directly on the JVM on all desktop and embedded platforms without any additional requirements.",1.0
+gemn7ky,k66img," &gt; That's only required for native clients.
+
+[The Maven repository is listing jars by platform](https://repo1.maven.org/maven2/org/openjfx/javafx-graphics/16-ea+5/), and as far as I remember, JavaFX used to need some native libraries. But you might be able to package all and decide at runtime which to use.",1.0
+gemfram,k66img,"&gt; That's sad...
+
+It's not as sad in actual practice as it might sound.
+
+Using things like [*Google's OS Detector Gradle plugin*](https://plugins.gradle.org/plugin/com.google.osdetector), for example, makes building JavaFX projects for different platforms a cinch:
+
+
+    plugins {
+        ...
+        id 'com.google.osdetector' version '1.6.2'
+        ...
+    }
+    
+    ext.platform = osdetector.os == 'osx' ? 'mac' : osdetector.os == 'windows' ? 'win' : osdetector.os
+    
+    dependencies {
+        ...   
+        implementation ""org.openjfx:javafx-base:15:$platform""
+        implementation ""org.openjfx:javafx-graphics:15:$platform""
+        implementation ""org.openjfx:javafx-controls:15:$platform""
+        ...
+    }",0.0
+gemmybo,k66img,"&gt; It's not as sad in actual practice as it might sound.
+
+It's still sad compared to building one package that works *everywhere*, even platforms that not exist yet.",2.0
+gemsomv,k66img,"&gt; ***compared to*** building one package that works everywhere, even platforms that not exist yet
+
+That sounds like you know of an alternative GUI framework that implements GUIs in a language other than Java, and builds one package that works *everywhere*, even on platforms that don't exist yet.
+
+Which GUI framework/language is that, please? TIA.",0.0
+gemx1tg,k66img,"No, I compared that to Swing. or JavaFX on Java 8.",2.0
+gen1kwq,k66img,"&gt; No, I compared that to Swing. or JavaFX on Java 8.
+
+OK. My mistake. I'm with you now.
+
+I confess that I suck at all things frontend. That includes desktop and web. My Swing and JavaFX knowledge is super basic.
+
+So exactly what comparitively *not-sad* things can be done with Swing or JavaFX on Java 8 that can't be done with Swing in JDK 15 or JavaFX (*OpenJFX/Gluon*) and OpenJDK 15?
+
+I take it that with Swing or JavaFX on Java 8  it's possible to *build one package that works everywhere, even on platforms that not exist yet*? Right?
+
+You would help me learn a ton if you could share some links to the source code of one specific Swing or JavaFX on Java 8 application I could download. Please?
+
+I'll compare building it with Java 8 to building it with the current release of the JDK on my Mac, Windows and Linux machines. That'd be awesome!
+
+TIA.",1.0
+gen1zi1,k66img," &gt; So exactly what comparitively not-sad things can be done with Swing or JavaFX on Java 8 that can't be done with Swing in JDK 15 or JavaFX in OpenJDK 15?
+ &gt; 
+ &gt; I take it that with Swing or JavaFX on Java 8 it's possible to build one package that works everywhere, even on platforms that not exist yet? Right?
+
+With Swing you can always build a jar that just works everywhere (unless Swing is dropped from the JRE, which is so not going to happen within the next 15 years). So when the JRE is ported to a new platform, it would simply work there. Java 8 was the first and only release which included JavaFX, which meant that you could also simply build a jar with a JavaFX application that ran everywhere. Of course, given that I use ""JRE"" I might already be behind the current state.
+
+The story of JavaFX is kinda sad. It started out as scripting thingy, then became what it is today. Then it was included in Java 8 because people said that it would be better to have it in the JRE package and release cycle, and it was handled as Swing replacement. Then it was removed with Java 9 because people said it would be better to have it as its own package with its own release cycle. Then it was dropped by Oracle (officially, of course, it was ""donated to the community""). Now I believe Gluon are pretty much the only once doing much work on it, and last time I checked, they majorly wanted it for mobile...but I might be wrong there, has been some time. Additionally, the JavaFX default components are not that impressive compared to the Swing ones. The whole idea of ""JavaFX will replace Swing"" is also completely laughable at this point, because that move was completely screwed up.
+
+ &gt; You would help me learn a ton if you could share some links to the source code of one specific Swing or JavaFX on Java 8 application I could download. Please?
+
+Uh...I don't use any JavaFX application regularly (quite a few Swing ones, though). But what you could whip up rather fast is a simple Hello World application (a window with a label would suffice) in Swing and JavaFX and then see what it takes to build and get them to run somewhere.
+
+And yes, it irks me the wrong way that we are moving from jars, that just works everywhere, to builds for certain platforms that only work there. It is a step backwards.",2.0
+_,k66img,,
+gejpt6x,k66img,Beautiful readme.,1.0
+gejsg2o,k66img,"Thank you! My personal philosophy is keep projects small while being generally well maintained, commented and described instead of one giant ass project I never finish",3.0
+gemfw27,k66img,"Building on some other comments here...
+
+If you do decide to use ant (or Maven/Gradle) you can make bundling the dependencies easier by building a 'fat' or 'uber' jar - [ant instructions](https://mkyong.com/ant/ant-create-a-fat-jar-file/), Maven/Gradle tutorials should be easy to find.
+
+Also if you do prefer the method reference syntax over lambdas, consider taking a look at [Idea](https://www.jetbrains.com/idea/) if you're not already - it will highlight lambdas that can be converted to method references and give you the option to automatically convert them.
+
+BTW in your README it would be good to note with which Java versions your code is compatible if you know this, or at least with which Java version you successfully build the project. 
+
+Not sure if it was mentioned, but xkcdApp should _really_ be XkcdApp since it's a class. It's really strange in Java to have a class name beginning with a lower case letter, even if it is usually stylized that way. That's quite a picky point to make though.",1.0
+gemluke,k66img,"Thanks for the tips! I am planning to figure out maven/gradle/ant or something similar. I actually have been using IntelliJ Ultimate for a while now and you're absolutely right, for learning that somewhat esoteric syntax it is incredibly useful. And to your other points I think they are both fixed, the project name was an oversight on my part",1.0
+gejsipc,k65q2w,"I think Vavr is quite good - but I don't think the article is very good and also not suitable to show the advantages of `Either`.
+
+Apart from the first example, none of the examples shows how to handle errors - and without error handling, all examples would be much shorter and easier to implement in ""normal Java"".
+
+For example calculating the average would be much shorter and more readable in normal Java:
+
+```java
+double average = service.streamStudents(""ART101"")
+    .mapToDouble(Student::getGpa)
+    .average()
+    .orElse(0.0);
+```
+
+Additionally, in case of an error, you would also see a stack trace, not just `NoSuchElementException: get() on Left`.
+
+
+----
+
+
+&gt; Imagine, that in future, the technical design will require the FileReadService to determine also other error cases. The number of catch clauses with increase… […]
+&gt; This style helps you not only to eliminate try-catch blocks, but also to specify a single entry point for all errors […]
+
+If all errors have to be treated the same way, also a simple catch is a single ""entry point"".
+More catch-clauses are only needed if different errors have to be treated differently - in this case, however, the implementation with `Either` also becomes much more complex. A simple `getOrElse` only works if the type of error doesn't matter, and the same is possible with a `catch (Exception e)`.
+
+`Either` is nice, but the number of possible exceptions is not really a good argument.
+
+----
+
+&gt; I sticked with BigDecimal, as I don’t like doubles, and actually it is a good design practice to avoid them in precise computations.
+
+""precise computations"" like calculating an average GPA?
+And then just wrapping a `double` and setting the precision to 2, so that it is significantly less accurate than `double`?
+
+Sure, `BigDecimal` has its value, but the vast majority of calculations do not need this precision.",4.0
+gej58j8,k65q2w,Thanks. Love vavr. Why would i use Either over vavr for handling error cases?,0.0
+geigo5k,k61x3f,"With loom on the horizon, I don't know why more of these async/reactive things keep popping up.",20.0
+geiht16,k61x3f,"Technically correct, but that's a far, far away horizon. It's not going to land in 17, which people for some mistaken and confused reason think is the only Java version they can actually use (in production).
+
+So then the next candidate for people to consider it will be what, Java 23? Whatever version some vendor sticks that magic ""LTS"" keyword on, and that may not come out in like 3 years at least.",14.0
+gein24v,k61x3f,"Ok. Let's say that it will come out in 3 years. Why would anyone dedicate 6-12 months to develop/stabilize a feature that is already obsolete. I'm just hoping that the API won't be different and won't leak crap like Monos and friends, otherwise you'll be hooking people onto, once again, obsolete API. Another question - what adoption are they aiming with a 3 years window? To me, this looks like such a bad investment.
+
+Why not spend that time to better ***prepare*** for loom, e.g. make sure you're not using synchronize blocks everywhere, help Loom team test their implementations and report bugs so it would be delivered faster or help JDBC drivers' maintainers.
+
+Lastly, Loom implementation will require 0 effort from framework users. They will just switch to new version of Java and new version of framework, which underneath will use virtual threads. While Reactive API requires end users to do additional work.
+
+It just mind boggling... Feels like trend chasing that JavaScript community is famous for.
+
+Edit. Are they going to maintain this API even after Loom and burden their developers?",13.0
+gejh27i,k61x3f,"If you got something like loom as a feature, most of the project that will benefit from it will simply ignore the ""LTS"" sticker and use the latest java version.
+
+Why would they do self-flagellation with yet another reactive/async api?
+
+So yes, if you can't wait and you _really_ require the reactive stuff, feel free to go that route, I think it's good to have the choice. 
+
+But personally, if I can wait, do nothing and then reap for free the benefit, why would I need to introduce something which is known to be doomed.",5.0
+gejwg50,k61x3f,Is loom a proven technology with an actual roadmap at this point? I haven't been keeping up.,5.0
+gekm2bb,k61x3f,"&gt; Is loom a proven technology with an actual roadmap at this point?
+
+Yes.
+
+https://inside.java/tag/loom",3.0
+gejz1fd,k61x3f,"According to this well reasoned article even with loom you'd need to use a wrapper framework to handle Async coordination, cancelling, etc.
+ https://link.medium.com/uzKbmYHLVbb
+
+So it seems these sorts of reactive frameworks are here to stay, but will maybe be a bit simpler in future.",4.0
+gelc589,k61x3f,"As far as I understand, with loom you are not expected to use async frameworks at all. Coordination and cancellation should be handled via structurated concurrency. I doon't think reactive frameworks as exists today will survive, we will need some frameworks but they will not look like RxJava or Reactor, even if they keep the names for marketing reasons.",3.0
+gekxxn3,k61x3f,to provide jobs for all the jobless haskell developers who love FRP.,-1.0
+gekkgy6,k61x3f,How many bad ideas can you bundle together?,7.0
+gekzlkv,k61x3f,What’s so bad about it ? It actually makes working with reactive database clients easier than it is with the existing reactive db clients.,6.0
+gelbh5w,k61x3f,"Let me ask you this - why did you choose to use reactive programming for a specific use case?
+
+I’m curious to understand what advantages you see in this model.",1.0
+geldc0d,k61x3f,Obviously for performance and less resource usage reasons.,3.0
+gelhcsg,k61x3f,"Well, I was interested in a conversation and understanding your point of view, but since you are interested in being arrogant and downvoting, I will not engage anymore. Shame, I was really looking forward to it.",0.0
+geli0ys,k61x3f,Wth ? 😂 I didn’t downvote you.,3.0
+gei9c8f,k611be,I didn't get it. Can you please give us more info?,16.0
+geimd7e,k611be,"There are 1500 Elements in an Array, visualized in a circle (red to blue)  
+Every Element has its own colour.
+
+When 2 Elements are swapped:  
+\- They change their position in the circle  
+\- They get closer to the mid of the circle if they are more far from their original position
+
+&amp;#x200B;
+
+So.. original position means furthest away from mid (sorted)",15.0
+geisb9g,k611be,I assume the radial coordinate represents the error in that point's current placement?,4.0
+gejec7x,k611be,"Doesn't that mean that we shouldn't really expect any red dots near the ""upper right center?"" Or maybe it's just hard to tell red from dark red from bright purple when in dot form?",0.0
+gejmyt0,k611be,2nd,0.0
+geksi8c,k611be,"This visualisation is good to show performance, but it doesn't show how the algorithm work.",0.0
+geibuiq,k611be,I'd love to see your code,13.0
+gejtycz,k611be,Yes. I’d love to see the code as well,1.0
+geiihat,k611be,"that was fun. everytime i was like ""ok that was cool im done"" the next one was even cooler and worth the stay",9.0
+geii5m3,k611be,"Isn't this posted like every week?
+
+Also, when I got to quick sort, now I see why they call it QUICK sort! So fast haha",12.0
+geiv3lm,k611be,"If the pivot element is choosen unluckly, it is not so quick /-:",11.0
+geihp33,k611be,This is soo beautiful can you please specify what did you use for the visual part FX or Swing?,5.0
+geilgpc,k611be,"Thank you! I did it with the framework ""processing"" :)",6.0
+gek007f,k611be,"Radix LSD sort, as always.
+
+Good work!",4.0
+geirhy3,k611be,"This was so much fun! Up you go!!! 
+
+&amp;#x200B;
+
+\*\*AWARD\*\* (since I don't have a real one to give)",6.0
+gejf4e2,k611be,Look at Old Moneybags here,3.0
+geizykd,k611be,hahaha thank you xD,1.0
+gejiihw,k611be,Timsort is the default in Java but it was not shown....,3.0
+gek2xbs,k611be,"Visually, radix was the coolest. But quick sort takes the cake for my programmatic needs!",3.0
+gelfplz,k611be,"radix base 10 , saw some cool shapes",3.0
+gei79q4,k611be,"The gravity sort reminded me of exploding fireworks. The LSD sort creates a unique and beautiful pattern. The merge sort makes an upside-down heart. Really informative visualization, thanks",5.0
+geikcet,k611be,"Was it randomly mixing up the data every time like it looks to be, or did each sort have the same starting point?",2.0
+geilj2t,k611be,randomly,1.0
+gej4xec,k611be,"I'm having a hard time telling if I'm in /r/java or /r/outerwilds, both of which I've been frequenting lately.",2.0
+gejf0fo,k611be,"The piece de resistance is that, in the end, you're left with a Big O",2.0
+gejjsyk,k611be,Why did you do bogo sort differently?,2.0
+gek9aj8,k611be,"Because of how bad of a sort it is, it would have taken years to handle the amount of items all the other sorts were handling, so it needed less in order to fit it into the video.",3.0
+gel6g89,k611be,"I don't think that makes any sense. 
+
+Oh OK, I usually think of bogo sort as something that is slow enough that you satisfy yourself it's slow and then don't care about it completing. This is the most recent time I've thought about it - https://www.youtube.com/watch?v=kPRA0W1kECg&amp;t=5m18s
+
+Didn't realize the sort actually completed here - it was a little hard to notice the sorted arrangement of colors with so few dots.
+
+Even so, I'd be interested in seeing bogo sort on an array with the same size as the other sorts. It would probably look pretty.",1.0
+gejkpkf,k611be,You created ultron,2.0
+gejyc18,k611be,"I’m rather surprised that radix sort did kind of shitty.
+
+In the mid 90s when I was in high school I wrote a bunch of sort algorithms in C and radix was super fast.",2.0
+gejyo0g,k611be,can you share your code ?,2.0
+gekcxxv,k611be,Wow 🤩,2.0
+gekohmy,k611be,My 2 cats are absolutely fascinated by this video.,2.0
+gekytv3,k611be,Quick sort still best sort?,2.0
+gekz203,k611be,Radix looks cool 🌀,2.0
+gej8309,k611be,"I am a bit disappointed, that there was no monkey sort. But i guess the vid would have taken way longer if you would have added monkey sort.",2.0
+geiw439,k611be,What did you need comparisons for in the counting sort?,1.0
+gejs2ca,k611be,This is cool. Computer science is frickin cool. Nice.,1.0
+gekmu1y,k611be,"Good work! But how many more of these does the world need? 
+
+Please be more creative people, I'd love to see some visual java stuff here.",1.0
+gekv4hw,k611be,I love quicksort so much it's unreal,1.0
+gel5xx4,k611be,"There was Monkey Sort (= Bogo Sort) , look at the last one",1.0
+gei89vk,k611be,none,-7.0
+geiarbh,k611be,Cheer up pal,9.0
+gehiak0,k5vvfr,"Why build yet another one? Why not contribute to either springfox or springdoc?
+
+We switched over to springdoc recently and haven’t noticed any issues for our use case",11.0
+gei8byi,k5vvfr,"&gt; Why not contribute to either springfox or springdoc?
+
+I was pleased by springdoc initially, after a pretty disappointing springfox experience, and so I started to use springdoc. Unfortunately, it did not consistently handle ApiResponses on abstract controllers, among other minor annoyances. I've contributed some PRs to springdoc initially and wanted to make it suit my use cases, [see here](https://github.com/springdoc/springdoc-openapi/pulls?q=is%3Apr+is%3Aclosed+author%3Aneiser)
+
+After diving into the source code I also discovered springdoc internally builds upon swagger-core routines. Those algorithms are severely flawed when more sophisticated Schema building cases are tested (see ComplexDto example below). This feature is IMHO crucial to build proper frontend clients from the OpenApi spec (our main use case).
+
+It was also just a fun project, and I hope it serves others equally well. I just couldn't see initially that the springdoc maintainer(s) and me were aligned enough that I could turn springdoc into the library I've always wanted.
+
+Just to show off some features of the library which is IMHO not so easy to do in springdoc or springfox (implemented as integration tests):
+
+* [See how ComplexDto is referencing itself, but with different description for the nested property](https://github.com/qaware/openapi-generator-for-spring/blob/master/openapi-generator-for-spring-test/src/test/java/de/qaware/openapigeneratorforspring/test/app5/App5Controller.java#L91) and the [resulting spec with multiple ComplexDto schemas](https://github.com/qaware/openapi-generator-for-spring/blob/master/openapi-generator-for-spring-test/src/test/resources/openApiJson/app5.json#L164) (due to different descriptions)
+
+* Exception analysis of handler methods, see [How To entry](https://github.com/qaware/openapi-generator-for-spring#how-to-handle-error-responses-elegantly)
+
+* [Content negotiation is supported](https://github.com/qaware/openapi-generator-for-spring/blob/master/openapi-generator-for-spring-test/src/test/java/de/qaware/openapigeneratorforspring/test/app30/App30Controller.java) within the limits of the OpenApi spec (parameters are shared among operations unfortunately)
+
+* Almost everything is a `@ConditionalOnMissingBean` and can be overriden by you. That makes it hopefully easy to patch how the spec is generated in any fashion I can think of.
+
+I hope that teases enough to give it a try. I'm curious how many bugs I havn't found yet.
+
+Feel free to clone the source and start each int test as a standalone Spring Boot App within IntelliJ. You can immediately try out the spec with the integrated Swagger UI at http://localhost:8080/swagger-ui",8.0
+geib0yy,k5vvfr,"I appreciate your feedback on starting this project  
+thank you, i'll have a play.",2.0
+geh8bm1,k5vvfr,A coworker of mine built this after some bad experiences with SpringFox and SpringDoc Open API. It supports WebFlux (including routerfunctions) and WebMVC. It also includes a Swagger UI. Feedback is appreciated.,9.0
+geh4jbx,k5uxvo,Omg! I'll propose our team to integrate this immediately.,4.0
+gehl0gr,k5uxvo,"This is really cool.  I don't use JPA at my current, but will totally use this in the future if needed.",3.0
+gehoqsc,k5uxvo,"Why just for JPA? I mean, this kind of functionality can be provided for any JDBC based application, I suspect?",3.0
+gehwx32,k5uxvo,"Good idea! Initially I started developing jplusone as a tool just for detecting lazy-loading in JPA, since finding origin in code for such queries was the hardest for me. That's why it's for JPA only, but now I see it actually could be useful for correlating JDBC originated SQLs with lines in code as well.",3.0
+gej4xul,k5uxvo,I am not sure that I got your point. How to replicate N+1 and lazy loading with Plain JDBC ?,2.0
+gejbgqr,k5uxvo,"Look at the title. Now `s/JPA/JDBC/g`. Makes sense? Alternatively, substitute JDBC for JPA in this sentence:
+
+&gt;correlating executed SQL statements with ~~JPA~~ **JDBC** operations (explicit calls ~~lazy-loading, flush on commit~~) which triggered them and with exact places in application source code which were involved in it
+
+You can produce N+1 problems with any JDBC based application. E.g. when you write your own ORM. Or even with plain JDBC:
+
+```sql
+// +1
+try (Statement s1 = c.createStatement();
+     ResultSet rs1 = s1.executeQuery(""SELECT i1 FROM t1"")) {
+  while (rs1.next()) {
+    // N
+    try (PreparedStatement s2 = c.prepareStatement(
+      ""SELECT i2 FROM t2 WHERE i1 = ?""
+    )) {
+      s2.setInt(rs1.getInt(1));
+      try (ResultSet rs2 = s2.executeQuery()) {
+        System.out.println(rs2.getInt(1));
+      }
+    }
+  }
+}
+```
+
+Once you have the infrastructure of correlating JDBC statements with stack traces (any profiler can do it, too, btw), you can also track down other types of performance issues.",3.0
+gei3r69,k5uxvo,"This looks like a really helpful library, thank you for work. I feel like the usefulness of libs like this implies something about JPA",3.0
+gehee9v,k5qtv2,"Please only use the solution no. 4.
+
+1. It explicitly mentions the time zone.
+
+2. It doesn't use deprecated APIs (except for that initial j.u.Date you're trying to convert).
+
+3. It uses immutable objects only.
+
+4. It works for dates before 1 AD and after 9999 AD.",6.0
+gegvqqy,k5qtv2,"&gt; 1) convert Date to java 8 Instance 2) Convert instance to ZonedDateTime 
+
+I guess the author meant ""Instant"" not ""Instance"" there.",2.0
+gegrnhn,k5qbar,"Maybe you can find more information in this pdf
+
+[https://www-03.ibm.com/software/sla/sladb.nsf/pdf/ilan/$file/ilan\_en.pdf](https://www-03.ibm.com/software/sla/sladb.nsf/pdf/ilan/$file/ilan_en.pdf)",3.0
+genhasw,k5qbar,"Ahh Informix, the red-headed step child of database systems. It actually has some interesting features regarding indexing json or xml columns and being able to search by the contents.
+
+It has been a few years since I have used Informix but when I did I always had to contact my DBA who had a login to the IBM support page to get new versions of JDBC drivers (then I would publish them to our local Nexus repository). I could never find them otherwise. So most likely you need a support contract to get them. But take my info with a grain of salt, it has been a few years.",2.0
+geg89jp,k5mhub,"If your coworkers are writing code that seems more advanced than yours, you're already in the perfect environment to get better. Learn from their code and don't be afraid to ask questions!",54.0
+gegd4sj,k5mhub,"Also, ask for more detailed code reviews. ""Looks good!"" doesn't really help anyone but your prod branch.",12.0
+gegn4jj,k5mhub,"^^^^ this! the question isn't ""what new framework or language should i learn?""; it's how do i level up? you do so by reading and exploring code you don't understand or feels advanced. you level up by accomplishing different things with code -- integrating 3rd party libraries, building out resilient and performative messaging, fine tuning the JVM or your ORM/DTO systems. sure you move data around, but how can you make it better?",8.0
+gegdt6e,k5mhub,"I second this. Read the ""more advanced"" programmer's code and fully understand it. Then, ask them questions about why they wrote it the way they wrote it. Find the things you don't understand and discuss it with them. When you see them doing something you wouldn't think to do, go look into that API, or pattern, or whatever it is you mean by that statement, and learn it.",2.0
+geh4hpm,k5mhub,"Just throwing this out there... Sometimes code that looks basic is actually better than code that looks more technical. If it's easier to read, but does the same thing it's just better.",16.0
+gekmpon,k5mhub,This this this this,2.0
+gegqgbv,k5mhub,"You can also try broadening you Spring skillsets. The Spring ecosystem is huge. It's a good way to touch and explore different de facto industry techs that spring chose to integrate with. Check out Spring Kafka, and or the multitude of Spring Cloud technologies. Get into Spring Reactive and understand the industry shift to functional and reactive programming. Even though staying within everything Spring you'll be able to get to explore a lot of other techs as well.",6.0
+gegl0gh,k5mhub,"Solve new problems that require new skills. If all you do is REST APIs that manage CRUD ops, it's going to get boring real fast unless you have a special skillset to bring to the table, e.g. extreme performance (high performance Java looks different, and you almost certainly won't be using Spring for it). Learning multithreaded Java on its own is quite pointless and can be counter-productive until you have a problem to solve that requires it. Do something else like video streaming services, make a game, write embedded systems software or mess with IoT devices, etc. Sometimes that means changing jobs, and you shouldn't be afraid to if your current one is no longer challenging you to learn.",9.0
+geh7gfo,k5mhub,"Read others' code. Read your co-workers' code, read open source projects' code.
+
+Take an open source project and modify it, rewrite stuff, see how they thought, change it around even if it's not really an improvement and just a change.
+
+Make it a habit to debug into others' code. I'd say to almost try to not read their documentation, instead step into their code and look at what it does, and learn from it. A lot of programming is just pattern recognition, and if you've seen the patterns in use, you'll think of them when you need them.",5.0
+gehsd1n,k5mhub,Can you suggest a good open source project?,1.0
+geicpox,k5mhub,"You can learn from bad code as well. So it's more a matter of reading projects you find interesting. You like code generators? Find one that converts some schema to code. You like web filters? Read some security library. You like games? Etc, etc.
+
+Generally I think the Spring Boot project is a very well written Java project.",2.0
+gejeay3,k5mhub,"It might sound lame, but need a starting point and from there I can built on top of it",1.0
+geg8iio,k5mhub,One thing you can do to clear out unknown unknowns is read the documentation or books. If you were more specific with what sorts of things you “wouldn’t think to use” it might be easier to give concrete advice.,8.0
+geglpqb,k5mhub,"Reading books add tools to your mind you didn't think about. When I thought I knew everything about Java I read the whole API docs (except that Corba shit of course and some other stuff that seemed useless) and even the JVM spec because I wanted to look under the hood. Same with PostgreSQL, which was a way easier read than the JVM spec.",3.0
+gej4duu,k5mhub,"I mean, again, if you can be more concrete about what sort of things you notice other people doing that you wouldn’t think to do, people can offer you concrete resources. To be honest, reading the JVM spec probably won’t make you a better application developer. You seem motivated so I’ll just leave these resources here:
+
+*Effective Java* Joshua Bloch, this is a Java developers’ bible.
+
+*Domain Driven Design* Eric Evans
+
+*Implementing Domain Driven Design* Vaughn Vernon
+
+*Growing Object Oriented Software Guided by Tests* (sometimes referred to as GOOS) Steve Freeman, Nat Pryce
+
+*Patterns of Enterprise Application Architecture* Martin Fowler",3.0
+gekxs0p,k5mhub,"Thanks. Reading about Domain Driven Design was an eye opener for me years ago. The Patterns book's TOC really good highlights the aspects we had to focus on while building an ERP for the last 15 years. But the distributed transaction thing is something I still miss some insights and I will definitely read that chapter. 
+
+I especially likes the ""Pragmatic Programmer"" book by Andrew Hunt, to also add to the list. Thanks, I will have a look into these books, the",2.0
+gegqufx,k5mhub,What about trying to contribute to some open source project?,3.0
+geh4fca,k5mhub,Could anyone guide how to start contributing? I am working on spring-boot for quite sometime now. Thank you for your time,2.0
+gei5iox,k5mhub,"Every good open source project have some document explaining how to contribute. Take spring boot for example: [https://github.com/spring-projects/spring-boot/blob/master/CONTRIBUTING.adoc](https://github.com/spring-projects/spring-boot/blob/master/CONTRIBUTING.adoc)
+
+You should start building the project from the source to get a feel of how it is like. Take a look at the issues tab in github, see if there's something you can take.",2.0
+gegc9hz,k5mhub,"Pick a project to do on your own outside work that is also JVM, but uses a different server framework - Akka, Play, and Finatra are all somewhat popular, useful and relatively user friendly (though I'm a Scala programmer so I'm biased, but I believe all of these work with Java of course as well due to interoperability). The differences and similarities between these and Spring will be interesting for you I think.
+
+The keys for me to skill up have been ""I have a problem I want to solve, and I want to try something new to do it"" (for projects on my own only - I think it's very important to ONLY use the established tooling and languages which others on your team use, at work, so that your projects are maintainable after you leave) or ""I have a problem I haven't solved before, let me pick the brain of everyone I can think of who I work with who has done something similar while I design it, or get them to review my pull requests"".",4.0
+gego4bu,k5mhub,Take a look to the Heinz Kabutz courses and free webinars and sign up in his newsletter. You will learn a lot of intermediate and advanced Java skills,2.0
+geg43q9,k5mhub,"Learn a functional programming language: Clojure, Scala, F# or Haskell. 
+
+Esp. learning Clojure will make you a better programmer that is more aware of the pitfalls of po-programming.",6.0
+geh4ozp,k5mhub,"Or, learn FP in Java.",3.0
+gehxmrk,k5mhub,"Java doesn’t have functions. It has syntactic sugar that creates classes with a single method. 
+
+I would also argue that you miss out on more important points of FP: immutability, higher-level fns etc.
+In particular understanding the value of having values - vs stateful objects and when to use what. 
+
+
+But, to your point, adopting lambda expressions can lead to more composable and safe code and belongs in a Java programmer”s Toolbox.",2.0
+gegdi7t,k5mhub,"Unless you have specific reasoning or motivations to stay in the back end, consider learning some front end or cloud technologies. I started out with java, but learning js, node, Typescript, and React has served me very well, as has everything I've learned about AWS. In other words, it might do you good to get more full stack experience.",3.0
+gegowuw,k5mhub,"Upskilling is the thing every developer needs to do.
+
+The stack has evolved very quickly.The way I do it is to have a bigger picture and then drill down to the nuances.
+Where each of the new technology fits in.How to migrate with ease.
+I read in bits and pieces from all the different stacks.Then try to build the pieces.",1.0
+geh7pg3,k5mhub,"I second the idea of learning another language. Ideally one of a wildly different programming style than Java. This will at least open up new ways of thinking, and can help you approach your Java code from different angles.  
+I personally can recommend Clojure &amp; Rust. They are going in a very different direction from Java and each other.",1.0
+geha27t,k5mhub,"You're already on the right track my friend. 
+It's gonna sound trite, but keep practicing and keep asking questions and you too will be a kung fu master. Some things just take time",1.0
+geha6k3,k5mhub,"Write a blog, answer StackOverflow questions, contribute to OSS projects.
+
+That's what worked for me.",1.0
+gehsj0g,k5mhub,Any good OSS project which are beginner friendly and can start contributing.?,1.0
+gehwfnu,k5mhub,"Check out this GitHub project:
+
+[https://github.com/MunGell/awesome-for-beginners](https://github.com/MunGell/awesome-for-beginners)",2.0
+gehx4gg,k5mhub,Thanks! Will check it out!,1.0
+gej2m4p,k5mhub,Seems like the risky click of the day!,1.0
+gepovni,k5mhub,"&gt; i can do all the basics but often see co-workers implement things in ways that seem more technical
+
+On top of the other good suggestions already mentioned, here's something else to think about in regards to ""*the basic*"" vs ""*the more technical*"":
+
+&gt;&gt; *The competent programmer is fully aware of the strictly limited size of his own skull; therefore he approaches the programming task in full humility, and among other things he avoids clever tricks like the plague...respect the intrinsic limitations of the human mind and approach the task as* ***Very Humble Programmers*** — [***The Humble Programmer by Edsger W. Dijkstra***](https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html)
+
+There are a lot of workplaces with a  culture that discourages people from admitting they don't know everything. Places where having gaps in your knowledge is seen as a weakness as opposed to an opportunity to learn something new everyday.
+
+That kind of culture breeds a palpable amount of arrogance in devs of every skill level. So if you do follow the sound advice /u/blakeman8192 suggests in [*their comment*](https://old.reddit.com/r/java/comments/k5mhub/skilling_up_as_an_experienced_developer/geg89jp/), I'd request that you also make sure you don't frame your questions in a confrontational ""*E-e-w-w-w-w! Why'd you do it* ***that*** *way?*"" tone.
+
+We all know that tone. It comes from insecure team mates who, because of the arrogance that's fostered in toxic work cultures, find it impossible to concede that somebody else knows something that they don't know. 
+
+&gt; and want to take things to the next level
+
+You inevitably will. And as you do, ***Stay humble!***",1.0
+gegvdt0,k5mhub,"Give a try to FP with scala =&gt; [https://www.coursera.org/specializations/scala](https://www.coursera.org/specializations/scala)
+
+Then you can give a look at Kotlin to ease connecting things with Java.
+
+And finally (since you are a backend developper) give a try to Reactive programming (Vert.x and mutiny are fine to start).
+
+It will totally disturb you but at the end you'll better understand type systems and threading and that should change your everyday life with Java.",1.0
+gegw5jc,k5mhub,FP and reactive programming in general +1,2.0
+geg3gf6,k5mhub,Switch jobs. Sounds like your current work setting isn't challenging you anymore.,-6.0
+gefzbq8,k5l5v8,"I think I can answer your second question without knowing anything exactly about reactor just by looking at the parameter (?) name: maxConcurrency.
+
+a) its maximum, not minimum
+
+b) it says concurrency, not parallelism
+
+Concurrency means that multiple tasks can make progress at the same time and not one has to finish before the other in sequence - they can be executed simultanously, but don't have to. E.g. one half of a task can be excuted, then a third of another and so on. While in parallelism they are truely executed simultanously, if you have the hardware (number of cores). If you have 10 running threads but only 8 cores, 2 of the 10 threads would actually have to wait until the scheduler frees a core by suspending another.
+
+Thats why you will not see so many threads.
+
+Also note that 65000 is a big number of (OS, kernel) threads that your system probably can't handle. It would start to choke simply by management overhead. When project Loom releases you can have millions of virtual threads.",3.0
+geg12sa,k5l5v8,"got it, but i tested it, I made a endpoint that create 65k threads, and my computer really created the 65k threads, obviously it is inneficient but it worked.
+
+About the maxConcurrency, as i said, if send a request with a delay of 10 seconds and that request create 65k objects and call a method to made each object wait 10 seconds, i will have my response in more less 10 seconds, this made me think it's running parallel, and as i said before, each one is running in a separeted thread(i log it with Thread.currentThreadName()), but i can't see those threads on task manager.",0.0
+gef7tbl,k5fbss,"Nobody cares about them. If you have a degree in the field (which you will have per the post), it's just a waste of your time. Learn Java properly.",5.0
+gefwcdu,k5fbss,"I would go further than that.  If someone has a certificate, I wouldn't hire them.  It's a bad sign.",1.0
+gegyurs,k5fbss,"Many companies require their devs to get these certs. It's silly to not hire someone just because he has a cert. They're meaningless *both* ways.
+
+I got one ages ago because my employed paid for it, so why the heck not. That doesn't make me a worse programmer.",5.0
+geey9bi,k5fbss,"0 minutes. I wouldnt bother doing these shitty certificates.
+I looked into it and decided not wanting to do it.
+The tasks have absolute zero value in real world applications",10.0
+gehfw9p,k5fbss,"Don't they show initiative and passion for java?
+
+Don't get me wrong, its certainly not advisable to hire a person based on certs, but it can definitely show interest.",2.0
+geez3iq,k5fbss,The java certs are definitely not a must have.,4.0
+gef3rsk,k5fbss,"&gt; The java certs are definitely not a must have.
+
+That probably depends on what country OP is from, what country s/he's hoping to immigrate to and who their prospective employer is.
+
+At some of my former gigs (*corporates to whom H1B visas had a certain appeal*) Java certs were a ***huge*** deal to quite a few of the members of our *globally distributed team*. 
+
+I got the impression from speaking with a lot of them that certs were pretty much a de facto ***must have*** stipulated by the headhunters that vetted them in their native countries.",5.0
+geg92u2,k5fbss,That's what my dad said too. He worked a long time in the IT industry and said it will really help me get a job. Am from India,4.0
+gehycsy,k5fbss,"&gt; He worked a long time in the IT industry
+
+If you research the whole certs thing some more, you will eventually learn that different certs in different specializations in the IT industry carry more weight than others. Cisco networking related certs, if I recall correctly, are one of the more universally ""*respected*"" ones. Was your dad a Java programmer? Or a network guy?
+
+&gt; and said it will really help me get a job
+
+Depending on what country you intend to apply for jobs in, you will need to adjust your expectations accordingly. 
+
+
+&gt; Am from India
+
+The majority of people commenting in this post don't know how the Java dev candidate selection process works in India. I don't. Can you fill us in? TIA.
+
+In the U.S., a Java cert  won't *get you a job*; per se. Nobody will hire you based ***solely*** on the fact that you got 100 on a Java cert exam.
+
+The best a Java dev in the U.S. could probably hope for is that having a cert ***might*** be a tiebreaker in certain situations. A U.S. hiring manager, faced with a dilemma of choosing between shortlisting the resumes of two equally-qualified devs, ***might*** choose the resume of the dev with the Java cert.
+
+I emphasized ***might*** because which dev's resume a given hiring manager goes with, would depend on their opinion of Java certs. If it happens to be a hiring manager who themselves took a Java cert exam and failed, then they are bound to be hostile against a dev who passed a Java cert. ^&amp;nbsp;^see&amp;nbsp;all&amp;nbsp;the&amp;nbsp;other&amp;nbsp;comments
+
+That hiring manager will not put your resume in her shortlist.
+
+If you're lucky, the tie-breaking decision would be made by a hiring manager who took the Java cert exam and passed it. In that case your application is more *likely* to proceed to the telephone interview stage of the process. But still not guaranteed. Your cert ***might*** get your foot in the door. But the cert by itself won't *get you hired*.
+
+In the U.S. you would still have to [*run the gauntlet*](https://old.reddit.com/r/programming/comments/cllcou/you_will_randomly_bomb_technical_interviews/) of telephone interviews, LeetCode-style online technical exams, algorithm white boarding interviews in front of three-four interviewers, HR interviews, the whole nine yards.
+
+A lot of people think [*the hiring process in the U.S. is a scam*](https://old.reddit.com/r/programming/comments/do8iut/hiring_is_broken_what_do_developers_say_about/).",2.0
+gei5wih,k5fbss,"My dad worked as a network guy. I don't know the selection process of a Java dev or anything really. 
+
+What I've been told is that by the end of my 7/8 th sem , companies come to different colleges make the students take a series of tests , and then an interview which decides if you get the job or not. 
+
+What my college principal and my dad's colleagues told me was to develop my skills , solve a lot of programming problems etc and also to have professional recognised certificates as this shows that you have that skill. 
+
+This is all the knowledge about hiring and certificates I know right now.",2.0
+geigy5r,k5fbss,"&gt; and also to have professional recognised certificates as this shows that you have that skill
+
+Having a cert certainly can't hurt^&amp;nbsp;^Hey!&amp;nbsp;That&amp;nbsp;rhymed! 
+
+&gt; This is all the knowledge about hiring and certificates I know right now
+
+The [*Code Ranch*](https://google.com/search?q=java code ranch certificates) is a popular hangout to learn more about Java certification.
+
+&gt; companies come to different colleges make the students take a series of tests , and then an interview which decides if you get the job or not
+
+Those would be companies located in India, I'm guessing? Do you plan on emigrating to work outside of India?
+
+If working in the U.S. is your ultimate goal, then you should consider looking into books like ""*Cracking The Coding Interview*"" at some point.",1.0
+gekxbwu,k5fbss,"That did rhyme haha. 
+
+I'll check out the code ranch. 
+
+And US isn't really my goal. No offense. I don't want to emigrate ...or atleast that's what am thinking so far.",2.0
+gef82br,k5fbss,"If you have to hoard papers to get you hired, isn't it like, a scam?",1.0
+gegr39r,k5fbss,*scam* *cough* *Indians* ...  Just kidding,3.0
+gei9ufz,k5fbss,[click to get millions dollar](https://youtu.be/dQw4w9WgXcQ),1.0
+geibh97,k5fbss,Shit... I knew it,1.0
+gekxczp,k5fbss,Got you,1.0
+geih6bj,k5fbss,"&gt; If you have to hoard papers to get you hired, isn't it like, a scam?
+
+I repeat. It depends on the country you're in:
+
+&gt;&gt; [***in German-speaking countries: without a paper HRs won't even consider you as a job candidate***](https://coderanch.com/t/727367/certification/Avoid-certification#3383914)
+
+A lot of people think [*the hiring process in the U.S. is a scam*](https://old.reddit.com/r/programming/comments/do8iut/hiring_is_broken_what_do_developers_say_about/).",3.0
+geir122,k5fbss,"Good articles, the only thing is that in my understanding, the commenter might mean a degree, not a vendor certificate.
+
+The quoted part:
+
+&gt;but in the learning involved
+
+is very thoughtful. I also do that, just not taking exams for $200+ each.
+
+For the second, hiring is indeed broken. The more complex a technical interview is, the more it is about the interviewer's ego, with their witty tasks and tricky remarks (or vice versa).
+
+Why do I think it's broken? The domain is so big, you cannot measure someone's knowledge/insight in 2 hours. You just cannot decide.
+
+If you replace it with going for some pieces of paper, you just shifted the problem to your other pocket.",3.0
+geiy0m6,k5fbss,"&gt; *in my understanding, the commenter might mean a degree, not a vendor certificate*
+
+If that's your understanding, then you are overlooking (*intentionally?*) the context of Paul Anilprem's comment (*which I emphasize in bold*) to which Maria Ind is responding:
+
+&gt;&gt; *The power of* ***the certification*** *is not in* ***the paper certificate*** *but in the learning involved when you prepare for* ***the certification exam***
+
+For that comment to be about a degree, you also have to intentionally overlook the fact that the forum post is titled ""*Avoid* ***certification***"". And that it is posted in a forum called ""***Programmer Certification***"" which is a forum dedicated to the discussion of Oracle's Java ***Certification*** exams.
+
+To me, all of those mentions of ***certification*** are clues that, given the context in which the ""*without a paper*"" comment is made, the ""*paper*"" being referred to is more than likely a ***Java certification***; not a *degree*. But, gentlemen can disagree^&amp;nbsp;^Hey!&amp;nbsp;That&amp;nbsp;rhymed!",2.0
+gej8p6p,k5fbss,"Ah, I see, I was referring to his:
+
+&gt;  in German-speaking countries: without a paper HRs won't even consider you as a job candidate  
+
+What's *that* paper?
+
+What the guy at the top said:
+
+&gt; I hate to say it now but certification is useless for beginners, don't do that. 
+
+This is (in my opinion) the issue with vendor certificates: people think they gonna learn stuff at the course.
+
+I think I agree with you on the topic, in general. 
+
+(Nice rhyme, by the way)",1.0
+gejcz9r,k5fbss,"&gt; What's *that* paper?
+
+Somebody in that thread asked Maria Ind that question:
+
+&gt;&gt; [***Which paper document are you referring to? Is it something like a CS degree or is it a Java cert?***](https://coderanch.com/t/727367/certification/Avoid-certification#3385915)
+
+But she never replied. Unless an /r/java  lurker with local knowledge of the German job market chimes in with what ""*without a paper*"" might mean, it's anybody's guess, I guess. 
+
+[*An earlier comment*](https://web.archive.org/web/20201203201610/https://old.reddit.com/r/java/comments/k5fbss/how_long_did_it_take_you_guys_to_finish_the/gegyurs/)  by /u/nutrecht offers another clue though.",1.0
+geksmeb,k5fbss,"Yea, that's why I'm assuming things...
+
+For that comment, I would like to hear about those companies, as I never heard anyone would need a java/.net cert next to their CS degree to get hired.",1.0
+geloqf8,k5fbss,"&gt; I never heard anyone would need a java/.net cert next to their CS degree to get hired
+
+Are you assuming that every Java/.NET dev has a CS degree? What if they don't?
+
+What if there aren't enough devs with CS degrees in, say Germany, to meet the demands of their employment market? What should they do then?
+
+If employers in Germany do indeed insist ""*you must have a paper to get hired*"", could the ""*paper*"" requirement be met by ""***any*** *paper from* ***any*** *accredited institution recognized in a given industry*""?
+
+To my understanding, Oracle's Java Programming Certification ""*paper*"" seems like a reasonable fit if that's the kind of ""*paper*"" requirement Code Ranch's Maria Ind alluded to by ""*without a paper*"".",1.0
+_,k5fbss,,
+gegp2i8,k5fbss,2 months of solid preparation,2.0
+gehbnr2,k5fbss,To pass the basic exam too?!,1.0
+gehbwlx,k5fbss,"First is OCA.that is fairly simple.
+Ocp is more in depth.Need to prepare by trying good hands on",3.0
+gei5a3g,k5fbss,Oh okay...makes sense . Thanks!,1.0
+gejv41j,k5fbss,"I did some java stuff in college but worked in networking and just started brushing up on java again, should I get the cert?
+
+Trying to decide if i should study for this cert or just do more spring projects",2.0
+gel08fl,k5fbss,"My opinion is that if you don't have any prior development work experience, a Java cert is very valuable.",1.0
+gedxulo,k5d0ml,"If you like this, [I do a weekly roundup of open source projects that includes an interview with one of the devs that you can subscribe to.](https://console.substack.com/)",3.0
+gege74y,k5d0ml,Any plans to turn this into a podcast?,1.0
+gehk4m2,k5d0ml,I'm currently doing this on the side since I'm still working.  If I ever go full-time with it then I'll likely start a podcast as well.,3.0
+gegqan0,k5d0ml,interview? curious +1,1.0
+gehk5om,k5d0ml,🔥🔥🔥,2.0
+gel5yhy,k5d0ml,"As I understand it this isn't a library but a software built with Java, right?",2.0
+gef11ea,k5c4r0,"Gradle was a really powerful dependency configuration.
+I migrated a maven project with too many exclusion, explicit dependency override and dependency management to a pretty clean gradle project using version alignment and dependency substitution.
+We managed to remove all exclusions (and transitive =false)
+Wasn't an easy job but now our build doesn't break if we change one dependency, and if it does is easy te fix.",3.0
+geehpxt,k5c3uz,I feel like I've both seen and commented on this exact post,1.0
+ged7rly,k59431,There's nothing wrong with reaching for something like Micronaut or Spring. They're suitable for small projects. It would be much faster to develop and easier to maintain if you use such a framework.,4.0
+ged83u0,k59431,"I was leaning towards doing that, as it could turn out to be a good academic exercise as well.",4.0
+gedfahb,k59431,"Those frameworks are not specific to 'microservices'. You can create a single monolithic back-end in them just fine. And you can build runnable jars from them, so no need for containers either.",4.0
+ged5z1n,k59431,"Maybe get a VPS and run it for yourself.
+
+(I have an old laptop lying somewhere at home and a dyndns dynamic hostname points to it.)",3.0
+ged85i6,k59431,This sounds interesting. I'll save money doing it as well most likely.,1.0
+geejh84,k59431,"The microservices stuff is basically marketing for what they think people want. You can build a monolith in Spring, Micronaut, Quarkus just as easily, and deploy it on a single EC2 instance or whatever.",3.0
+ged63ra,k59431,"You can use HTML or basic react js for the UI and deploy both the jar and UI files on aws, routing can be achieved using nginx",1.0
+ged9u1s,k59431,"I use javalin for my sideproject. It is super lightweight since adding just a thin layer on top of servlet api. You will need to handle some situations by yourself which are done easily in Spring. You know this is a tradeoff.
+
+IMHO, Spring is a perfect fw but not lightweight since it  offers functionalities / capabilities for many work branches like telco, fintech, gaming, entertainment... Each of these fields has their own requirements and structures. And those things dont come free.",1.0
+gedsauu,k59431,SparkJava is decent if you're looking for something simple and lightweight,1.0
+gedsdkr,k59431,"Also, if you're looking for full stack, you'll need a templating engine of some sort. I've used handlebars.",1.0
+geeuzwr,k59431,"For simple stuff with a soft learning curve I would choose Vaadin. I’m starting a side project with it and it is really straight forward 
+
+It is build on top of Java, you do not need to learn fronted programming languages for simple ui’s and it have a good documentation and community behind.
+
+For the rest of the backend I would choose the main ones: Gradle/Maven, Java/Kotlin, Spring (Batch module in your case too)
+
+Hope it works for you too!",1.0
+gedpubn,k59431,"Look for ""microframework"". A few examples are [Jooby](http://www.jooby.org/), [Blade](https://github.com/lets-blade/blade), [Ninja](http://www.ninjaframework.org/), [Pippo](http://www.pippo.ro/), [Firefly](http://www.fireflysource.com), [Bootique](https://bootique.io) or [Ratpack](https://ratpack.io)",1.0
+gedqn3b,k57tse,"Just started reading this... I am pedantic, and get hung up on typos. In your ""With Message Broker"" image, I am thoroughly enjoying the idea of getting a massage delivered.",14.0
+gedxn8n,k57tse,"This article could use a better explanation of why one would want to use ActiveMQ over RabbitMQ, since I'm under the impression RabbitMQ is significantly more popular. Furthermore, based on [this](https://digitalscholarship.unlv.edu/cgi/viewcontent.cgi?article=4749&amp;context=thesesdissertations) comparison it's significantly lower throughput than RabbitMQ and has much higher latency. From brief reading a selling point of ActiveMQ is the web interface, but it seems likely to me on Cloud deployments making that accessible will require significant amounts of setup work which can't be discounted (i.e., it's hardly acquired for ""free"")",4.0
+geekrsv,k57tse,"As far as I understand, RabbitMQ is unable to do any high availability stuff? While Artemis does.
+
+Decent support for native JMS.
+
+Besides, you need to invest into Erlang infrastructure/monitoring. Why do that when there's Java product already available? Say for example if you have to manage TLS certificates/truststores, that's handled differently in Java and Erlang, so twice the effort.
+
+And I'd stay away from Kafka unless I really have a team of admins ready to support it, and message throughput requirements are REALLY REALLY that high.",3.0
+gefb39r,k57tse,In my person experience RabbitMQ also has indeterminate failure characteristics.. As you increase the volume or size of messages you will find that some messages can just disappear without any error.,3.0
+gefgwf5,k57tse,I'd much rather see why one want to use ActiveMQ over OpenMQ. How do these compare?,2.0
+gedvkhc,k57tse,"Thanks ! Really interesting article, I'm using ActiveMQ in a project for 6 months (principally with MQTT) and I had no idea how it works :D",2.0
+gef2afa,k57tse,"I switched to Solace.. never looked back. Super easy, way more throughput, scale is unlimited.. and while it does cost money for bigger deployments.. you can skirt around it by using their free tier with clustered deployments as long as each instance doesn't go over 10K messages a second. I gotta believe most companies don't put that much throughput on a message system.. and if they do, they can easily afford the license.",2.0
+geg2bv5,k57tse,"Hi, any resources that you would recommend to learn about activemq in depth?
+
+Specifically, I want to learn more about transaction semantics I'm activemq, what happens when consumers come and go willy nilly, how broker ensures message is delivered and processed by the producer, what happens if a consumer dies mid processing, etc.",2.0

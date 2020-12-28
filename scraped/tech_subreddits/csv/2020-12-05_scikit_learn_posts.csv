@@ -1,0 +1,201 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+jsh997,Train/test split always 80%,"Hi, I'm doing Logistic regression with sklearn and I am using the train test split. No matter which tesz_size I pass, I always get around 80% on my score. Am I doing something wrong?",1,scikit_learn,2020-12-05
+jklvj0,I am running several scikit-learn machine learning models. Why are my Lasso and ElasticNet scores very low?,,2,scikit_learn,2020-12-05
+jjcdv9,how to train DecisionTreeClassifier on selected features?,"Hello, very new with maching learning, I have a dataframe where I did  
+
+SelectKBest(mutual\_info\_classif, k=10) to get the top 10 features on my dataframe ( there is 30 features)  
+x = selector.fit\_transform(x, y) (where x is my dataframe, and y is my labels)  
+x = pd.DataFrame(x)  
+Now that I have my top 10 features, I want to get DecisionTreeClassifier result again on x but with my top 10 features...  
+What I dont understand is x is now my top 10 features, but the decisionTreeClassifier is giving me the same result as when i had my 30 features is it normal?   
+
+
+But if I do another train\_test\_split with my new x the result are different. What im wondering is do i have to do another train\_test\_split? To be able to do classification decisionTreeClassifier with my top 10 features? Or thats not normal? thank you
+
+train\_x, test\_x, train\_y, test\_y = train\_test\_split(x, y, test\_size = 0.2, shuffle=True)",3,scikit_learn,2020-12-05
+jf4ved,Does 'refit' argument in scikit learn RandomSearchCV use the best parameters in the last round?,"I' m using RandomSearchCV to tune hyperparameters  for my model, reading the document is tays that 'refit' function fit the models by the best found parameters for whole data. 
+
+In my understanding, since it use the best parameters from the last round, the training error should show consecutive decreasing. 
+
+However, in my training process while setting `refit = True`
+
+The cost function of each round seems to reset for training, instead of fitting with the best parameters from last round. The training process is like:
+
+&amp;#x200B;
+
+[Training process](https://preview.redd.it/kqnezi415du51.png?width=236&amp;format=png&amp;auto=webp&amp;s=5912eb76960e3b020c1d9e127e4e94e459cb60ca)
+
+&amp;#x200B;
+
+I wonder why does `refit` seems not working as I expected. How should `refit` be working during hyperparameter search with cross validation?",2,scikit_learn,2020-12-05
+jaw4qg,RandomizedSearchCV workers runtime,"I have several datasets that I need to find a model for. I have created a loop that goes through them, and given the dataset, performs a RandomizedSearchCV to find the best parameters for the model.
+
+However, each iteration is slower than the one before, so the whole process ends up being way too slow. This is how the code looks like:
+
+&amp;#x200B;
+
+    def f_Models(DF):
+        
+    ##split and scale dataframe 
+        Y = DF.pop('output')
+        X = DF
+        X_Train,X_Test,Y_Train,Y_Test = train_test_split(X.index,Y,test_size=0.2)
+        scaler = preprocessing.StandardScaler().fit(X_Train)
+        X_Train = scaler.transform(X_Train)
+        X_Test = scaler.transform(X_Test)
+        
+    ##random forest model
+        model = RandomForestClassifier()    
+        params = {
+            'n_estimators': list(range(1, 1000)) + [None],
+            'max_depth' : list(range(1, 20)) + [None],
+            'min_samples_split': list(range(2,10)) + [None] ,
+            'min_samples_leaf': list(range(1, 5)) + [None]
+            }
+        randomizedModel = RandomizedSearchCV(model, params, cv=4, n_iter=40, verbose = 1, n_jobs = -1)
+        bestF = randomizedModel.fit(X_Train, Y_Train.values.ravel())
+        predictions = bestF.predict(X_Test)
+        rfc = round(100*accuracy_score(Y_Test.values.ravel(), predictions),2)
+    
+    ##logistic regression model
+        model = LogisticRegression(solver='liblinear', multi_class='ovr')
+        params={'C':np.logspace(-3,3,7),
+        'penalty':['l1','l2']
+                }
+        randomizedModel =RandomizedSearchCV(model,params,cv=4, n_iter=100, n_jobs = -1)
+        bestF = randomizedModel.fit(X_Train, Y_Train.values.ravel())
+        predictions = bestF.predict(X_Test)
+        lr = round(100*accuracy_score(Y_Test.values.ravel(), predictions),2)
+    
+    ## k neighbors model 
+        model = KNeighborsClassifier()
+        k_range = list(range(20, 31))
+        params = dict(n_neighbors=k_range)
+        randomizedModel = RandomizedSearchCV(model, params, cv=4, n_iter=100, scoring='accuracy', n_jobs = -1)
+        bestF = randomizedModel.fit(X_Train, Y_Train.values.ravel())
+        predictions = bestF.predict(X_Test)
+        knc = round(100*accuracy_score(Y_Test.values.ravel(), predictions),2)
+        
+        Dictionary['name'] = DF.name
+        Dictionary['logistic regression'] = lr
+        Dictionary['random forest'] = rfc
+        Dictionary['k neighbors'] = knc
+        return (Dictionary)
+        
+    List = []
+    
+    for DF in DFList:
+        List.append(f_Models(DF))
+
+Thank you for the help!",1,scikit_learn,2020-12-05
+j9q6bp,A scikit-learn compatible library to construct and benchmark rule-based systems that are designed by humans,,6,scikit_learn,2020-12-05
+j93854,Best performance on Scikit-learn’s load_digits dataset,"On Scikit-learn’s load_digits dataset:
+https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html
+
+Does anyone know what is the best performance achieved so far on this dataset? 
+
+I tried googling around but can’t find examples with 100% score performance. I am thinking since this is a standard dataset, it would be easy to get a 100% score performance?",1,scikit_learn,2020-12-05
+j8vepi,"could someone ELi5 the hyperparameters (penalty, C, tol, max_inter)",I am currently working on a beginner project on logistic regression using scikit\_learn. I am trying to fine tune my regression model but cant seem to find any websites that can explain what the parameters mentioned in the title mean exactly and how to use them. I was wondering if anyone could give me a quick explanation on what/how to use these parameters to fine tune my regression model.,0,scikit_learn,2020-12-05
+j7jz85,SVC rbf kernel seems to be nonstandard?,"I am currently testing a precomputed version of rbf I implemented to get a better feel for how it works and possibly later check out some other kernels.
+
+It seems that whatever I do, I get different results using my precomputed gram matrix vs using the scikit rbf kernel:
+
+To calculate a kernel entry for datapoints xm &amp; xn, based on some extra parameters theta
+
+`k = thetas[0] * np.exp(-(thetas[1]/2.) * (np.sqrt((xn-xm).T @ (xn-xm)))) + thetas[2] + thetas[3] * (xn.T @ xm)`
+
+using theta = \[1,2,0,0\]
+
+This should recover the formulation given [here](https://scikit-learn.org/stable/modules/metrics.html#rbf-kernel) (setting gamma=1)
+
+1 \* exp( - 2/2|xn-xm|^(2) )   
+
+
+is there something I'm missing? \[here's the code if you wanna take a look\]([https://github.com/rlhjansen/test-kernel-stuff/blob/main/scikit\_test.py](https://github.com/rlhjansen/test-kernel-stuff/blob/main/scikit_test.py)) (only dependencies are matplotlib, scikit &amp; numpy, so you're probably good if you're on this sub)",1,scikit_learn,2020-12-05
+j5pcm6,ImportError,"I've got a long error which ends with:  
+ImportError: DLL load failed while importing \_arpack: Não foi possível encontrar o procedimento especificado. (rough translation: Unable to find the specified procedure)  
+
+
+Any idea on the issue? It seems like I have some sort of update issue, but I'm unable to find what.",2,scikit_learn,2020-12-05
+j2v11w,"Scikit-learn. In the case of a single point, k-nearest neighbours predictions doesn’t literally match with the literally nearest point. I think I know why. Correct me if I’m wrong.","Hello.  I’ve looked at the source code. 
+
+Case population sizes in the range 10 ^ 2 to 10 ^ 5 ish. Vanilla, straight out the box knn from scikit-learn.  Except 1 nearest neighbours not the default 5.  
+
+When I try to predict the nearest neighbour of a point, using 1 nearest neighbours. after using knn.fit to make a model, it doesn’t _always_ return the same value of the actual nearest neighbour.  I’ve worked out the actual real nearest neighbour myself to check, using trig, and unit tested it.  
+
+I think that’s because for pragmatic reasons knn is just a probabilistic model applied at group level.  Not exactly the actual knn for each and every point.  
+
+Am I right?
+
+EDIT:  My. Trig. Was.  Wrong.  Due. To.  A. Data frame. Handling.  Issue.  Ggaaahhhh.",7,scikit_learn,2020-12-05
+j1idtx,RadomizedSearch CV taking forever,"Hi ,
+
+I have the below snippet.
+
+Trying to run on GCP . its getting stuck and not even updating.
+
+&amp;#x200B;
+
+https://preview.redd.it/bp2zfi71sxp51.png?width=1463&amp;format=png&amp;auto=webp&amp;s=6d97d1ff6083f6eb65e62d983770c69f06d45f4c",2,scikit_learn,2020-12-05
+iv8jv9,Neuraxle - a Sklearn-Based Clean Machine Learning Framework,,1,scikit_learn,2020-12-05
+it82un,How the 'init' parameter of GradientBoostingRegressor works?,"i'm trying to create an ensemble of an determined regressor, with this in mind i've searched for some way to use the sklearn already existing ensemble methods, and try to change the base estimator of the ensemble. the bagging documentation is clear because it says that you can change the base estimator by passing your regressor as parameter to ""base_estimator"", but with GradientBoosting you can pass a regressor in the ""init"" parameter. my question is: passing my regressor in the init parameter of the GradientBoosting, will make it use the regressor i've specified as base estimator instead of trees? the documentation says that the init value must be ""An estimator object that is used to compute the initial predictions"", so i dont know if the estimator i'll pass in init will be the one used in fact as the weak learner to be enhanced by the bosting method, or it will just be used at the beginning and after that all the work is done by decision trees. If someone can help me with this question i would be grateful.",5,scikit_learn,2020-12-05
+igtkry,Best way to get T-Stastic and P-value etc?,"I'm using scikit learn for linear regression.  Is there a way to use that library to generate things like T-Stastic and p-value and standard error etc?
+
+On stack overflow i found this, but wondering if there's a way within scikit
+
+    import statsmodels.api as sm
+    from scipy import stats
+    X2 = sm.add_constant(X)
+    est = sm.OLS(y, X2)
+    est2 = est.fit()
+    print(est2.summary())
+
+&amp;#x200B;",1,scikit_learn,2020-12-05
+i3546z,Recommendation based on other user following,"Hello,
+
+I try to build a recommendation system.
+
+My service allow users to follow people (not rate them, just follow) and I would like to be able to propose to users to follow people based on other user’s database activity.
+
+Is scikit a good path for this ? 
+
+Do you recommend specific method or useful ressource to read to achieve this ?
+
+For your help guys!",2,scikit_learn,2020-12-05
+hzw282,How to use TensorFlow Object detection API to detect objects in live feed of webcam in real-time,,1,scikit_learn,2020-12-05
+hwmcf1,sklearn CCA - how to get variance explained for first canonical relationship?,"Hi. I'm exploring multivariate brain-behaviour relationships with sklearn's canonical correlation analysis tool ([https://scikit-learn.org/stable/modules/generated/sklearn.cross\_decomposition.CCA.html#examples-using-sklearn-cross-decomposition-cca](https://scikit-learn.org/stable/modules/generated/sklearn.cross_decomposition.CCA.html#examples-using-sklearn-cross-decomposition-cca)). I am interested mostly in the first canonical relationship between the two datasets. The decomposition is working fine and i have the weights/canonical scores etcetera - but what i'd really like to know is how much of the variance in either dataset is explained by that one relationship (analogous to eg variance explained by first principal component).
+
+There is a method named 'score' that i can call on the CCA object but I am not quite sure this is what I need. This score is not the same as 'canonical scores above but will supposedly get some coefficient of determination r\^2 between 'observed' and 'predicted' - not sure how to understand this. The description on the webpage is quite terse and it does not behave the way i might expect.
+
+I'm hoping to find someone who might know whether that 'score' method  will get me to what i want - and if so, maybe how to use it. Or point me otherwise in the right direction to get into the variance explained for CCA.
+
+Cheers!",2,scikit_learn,2020-12-05
+hu6y83,KMeans Algorithm Question,"Hey all.
+
+I am new with using scikit-learn and had a question regarding the KMeans algorithm functions. After running the algorithm and plotting the clusters, are the clusters with the centroids plotted the final clusters after training is done or is there training that I have to do on the clusters? 
+
+Thanks everyone",1,scikit_learn,2020-12-05
+ht4ol1,Making ROC curves with results from cross_validate?,"I am running 5 fold cross validation with a random forest as such:
+
+from sklearn.ensemble import RandomForestClassifier
+
+from sklearn.model\_selection import cross\_validate
+
+forest = RandomForestClassifier(n\_estimators=100, max\_depth=8, max\_features=6)
+
+cv\_results = cross\_validate(forest, X, y, cv=5, scoring=scoring)
+
+However, I want to plot the ROC curves for the 5 outputs on one graph. The documentation only provides an example to plot the roc curve with cross validation when specifically using StratifiedKFold cross validation (see documentation here: [https://scikit-learn.org/stable/auto\_examples/model\_selection/plot\_roc\_crossval.html#sphx-glr-auto-examples-model-selection-plot-roc-crossval-py](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc_crossval.html#sphx-glr-auto-examples-model-selection-plot-roc-crossval-py))
+
+I tried tweeking the code to make it work for cross\_validate but to no avail.
+
+How do I make a ROC curve with the 5 results from the cross\_validate output being plotted on a single graph?
+
+Thanks in advance",2,scikit_learn,2020-12-05
+hm6td7,Best performance on MNIST - Fashion dataset,Does anyone know what is the best performance achieved so far for the MNIST - Fashion dataset along with what model that was used?,1,scikit_learn,2020-12-05
+hl4k0u,Factor analysis “model” in CS229,"In one of Stanford’s CS229 lecture by Andrew Ng (https://m.youtube.com/watch?v=tw6cmL5STuY), he talks about a factor analysis “model” in which is to deal with situations where you have a lot more features than samples in your dataset. He even said he used a modified version of this factor analysis “model” in some recent work he did for a manufacturing company in the lecture.
+
+Now my understanding of factor analysis is just a dimension reduction technique. So how did Andrew used factor analysis to build a “model” which deals with datasets which has a lot more features than samples?",2,scikit_learn,2020-12-05
+hkm9qn,StackingRegressor Inconsistent Output,"Is it intentional that StackingRegressor returns different accuracy outputs when running multiple times given the same parameters, models and using numpy set seed?",1,scikit_learn,2020-12-05
+hjctba,"This lecture that talks about what Multilabel and Multioutput classifications are, along with their implementation using scikit learn.",,1,scikit_learn,2020-12-05
+hg5j3s,What are some well-known binary classification datasets where neural nets or deep learning fails badly?,What are some well-known binary classification datasets where neural nets or deep learning fails badly?,2,scikit_learn,2020-12-05

@@ -1,0 +1,189 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k770ea,"I intermittently get this error when I boot, I have to hard-restart to get past it",,1,linux4noobs,2020-12-05
+k7b21m,"New battery for T400 + Linux, won't charge. What do?","Hi,
+
+I bought a battery on eBay. I understand that might not have been the smartest. I clip it in to my T400 and it won't charge. I've tried it in both Fedora 33 and Ubuntu 20.04.1 LTS and neither seem to charge. I have asked for a second battery, which they have provided, but, in the interim, are there any setting I can change in any Linux to see if it is either the motherboard or the battery?
+
+Thanks BC7",1,linux4noobs,2020-12-05
+k760ct,I hate grub bootloader," 
+
+I have an Acer Aspire 7 i7 7th generation with Nvidia 1080ti
+
+I have a 480gb WD GREEN M.2 SSD mounted on the motherboard with Windows installed on it.  
+I also have a 1 TB hardrive.
+
+I originally wanted to install both ubuntu and windows on the ssd for better performance, but i realized the grub bootloader eats too much time on the startup menu.  
+Also I use ubuntu only couple of days a week for coding. Therefore I found it painfully slow to boot with grub.
+
+So now what i am trying to do is install ubuntu on the harddrive with a 300 gb partition for ubuntu and leave the 700 gb to store music movies and other stuff.  
+Here i kept the ssd as the top priority on boot manager so that i just boot into windows no questions asked; and boot into ubuntu with the quick boot menu in the bios.
+
+This worked initially but the next time i rebooted my pc the windows boot manager simply does not show the second hard drive as a bootable device.  
+However it is to be noted that I can access the 700gb partition with the files explorer so any faults in connection of the sata port can be ruled out.
+
+TLDR ;  
+My second hard drive is not showing up in the windows boot manager as a bootable harddrive HELPPP",0,linux4noobs,2020-12-05
+k7ahpi,How can I make my phone into a Linux OS?," 
+
+Hello!   Long story short, I had a friend whom had a Nexus 4 with xubuntu - I   believe. His reason for the Nexus 4 was well, one of the last phone  non-traceable à la modern phones.
+
+Could   someone help me figure this out as I am bad in terminology and   experience in this field but believe strongly in privacy and the future   of Linux.",1,linux4noobs,2020-12-05
+k79y1f,Switching back to windows because of file transfer speeds,"Is there anyone who can help to improve file transfer speeds on linux.
+
+Don't say it's slow because of specific filesystems and stuff cause why doesn't windows have that problem.
+
+I'm just so tired I thought linux was good.
+
+If I can fix this I'd stay on linux which is what I actually want but I'm so frustrated",1,linux4noobs,2020-12-05
+k79ux7,Need urgent data recovery help!,I tried to install elementary os last night . FAILED TRIED TO BOOT BACK TO WINDOWS BUT WAS WELCOMED BY ERROR 0xc00000e. My window drive is bitlocker encrypted. Help plz,1,linux4noobs,2020-12-05
+k79t2m,Firefox is being a bitch and not honouring the system theming.,"I'm using Manjaro KDE and have no idea how to make Firefox accept my theming. Earlier, even after selection dark theme (within its setting-customize), Preference always remained bright. Somehow after opening-closing it 3-4 times, it's working fine now but it still is not accepting global menu or removing minimize, maximize etc. (even its sequence is not matching properly) buttons which I've moved to Active Window Control.
+
+Brave for some reason works superb. All I had to do was enable 'Use GTK' and right click on the bar and select 'Use system title bar and border.'
+
+Thank you for your help.",1,linux4noobs,2020-12-05
+k75tku,Paradox games and the steam API,"Just reinstalled my system. Had my steam library on another drive and most games work perfectly. The HOI4 and CK3 do not.
+
+Launching either through steam or lutris doesn't work at all, but it is possible to execute the binaries directly. HOI4 is fully playable but the new DLC I bought cannot be activated. CK3 refuses to work at all (the paradox launcher complains that the steam API is not active).
+
+&amp;#x200B;
+
+Any ideas?",1,linux4noobs,2020-12-05
+k78z7d,Need help removing Grub4Dos and setting Windows 7 as boot,"Hello,
+
+I'm quite alright with computers and know most of the things in BIOS, Windows, what needs to work for a Windows machine to run, etc., however, I have no experience with Linux and from what I understand Grub4Dos is a Linux program.
+
+Anyways, I have a PC that my dad had gotten used from somewhere, and the computer works alright, but he wanted a better processor, so I tried putting in his SSD (where Windows is installed) and HDD (where his files are kept) into another machine. Its a Dell Optiplex 3040 SFF, and everything seems to be in working order in terms of hardware. The machine came with Windows 10 and the SSD has Windows 7, but I changed it from UEFI to legacy and turned on all the legacy support.
+
+After putting in two drives it automatically goes into a boot loop, going to the Dell splash screen and then turning off. I can interrupt that and get to a screen where the background is red (at the top it says Grub4Dos) and it shows something like Windows 7 with SLIC loader and Windows 7 without loader, and more options with SLIC that I haven't tried. The Windows 7 load without the SLIC works and goes into Windows but seems pretty slow. The speed isn't my concern at the moment, as I just want to remove Grub4Dos. I read somewhere I can remove it by accessing the boot folder in my C drive (with the OS), but I have not found it there. I also can't find it as an application and searched the drive for it. Can't find any sign of it.
+
+Does anyone have any advice on how to remove this and just get Windows to be the primary boot?
+
+I'm considering reinstalling Windows and just backing up his files if I can't find anything working.
+
+Any help would be appreciated!
+
+Thanks,
+
+dennisicecap1",1,linux4noobs,2020-12-05
+k758h5,"Was Messing up with brightness settings, Lost transparency on plank and whiskermenu anyone know how to get back or reset the settings to back?",,1,linux4noobs,2020-12-05
+k74g80,How to find a file with matching Hash digest?,"Hi everyone, so I have a hash and I want to find a file which matches the hash digest on my Ubuntu machine. What command should I use?",1,linux4noobs,2020-12-05
+k77yb5,Avoiding hard disk failure?,Is there a cli based application which can monitor hard disk and help me avoid hard disk failure? I only have one hard drive which runs at 5400rpm(I know super slow it's from an old laptop) and I want to keep an eye on it as I use it as a backup solution.,3,linux4noobs,2020-12-05
+k77xak,Problem installing on old macbook pro,"I have a 15in 2010 macbook pro that I would like to install linux on. I have tried installers for manjaro, tumbleweed, leap, kde neon. All of them have different issues that prevent the desktop environment from launching. I am just trying to live boot to see how things run. Since they do not, I am a bit nervous to try a full installation. What am I doing wrong?",2,linux4noobs,2020-12-05
+k77gdq,Windows 10 VM slow,"I'm trying to run a Windows 10 VM on Linux Mint and I'm curious if there are any ways to make it faster. I understand that its normal that Windows 10 in a VM is slow, but I think I gave it quite good setting (6 gigabytes of RAM, 6 CPU cores, 128 megabytes of video memory) and the yet the VM is unusable I can't open the start menu without waiting around 30 seconds just to be forced to power the VM off because it's so laggy. So do you have any tips on making it work faster?",1,linux4noobs,2020-12-05
+k77a9f,Why do we call GNU/LINUX Linux when GNU came before Linux?,"hey guys, i was told that Linux or Linux based operating systems are actually ""GNU/LINUX"" operating systems, and that GNU came before Linux, and my question is, why do we call GNU/LINUX Linux if Linux came after GNU? 
+
+Why is the Linux part of GNU/LINUX the part we always call it? was it just a case of ""Linux has a better ring to it and it stuck?""
+
+thanks.",0,linux4noobs,2020-12-05
+k777ih,What is lwsmd service in linux?,Whenever my system feels slow I use top to check the processes which use high cpu or memory and this process is in the list. Googling lwsmd service doesn't give much information.,0,linux4noobs,2020-12-05
+k76z99,Error when trying to update on POP-SHOP,"Everytime i enter POP-SHOP to update my stuff i get this error:
+
+    Failed to Fetch Updates
+    This may have been caused by external, manually added software repositories or a corrupted sources file.
+    
+    Details:
+    E: The repository 'http://ppa.launchpad.net/gnome3-team/gnome3/ubuntu groovy Release' does not have a Release file.
+    W: Updating from such a repository can't be done securely, and is therefore disabled by default.
+    W: See apt-secure(8) manpage for repository creation and user configuration details.
+    E: The repository 'http://ppa.launchpad.net/gnome3-team/gnome3-staging/ubuntu groovy Release' does not have a Release file.
+    W: Updating from such a repository can't be done securely, and is therefore disabled by default.
+    W: See apt-secure(8) manpage for repository creation and user configuration details
+
+Should  i delete this PPAs or Somehow edit them?
+
+&amp;#x200B;
+
+The result from lsb\_release -a is:
+
+    No LSB modules are available.
+    Distributor ID:	Pop
+    Description:	Pop!_OS 20.10
+    Release:	20.10
+    Codename:	groovy",1,linux4noobs,2020-12-05
+k76mnh,Why can't I write to this SMB share on Ubuntu Server that I'm accessing on Windows 10?,"I'm new to Linux and recently set up an SMB share on a new install of Ubuntu Server so I can access the file system from my Windows PC. I've edited the smb.conf file as follows:
+
+    [My-Server]
+       comment = Samba on Ubuntu
+       path = /home
+       guest ok = no
+       read only = yes
+       valid users = pedges
+       write list = pedges
+       create mask = 0755
+
+What I'd like is for anyone who logs in with the username 'pedges' (the root account and only account on the server) with the password I set when installing SMB to be able to traverse and edit the file system.
+
+Right now after entering my credentials I can see all of my folders and files, but if I try to edit or create a new folder, it tells me ""You need permission to perform this action"".
+
+It might be worth noting that I also have an Unraid SMB share set up where I also use the username 'pedges' and the same password to log into that, so I don't think it's a Windows credentials issue.
+
+Thanks!",6,linux4noobs,2020-12-05
+k76ddl,Telegram not launching from the browser xdg-open,"Hey everyone
+
+I updated my manjaro for the first time after KDE 5.20 release. For my work, I have to open a lot of telegram links on the browser and it asks for xdg-open on the popup alert and it used to get open normally as it should. But after the alert I am receiving the following message:
+
+ 
+
+Unable to create io-slave. klauncher said: Unknown protocol 'tg'.
+
+&amp;#x200B;
+
+What should I do. I have installed Kio and Kio-extras but it didn't solve the problem.
+
+Please help me solve this.",1,linux4noobs,2020-12-05
+k76a0k,"Hey guys, I installed Pop_OS! 20.04 and it is great, wait... what the hell is this?","I  have decided to install Pop\_OS! 20.04 (not Nvidia version) on my pc,  for a variety of reasons. It's been stable for months and now... this.  What happens?
+
+it happened at least 3 times, and each time I had to turn it off and on again until I can access to the OS.  I press the power button, he turns on normally, so I go to gnome, but soon after (1 sec) he goes into that error. 
+
+I haven't a Nvidia dGPU.
+
+PC Specs: XPS 13 9370 (i7 8550u, 16 gb ram, 512 gb ssd, only Intel iGPU).
+
+With latest kernel available (5.8).
+
+[https://preview.redd.it/tk9nqqr3i9361.jpg?width=1277&amp;format=pjpg&amp;auto=webp&amp;s=bc68a765d2ea3a5e2b2a7f8ebe484fc20d3dbecf](https://preview.redd.it/tk9nqqr3i9361.jpg?width=1277&amp;format=pjpg&amp;auto=webp&amp;s=bc68a765d2ea3a5e2b2a7f8ebe484fc20d3dbecf)
+
+It gave me the same error even using the older kernel.  
+There's nothing connected in usb ports.",12,linux4noobs,2020-12-05
+k768g6,Gnome suddenly started breaking on me :(,"I  restarted my pc yesterday, and suddenly all the window controls started  looking like this, and when I used ALT+F2 and typed r - it just started  to flicker and then gnome kicked me back to the login screen.
+
+Anything I can do to fix it??
+
+IMAGE OF CORRUPTION: [https://imgur.com/a/0emYQoL](https://imgur.com/a/0emYQoL)",1,linux4noobs,2020-12-05
+k740t9,"What is GNU? what does ""GNU"" stand for? where does it fit in Linux history? why do some people call Linux ""gnu/linux""?","hey guys, i wanted to ask what is GNU is, i go onto [https://www.gnu.org/gnu/gnu-history.html](https://www.gnu.org/gnu/gnu-history.html) and it calls itself an ""operating system"" but when i go on [https://en.wikipedia.org/wiki/GNU](https://en.wikipedia.org/wiki/GNU) it calls gnu a ""collection of free software"" so i don't get it, which one is it? 
+
+is gnu an organization? or non profit? what does ""GNU"" stand for? is it an acronym? 
+
+also why do people call linux gnu/linux instead of just linux? why the ""gnu/linux"" what does gnu have to do with linux? thanks",9,linux4noobs,2020-12-05
+k73oai,Installing Manjaro on a USB drive.,"Hello,
+
+I have a work laptop and I want to leave the laptop untouched and no changes to the boot loader.
+
+I need to be able to plug in a USB drive with Manjaro installed on it which also won't change anything in the work laptop.
+
+I basically need a self contained portable operating system on a USB bootable drive that I can use like any other operating system but not modify my work laptops existing install in any way.
+
+I need to be able to update manjaro and use all the existing laptop hardware.
+
+How can I go about doing this.
+Ideally I am thinking I should run the installer from another Linux based computer and install it onto my USB boot able drive.
+
+Then plug the USB drive into my work laptop?
+
+Many thanks
+, K",1,linux4noobs,2020-12-05
+k71raw,Swaywm: Is it possible to do fractional scaling without making the screen blurry?,"So, I just installed Sway for tiling manager. I tried to edit the display scaling to 1.25 in the sway config, because my laptop screen has 14 inch 1080p, which makes it a bit hard to use with normal scaling. But the problem is, all things  become kinda blurry, especially Firefox.
+
+How do I fix this? Or, do I have to live with 100% scaling?",2,linux4noobs,2020-12-05
+k6z9zs,Gave up waiting for root file system device. ALERT! UUID=xxx does not exist. Dropping to a shell!,"Evening all,
+
+I know what caused the error above I'm just not sure how to fix it.  I created a new software raid array and then deleted it.  But before I deleted it I ran the command ""update-initramfs -u"".  Now when the system boots I get two errors and it drops to BusyBox initramfs
+
+1. Duplicate MD device names in conf file were found.
+2. ALERT! UUID=xxx does not exist. Dropping to a shell!
+
+I know all of my UUIDs, I just dont know what file I  need to edit to make this work.  I tried mdmadm.conf and fstab - no go. What file is feeding this Busybox / initramfs that I need to update with the correct UUID?
+
+Thanks much!
+
+Brian",2,linux4noobs,2020-12-05

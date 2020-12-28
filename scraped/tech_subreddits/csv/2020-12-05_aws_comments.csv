@@ -1,0 +1,450 @@
+comment_id,post_id,comment,upvotes
+gepp3om,k764ti,"If you're using Cognito with React native:
+
+ \* Use Amplify JS library and configure the Amplify.Auth module with your Cognito User Pool ids.
+
+ \* Use the Amplify JS front-end react component to build the UI for login/password reset/ etc.
+
+ \* Once you user is logged in, they Amplify.Auth library will give you access to their JWT Token.
+
+ \* Use Axios (or other AJAX library) to make requests to your API server, with Axios, add an interceptor that adds the JWT token to the HTTP request.
+
+ \* With API Gateway and a Cognito Authorizer, it will validate the JWT token for you.
+
+ \* With your own custom API server, simply follow the docs on [Verifying a JSON Web Token](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-verifying-a-jwt.html). 
+
+Alternatives would be Auth0, or depends upon your web framework/tool stack. Some frameworks have pretty sophisticated systems to manage auth/auth and JWT for you. Others do not and you need to roll your own - it's actually not THAT difficult, but Cognito or Auth0 is going to be faster to build and more secure most of the time.",1
+gepn4as,k789hw,"One method:  
+You could set your triggers on a 2-3+ minute delay from the ones in west-2, have the lambda when triggered in us-west-2 write a record to dynamo (or wherever really) that it has 'started its job at x time' and maybe a finished value as well, when us-east-1 triggers you can check your storage to see if the job ran in us-west-2, if it hasn't then east-1 runs the job.  With this way there's no actual failover as both regions are attempting to process, you can then add even more regions by just increasing the execution delay of the trigger in each consecutive region  
+This method would be pretty hands off for the most part  
+
+
+In short - leave all triggers always on, space them out, let your app de-dupe
+
+&amp;#x200B;
+
+There are other methods that i'm sure will be suggested, but if you are getting started this one is prety simple",1
+gepgzkc,k78t62,Are you setting the visibility timeout on the messages once you receive them? Otherwise they’ll continue to be received as you process the message until they hit the dead letter threshold.,1
+gepnsil,k78t62,Isn't that done automatically when it's mapped to a lambda?,1
+geprvvl,k78t62,How would it do that? It’s up to your application to know when it’s done processing and when it should release the visibility timeout.,1
+gepm32s,k78t62,I think you have to set redrive_policy on the SQS to point to the DLQ,1
+gepntui,k78t62,That's what I'm doing,1
+gepoeyi,k78t62,"locals {
+  redrive_policy = {
+    ""deadLetterTargetArn"" = aws_sqs_queue.cc-queue_deadletter.arn
+    ""maxReceiveCount""     = var.max_receive_count
+  }
+}
+
+resource ""aws_sqs_queue"" ""cc-queue"" {
+  name                      = var.queue_name
+  delay_seconds             = var.delay_seconds
+  max_message_size          = var.max_message_size
+  message_retention_seconds = var.message_retention_seconds
+  receive_wait_time_seconds = var.receive_wait_time_seconds
+  redrive_policy            = jsonencode(local.redrive_policy)
+  tags                      = merge(local.common_tags, local.sqs_queue_tags, var.tags)
+}
+
+resource ""aws_sqs_queue"" ""cc-queue_deadletter"" {
+  name                      = ""${var.queue_name}_deadletter""
+  delay_seconds             = var.dlq_delay_seconds
+  max_message_size          = var.dlq_max_message_size
+  message_retention_seconds = var.dlq_message_retention_seconds
+  receive_wait_time_seconds = var.dlq_receive_wait_time_seconds
+  tags                      = merge(local.common_tags, local.sqs_queue_deadletter_tags, var.tags)
+}",1
+gepokb0,k78t62,"module ""default"" {
+  source = ""../../..""
+
+  queue_name = ""test-${var.environment}""
+  env        = var.environment
+}",1
+gepomcf,k78t62,Last reply is for testing/creation of both queues if you use them within a module,1
+gepfij0,k6zprr,As far as I know a Lambda function can run for 15 minutes max. How long is you function running for?,1
+gepg5mq,k6zprr,"It's running for 6.8 seconds. I'm new to making ETLs so I'm wondering if this just seems like a long time, or maybe it's a clue if the code is inefficient. My benchmark comparison is instructions on the internet saying a 1 second timeout is more than sufficient for most applications. So it makes me question if this type of application means Lambda is a sub optimal tool for what I am doing.",1
+gepiqus,k6zprr,Does it matter if it’s optimal or not? Sounds like it’s not a big deal if the job runs for a few seconds and I’m assuming there won’t be that many of these runs that it would create a significant cost.,1
+gepjqvd,k6zprr,"You're right, it doesn't matter in this case. I'm more or less asking for knowing and foresight for next time. I will be doing larger scale models at some point where it would become a problem.",1
+geplc5k,k6zprr,"Oh right, I’m not very familiar with it myself but have you looked into AWS Glue or other AWS tools specifically for ETL?",1
+gepoqxg,k6zprr,"What do you have your lambdas memory set at?  6\~ seconds to  process 15k rows seems pretty long even for python.    
+
+
+Take note that while memory utilization may be 233mb as you noted that lambdas are issued CPU time based on the amount of memory allocated (more memory ==&gt; more CPU power essentially).  So if your workload is CPU bound (likely in this case) you can usually get more performance from lambda by handing it more memory even though the memory itself wont be utilized.  
+
+
+Luckily with lambda this is really easy to experiment with! Try deploying your function with 2048mb of memory and run it a few times to see the duration, then try it again with varying levels, take note of all durations.  From that data you can now determine if more memory makes it faster, and if that level of 'faster' is worth the increased price (note:  the price might even become cheaper with more memory as lambda is billed per ms on each memory tier, so a larger function that is much faster may be cheaper).  Obviously do your own calcs to find out what is best for you, but the  path forward should be pretty easy!",1
+geprdbc,k6zprr,"Thanks. I just tried out what you suggested. I incrementally upped the memory from 2048, eventually hit zero returns to scale at 3072. I did cut out one line of code which is this:
+
+`mydf.to_sql(tableName, engine, index=False, if_exists='replace')`
+
+And this took up about 50% of the compute time.
+
+Perhaps I will just have to try writing the AWS Glue route as another suggested if my next use case requires Lambda to be prohibitively expensive. 
+
+But honestly, as others have mentioned, there is no way I will ever be billed for anything above $0.00 running this code based on my memory and request volume requirements so I'm not too concerned.
+
+But like you also mentioned, 6 seconds seems like a long time, even for Python. This is why it bothered me so much.",1
+gepc4ia,k6ywoq,The lambda function needs to write an IAM instance profile granting access to the desired S3 resources. Then you attach that instance profile to the EC2 instance,1
+gep02rz,k76jdk," 
+
+    !Ref ${EnvironmentName} Public Routes
+
+That RouteTableId you're !Ref'ing needs to be the internal name a defined resource - and what you've got there can't be one because a) you can't do vars in resource names and b) you can't have spaces in resource names.
+
+The internal name/resource name for this resource you've quoted is `S3Endpoint`, for example, and you could `!Ref S3Endpoint` to refer to that resource in other parts of your template. So whatever you've named the public routes resource block in your template, use that name in your !Ref instead.
+
+If you're inheriting the route table from another template, then you need to import an 'output' from the other template (needs to be explicitly defined as an 'output'.",5
+gep0o4y,k76jdk,Agreed and nicely articulated to boot.,1
+gep1dq7,k76jdk,Thanks for the explanation.,1
+gep0z6z,k74j6e,"Budget actions
+https://aws.amazon.com/blogs/aws-cost-management/get-started-with-aws-budgets-actions/",60
+gep3lbm,k74j6e,Underrated comment right here - much simpler than the custom lambdas and other scripting that used to be needed.,6
+gepn9e7,k74j6e,Can I set the limit to $0.0001 or lower? I just played around with AWS once for the 1 year free tier and got charged like 1$ for something I didn't even know. They credited the amount back but was wondering if I could just limit it to 0.00001$ or something so that I never get billed.,1
+geor2op,k74j6e,"I've heard few stories and it happened to us too. As far as I've heard support tends to be understanding. Once we accidently accumulated thousands of pounds overnight, but they had refunded it after contacting support and explaining the situation",15
+gep3wxu,k74j6e,"&gt;a fails the message stays in the queue and will keep triggering the lambda.  
+&gt;  
+&gt;Now it was a small lambda and I caught it before going to bed.  
+&gt;  
+&gt;But what if it got out of hand and generated thousand of dollars of expenses?
+
+They generally let you off at least once.
+
+If you keep doing it I doubt they will.",3
+geoulrl,k74j6e,You didn't had billing alarm set?,2
+geoynes,k74j6e,"That’s the thing though. A billing alarm is just that - an alarm. If you sleep through the alarm, the charges will continue to accumulate.
+
+AWS support cancels charges caused by accidental overruns without prejudice. But it would be much more liberating for solo devs to be able to experiment while knowing there’s a hard limit set and they won’t have to write a sheepish email to support asking for help.",21
+geoypcs,k74j6e,Aha that's true,4
+geosx1i,k74j6e,"When trying out new things.  Best is to shut down or delete the I stance/service and if there is  code , copy it locally and to s3 both. This way you never have to worry
+
+
+ Going g one step forward, write IAC so that your co figuration  comes up with firing your code from command line and depleting from command line.
+
+This way you also get experience of IAC",21
+geotxw5,k74j6e,"This is your the best answer imo...
+
+I have my personal account for just testing stuff and ideas sometimes work related, sometimes not...
+
+Setup my VPC and role configuration in terraform that's deployable in a CI pipe at the click of a button. Anything I need to play with gets done in TF so I can destroy it cleanly...
+
+After I'm done for the day, roll the same CI pipe to clean my VPC/access configs and move on...
+
+I have a single billing alert at $2.50 and I think I've only ever broken it like twice over the past year or two?",9
+gep94cc,k74j6e,"This is the key right here. Terraform or some sort of IAC solution. I mean the cloud is mainly for ephemeral, highly configurable infra so if you test things with those tools it will help to not go over budget. I spin up a test stack with Albs, nat gateways, ec2’s etc all in one go then test real quick and tear it down so I accumulate almost no cost.",1
+gep37vz,k74j6e,I  need to learn terraform. I know it but too lazy to write it. Should start though,0
+gepn39w,k74j6e,"I also like CloudFormation.
+
+And it's just as easy to destroy it all too, just delete stack.",1
+gep9k3e,k74j6e,"If Amazon were in the habit of ""lawyering up and burying customers"" there would be stories, we would all know. AWS's business model is to help you succeed, not fail. There have been plenty of cases of someone making a mistake and running up a big bill. If AWS genuinely believe it was a mistake they will cancel the bill.
+
+But.. You want billing alerts. Everyone should have billing alerts. And it doesn't do any harm to check the bill after doing anything different.",7
+geot64p,k74j6e,"Off the top of my head you could use cloudwatch to fire an event when billing hits a certain point. This could then run a lamdba or a container on fargate which systematically shut down instances or disable lambdas and a load of other services. 
+
+Kind of a lot of work though. You could look at short cuts; something which looped through all of your NACLs and inserted a blanket DENY as rule #1(after backing them up to S3) could kill off all network traffic pretty quickly and should stop whatever is costing the most money. You could go further and empty your security rules and route tables but that might be overkill.
+
+Big EC2 instances or large amounts of storage would keep billing but at least your costs would be fixed instead of spiralling out of control.",3
+geoxcx3,k74j6e,"Couldn't you also just use Cloudformation and destroy all the stacks? 
+
+I'm not quite up to date what the implications are. I know that there's incredible pain points with ECS Tasks never shutting down if they have an open connection while the task definition is updated/removed. But I don't think they cost money anymore as they're mostly ""idling"" of sorts.",2
+geouij5,k74j6e,I would suggest setting alarm in billing with minimum period may be in 1 minute or even 30 sec when &lt;= lower/equal to is reach that way you can go into your account and manually stop is before it can even extend your bill.,3
+geourgt,k74j6e,"If you create your code in a cd stack, or as terraform, yes. You could setup a pipeline to destroy the stack on a cloudwatch alarm on cost. If not, then no. Not easily.",3
+geozy1d,k74j6e,Amazon are usually pretty forgiving for a first time mistake. You can set billing alerts and thresholds to keep you in check,3
+geozelt,k74j6e,"Just an idea, but can't the billing alerts be connected to an SNS? Then in the SNS you connect that to a lambda that shutdowns, deletes or disconnects all services? 
+
+For example let's supposes you had an ec2 that was populating a Kinesis stream to lambda to dynamodb (in pay per billing), it was doing some large ML thing and it hit a weird infinite output loop that started slamming your costs in throughput and/or ec2 costs. Billing alarm triggers, connects to SNS, lambda triggers, lambda says ""kill stack"". It does a boto3 shutdown on the ec2, uses boto3 to disconnect the lambda from the Kinesis stream. Heck you could even have it just delete the stream. You could set the dynamo to provisioned and wcu of 5.
+
+Thing is, you have to build it. But this is at least better than letting it run. But it supposes the billing alarm is a cloud watch alarm, I've not created a billing alarm in years and I actually don't remember.
+
+Note, if you build an oh shit lambda, I recommend building a recovery lambda. (start ec2, create Kinesis, update references and IAM role for ec2 to talk to Kinesis, connect it to process lambda, change billing mode on dynamo in this example).",5
+georupn,k74j6e,"I had a dev create a lambda that called itself ... he then had a serious personal issue occur and had to leave and forgot about it.  I discovered it several weeks later when I noticed the bill for that account to be much higher than normal.
+
+Put billing alerts in place, even cloudwatch alarms if the lambda is invoked more than a certain number of times.  Or Cloudability for monitoring spending. 
+
+And as u/Fenrir95 said - aws can be quite forgiving about such things.",2
+gep2nrs,k74j6e,"There are a lot of great answers here around infrastructure as code and some practices so I won’t add to that. 
+
+However. For your specific example, you can set retry limits in your queue, such that if the lambda fails, it only will run x number of times, and then end up in a dead letter queue. https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/working-with-messages.html
+
+Also, a few other gotchas are lambdas that invoke themselves, or lambdas with circular dependencies. That can spin out of control quickly. 
+
+That being said, billing alerts are one of the most important things you can do when setting up an account. And you can configure them to text you so you can respond rapidly.",2
+gepbdwu,k74j6e,I've seen messages crash message consumers a bunch of times. The message then stays on the queue and crashes every consumer in turn. I've seen this with all kinds of message buses and consumer systems. A dead letter setup is the right way to handle this.,1
+gep8k90,k74j6e,Try Local Stack,2
+geoqbgd,k74j6e,"You can’t.
+
+You can only create alerts but they are delayed by 6+ hours.",3
+geoua8r,k74j6e,You can actually set the timing on alert like how frequent you want alerts to be.,2
+geoue2v,k74j6e,Minimum you can put is 10sec so every 10 sec you will get alert on billing,1
+geoupef,k74j6e,"Yes, but the billing it self is delayed.",1
+geour2v,k74j6e,Like you get notifications late? If so how much is the difference?,1
+geouull,k74j6e,"AWS doesn’t know how much it costs until hours later. If you enable cost export to S3, last day or two is updated few times until it is final.",4
+geouxmz,k74j6e,"Aha, didn't knew that thanks for info",0
+geoux6a,k74j6e,"You can try [budget actions](https://aws.amazon.com/blogs/aws-cost-management/get-started-with-aws-budgets-actions/) It uses the metrics gathered in Cost Explorer to define a specific threshold and it can trigger an SNS as well as attach a policy, scp or stop ec2 and rds.",1
+geowztm,k74j6e,"Best fail-safe way is to complete your tasks/practices and make sure to delete and de-register _everything_ once done.  You can keep a separate checklist on a note app on phone/post-its etc. of all the services, instances and infrastructures you've spun up and shut them down tallying with the checklist. I started this habit and now it helps me a lot.
+
+The other obvious choice is to set up billing alarms on your root account, and making it a habit to periodically check the associated personal/org mail account for alert mails from AWS. This I think is the safest way, since you keep getting mails when usage of any service  is at 30%, 60% capacity and so on. It will greatly prevent getting slammed by a bill of huge amount at the end of the month.
+
+And still, in case any bill shoots up, register a case with AWS support. They are very helpful.  If you can establish that yours is a genuine case, they'll waive off the entire amount.
+It happened with me a couple of times when I was new and didn't understand all the nuances of free tier usage. The support staff is really  helpful.
+But of course, it has to be a genuine situation.",1
+gepft42,k74j6e,"Some terrific advice here. One more thing is to enable CloudWatch Anomaly detection. This is a new and free service which will send you an alert if any unusual spikes happen in your account. 
+
+There is no service which will automatically kill your resources based on billing. But it’s always a good idea to show that you’re trying to do the right thing (budget alarms, look at cost explorer, etc). 
+
+One other suggestion would be if you’re running experiments. Setup AWS Organizations and use multiple accounts underneath your main paying account. Don’t run any resources in your main account. Run your experiments in a new linked account and then close the account when you’re done. A closed or suspended account can run no resources and therefore can’t accrue bills.  The free tier also applies to each account so there’s a little benefit there as well.",1
+gepme3n,k74j6e,"You can build your own tooling as others in this thread have mentioned - the reason that this doesn't exist (and likely will never exist) in AWS is because everything in AWS costs money, and the amount of angry people that AWS would need to deal with if they just 'stopped' your account when it reached a certain limit would be way greater than the number of bills they have to reduce/forgive currently.  
+
+
+Imagine someone setting a bill limit for let's say $50,000, they normally only use $25,000 for their company monthly so they believe this is safe.  Someone does what you did and creates an endlessly lambda loop or s3 even loop and overnight their bill balloons, the billing alarm get's missed by the person on call during the night, oh no!  They wake up tomorrow and their account has breached the 'AWS spend limit' and their account services have been 'turned off'.  Since everything in AWS costs money (snapshots, stopped instances with volumes, ENIs, load balancers, even cold lambdas due to paying for storage) AWS deletes all of that, their company is gone, their backups are toast, their cloudwatch logs are gone, everything.  Even if AWS added a button that says ""Check this box to indicate you understand if you go over the billing limit your account will be DESTROYED"" the risk would still be too great of customers nuking themselves.",1
+gepr5d4,k74j6e,At my previous company we had an issue with a bill hitting 15k$ because we removed the permission to perform an action to a certain role. Apps using that role were spamming retries of that action and we were billed the thousands of 401 requests.,1
+geps85x,k74j6e,Use the budgets tool. It will send you alerts when you get close or block entirely.,1
+geoyumo,k74j6e,No,-2
+geon8l7,k72ot4,"Aws API use a signing process called sigv4.
+In short it creates a cryptographic signature of each request. Do it's not just about including a token in the request.
+Curl doesn't support this.
+Use aws CLI or an SDK.",4
+gepau7v,k72ot4,*super* easy in python fwiw - https://pypi.org/project/requests-sigv4/,1
+gepfotx,k72ot4,"Yes, the algorithm is surprisingly simple.",1
+geoo1zt,k72ot4,"I think AWS CLI has already been suggested (you really should just use that for routine stuff since it automates so many details), but you can manually sign API requests using SigV4 if you want. Just keep in mind that being an authentication process, it won't always tell you exactly what you did wrong for security reasons, making it a bit tricky to debug.
+
+Overall process is here: [https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)
+
+And you can get a working Python example from here to adapt as needed: [https://docs.aws.amazon.com/general/latest/gr/sigv4-signed-request-examples.html](https://docs.aws.amazon.com/general/latest/gr/sigv4-signed-request-examples.html)
+
+You'll pretty quickly discover that the REST APIs have very specific models and are finnicky to work with directly. I wouldn't recommend doing this in production unless you've got a specific need to avoid having an SDK or the CLI as a dependency (e.g. say you're only using S3 and just want to do upload/download without the bloat of a full S3 SDK dependency).",2
+geog1ha,k72ot4,"You can take apart one of the REST APIs to get the information you want.
+
+Terraform, CDK, Java, Python.. there are loads of approaches to the same REST API.
+
+If you do have access to curl, you may also have access to aws-cli, which might be more convenient to use.. or at least give an idea as to the sequence of events that have to happen. 
+
+I can understand your wish to limit package load and therefore the wish to use the REST api directly.",1
+geoglyb,k72ot4,"yes, i do have access to aws-cli
+
+but i wonder if i can do the same thing in curl, because i can´t find anywhere a rest example...",2
+geokwhq,k72ot4,"I’m sure you can access the entire REST API with curl, but that it will be a bit.. verbose :-)
+
+The python, go (terraform), java API’s are just wrapping the REST API, after all. All of them are available on GitHub and it should be pissible to dive in and pick the interface apart.. drill into the parts that actually create the CGI calls needed.
+
+You should be able to find a version written in a language you are comfortable with.
+
+I’m also sure that Amaxon has an actual description of the REST API somewhere, but people usually use the wrappers in their favorite language.. because raw CGI is a bit cumbersome to write.",1
+geojy6p,k72b37,"We run an oracle db in oracle cloud and have the client machines in ec2 connected by a direct connect / fast connect.
+
+It’s not terrible, but like you say not optimal. We had to tweak some of the oracle TNS values to keep the performance reasonable even though latency didn’t increase that much. To me that’s the big question - is the direct connect near to the Amazon region? If not you may have issues depending on the app.",1
+geomrb4,k72b37,"We have a web app with its oracle db in an on prem data center across a vpn tunnel. Performance is ok, could be better. We did have a data warehouse pulling data from it in AWS originally but build times were way too long. We ended up moving that portion to on prem because the tunnel wasn’t cutting it, eventually when we move the database over to Postgres and move it to AWS, we’ll put everything back together.",1
+georhoz,k72b37,Have a SQL cluster split between 2 data centres and AWS. Have had a lot of issues tuning the SQL read node in AWS and also had issues where connectivity disappeared and lost the heartbeat?? (Not a sql guy) between the clusters. It’s been quite a tricky configuration to be honest and would really prefer to run something run RDS in aws and use DMS to sync between in prem cluster and AWS. I think my issues are more technical debt then actually a poor design so hopefully your experience is better!,1
+gephqjm,k72b37,What is your reasoning for keeping the DB on prem or why are your resources in the cloud accessing an on prem? Are you able to decouple anything to keep the traffic to their local areas? (AWS in AWS and On prem in On prem)?,1
+geoy0mx,k6yi6s,"Maybe think about some Artifact storage in your AWS environment (S3, Artifactory, ECR?) where you can store artifacts after the build and test stages. This can probably help during rollback scenarios.",1
+gepf3xz,k6yi6s,Just adding CodeArtifact to the list - AWS already has a managed service for that.,1
+geoius1,k71ymo,You son of a unicorn I’m in,2
+geol4bl,k71ymo,"View in your timezone:  
+[12/8 at 1pm EST][0]  
+
+[0]: https://timee.io/20201208T1800?tl=%F0%9F%A6%84The%20saga%20continues%2012%2F8%20at%201pm%20EST%20-%20AWS%20GameDay%20%40%20re%3AInvent%202020",1
+geo2a1p,k702cl,"First thing to figure out is what you want to be told about, and how you want to be told about that particular problem. If I’m getting paged about a problem, that problem MUST be immediately actionable in some way. Pages aren’t warnings. Pages are “shits broken NOW. Fix NOW.” 
+
+So, we found a topic that I want to be informed about. Cool. Is that topic something that can be or should be immediately actioned? Would I want to be woken up in the middle of the night about this issue? If the answer is yes, then it goes in the paging pile. If the answer is no, then it goes in the “alert” bin. If the answer was a “fuck no”, then it goes in the warning bin. 
+
+Now, who does this problem get routed to? That’s an interesting problem. However, it’s not a problem you’re going to “stumble” into. You shouldn’t be setting up alarms that aren’t actionable— actionability also includes the WHO of who should be actioning it. Setting up an alarm is a very deliberate action, you’ll never “accidentally” setup an alarm.
+
+More granular of the “who” really depends on your organization structure. Does every team own their own app? Then route it to them via SNS or a ticket or something else. Do you have a centralized ops / security team that runs everything alongside the developers? Now we’re talking something that needs routine... but again... alarms are very deliberate things. When you setup the alarm for “CPU went to 100%” that was the time to ask the question “who needs to own this? Who’s getting the alert?” If you didn’t ask that question at the time, you didn’t do your homework. 
+
+Separate from that, however, is a conversation about what you should do for security incidents. Does security jump in and isolate resources? Okay, that’s fine, but how does the development team get notified about when and why? What does the communication path look like? Does the development team handle it from the start? Okay. That’s fine, but security should still be notified. How quickly must the development team let security know there was an issue?",8
+gepasoo,k702cl,Great response.  I came here to say the same thing.,1
+geo4p83,k702cl,"Alerts need to be actionable. Period. 
+
+2 categories: 
+1. Wake you up at 2am on Saturday 
+2. Fix during the workday
+
+If they're not actionable, what's the point? Put any other info in a daily or weekly report.",6
+gep3hh4,k702cl,"This whole alarm situation is something IT still has a lot to learn from industrial operators. I'm happy to see that convergence (IT and OT) is an ever growing subject. I'll give you a little more context: I am currently a Software Development Engineer, but I come from a Control Engineering background. I've worked at industrial factories that still used pneumatics as a signal transferring media, and installing a new sensor and therefore alarm came at a high cost. Moreover signaling this to an operator meant passing cables, installing light indicators, buzzers and all at an ops location, which meant we gave a lot of thought before creating any alarm (and we had lives at stake so that gives more sense of how much thought went into it). Anyways, where I am getting at: alarm fatigue comes from being negligent in thinking everything must generate an alarm simply because it's cheap and I can do it fast and f*** the operator, it's his problem coping with 700 pages a week.
+
+My suggestion: 
+
+1) create a multidisciplinary team and conduct a ""hazop"" (hazards of operation), identify your dependencies and impacts to end customers and/or dowstream services. Knowing how they will be affected will give you sense of what is and what is not important 
+
+2) understand your capacity, most problems will come from being over capacity.
+
+3) understand your security threat model, define the risks, those that cannot be 100% mitigated automatically and that have impacts should have detective controls and alerts.
+
+4) try and perform a ""root cause"" analysis at every alarm occurrence, objective here is to find a mechanism to address the underlying issue, an alarm that is rendered useless is a victory!
+
+5) every alarm should have a runbook entry detailing how to troubleshoot and address, this, I'll tell you, reduces stress level to the on call staff by a-lotta-percents, if the page comes with a link to the entry that's even better",2
+gep2fh6,k702cl,"I've seen environments like this and someone needs to roll up their sleeves and do a lot of manual work to make it right. There's no getting around that.
+
+Alerts should only be on things that are from a users perspective. Imagine if you had no monitoring and only user feedback. Your users would notify you about your service being down. That's how alerts should work, but quicker than your end users obviously.
+
+Anything else is only monitoring metrics for your troubleshooting needs.",1
+geny71h,k6yrcv,Containerize this so it can scan everything at once.,2
+gensg72,k6xfnl,"I’m still trying to figure out how to do deployments. I’ve been pushing stacks to different org accounts. 
+
+you are braver than i for trying to do this with branches. 
+
+fwiw, i would expect the other stack assets to be removed. keep I’m mind that all cdk does is generate a template file and push cloud formation stacks.",5
+geom1uj,k6xfnl,"I was able to do that by adding more objects with repo/branch information in the array with name ""Backend"" :) Thank you for your response. Other alternate was to create stack name dynamically based on the repo-branch name.",1
+geny2m5,k6xfnl,"Deploy a separate pipeline for each branch. If you’re deploying CDK code in your pipeline, you can use the cdk-pipelines construct: https://aws.amazon.com/blogs/developer/cdk-pipelines-continuous-delivery-for-aws-cdk-applications/",2
+geom490,k6xfnl,"&gt;I was able to do that by adding more objects with repo/branch information in the array with name ""Backend"" :) Thank you for your response. Other alternate was to create stack name dynamically based on the repo-branch name.
+
+Thanks much for your response. I was able to do that by adding more objects with repo/branch information in the array with the name ""Backend"" :) Thank you for your response. Another alternate was to create stack names dynamically based on the repo-branch name.",1
+geoe2w4,k6xfnl,"It becomes incredibly complex to try and do something and is the reason I use GitHub actions, Bitbucket Pipelines etc. The code pipeline limitation of being able to look at one branch is a big limitation. 
+
+You need completely different code pipelines to look at each branch which doesn’t work well for modern branching strategies.
+
+CDK is amazing, but not CDK Pipelines because of CodePipeline",2
+gepbp15,k6xfnl,"CodePipeline is an opinionated solution, and the opinion is that trunk-based development is better.  Depending on what you’re working on this may work, but some projects aren’t naturally amenable to that. Websites with evolve forward paths is one that is. 
+
+Git flow, one strategy that works with multiple branches, is more in line with retail software delivery and long running branches when supporting custom customer configurations. It can be bashed into CodePipeline because anything can, but the question is should you?  That might depend on the cost vs other solutions.
+
+As far as modern, I’d say trunk based is more modern than gitflow, but more because it defines ideas from chaos committing and adds rules like short lived feature branches and CI and feature abstraction patterns.",1
+gepghzd,k6xfnl,My go to is GitHub Flow - trunk based development is fine but sometimes you want to deploy to different environments via feature branches and code pipeline doesn’t support that. Gitflow is fine and has its places and even then you might want a Dev branch that deploys to a dev environment.,1
+geph9x6,k6xfnl,"I don't know about the aws labs example, but I can guess it's probably using CodePipeline with Codebuild - which would explain your issue.
+
+If that's the case: look into using Codebuild alone, without CodePipeline (as it was done before CodePipeline was introduced). You'll see that it's possible to have a Codebuild project target any branch you want (we also use it for PRs with a webhook).
+
+Chance are high that you can ditch CodePipeline.
+
+And for some bizarre reason, almost nobody remembers that a Codebuild Project does this out of the box as long as you don't trigger it via CodePipeline - had to solve the same problem two years ago, but the internet is full of bad advice concerning multi-branch pipelines in AWS.",1
+geobd0p,k6xfnl,Also keep in mind: You’re constrained by the restrictions of the underlying service.,1
+genqilj,k6x5dz,"Re: #1 and #2.
+
+We've seen that occur and found it to be a disconnect between our Node.js keepalive time and our ALB's. Maybe your backend is doing something similar?
+
+Here's a great post summarizing the behavior: [https://adamcrowder.net/posts/node-express-api-and-aws-alb-502/](https://adamcrowder.net/posts/node-express-api-and-aws-alb-502/)",3
+genr29p,k6x5dz,"1.  502 error's from ALB/ELBs indicate that the ALB received an invalid response/something happened between your ALB and the target instance, since you are seeing it during peak hours I would recommend making sure you are not max'd out on resources/threads etc on the application instances behind the ALB.  I have seen ALBs serving millions of requests per minute without tossing 'random 502 errors', etc - highly unlikely the ALB is the issue in this situation.
+2. Your graph most have something wrong with it, capping out at 1 isn't right at all, are you sure you are selecting 'sum' on request count?",2
+genzw0w,k6x5dz,"I know I’m nowhere near maxing out memory and CPU. Are there settings in Apache I should be looking at?
+
+*Edit*: Sum [looks much more reasonable](https://imgur.com/a/krIFIl0), and resolves (2). Thanks!",1
+geoovwi,k6x5dz,"How have you ""*determined that they're coming from the ELB rather than a target*""?
+
+I would not just expect a bunch of random 502s from an ELB. Intermittent failed requests sounds like one of the instances in your scaling group is bad, or you've got some resource exhaustion, or you've got something timing out in your request handler.
+
+Have you confirmed that you have no race conditions in your application logic? Maybe race conditions around database locks?",2
+gepemzf,k6x5dz,"I think I've misspoken on the ""coming from the ELB"". What I mean is that these are HTTPCode\_ELB\_5XX\_Count rather than HTTPCode\_Target\_5XX\_Count errors. Reading carefully, I see that that distinction is maybe less significant than I thought.
+
+Will definitely take a look at table locks -- thanks for that!",2
+gent46o,k6x5dz,3. what do you mean database server? don’t run mysql on an ec2 instance.  use RDS or Aurora serverless db.,-1
+genzqs7,k6x5dz,Why’s that? Last I checked RDS was (~~if I recall correctly~~ confirmed at very nearly) twice the cost of an equivalent EC2 instance. I’ve seen lots of folks here advocate EC2 + MySQL for a small site.,1
+genqrhg,k6w8e4,"If memory serves, 'resolve' calls are made during the preparation step, so your parameters don't exist yet.
+
+You might (untested &amp; unverified) be able to do this by putting all the stuff that needs to resolve parameters into a nested template with dependencies on all the parameter resources.
+
+I'd question your approach though - if you already have the value of the parameter available to you, why would you choose to take the overhead of doing the lookup?",2
+genm16k,k6w8e4,The above - !Sub and the ssm value and ref's do not work. I get an error that they do not exist. I understand that this is so as the template ahs not run and it is being told to look for those values.,1
+genj9d7,k6x3ti,"Start with doing basic debugging  
+1. Check the security group config, does it allow communication on the required ports between the two instances? This is the single most common problem you will run into  
+2. Open ICMP on both instance's security groups, can you ping the IP of the other instance from each side?  If not you have a routing problem  
+3. Add debugging and log messages to your node application and review the logs from that application along with that static html iis logs
+
+  
+The answer to your question will almost surely be in one of those three steps",1
+genor4o,k6x3ti,"Thank you, I was able to solve the problem. When I was defining the IPAddress and Port variable in my html file I was not specifying the correct up address, which was the IP address of my App Server instance",1
+genjs2w,k6p8rp,"People do this for a few reasons usually
+
+1. Constant feedback and validation that your deployment and likely recovery process is working as intended.  When someone asks ""can we deploy this app safely?"" the answer will be an obvious yes because you are testing it constantly
+2. Patching, lots of people forgo the traditional patch management (scripts/sysadmins connecting to servers, running patches) and instead prefer to constantly have a build process that is churning out patched AMIs and deploying them, if something goes wrong the last known good AMI is used while a human investigates what patch broke it.  Other people will trigger a patching process as part of the application startup script, by redeploying their infra they are essentially 'patching it'.    
+
+
+Do you need to do what they are doing and recycle your instances every day?  Probably not, but does it have some benefits? Sure!   I really like the constant validation that your deployment process is working correctly.    Many people working around this are doing rolling deployments or blue green style deployments so if this daily recycle (read deployment) runs into a bug or issue the entire service isn't down, just a small section that was being rolled out.",6
+gennnfg,k6p8rp,"1.	It’s a way to deploy security patches. Rather than patching a running instance (which can go wrong and bring down a system), you build a new image, test it, and then deploy it. Ideally phasing it into production one instance at a time so if something goes wrong you can halt the deployment. 
+2.	You can use the same approach to phase in application updates. 
+3.	It can mitigate problems like memory leaks in your code, or other things that accumulate over time like temp files. 
+4.	If forces you to design your infrastructure to be fault tolerant. Remember any sever can go down at any time. There is no guarantee on an individual instance. 
+5.	It encourages best practices like using scripts to build server images and testing them in a pre-production environment. A lot of places fall into the trap of a hand-crafted server (or image) that was made years ago and no one is quite sure how it was setup and they’re afraid to change it.  If you build your sever images with Packer and some scripts, the process is repeatable and documented as code. 
+6.	If you bake everything into the image, you can test it in a pre-prod environment and know that you tested the same setup in both places. 
+7.	Security is improved. It’s harder for an attacker to gain a foothold in your account if the server they breached gets replaced.
+
+Look up Immutable Infrastructure. If you take it to the extreme, you can do things like entirely remove SSH access from servers because you never log into them, just replace them. Containers really fit with this approach.",5
+geo8hsb,k6p8rp,"&gt;A lot of places fall into the trap of a hand-crafted server (or image) that was made years ago and no one is quite sure how it was setup and they’re afraid to change it.  If you build your sever images with Packer and some scripts, the process is repeatable and documented as code.
+
+Servers are cattle, not pets.  It's a concept that a lot of orgs still have a hard time accepting.",2
+gepbep7,k6p8rp,"I think some servers start as cattle but turn into pets unintentionally over time. When the server was first build they documented everything. Then someone had to make a quick change “just this one time” and forgot to document/automate it. And then again. And again. Then the person left the company. Now no one wants to mess with it. 
+
+Starting with scripts and Packer and forcing your servers to be replaced prevents them from growing into pets.",2
+geob42k,k6p8rp,"To be fair, it makes sense. If the company sysadmin spent an ungodly amount of time configuring everything and this process was poorly documented, full of specific domain knowledge, etc. Then sure the servers were sacred and changing anything risked driving the business into the ground. If you have embraced cloud and infrastructure as code then sure slaughter away but how many businesses are there? Lots and lots of companies simply do not have the know-how to migrate to cloud/IaC. Nor every business is a greenfield startup who can just do whatever and pivote 995387 times",1
+geoeyxc,k6p8rp,"""Servers are cattle, not pets"" — I love that one.",1
+genp0vg,k6p8rp,"Some good points in here already, but if you want to do some Googling, the concepts you're describing generally fall under the term ""Immutable Infrastructure.""
+
+The idea is that by treating your servers as dispensable, it forces you to use modern best practices, like explicitly defining your server and app configuration as code, and also keeps people from doing bad things, like shelling into a production server and mucking about.  
+
+
+Most modern platforms have these concepts built in too. If you're using containers, the concept of creating a new Docker image and redeploying any time you have an update is taken for granted.",2
+geogge8,k6p8rp,"If it hurts, do it more often, bring the pain forward!",1
+geon4gu,k6p8rp,Sounds like your are notreally doing SaaS right/ efficiently if a new tenant requires specific server configuration everytime they are onboarded.,1
+geonc6k,k6p8rp,"One reason not really covered so far is security, if you recycle servers or containers frequently it makes it very difficult for attackers to get a beach head which can be used for further lateral attacks.",1
+genc2z6,k6p8rp,"I guess it reduces the chances of log files slowly filling up or something. Maybe some workloads get ""funky/stale"" when the system has been up for a long time. Theoretically possible I suppose.
+
+One of the downsides I see is that it adds a daily potential point of failure. Which is the instances going down, and then not coming back up for some reason. Maybe a terraform/cloudformation bug. Maybe your vault instances takes a dump and the provisioner isn't able to get creds to reprovision, etc.",0
+genmhxk,k6p8rp,Typically you spin the new one up and have a health check before shutting anything down. So it’s unlikely.,2
+genmfvw,k6ox03,"This is not a typical thing. I've been a customer for years and this is the first I've seen it -- either the free trial, or the extension.",2
+gepaiki,k6ox03,An extension would make me happy. I've been meaning to test some out but haven't had time.,1
+gen48ia,k6mes3,"the definition of impact in this case is a total outage of a shard for a customer. I would also say that the specific problem trying to be mitigated is against a poisonous problem. For example, a customer whose traffic is overwhelming the workers its talking to our a customer generating a ""poisonous"" request that kills hosts.
+
+In the unsharded scenario a single customer can take down all 8 hosts and cause 100% customer impact. In a hard shared scenario (2 hosts in 4 shards) a single customer can take down an entire shard, resulting in a loss of 1/4 of the fleet and a commensurate customer impact.
+
+In a shuffle sharded system, a single customer is still assigned to a single shard of two workers, but that shard actually overlaps with 12 other shards (6 other options for worker 1, 6 other options for worker 2). If we define impact as ""a customer may hit a degraded worker"" then impact would be 13/28, or roughly 45%. However, if shards are scaled such that the loss of a host in a shard is tolerable, then in this case only 1/28 or 3% will actually experience impact.",1
+geohjm7,k6mes3,"&gt;In a shuffle sharded system, a single customer is still assigned to a single shard of two workers, but that shard actually overlaps with 12 other shards (6 other options for worker 1, 6 other options for worker 2). If we define impact as ""a customer may hit a degraded worker"" then impact would be 13/28, or roughly 45%. However, if shards are scaled such that the loss of a host in a shard is tolerable, then in this case only 1/28 or 3% will actually experience impact.
+
+Hi,  i still don't understand your last paragraph,
+
+[shuffle sharding](https://d1.awsstatic.com/legal/builders-library/Screenshots/shuffle-sharding-example.93b3c956c983a3716870b2b0100cd109ce8afc80.png)
+
+as per the image above, a user is assigned to one shard, and another shard for redundancy right? the total shard is 8, the total customer is 8, why the denominator is 28 ?
+
+If we define impact as ""a customer may hit a degraded worker""， the rainbow user is total affected, the rose and sunflower user is partially affected, so the impact is 3/8, why is 13/28 ?",1
+gepqb1v,k6mes3,"\&gt; the total shard is 8
+
+No, the total number of workers is 8, but the total number of shards is 28. 
+
+A shard is a unique pair out of 8 items. We can use a combinations formula to break down the total options: 8! / 2! \* (8 - 2)! = 28
+
+See the ""Combinations"" sections at [https://www.mathsisfun.com/combinatorics/combinations-permutations.html](https://www.mathsisfun.com/combinatorics/combinations-permutations.html)
+
+So assuming that customers are uniformly distributed across shared and the rainbow customer takes out their shard (worker 1 and 4 in the picture) there should still be 27 other shards (unique pairs) that have at least 1 functional worker. There will be 13 impacted shards: 12 shards that only have 1 functional worker and 1 shard with 0 functional workers.
+
+\&gt; the total customer is 8, why the denominator is 28 ?
+
+Note that in the paragraph that calls out the 1/28 ratio, they explicitly state:
+
+\&gt; If we have hundreds or more of customers, and we assign each customer to  a shuffle shard, then the scope of impact due to a problem is just  1/28th
+
+&amp;#x200B;
+
+So assuming more customers than shards, it depends on what you define as impact.
+
+1. Assuming work within a shard is round-robin balanced and a customer implements retries appropriately, 27 shards should complete the work. Therefor, the impacted rate of clients is 1 / 28
+2. If we define impact as ""a customer may hit a degraded worker"", it becomes 13/28.",1
+gemsbrt,k6ljdl,An AWS Account,6
+gemt6ym,k6ljdl,"If you are into the account approach, be sure to use the Organizations service. Accounts are free, but it is true some actions are not as easy as they should between different accounts. 
+
+Another way of solving the problem is by using tags and leveraging IAM conditions to limit who can make what based on them and controling costs [1], plus providing different VPC (networks) to independent projects.
+
+Overall, governance on AWS was introduce relatively late and it is not as straightforward as it is on the other two major public cloud providers.
+
+[1]: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html",1
+gemv72m,k6ljdl,"Maybe an account in an organization. Or a VPC in an account.
+
+Neither one shares much unless you do specific things to share it. Like sending data from one vpc to another goes over the internet unless you configure a VPC peer.",1
+gen3zs0,k6ljdl,Maybe for EC2 based workloads but there a many other services. An account is the comparable entity.,1
+genmzh7,k6ljdl,how much of the internet does VPC to VPC traffic go over?,1
+gemzkiw,k6sbnp,Where are you testing? SCPs don’t have an effect on the Organization master account.,7
+gen3ceu,k6sbnp,This.,3
+gen7boi,k6sbnp,"When you say 'master account,' do you mean the account that I must log into with an email address (the 'root user')?
+
+I am not using that account for testing; I am using an IAM account.",1
+gen936t,k6sbnp,"Ah. I confused 'master account' with 'root user.'
+
+I am indeed logged into a user in the master account. That, apparently, is the problem. Thank you.",1
+gemotj0,k6sbnp,You need to attach the policy to the OU your account is in.,1
+gemrgp1,k6sbnp,I should have provided more context. The SCP policy is attached to the organization root and to all OU's within the organization. It is the only SCP used in my organization.,1
+gen77wf,k6sbnp,"I just found that AWS has an ""IAM Policy Simulator"" that will tell you if actions by principals against resources will succeed or fail, and why. It's at [https://policysim.aws.amazon.com/](https://policysim.aws.amazon.com/).
+
+The simulator doesn't seem to ingest the SCP's for an account, but it showed all the other IAM policies that apply to my user.
+
+In the simulator, I copied/pasted my SCP as a 'custom policy' and when I ran the simulator, it correctly showed that the CreateUser action would be denied.
+
+My conclusion, then, is that the SCP is somehow not being applied to my account. I don't understand why.",1
+gemz8gf,k6sbnp,Is there any explicit 'Allow' policy somewhere?,-1
+gen3c25,k6sbnp,Explicit deny always wins.,2

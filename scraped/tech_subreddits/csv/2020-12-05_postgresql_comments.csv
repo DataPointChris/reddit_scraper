@@ -1,0 +1,794 @@
+comment_id,post_id,comment,upvotes
+gepmvh4,k79yzt,"Without having used it I am currently investigating TimescaleDB and its [Continuous Aggregates](https://docs.timescale.com/latest/using-timescaledb/continuous-aggregates)  Functionality, which might address your problem.  
+As  a bonus TimescaleDB is a PostgreSQL Extension.",2
+gepq83u,k79yzt,"&gt;TimescaleDB 
+
+I have never worked with time-series databases (I always just stored them as rows with a composite key of item-time combination). In our case the new items are half completely new and half updates to existing ones.",1
+gepq90c,k79yzt,"Hi &gt;timescaledb 
+
+i have never worked with time-series databases (i always just stored them as rows with a composite key of item-time combination). in our case the new items are half completely new and half updates to existing ones., I'm dad.
+
+
+(Contact u/BadDadBotDad for suggestions to improve this bot)",-3
+geppgt1,k79yzt,"Have you tried refreshing the view `CONCURRENTLY`? If its mostly new rows you may gain something.
+
+from [here](https://www.postgresql.org/docs/12/sql-refreshmaterializedview.html)
+
+
+&gt; Refresh the materialized view without locking out concurrent selects on the materialized view. Without this option a refresh which affects a lot of rows will tend to use fewer resources and complete more quickly, but could block other connections which are trying to read from the materialized view. **This option may be faster in cases where a small number of rows are affected.**",2
+geppydb,k79yzt,"Wasn't aware of this mechanism - thanks! so if I understand correctly, the materialized view will still require the full processing time (e.g. an hour) to accommodate the new rows (since the calculation is re-done for all rows), but it remains usable while this is done. 
+
+&amp;#x200B;
+
+It could actually be an acceptable compromise for our users.",1
+gepqhag,k79yzt,It might be a bit faster if only a small number of rows are being added - but it will allow the view to still be used while it refreshes.,2
+gepkfqy,k79yzt,"What you are describing sounds a lot like a View with INSTEAD OF triggers on INSERT UPDATE DELETE that has a backing table.
+
+What you are describing sounds like a wordload that should work just fine on Postgres, but if you really end up requiring a different storage engine for batch loads, you could use something like ClickHouse DB/Cassandra or some other columnar store in a FDW to postgres.",1
+gepri8w,k79yzt,"So run the calculation (i.e. the query underlying the materialized view) only on the new items and insert them to a table on top of which a view is built? 
+
+&amp;#x200B;
+
+Regarding columnar datastores, how much of the performance gap between a data warehouse (e.g. redshift) can we expect to close with a columnar store (e.g. zedstore [https://github.com/greenplum-db/postgres/tree/zedstore](https://github.com/greenplum-db/postgres/tree/zedstore) )? We like Redshift's performance, but would like to keep PG's functionality.",1
+geptf9c,k79yzt,How heavy are the computations for new/changed rows?  You could always just go with the old standby solution:  a normal table that is initialized by your full view query and kept up to date via triggers on the backing tables.,1
+gephews,k79nhm,"Ok first some questions:
+
+1. How is your database model designed?
+2. Do you have indexes?
+3. What kind of queries do you use?
+4. Did you analyze the query with EXPLAIN?
+5. Do you use an ORM or did you write your queries by yourself?",3
+gepkfwn,k79nhm,"Thanks for the response
+
+1. There are 8 tables, which have many relationship links with one another
+2. Yes many of the fields in the tables are indexed
+3. I'm using an ORM (sqlalchemy) - so the code looks like: X = Table.query.filter\_by(CRITERIA).all()
+4. I did not - will look into doing this. Would I have to translate the ORM query into SQL first in order to use EXPLAIN?
+5. Using SQLalchemy",1
+geojsvc,k6z2h1,"The use of a temp table and the FOR seems unnecessary to begin with. Why not just return the result of the CTE directly? 
+
+You haven't shown us, what exactly you do with the JSON parameter and I don't really understand what `with recursive $1 and $2` is supposed to mean. The use of dynamic SQL also seems unnecessary. 
+
+Something along the lines: 
+
+    CREATE OR REPLACE FUNCTION people_to_invite_to_wedding(p_parameters JSON)
+      RETURNS SETOF family_tree_of_the_people_in_the_world AS 
+    $func$
+
+      WITH RECURSIVE parameters as ( 
+      
+         -- expand the JSON array to a proper relational view
+         select element -&gt;&gt; 'full_name' as full_name, 
+                (element -&gt;&gt; 'depth')::int as depth
+         from json_array_elements(p_parameters) as p(element)
+         
+      ), tree AS (
+      
+         --- this is the root part of the recursive query 
+         SELECT ..., 1 as depth
+         FROM family_tree_of_the_people_in_the_world w
+           JOIN parameters np ON w.full_name = np.full_name ???
+           JOIN .... 
+         WHERE ....
+                                               
+         UNION ALL
+         
+         -- this is the recursive pat
+         SELECT ..., parent.depth + 1
+         FROM ....
+           JOIN tree parent ON ....
+           JOIN parameters np ON ...
+         WHERE parent.depth + 1 &lt;= np.depth -- I don't know how you want to use that depth parameters
+      )                                         
+      select *
+      from tree;
+    $func$
+    language sql;
+
+You can also use the `parameters` in a subselect rather than joining.",5
+geo0fot,k6z2h1,"Temporary tables in Postgres are local to the session. If you run CREATE TEMPORARY TABLE my\_tmp in two different sessions, each session would only see/access its own version of my\_tmp.
+
+Quick example:
+
+    mwdb=# /*** SESSION 1 ***/
+    mwdb-# create temporary table my_tmp (a varchar);
+    CREATE TABLE
+    mwdb=# select * from my_tmp;
+     a 
+    ---
+    (0 rows)
+    
+    mwdb=# insert into my_tmp values('x');
+    INSERT 0 1
+    mwdb=# select * from my_tmp;
+     a 
+    ---
+     x
+    (1 row)
+    
+    mwdb=# /*** NOW I'M SWITCHING TO SESSION 2 ***/
+    mwdb=# select * from my_tmp;
+    ERROR:  relation ""my_tmp"" does not exist
+    LINE 1: select * from my_tmp;
+    
+    mwdb=# create temporary table my_tmp (a varchar);
+    CREATE TABLE
+    mwdb=# select * from my_tmp;
+     a 
+    ---
+    (0 rows)
+    
+    mwdb=# insert into my_tmp values('y');
+    INSERT 0 1
+    mwdb=# select * from my_tmp;
+     a 
+    ---
+     y
+    (1 row)
+    
+    /*** NOW I'M BACK TO SESSION 1 AGAIN ***/
+    mwdb-# select * from my_tmp;
+     a 
+    ---
+     x
+    (1 row)",4
+geny6bl,k6z2h1,Why is this post shown over a dozen times when you search britney spears though.,1
+geonk1n,k6z2h1,"The session keeps it around until you say drop it - like (i think) with “discard all” or, better yet, adding “on commit drop” so it doesn’t exist beyond the lifetime of the transaction the function is called within.
+
+it will never be used concurrently though, each session is isolated and basically single-threaded.",1
+gep6lyq,k6z2h1,They will collide; use dynamically-constructed sql and `execute immediate _sql_string;` it.,1
+gel9hni,k6ihh7,"What about returning that as two columns? 
+
+    SELECT col1, col2, 
+           SUM(col3) filter (where col4) as count_true,
+           SUM(col3) filter (where not col4) as count_false
+    FROM table1
+    WHERE col3 IS NOT NULL
+    GROUP BY col1, col2",4
+gelo2e5,k6ihh7,This is life changing for me.  I never knew you could filter and sum selected rows only. &lt;WOW&gt;,2
+gel1hpk,k6i8zn,I like dbeaver. And did you try datagrip from intellij,18
+geld9x2,k6i8zn,I'm trying it now and there's no color. It even has a diagram generator!,0
+gen6zqw,k6i8zn,Try beekeeper for nice UI,1
+gela2nz,k6i8zn,"It's not perfect, but I prefer Datagrip over pgAdmin for day to day work.",9
+gekyyvw,k6i8zn,"New pgAdmin (v4) is indeed uncomfortable as hell.. try some 3rd party IDEs - dbeaver, dbforge for postgres, there are few",7
+gelljqe,k6i8zn,"I’ve found DataGrip to be adequate.
+
+Nothing will ever measure up to MySQL Workbench for features and functionality and aesthetic, but it’s buggy as hell compared to SSMS or Datagrip or PgAdmin.",6
+gels8tm,k6i8zn,"If DataGrip had a DBA/Status dashboard like MySQL Workbench does, it would be perfect. The editor itself is very nice.",3
+gelzbvs,k6i8zn,"I like DataGrip, especially being to like create tables with a form versus writing the raw SQL
+
+But that dashboard with the graphs is the shit",2
+gelb6ki,k6i8zn,My team and I use TablePlus - totally agree that phAdmin v4 was a big regression in terms of UX.,4
+geon6v7,k6i8zn,"Second on TablePlus for Postgres, after trying a few of the options on the market, including pgAdmin and DataGrip. Should mention that DataGrip is nice and tidy if you’re using other Jetbrains products for different languages.",1
+gelrfkm,k6i8zn,"Don't know if anyone tried azure data studio . It is replacement for SSMS and it can be installed on Mac or Linux unlike SSMS.
+Azure data studio is not just for SQL server , it supports postgres too. Another feature of azure data studio is support for SQL/R notebooks that can be shared just like jupyter notebooks.",3
+gemln4s,k6i8zn,Data studio still feels a litte bit rough around the edges but i like it too!,2
+gel1nqf,k6i8zn,The age old discussion of a decent Postgres IDE. I would pay top dollar for one.,6
+gel43ip,k6i8zn,Use DataGrip it's (almost) perfect!,12
+gel4q40,k6i8zn,Heard lots about it. Dbeaver is my default at the moment.,3
+geldb9x,k6i8zn,If I had money...,2
+gelgc0k,k6i8zn,"Ya its pretty expencive but honestly it made working with postgres finally copable.
+
+PGAdmin almost gave me cancer...",1
+gela1ft,k6i8zn,That's my go-to app for working with databases these days.,1
+geldvxk,k6i8zn,QueryPie and TablePlus are good alternatives.,2
+gelyjz0,k6i8zn,https://www.beekeeperstudio.io/ is something to keep an eye on,2
+gem431c,k6i8zn,"What about using the database tools in IntelliJ? https://www.jetbrains.com/help/idea/database-tool-window.html
+
+I’ve been using it in Rubymine for past year or two and it’s amazing! I can run sql snippets that we have in source control, you can have multiple consoles for adhoc queries and it acts as scratch pads. Modify the database however you need. You can export the results in multiple formats. And it integrates with rest of the idea (bookmarks, comments, ...)",2
+gekzl31,k6i8zn,Stay tuned. My team has a product to cure this exact pain point in the works :),5
+gel2fm9,k6i8zn,Curious!,2
+gel3d5t,k6i8zn,"Thanks! It's been an idea that's been marinating in my head for the better part of the last 7-8 years of getting frustrated with pgadmin lol. So with covid and no overhead of having to pay for an office among other things, I decided to finally make it an actual project and just do it.
+
+It's been in the works for a few months now and we are hoping to get at least a preview version out by around spring 2021. It's heavily inspired by SSMS but will have more tooling geared towards developers (I had a ton of mini-tools that I built and used over the years to make working with databases easier, so we ended up adding a lot of them into this as well).
+
+I'm definitely excited how it's coming out to be honest. Even if the product doesn't pick up, I'll at least be happy never having to use pgadmin again 😅",3
+gelxdsr,k6i8zn,RemindMe! 6 months,2
+gelxggh,k6i8zn,"I will be messaging you in 6 months on [**2021-06-04 16:30:20 UTC**](http://www.wolframalpha.com/input/?i=2021-06-04%2016:30:20%20UTC%20To%20Local%20Time) to remind you of [**this link**](https://np.reddit.com/r/PostgreSQL/comments/k6i8zn/im_using_pgadmin_but_i_find_it_uncomfortable/gelxdsr/?context=3)
+
+[**2 OTHERS CLICKED THIS LINK**](https://np.reddit.com/message/compose/?to=RemindMeBot&amp;subject=Reminder&amp;message=%5Bhttps%3A%2F%2Fwww.reddit.com%2Fr%2FPostgreSQL%2Fcomments%2Fk6i8zn%2Fim_using_pgadmin_but_i_find_it_uncomfortable%2Fgelxdsr%2F%5D%0A%0ARemindMe%21%202021-06-04%2016%3A30%3A20%20UTC) to send a PM to also be reminded and to reduce spam.
+
+^(Parent commenter can ) [^(delete this message to hide from others.)](https://np.reddit.com/message/compose/?to=RemindMeBot&amp;subject=Delete%20Comment&amp;message=Delete%21%20k6i8zn)
+
+*****
+
+|[^(Info)](https://np.reddit.com/r/RemindMeBot/comments/e1bko7/remindmebot_info_v21/)|[^(Custom)](https://np.reddit.com/message/compose/?to=RemindMeBot&amp;subject=Reminder&amp;message=%5BLink%20or%20message%20inside%20square%20brackets%5D%0A%0ARemindMe%21%20Time%20period%20here)|[^(Your Reminders)](https://np.reddit.com/message/compose/?to=RemindMeBot&amp;subject=List%20Of%20Reminders&amp;message=MyReminders%21)|[^(Feedback)](https://np.reddit.com/message/compose/?to=Watchful1&amp;subject=RemindMeBot%20Feedback)|
+|-|-|-|-|",1
+gen066l,k6i8zn,any ability to sign up for a release ? Are you likely to charge for this ?,2
+genhm39,k6i8zn,"We haven't decided on the licensing model yet but it will definitely be free and full-featured for personal use. 
+
+We'll probably end up charging for enterprise features like report generation services, cloud monitoring &amp; syncing, and a couple of other addons (one big thing we're working on is transparent version control for database code because with a lot of legacy databases the database itself **is** the authoritative repository; i.e. there is no central repo that has creation &amp; function/proc scripts, and in many cases it's unfeasible to create one. Redgate already tried solving this problem years ago, and while their approach was pretty impressive, there were a lot of shortcomings and flaws). So stuff like that we'll charge for, but the core IDE will be free (possibly even open source although to be frank unlikely).",2
+gemimu1,k6i8zn,RemindMe! 3 months,1
+gelmklb,k6i8zn,"One word of caution, there are pros and cons of all the IDEs. But I found pgAdmin to be most accurate. So I deal with it, even though unbearable. I understand why they did what they did for. V4. There was no other way.",2
+gemfrkw,k6i8zn,How is pgAdmin the most accurate?,1
+gemnubp,k6i8zn,"e.g. When you want to generate DDL for an object, I have found pgAdmin to be comprehensive. Includes DDL, Grant, Comments etc related to object. Where as dbeaver, doesn't generate grants or comments. 
+
+When you have special characters in your query or result set, pgAdmin is flow less, where as dbeaver had substituted it with something else.",1
+gel7edt,k6i8zn,im using pgcli part of the dbcli project. cant stand pgadmin.,1
+gel9pqu,k6i8zn,You can install postgres extension for vscode and edit and execute your queries there.,1
+gem22pj,k6i8zn,"https://dbschema.com
+
+Works great with Postgres. So far the closest thing to MySQL Workbench for Postgres I’ve found.",1
+gem55pb,k6i8zn,I'm using Valentina studio. It's okay.,1
+gem6pnm,k6i8zn,"The professional versions of Jetbrains IDEs come with database support. I haven't used IntelliJ, but PyCharm Pro includes pretty much every feature of DataGrip, and I'd expect the same is true of IntelliJ. It's like $200 a year with a perpetual fallback license, well worth it.",1
+gema1k3,k6i8zn,"I like SQL Pro for Postgres.  It's pay, but...you're probably going to be write sql for a long time if this is your career!",1
+geml9g8,k6i8zn,Don't forget pgAdmin is community driven and developed by volunteers. I wished they would host it on Github so more people could contribute to it.,1
+gemm0qq,k6i8zn,"Adminer is another good alternative. They have an official docker image, so you don't have to install PHP.",1
+gelrjlf,k6f6tn,Hetzner,3
+gelba55,k6f6tn,Probably scaleway.com virtual machine that you have to configure. But you gotta do the backups yourself. Otherwise if you want a managed service I'd recommend Aiven.,2
+gemwpl4,k6f6tn,"Best? Probably Citus on Azure, or EnterpriseDB.
+Cheap? Probably in your basement, Linode or DigitalOcean.
+
+Azure, Amazon Web Services, Google Cloud are safe choices. 
+
+How low do you have to go?
+What kind of workload, performance/reliability requirements?",2
+geniip4,k6f6tn,"Yeah there need to be more details here. How mission critical is it, what's the budget and whose ass is on the line if it all goes tits up.",1
+gekmek1,k6cy1y,"If your public schema in the target database is empty, you could just restore the dump into the public schema, then rename the public schema to the desired one.",1
+gel70m5,k6cy1y,"Oh thanks I'm gonna look into this, developer that set it us for us left and although I get around (don't read slutty lol) I'm no developer. More analyst and architect",1
+gejvhum,k6arey,"You need to look into GROUP BY and then use ARRAY_AGG() to build the array of actors.
+
+Have a look at this; it does almost exactly what you want:
+
+https://www.postgresqltutorial.com/postgresql-aggregate-functions/postgresql-array_agg-function/",2
+gejvtgm,k6arey,Oh boi time to learn more about advanced postgres (I already know group by but I don't know array\_agg,1
+gejvvzx,k6arey,This is about as basic as it gets :),-1
+gejx1j2,k6arey,"Holy thanks it worked, I used this code:
+
+*SELECT* film.name, film.release\_date, film.rating, ARRAY\_AGG (actor.name) actor *FROM* film  
+ *INNER JOIN* film\_actor *ON* film.id = film\_actor.film\_id  
+ *INNER JOIN* actor *ON* film\_actor.actor\_id = actor.id  
+ *GROUP BY* film.name, film.release\_date, film.rating  
+ *ORDER BY* film.name;",1
+gejydb1,k6arey,"Awesome!
+
+Now, if you want to take it to the next level, you drop the actor and director tables, create a single person table, create a m2m relationship table between person and film which has a property that describes the type of job a person has on a film, such as ‘actor’, ‘director’, etc.
+
+After a while, you’ll realize that the type of job can be listed in a separate table, and suddenly you have a m2m2m relationship.
+
+Welcome to the wonderful world of database normalization. 😎",2
+gek6h1n,k6arey,"Couple of things:
+
+- If you just `GROUP BY` your film table's primary key (presumably `film.id` in this case) you avoid having to include those other columns in the `GROUP BY` clause.
+
+- Using inner joins here will exclude films which have no related actors for whatever reason - that may be ok for your purposes or it might not.",1
+gejyq6t,k6arey,"Lol after this one long nasty piece of query I implemented the director too:
+```
+SELECT film.id, film.name, film.release_date, film.rating, film.actor,
+       ARRAY_AGG (
+           director.name
+           ORDER BY director.name
+           ) director
+    FROM (SELECT film.id, film.name, film.release_date, film.rating,
+       ARRAY_AGG (actor.name
+           ORDER BY actor.name) actor FROM film
+            JOIN film_actor ON film.id = film_actor.film_id
+            JOIN actor ON film_actor.actor_id = actor.id
+            GROUP BY film.id, film.name, film.release_date, film.rating
+            ORDER BY film.id) as ""film""
+    JOIN film_director ON film.id = film_director.film_id
+    JOIN director ON film_director.director_id = director.id
+    GROUP BY film.id, film.name, film.release_date, film.name, film.id, film.rating, film.actor
+    ORDER BY film.id;
+```",1
+gejz2lb,k6arey,😱,1
+gejzbpk,k6arey,"Is there a simpler way? I only had to do this because when I tried to do the same thing with Director, it will print the same director multiple times. 
+
+Like for example if a movie has.3 actors, it will also print the director 3 times. 
+
+So I need to select the table generated, and do the whole process again to generate the director.",1
+gek3bav,k6arey,"Yes, there's probably a dozen different ways to do this, and twice as many if you use Common Table Expressions.
+
+Sticking with traditional SQL, however, consider the following queries:
+
+    SELECT
+      film_actor.film_id,
+      ARRAY_AGG (actor.name) actor
+    FROM
+      actor
+      JOIN film_actor ON actor_id = id
+    GROUP BY
+      film_id
+    
+    
+    
+    SELECT
+      film_director.film_id,
+      ARRAY_AGG (director.name) director
+    FROM
+      director
+      JOIN film_director ON director_id = id
+    GROUP BY
+      film_id
+
+Now, write a query that combines the two previous queries as sub-queries in order to get everything about a film on a single row:
+
+    SELECT
+      film.*,
+      actors.actors,
+      directors.directors
+    FROM
+      film
+      LEFT JOIN (
+        SELECT
+          film_actor.film_id,
+          ARRAY_AGG (actor.name) actors
+        FROM
+          actor
+          JOIN film_actor ON actor_id = id
+        GROUP BY
+          film_id
+      ) AS actors ON id = film_id
+      LEFT JOIN (
+        SELECT
+          film_director.film_id,
+          ARRAY_AGG (director.name) directors
+        FROM
+          director
+          JOIN film_director ON director_id = id
+        GROUP BY
+          film_id
+      ) AS directors ON id = film_id
+    ORDER BY
+      film.name
+
+Why LEFT JOIN instead of JOIN? I'll leave that for you to figure out. :)
+
+NB! I have not tested any of this, so there might be typos and syntactical errors.",2
+gejyr11,k6arey,"Hello, fungigamer: code blocks using backticks (\`\`\`) don't work on all versions of Reddit!
+
+Some users see [this](https://stalas.alm.lt/backformat/gejyq6t.png) / [this](https://stalas.alm.lt/backformat/gejyq6t.html) instead.
+
+To fix this, indent every line with **4 spaces** instead. It's a bit annoying, but then your code blocks are properly formatted for everyone.
+
+An easy way to do this is to use the [code-block button in the editor](https://stalas.alm.lt/files/new-reddit-codeblock.png). If it's not working, try switching to the fancy-pants editor and back again.
+
+[Comment with formatting fixed for old.reddit.com users](https://np.reddit.com/r/backtickbot/comments/k6bpty/httpsnpredditcomrpostgresqlcommentsk6areyhow_do_i/)
+
+[FAQ](https://www.reddit.com/r/backtickbot/wiki/index)
+
+^(You can opt out by replying with backtickopt6 to this comment.)",1
+gekvbz4,k65lyw,If PostgreSQL was designed today supporting null characters would probably have been a good choice but changing it now would require a huge amount of effort and break a ton of extensions. It is simply not worth it for a feature which almost nobody would use. I have during my 13 years working with PostgreSQL never had a case where I have needed this feature.,4
+gem3s4r,k65lyw,I see absolutely zero reasons to support this. Why do you need a null char in text to begin with? What's the use case?,3
+gekn9g0,k65lyw,"&gt; However, PostgreSQL comes in last among relational databases in null character support. Oracle, MS, and even MariaDB, for all their faults, treat U+0000 like any other character.
+
+This I did not know, yikes",0
+gekv39q,k65lyw,"Most people don't know. Most people don't care. It was like that for 30 years and will be like that for years to come. Some guy decided to rant about it. While he may have valid points there, reality is: pretty much nobody cares. I'm using PostgreSQL for various purposes for 15 years now, managing terabytes-worth of databases and this was never a problem.",5
+gejcqp6,k65bwm,"You could replace the pg\_hba to only allow local connections while you do your restore?
+
+then just put the old one back when you are done and reload.
+
+&amp;#x200B;
+
+This is of course assuming you are doing the restore from the local host. and you have no devs with superuser access (oh god why). on the local box.
+
+&amp;#x200B;
+
+Hope this helps.",2
+gemcdex,k65bwm,"Hm message with pg_hba makes me nervous but i suppose if the only change is that denial of everything but local connections. I suppose I could also just deny the subnet that I know those superusers would be connecting on. Say our vlan for tech teams is on 192.168.3.0/24 I could do something like 
+    
+
+    host    all             all          192.168.3.0/24                 reject",2
+gemedii,k65bwm,"Well I see it as less risky then changing the number of allowed connections. Also doesn't require a restart, just a reload. You have options on the how you make the change to pg\_hba, just go with what makes you comfortable.",1
+gemdfdk,k65bwm,and no we don't give out super user rights to devs but we have a large data team and a lot of them are super users and will stay connected to dbs,2
+geiystl,k64du9,"When I worked in the financial sector, all database access was via stored procedures. We were heavily invested in micro-services (real ones, not just stringing web servers together) so the stored procs were how we shared business logic.
+
+It worked remarkably well. Changes to logic could be deployed and be instantly picked up by all applications with zero down time. We could even do things like radically redesign our tables and the applications never noticed.",11
+gej2yei,k64du9,"What happened if you needed to add a new argument because a new field was added to a customer table or something?
+
+When I worked on a banks system then it was a mess because someone had to add a new  argument to a create customer sp and every time a new sp was created, because nobody dared to chenge the existing one",3
+gej4af1,k64du9,"If the argument was optional, then it would just work. 
+
+If the argument was required, then a new name was created. For example,  `AddUser123`. 
+
+We preferred optional parameters whenever possible. 
+
+***
+
+This was SQL Server, I don't know if PostgreSQL has optional parameters.",4
+gekvj3t,k64du9,"I usually just use procedure version in its name, like `get_that_data_v2()`",2
+gejl2x9,k64du9,"Author is right, ""no busines logic in database"" camp is  wrong.  I go further. I implement application processing and other backend state management in the database as well. By that I mean, I call a procedure called Main() and database does all kinds of asynchronous processing to manage application state.  On a lark, I used this technique to write 100% stored procedure driven orchestration framework that replaces airflow, pentaho, etc.  It works wonderfully and is reliable.
+
+SQL, well, the postgres variant of it, is the most flexible and productive language language on the planet.  There are many reasons for this, but the chief one is that programming in an environment where application state is rolled back when data capture fails eliminates all kinds of nasty problems.  Old school C++ programmer here, and I now believe ALL programming stacks should run this way by default: exception occurs, and all memory rolls back to a known state.  Unfortunately they don't minus certain frameworks (RAII pattern in C++ for example), and so they suck.  All of them.  And the thing is, developers don't even know how much they suck, being themselves stuck in Plato's cave using lame circuitous arguments; (business logic does not belong in the database because it is not database logic).  oof.",7
+gekvm5g,k64du9,Its extremely convinient to do heavy business logic mass-processing directly inside db via stored procedures. And much faster. And you have transactions.,2
+gek2cc5,k64du9,"&gt; There are many reasons for this, but the chief one is that programming in an environment where application state is rolled back when data capture fails eliminates all kinds of nasty problems.
+
+Functional Programmers keep talking about how ""Software Transaction Memory"" is going to be the next big thing.
+
+Yet I've never seen a single one of them stop to consider the fact that databases already do that.",1
+geiqg40,k64du9,"This is awesome. Great post!
+I wish there were more examples on how it uses in the app, with some SQL code examples too",6
+geirpi1,k64du9,"This sounds awful.  I like sql as much as anyone, but not that much.
+
+I prefer creating api, business logic in Java - that’s it.  The other reasons well documented are also valid.",9
+geisnsa,k64du9,"\&gt; OK, not stored procedures, as PostgreSQL has functions instead
+
+I'm still new on my Postgres journey, but I was under the impression it had both.  I don't know specifically how sprocs and functions differ in Postgres, but it looks like sprocs have been in since v11.",2
+geixglc,k64du9,Transaction management is the biggest difference.,3
+geixiw9,k64du9,Please elaborate,3
+gej1wka,k64du9,"procedures can issue 'commit', functions can't.  functions can be called in places procedures can't (like mid query).   This is very important because procedures can have unlimited lifetimes; you can't hold a transaction open indefinitely.
+
+procedures can therefore be used to  implement daemons and other unlimited lifespan tasks as long as they issue a 'commit' once in a while.",5
+gek18e5,k64du9,"Just to confirm: yes, it does have both now, the article is mistaken.",3
+geixqga,k64du9,"This sounds like shifting a pile of bricks from here to there. You still have a pile of bricks. 
+
+DB logic in the database. Application logic in the application. Call pro s to handle data pass collections back to the application.
+
+Edit: sparked some debate I think. Cool. Perhaps I could have worded it better by using the word processes not logic.",4
+gejhulj,k64du9,"&gt;DB logic in the database. Application Logic...
+
+There is no formal distinction between 'database' and 'application' logic.",8
+gejjbwl,k64du9,"I'm always learning, but I've always thought of something like ""Field A is not filled in"" or ""Field B is required if Field A is one of \[these\] values"" as 'application' logic, but of the data set I have I need to insert these fields/records into Table A, get ID to do insert of other fields into Table B with FK as 'database' logic.
+
+Then 'application' logic can fail back to the user to get more details before sending to the DB and doing field checks there.",1
+gejlf2c,k64du9,"&gt; I'm always learning, but I've always thought of something like ""Field A is not filled in"" or ""Field B is required if Field A is one of [these] values"" as 'application' logic, but of the data set I have I need to insert these fields/records into Table A, get ID to do insert of other fields into Table B with FK as 'database' logic.
+
+Validation is responsibility for all levels of stack. But, formally speaking, field being present is component of database model, and SQL has very strong mechanics for verifying data models via various constraints.  FK is just one type of constraint, not null is another, but there are all kinds of wonderful constraints.
+
+Letting application handle this leads to all sorts of problems, race conditions, etc.",6
+gejn9xz,k64du9,"This. A good N-Tier app does validation at every layer, and each more-inner layer is more critical to have it done in (is a mild inconvenience if javascript didn't catch something but the 'app' layer did, or at  least the db finally did). But if the innermost doesn't catch stuff? Well, that's a bug, or a vulnerability.
+
+This strategy literally removes the middle-man. Not for everyone or every app, but PostgreSQL can certainly be a software platform in certain domains and scales.",4
+gek354j,k64du9,"&gt; ""Field B is required if Field A is one of [these] values""
+
+Ideally that would fall into the category of ""Table-driven logic"".
+
+By this I mean that there is a configuration table that lists all of the values for Field A and whether or not Field B is required.
+
+At a minimum it would be enforced in the UI and either the middleware or the database. If the rule changes, you just update the table and all of the places that are validating against the old rule inherit the new rule.
+
+Table-driven logic can be expressed in application code, but it's often easier to handle via a view or stored procedure. Especially if multiple things go into the final rule.
+
+For example, I have a ""GetPermissions(userKey)"" procedure. This can be used by any application without me needing to duplicate code. And if a rule changes, I only need to update the procedure (or even just a row in a table) and all of the applications now follow the new permissions.",1
+gejl6cm,k64du9,"The main difference is only one source of truth and only one roundtrip. 
+
+Usually API ties data from several tables together. Storage procedure can do that, all at the spot.
+
+This design doesn’t work for any type of application but when it does it does exceptionally good.",5
+geiyy2r,k64du9,"&gt; DB logic in the database.
+
+I prefer the terms ""storage logic"" and ""table-driven logic"". The former belongs in the database, the latter I'm willing to negotiate.",2
+gejo64k,k64du9,"I've used PostgREST for a reasonably sizeable side project. It's really good, I would love to use it on something in my job. 
+
+Something I don't understand about it though is how you would do database migrations or any sort of breaking changes /deprecations. That's easy with a custom API in between because you can just transform whatever you need.",1
+geke2q0,k64du9,Procedures and functions can be versioned with a suffix. Migrations could be driven by anything from Bash to Python. Possibly even via files pulled from code in the DB. (Postgres and Oracle can host other languages like Java or C++),2
+gejxapo,k64du9,"While is does sound great, I see some issues
+
+* using NOTIFY does not guarantee message delivery
+* using NOTIFY there is no queue or retry logic, FIFO and it's gone if no one is listening
+* Not a fan of ORMs so I would suggest the Repository pattern and just use SQL and aliases
+* what does a database upgrade path look like, if upgrading would you have to rewrite all the functions if something was deprecated
+* what about database load, what happens when you need to split the process into another database
+* what uptime guarantee does this offer, I'm sure it's not 100%",1
+gek2jjg,k64du9,"&gt; what uptime guarantee does this offer, I'm sure it's not 100%
+
+In environments where I worked, if the database was down everything was down. It didn't matter if we could display cached data, without the ability to write we couldn't function.
+
+I imagine other places aren't so strict. If you can't write data in StackOverflow, you can still read from the caches and have a useful site.",2
+gek4msr,k64du9,"Yeah, where I do see this pattern working okay is for companies that have found themselves largely using the exact same logic for years, with limited procedural changes. I wouldn't want to use this for rapid iteration on something new.
+
+I also don't see something like this scaling well from an engineering organization standpoint, the tooling just isn't there.
+
+There are other solutions like Postgraphile that don't go quite so far, but do take advantage of advanced Postgres features. I do like the direction they're going in, and appreciate the early adopters.",2
+gem8ej6,k64du9,"&gt; I wouldn't want to use this for rapid iteration on something new.
+
+That depends on your workflow. When I'm working with SQL Server, I can treat stored procedures exactly like I do application code. As in it is literally no harder for me to change a stored procedure than it is to change a C# file. It even gets deployed via the same continuous integration pipeline.
+
+If I have to manually write migration scripts, then yea, it's painful. Which is why I do most of my prototyping in SQL Server.",1
+gejz73u,k64du9,that doesn't seem to explain why one would use shit language in a shit environment,-2
+gek2ldv,k64du9,Why would it have an explanation for the existence of JavaScript?,0
+gehwhwg,k5ytc8,"No, there is no way to retrieve the original source. 
+
+But it's not a problem in reality, as all your view definitions (just like the DDL for tables) should be stored in SQL scripts and managed through your source code version control (e.g. in git). Then apply your changes by editing the file and running it again. Tools like Liquibase, Flyway or Sqitch can help with automating this.",5
+gehrmv2,k5ytc8,Not that I know of.  PostgreSQL throws away the original text.  Personally the DDL I load gets placed under version control and I thus always work from the original text instead of the canonical version generated by the database.,3
+gehsyhm,k5pto5,Why not use PgAdmin ? Any reason you have to use postbird ?,1
+gehtgw6,k5pto5,"I'm doing a lesson on a website I really like and I'd like to be able to follow along. I was thinking of just using the command line but it's a little more complicated than I can handle.   
+
+
+Plus I'd like to just be able to learn how to fix this problem as well. It worked initially but the antivirus messed it up.",1
+geiwy6c,k5pto5,Don’t let an issue like that distract you.,1
+gehu3lv,k5pto5,"&gt;PgAdmin
+
+I may end up using this though if I can't figure it out.",1
+geguaig,k5of0d,[This](https://www.enterprisedb.com/blog/how-to-secure-postgresql-security-hardening-best-practices-checklist-tips-encryption-authentication-vulnerabilities) looks like a good starting point that goes over the various topics that you need to understand and/or implement.,2
+gegv7cj,k5of0d,"Thanks for your response, but what exactly?
+
+Were you going to post a link to something?",1
+gegvfre,k5of0d,"Sorry, botched a copy/paste.  The link is fixed now.",1
+gegvkez,k5of0d,"Thanks so much, this looks like a very useful article!!",2
+gefkbjm,k5l5te,"Yes. 
+Records inserted into vehicles driver_id column must be cost in the drivers table or else the insert will fail.",6
+gefylgx,k5l5te,"""cost"" -&gt; ""also""",2
+gefkeln,k5l5te,"The serial data type in drivers is auto incremented 4-byte integer. Each row in drivers table will have a unique id.
+
+Each row in vehicle table must reference a “driver” id. For instance if you try to insert an entry with a ID that does not exist in the drivers table you will be violating the foreign key constraint. Another situation is if your were to delete a row in drivers but a row references that id in vehicles, you will also be violating the foreign key constraint. ( there is a cascade delete but that isn’t applied to these tables)
+
+Edit - spelling",3
+gefnyt5,k5l5te,"""REFERENCES reftable ... These clauses specify a foreign key constraint,...""
+
+[https://www.postgresql.org/docs/current/sql-createtable.html](https://www.postgresql.org/docs/current/sql-createtable.html)",2
+gefrxv2,k5l5te,[deleted],1
+gege7hg,k5l5te,"idk, this was more like a hw practice",1
+gegkcm3,k5l5te,"It is common to specify serial instead of int4 because this is essentially the same as ""int4 default nextval('some\_sequence')"", so it IT an int4, but automatically fills it with values.",1
+gegtm8d,k5l5te,vehicles.id is not the same as vehicle.driver_id,1
+gegwj7t,k5l5te,"foreign key
+
+It's a one to one relationship I guess.
+
+The driver_id column is referring to a driver's primary key. Foreign key constraint is a constraint that say driver_id column in vehicle table have to refer to the primary key id in driver table.",1
+gei22r8,k5l5te,"&gt; It's a one to one relationship I guess.
+
+It's actually a one-to-many relationship as a single driver can driver multiple vehicles",1
+gei1y9e,k5l5te,"Yes, that's a a [foreign key](https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-FK).
+
+It can also be defined as a table level constraint, which has the added benefit that you can specify a custom name for the constraint itself.
+
+    create table vehicles (
+      .... 
+      driver_id integer, 
+      constraint fk_vehicles_drivers 
+         foreign key (driver_id) references drivers (id)
+    );
+
+Or even after the table definition:
+
+    create table vehicles (
+      .... 
+      driver_id integer
+    );
+
+    alter table vehicles
+      add constraint fk_vehicles_drivers 
+         foreign key (driver_id) references drivers (id)
+
+
+----
+
+As a side note: in modern Postgres versions the use of `serial` is discouraged and the use of an identity column is recommended, e.g.:
+
+    id integer  primary key generated always as identity,",1
+gecgl87,k4yqoy,"Is `test1.data` a jSONB column? 
+
+If yes, you can do:
+
+    select jsonb_agg(jsonb_build_object('id', id)||data)
+    from test1",3
+ged3nar,k4yqoy,"Yes, it is.  I'll give this a shot and let you know.  Thanks!",1
+gedc8m7,k4yqoy,"&gt;select jsonb\_agg(jsonb\_build\_object('id', id)||data)  
+from test1
+
+Worked like a charm!  Thanks!",1
+gedd2t1,k4yqoy,"How would I extend this to include a WHERE clause such as:
+
+where last\_name = 'Blow'",1
+gedewvu,k4yqoy,"Use the JSON [containment operator](https://www.postgresql.org/docs/current/static/functions-json.html) `@&gt;`
+
+    where data @&gt; '{""last_name"": ""Blow""}'",1
+gedix90,k4yqoy,"&gt;where data @&gt; '{""last\_name"": ""Blow""}'
+
+You're too good!  Thanks!  Do you know if this takes advantage of indexing?  Are the fields in the JSONB field automatically indexed, or do I have to specify it somehow?",1
+gedkngq,k4yqoy,"except for primary or unique keys, no index is created automatically. 
+
+The `@&gt;` operator could make use of a [GIN index](https://www.postgresql.org/docs/current/gin.html) on the column.",1
+gefe35m,k4yqoy,"What about retrieving a single record from the id?  In this case, I just want to return the single row as a single record, not wrapped in a json array object \[\].",1
+gegp034,k4yqoy,"Relational databases don't  return JSON, they return rows. If you run `select * from some_table where id = 42` you get the complete row (=all columns) of the table. 
+
+You _can_ tell Postgres to convert the rows to JSON, e.g. using `to_jsonb()` or using `jsonb_agg()` if you want, but that's not the default.",1
+geca0va,k4yqoy,"select  
+jsonb\_build\_object('id', ae-&gt;'id') || (ae-&gt;'data'),  
+ae-&gt;'data' || jsonb\_build\_object('id', ae-&gt;'id')  
+from (values('\[{""id"": 1,""data"": {""last\_name"": ""Blow"",""first\_name"": ""Joe""}},  
+{""id"": 2,""data"": {""last\_name"": ""Doe"",""first\_name"": ""Jane""}}\]'::jsonb)  
+) js (j), jsonb\_array\_elements(j) as jae (ae);
+
+Note the presence of parentheses in the first expression, they are enforcing operator precedence (whitespace doesn't help).
+
+Most things can be done, if in a round-a-bout way, with the operators and functions supplied by PostgreSQL.  The key thing is that you usually need to break it down and then build it back up.
+
+[https://www.postgresql.org/docs/current/functions-json.html](https://www.postgresql.org/docs/current/functions-json.html)
+
+The lateral join makes writing this considerably easier.
+
+Maybe SQL/JSON Path can make it even easier...(same doc page).",1
+gebm1fc,k4pgn3,"I nearly died of shock. Amazon's contributing anything back? No way!
+
+But don't worry. At a cursory look anyway it appears to just be a new way to make the path to their vendor lock-in easier to follow. Once they've got you in, they won't help you with getting out once the zeroes on the end of your bills start growing.
+
+Disclosure: I work for a non cloud postgres vendor. But my views on Amazon's parasitic behaviour and their constant bait and switch schemes are entirely my own.
+
+(BTW that website is nearly unreadable on mobile due to stupid giant pop-overs with no accessible close box.)",9
+gec18bq,k4pgn3,Get's you out of paying Microsoft licenses and if you're already running workloads at AWS you're now just paying for the compute/storage infrastructure.,2
+gee3ao3,k4pgn3,You can easily get out of Aurora or RDS. Just turn on logical replication.,1
+geask4r,k4pgn3,This is not exactly true. They Open Sourced something that runs on Aurora. This will not just magically work with P[ostgresql.org](https://postgresql.org) PostgreSQL. Still cool though.,5
+ged90hk,k4pgn3,The end goal of it (as they stated) is to have it work with actual postgresql as well,2
+gee35na,k4pgn3,Which would be cool but I doubt -core would ever accept it,1
+geehtpm,k4pgn3,"I think It's being done as an extension - does this have to be accepted by core?
+https://aws.amazon.com/blogs/opensource/want-more-postgresql-you-just-might-like-babelfish/",1
+geeikit,k4pgn3,"If it's an extension, no it does not.",1
+gec0vrt,k4pgn3,"You can find more details on the [Github page](https://babelfish-for-postgresql.github.io/babelfish-for-postgresql/), but this will be a translation layer for t-sql on postgres. Using the Apache 2.0 license so free to use and free to package.",1
+geacnh3,k4pgn3,Subscribed,0
+gee59wp,k42jhx,"No. 
+
+That is not what Citus does.",1
+ge976xv,k4k8b8,"How about doing this with postgres functions which create the roles and grant rights? Something that reads rights for each user from a table and creates or alters the roles accordingly in the new DB.  I see this as the fastest and cheapest approach here. 
+
+Im sure some PG extension to do this exists already.",3
+ge981t0,k4k8b8,Thank you for Postgres Functions - I'll give it a try. Plus I'm not sure if RDS allows any extra PG Extension.,2
+ge97i2o,k4k8b8,What about automating that with Ansible?,1
+ge985f0,k4k8b8,"Thank you for the suggestion. Do you have any experience managing PG with Ansible? If yes, could you tell me about it?",2
+ge999vy,k4k8b8,"I personally don't have any experience with Ansible. But some colleagues use that quite extensively, so at least I know it works ;)",2
+ge98ses,k4k8b8,Lookup either Ansible or Terraform.,1
+ge991el,k4k8b8,I had a look at Terraform - since we are managing the whole infrastructure using Terraform but unfortunately the Terraform Postgres Provider doesn't provide us granular roles creation ability.,1
+ge9auvq,k4k8b8,We do this with some custom functions and a control table .... works quite well!,1
+ge9zvm9,k4k8b8,"&gt; custom functions and a control table
+
+Thanks for your suggestion!   
+Could you explain a bit how do you manage the whole flow? What if the role is already created etc?",1
+gea31dm,k4k8b8,"How big is the company? You might like to have central team developing solution which works across the enterprise. Or use one of those enterprise solutions available currently in market. 
+E.g. when a resource is off boarded, you want automated process which revokes their access across applications/databases in seconds.",1
+gea3v3z,k4k8b8,"Hi,  
+It's just a couple of RDS instances and it's probably overkilling to put that much extra effort at the moment.",1
+gea4bs8,k4k8b8,"For short term, as others suggested, create pg function to create roles and invoke it in your preferred way.",1
+ge7kk5f,k49d4c,"You should be able to write arbitrary queries within the function, including ones invoking aggregates.  You also have stuff like arrays (and maybe json) to capture data so that you have something to aggregate.
+
+Seeing working code (and experimental) code to go along with the description may yield a better answer.",1
+ge7l3no,k49d4c,"Thank you for the reply.  Really appreciate that.  
+
+As I asked in the afternoon, I couldn't find any aggregate functions written in pl/pgSQL. All the working code I find is in C which I don't fully understand. C allows use of virtually unlimited variables inside a function. But the postgreSQL documentation of create  aggregate doesn't say anything about using other function other than finalfunc and statefunc. 
+
+Thanks again.",1
+ge7ma9i,k49d4c,Neither finalfunc nor statefunc can be a fully functional aggregate function.,1
+ge8ikt9,k49d4c,"&gt; I couldn't find any aggregate functions written in pl/pgSQL
+
+Searching for ""aggregate"" in the Postgres Wiki, yields the following: 
+
+* https://wiki.postgresql.org/wiki/Aggregate_Median
+* https://wiki.postgresql.org/wiki/Aggregate_strict_min_and_max
+* https://wiki.postgresql.org/wiki/Aggregate_Histogram
+* https://wiki.postgresql.org/wiki/Aggregate_Random
+* https://wiki.postgresql.org/wiki/First/last_(aggregate)
+* https://wiki.postgresql.org/wiki/Aggregate_Mode
+* https://wiki.postgresql.org/wiki/Aggregate_Range",1
+ge7ufyv,k49d4c,"https://hashrocket.com/blog/posts/custom-aggregates-in-postgresql
+
+https://www.cybertec-postgresql.com/en/writing-your-own-aggregation-functions/
+
+Hope that helps",1
+ge880uf,k49d4c,Thanks! Yep they're helpful but I need to go through documentation for deeper understanding I guess.,1
+ge6k3sl,k43fcq,"Core functions are written in C.  You are welcome to view the Git repo for the project if you feel it would help.  Personally its probably going to add confusion, not reduce it, relative to learning from examples built upon pl/pgsql.
+
+There are examples out there to be found, the PostgreSQL wiki turned up a couple (when searching for the wiki explicitly anyway):
+
+[https://wiki.postgresql.org/wiki/Aggregate\_Median](https://wiki.postgresql.org/wiki/Aggregate_Median)
+
+[https://wiki.postgresql.org/wiki/Aggregate\_Histogram](https://wiki.postgresql.org/wiki/Aggregate_Histogram)
+
+You may find it more productive to show your existing best effort and ask specific questions.",5
+ge6losb,k43fcq,"I tried to read the c code. Yes it is very confusing and I think it's a lot to learn for me right now. 
+
+For the time being can I find any repos with the agg functions implemented in pl/pgSQL or pl/python? 
+
+Thanks you!",-1
+ge6p1ge,k43fcq,Other repos? Not that I am aware of.,3
+ge5p1mm,k3y6ye,"First - it's PostgreSQL. Or Postgres. Or Pg. Or even PgSQL. It's not, never been, and most likely never will be, ""Postgre"".
+
+Second - You can find many examples on writing aggregates, for example on [my blog](https://www.depesz.com/2017/02/20/getting-first-and-last-values-per-group/).
+
+If you have more specific questions - do ask.
+
+To give you some more info - you need [CREATE AGGREGATE](https://www.postgresql.org/docs/current/sql-createaggregate.html) statement, and, depending on your specific needs, one or more [CREATE FUNCTION](https://www.postgresql.org/docs/current/sql-createfunction.html) statement(s).
+
+For functions I recommend that you write them in [pl/PgSQL](https://www.postgresql.org/docs/current/plpgsql.html) language.",8
+ge5rut4,k3y6ye,"Sorry about that. Edited it out. 
+I have dmed you can you please help me out? I am struggling ☹️",1
+ge5sdai,k3y6ye,"If you want chat to help, [IRC](https://www.postgresql.org/community/irc/) is \*MUCH\* better. There are many knowledgeable people that are there to help others.",1
+ge5si38,k3y6ye,It's for an assignment and I don't think the people at pgsql will help me out with that.,1
+ge5sq8u,k3y6ye,"If you expect someone to write the thing for you - you might be right. But if you'll ask questions that show that you're trying to do stuff, and are just struggling with some bits - there is a decent chance you'll get help.
+
+Especially if you'll show what you wrote so far, what you want to achieve, and will remain civil (this is surprisingly important criteria).",2
+ge5t1ft,k3y6ye,Specifically I need help with how to integrate my functions written in the codebase if postgreSQL and how I can call them on tables. I completely understand your point. I have tried to write some of it by reading some blogs but i couldn't test it as I dont really know how to integrate with the code base,1
+ge68xnb,k3y6ye,Show us what you tried and the errors you got.,1
+ge69ka5,k3y6ye,"I have taken code from the cybertec-postgresql.com but I don't know how I could integrate with my code base. Like where should I put my sql file to first execute it and see. 
+
+I have the code for the function but I don't know how to call it in on a table to as SQL query on postgreSQL. I need help with that 😭 please help",1
+ge69yp1,k3y6ye,"    //sfunc
+    CREATE
+    FUNCTION
+    taxi_accum (
+    numeric
+    , 
+    numeric
+    , 
+    numeric
+    )
+    RETURNS
+    numeric
+    AS
+    $$
+    SELECT
+    $1 + $2*$3;
+    $$ LANGUAGE 
+    'sql'
+    STRICT;
+    
+    //finalfunc
+    
+    CREATE
+    FUNCTION
+    taxi_final(
+    numeric
+    )
+    RETURNS
+    numeric
+    AS
+    $$
+    SELECT
+    round($1 + 5, -1);
+    $$ LANGUAGE 
+    'sql'
+    STRICT;
+    
+    
+    //The aggregate function 
+    
+    CREATE
+    AGGREGATE taxi(
+    numeric
+    , 
+    numeric
+    )
+    (
+    INITCOND = 3.50,
+    STYPE = 
+    numeric
+    ,
+    SFUNC = taxi_accum,
+    FINALFUNC = taxi_final
+    );",1
+ge6a4e9,k3y6ye,This is the code I got but I cannot see any documentation on how to actually intergrate in my codebase so that I can call it my query,1
+ge9agku,k3y6ye,"Run it in psql session, and then use aggregates just like ANY other aggregate.
+
+select taxi(a,b) from some\_table;
+
+just like yoyu;'d run min/max/avg or more complicated things like string\_agg.",1
+ge6h120,k3y6ye,"Hi, 
+I have written the aggregate function in a .SQL file. 
+Now, what should I do with this file so that I can call this custom function on values in a table? Thanks!",1
+ge6i2oc,k3y6ye,"Once you have created your aggregate, you can use it like any other (built-in) aggregate: 
+
+    select taxi(a,b)
+    from (
+      values (1::numeric,2::numeric),(2,3),(3,4)
+    ) as t(a,b);
+
+https://dbfiddle.uk/?rdbms=postgres_12&amp;fiddle=afa185101403465cd06f543bbdc4a9b8
+
+There is no need to ""integrate"" it into the Postgres code.",1
+ge6h3pr,k3y6ye,Also your blog has been helpful but it doesn't give instructions on how to call these and how to integrate with database?,1
+ge9alzy,k3y6ye,"You keep using the word ""integrate"". No idea what you mean. If you have ""create table xxx (...)"" - how do you ""integrate"" it with your database? You run the query in psql or pgadmin, or something like this, and you have the table available. Same with aggregate. Or function. Or anything else.",1
+ge9gst0,k3y6ye,Yep got it! Thanks so much!,1
+ge5slbf,k3y6ye,"You seem to be knowledgeable enough, please check you inbox :)",1
+ge5iuae,k3swjz,"you should use a tool like liquibase or flyway
+
+DDL in Postgres is transactional, meaning it can be committed/rolled back",2
+ge64okq,k3swjz,"Thanks. The ""how it works"" page of Flyway has filled in a few gaps as to how to implement this but 3 and 4 especially still confuse me.",1
+ge64x1d,k3swjz,"re 3, I don't get the issue... if the function needs to be replaced, then you should replace it! 
+
+re 4, are you referring to committing the schema to source control, or committing the transaction to modify the schema?",1
+ge65x99,k3swjz,"3. Ok what I mean is I'm working on my schema locally, running it, creating functions etc. When I run it the second time (e.g. I change something later in the file and lazily want to re-run everything) then I'll need to create-or-replace even if the function is unchanged. So I end up with a schema with create-or-replace in. Which is fine. But in reality had I not been tinkering with it this would have been only a create and thus production would only be a create. So there's a difference between what the schema looks like had I written it correctly first time and committed to VCS from what it looks like because I was tinkering which seems non-optimal. Is that any clearer?
+
+4. The latter; i'm not clear about what committing the transaction is.",1
+ge66f6l,k3swjz,"re 1, that's why you should use a tool, which keeps track of what you have run already, and won't re-run it
+
+re 2:
+
+    BEGIN;
+
+    alter table foo rename column bar to qux;
+
+    alter table baz rename column barf to qux;  #oops, a mistake
+
+    COMMIT;
+
+there's a mistake in the above, column barf doesn't exist. if your database supports transactional DDL, then the whole shebang gets rolled back, and the first alter statement doesn't happen. this is a good thing",1
+ge6ak0k,k3swjz,"Thanks very much. It's all becoming a lot clearer now. Basically ""these things are problems and don't try to solve it yourself... use a tool"".",1

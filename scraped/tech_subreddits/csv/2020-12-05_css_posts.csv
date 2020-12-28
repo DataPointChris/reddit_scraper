@@ -1,0 +1,186 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k798cz,Ultimate Guide to Web Development in 2021 &amp; Beyond! | Roadmap 2021+,,0,css,2020-12-05
+k76lal,Can I make it so a browser displays all text in comic sans?,"Sounds like a troll idea, but I have a client who actually wants this done. They have a language processing disorder that makes normal text hard to read, she tells me comic sans is her preference. 
+
+Is there any easy solution to make this happen? She also strongly prefers lilac to white when reading. Might it be possible to take care of both in one foul swoop?
+
+If nothing exists, how tough a problem would it be for a professional to create something that would make this happen?",11,css,2020-12-05
+k71mds,"What does this property called? When I click(mobile) on this container there is a colour(bluish) effect on each click. I want to disable it. It's not :focus, :active or any other pseudo class.",,6,css,2020-12-05
+k716d9,Website animation flashes in place before moving like it's supposed to,"Not sure if this is happening for everyone but I keep seeing it myself:  https://clayburn.digital/
+
+Everything appears for a brief second at its endpoint before disappearing to begin its transition in.  I'm assuming there's a quick fix for this but not sure what it would be.  
+
+Any ideas?
+
+Edit: I'm not sure it's fixed but it looks better now.  I removed the animation from the ""Hero Section"" in Elementor.  Oddly it still seems to animate....so I'll have to keep at it tomorrow.",1,css,2020-12-05
+k6y5my,It’s possible to style the upper and bottom safe-area individually for newer phones,"Sharing this because it cost me countless or houses finding this out!
+
+*Problem*: for newer iPhones without home buttons there is „too“ much screen your website used. To stay within the safe borders we know we can use env(safe-area-inset-bottom) or whatever the property is called.
+
+The problem is that those can’t be given a color. They will be whatever background color the body has if set to transparent (which to me is the only viable option since black/ white looks terrible. Now the problem is that both have the same color but for some PWS‘s I don’t want that. So I use body background for header color and if you place a div after the last child of body and position it absolute giving it a height of the env inset value you have a nice little div that will always be „behind“ the safe area. 
+
+This sounds like an ugly solution which it is but I am convinced this is the only way of doing this.
+
+Super specific problem but huge problem IMO.
+
+Since body now has some color the main content area can overwrite that to white or whatever.
+
+Cheers.
+
+If you want a link to my repo let me know",2,css,2020-12-05
+k6ss1r,Preloading Font in HTML and in CSS?,"Hi All, newbie question here. I am using web fonts and would like to preload them. 
+
+In my page html I have: 
+
+    &lt;link rel=""preload"" href=""https://static.adoptics.com/fonts/HarmoniaSansProCyr-SemiBd.woff2"" as=""font"" type=""font/woff2"" crossorigin="""" /&gt;
+
+In my CSS I also have: 
+
+    u/font-face {
+      font-family: 'Harmonia Sans';
+      src: url(""https://static.adoptics.com/fonts/HarmoniaSansProCyr-SemiBd.woff2"") format(""woff2""), url(""https://static.adoptics.com/fonts/HarmoniaSansProCyr-SemiBd.woff"") format(""woff"");
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap; }
+
+Is the ""src"" command in my CSS needed if I am using preload in the html head?",1,css,2020-12-05
+k6ojnn,I wrote yet another CSS grid system. ( this one is pretty lite tho ),"There are probably loads of these, but i made a mixin to produce nestable customisable grid systems. I did the thinking so you don't have to. [https://gist.github.com/netotaku/05951a783f0b6066114c1376f602fbbf](https://gist.github.com/netotaku/05951a783f0b6066114c1376f602fbbf)",0,css,2020-12-05
+k6nnuk,How to target &lt;td&gt; cells with both &lt;img&gt; and &lt;a&gt; tags within them?,"I have a table with many rows with the following structure:
+
+&amp;#x200B;
+
+    &lt;tr&gt;
+    &lt;td&gt;TEXT&lt;/td&gt;
+    &lt;td&gt;TEXT&lt;/td&gt;
+    &lt;td&gt;&lt;img&gt;IMAGE HERE&lt;/img&gt; &lt;a&gt;LINK TEXT HERE&lt;/a&gt;&lt;/td&gt;
+    &lt;td&gt;TEXT&lt;/td&gt;
+    &lt;td&gt;TEXT&lt;/td&gt;
+    &lt;/tr&gt;
+
+&amp;#x200B;
+
+I'm using `whitespace: nowrap` for mobile view yet I'm running into a problem where the `&lt;a&gt;` from the third column is running over into the fourth column. I've figured that image width (set at 24px (it's a country flag)) isn't being accounted for since if I test with `display: none` on `&lt;img&gt;` I don't have this issue anywhere.
+
+So, I'm looking to target that particular cell to apply some right-padding to counteract the width of the &lt;img&gt;. How do I target that particular cell to apply the padding to it?
+
+I've tried: `td a` but this affects other columns too; `td img` but this applies the padding to the right of the image.
+
+I'm aware I could use `nth-child` here, but I have hundreds of tables where this will be an issue and the column with the issue isn't the same in each table.",2,css,2020-12-05
+k6nb89,Clarification on CSS Frameworks,"I am new to Web Development and I understand the HTML portion fairly well. I am now directing my learning to CSS and I came across someone mentioning CSS frameworks such as Bootstrap and CSS Tail-Wind.
+
+What's the difference from implementing CSS code by yourself(i.e., colors, fonts, borders, etc.) vs a framework?",1,css,2020-12-05
+k6mvji,How to modify horizontal scroll bar?,"&amp;#x200B;
+
+https://preview.redd.it/e2rh03azt6361.png?width=788&amp;format=png&amp;auto=webp&amp;s=a08846a6c156a2e1ebab679b3d25a1615beb1dea
+
+How can change horizontal scrollbar color to match the background? Any help will be greatly appreciated. Thank you.",0,css,2020-12-05
+k6lyih,Native Aspect Ratio Boxes in CSS thanks to aspect-ratio,,58,css,2020-12-05
+k6lnyp,December 7th Micro Bootcamp,"Hi everyone! We only have 2 more days where sign up is open for our microbootcamp! We are teaching HTML, CSS, JS and Python in a one month period. We will teach you the basics of each language and show you how to build your own portfolio projects. Our goal is to help you continue learning on your own after our course and give you all the resources and knowledge you need to eventually get a remote job. 1 month is likely not enough time for you to achieve that, so we hope to equip you with as much understanding of the industry as we can and show you the fundamentals of each programming language.
+
+All the times are indicated on the form to sign up, so please feel free to check it out!
+
+[https://forms.gle/ipioTfy9SFfQpA1BA](https://www.youtube.com/redirect?q=https%3A%2F%2Fforms.gle%2FipioTfy9SFfQpA1BA&amp;redir_token=QUFFLUhqa01yYmljZ1hRSmx6YVhSOHA5WEM1Tk9lb3FyZ3xBQ3Jtc0tsVTNGNENiaEctWEtYd2p2dWVuUVV3LUlONXh2aGgxaS1mdFRsUEZ5TnJIRjlkVldNS1UtSkRVLWNLVEpIVmEwc0l4WVVRWDhmRmFHNXNmbkstdF93UHVLaFFOU1pDOHlSNVZyTlljbFc1WVJlRUdsdw%3D%3D&amp;v=Fa9LsqTkoiQ&amp;event=video_description)
+
+Here's a youtube video with more information! [https://www.youtube.com/watch?v=Fa9LsqTkoiQ&amp;t=2s](https://www.youtube.com/watch?v=Fa9LsqTkoiQ&amp;t=2s)",1,css,2020-12-05
+k6l0f8,PICK your CSS skill level,"
+
+[View Poll](https://www.reddit.com/poll/k6l0f8)",1,css,2020-12-05
+k6ivmq,Making a CSS Paper Shredder with the underused clip property,,2,css,2020-12-05
+k6he53,how do I change html content including tags on hover?,"using content just updates the tags as text, is there any other way to do it? am new to css-",1,css,2020-12-05
+k6gxjb,StateOfCSS results are published,,22,css,2020-12-05
+k6gvbl,Content Organization with Animated FAQ Accordion in 2021 || CSS JS,,2,css,2020-12-05
+k6dkav,Trying to understand Flexbox tutorial example,"I am pretty new to CSS and Flexbox, so this might be a basic question. In following a tutorial, the HTML code includes what appears to be three flex containers -- two of them (column) are within the primary one (row). From what I understand so far, isn't there only supposed to be one flex container and flex items within that? This is the HTML:
+
+        &lt;section class=""solutions flex-columns""&gt;
+      &lt;div class=""row""&gt;
+        &lt;div class=""column""&gt;
+          &lt;div class=""column-1""&gt;
+            &lt;img src=""images/home/people.jpg"" alt=""""&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=""column""&gt;
+          &lt;div class=""column-2""&gt;
+            &lt;h4&gt;What you are looking for&lt;/h4&gt;
+            &lt;h2&gt;We provide bespoke solutions&lt;/h2&gt;
+            &lt;p&gt;Lorem30&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+The design is to set two sections side by side -- one with an image, and the other with content. This is the CSS styling they used:
+
+    .flex-columns .row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    }
+
+    .flex-columns .column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    }
+
+    .flex-columns .column .column-1,
+    .flex-columns .column .column-2 {
+    height: 100%;
+    }
+
+What I am trying to understand is why this is happening, and if this is how you are supposed to do side by side sections. Everything I've read so far has only mentioned using one flex container and styling flex items within that. But when I try doing this with only one flex container instead of the three they used, the image takes up more space. Their HTML also seems to include more containers -- the .flex-columns by itself doesn't have any styling. I also don't understand what flex-basis: 100% does. It just doesn't make any sense to me.
+
+Any help in understanding this would be greatly appreciated, thanks!",3,css,2020-12-05
+k6a25m,How can I hide contents of this wordpress plugin except one,"Hi
+
+The plugin is ""Simple Calendar""
+
+What I need is to show only the ""event title""
+
+nothing else
+
+Because I need that text inside a simple button
+
+How can I do so?
+
+This is the frontend code
+
+[https://www.codepile.net/pile/YEQqdBEp](https://www.codepile.net/pile/YEQqdBEp)
+
+I'm trying a custo CSS but something's it's not right
+
+ .simcal-events span:not(.simcal-event-title) { display:none; } 
+
+&amp;#x200B;
+
+Thank you in advance",0,css,2020-12-05
+k67wk7,How to fix horizontal overflow?,"&amp;#x200B;
+
+https://preview.redd.it/9zo6yvpms1361.png?width=1356&amp;format=png&amp;auto=webp&amp;s=3ce8d79d176b6957bceee55901654a98395122a1
+
+I've a weird issue. I can't seem to figure out the reason for  horizontal overflow on the right side of above screenshot. It is about `0.48px` off.  I added `margin-right: 0.03rem` and it fixed it, but what could be the reason for this? Any help will be greatly appreciated. Thank you.",1,css,2020-12-05
+k66laa,🎬 Full Screen Video Background HTML &amp; CSS,,13,css,2020-12-05
+k635lb,Any ideas on how to create the white navigation selection like in the image?,"I would like to create a smooth connection between selected item in the navigation and the background of the right part of the site. In the picture we see that selected item is ""Access Requests"" which has white background with round edges smoothly connecting with the white background of the main content.
+
+I'm struggling with creating the connection between these two parts. If the edges were rectangular there would be no problem. But as they are round in the place where navigation and content are connected I don't have any idea on how to approach this problem. I would appreciate your ideas.
+
+&amp;#x200B;
+
+https://preview.redd.it/9k3bdteel0361.png?width=613&amp;format=png&amp;auto=webp&amp;s=be8517d372081fe9e746002038f4a940e06380ee",3,css,2020-12-05
+k5yduz,Can the grey and green box tops be added in css or did they use an image app to make the boxes?,,23,css,2020-12-05
+k5xhdf,How to stylize author's comments and name? (in WordPress using CSS),"I would like to increase the font of the author of the post so that his/hers comments are more noticeable. 
+
+I have a code to stylize the authors comments such as the background, but I cannot find the code to increase the size of the authors name. How can I do that?
+
+Thank you.",0,css,2020-12-05
+k5wd5q,How to allow background image to move 'outside' of it's div?,"I want to move the blue background to the left to prevent the text (on the right) overlapping it.
+
+&amp;#x200B;
+
+I tried background position left, however, it does not allow me to move the background image to the left. It rather moves it up or down.
+
+Please see this short video for a demo: [https://imgur.com/a/qlSts6W](https://imgur.com/a/qlSts6W) 
+
+&amp;#x200B;
+
+What can I do to achieve the wanted behavior?",2,css,2020-12-05

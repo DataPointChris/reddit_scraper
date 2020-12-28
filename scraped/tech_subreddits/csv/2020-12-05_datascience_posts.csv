@@ -1,0 +1,131 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k7bvp8,"AWS ETL using Lambda, MySQL, Pandas method .to_sql() - Typical execution speeds?","Hi guys, I'm copying this from a [post I made](https://www.reddit.com/r/aws/comments/k6zprr/lambda_durations_for_etls/) in the AWS Subreddit. The intent of my recently built ETL is for a single PowerBI dashboard be updated by multiple users from multiple locations. The current pipeline works like this:
+
+* User uploads xlsx or csv on Amplify Webapp, connected to S3
+* S3 triggers Lambda function
+* Lambda function utilizes Pandas, SQLAlchemy, and MySQL Connector to transform and push data to an RDS MySQL db
+* Using the df.to\_sql method and SQLAlchemy create\_engine for pushing the data to table in db
+* Typical raw csv or xlsx is between 8,000 and 15,000 rows w/ 53 columns, mixed bag of variable types. Most of them are VARCHAR(50) or BIGINT
+* Typical duration to run the code is around 6800ms with 233 MB memory utilization and 2048 MB allocated
+* Currently running this off micro free tier instance
+
+This is my first ETL in the AWS ecosystem and using Lambda. I'm wondering if this seems like an unusually long time to require running a Lambda function for, with my described dependencies. Perhaps there are some best practices that I have missed the boat on. I am forced to deal with the xlsx / csv native format, and I used Pandas for the initial transform and cleaning because I had already written the functions before I wrote the code for the SQL. Perhaps it just because I'm on the free tier instance. Not too sure. 
+
+I tried what a user suggested and incrementally upped the memory from 2048, eventually hit zero returns to scale at 3072. Dropped total compute time from 6800ms to 4100ms. I also experimented by cutting out the to\_sql() line of code which dropped it from 4100ms to 2000ms. So, does it strike anyone as unusual that, given these parameters, this Pandas method is taking +/-2000 seconds to execute?
+
+mydf.to\_sql(tableName, engine, index=False, if\_exists='replace')
+
+Thanks guys.",1,datascience,2020-12-05
+k7bdib,Need to vent! Interviewing take homes,"I completed an interview take home assignment that took about ten hours. Presentation and Jupyter notebook with my code and explanations. This was given after a 30min interview with the hiring manager. A day later, the recruiter messages me to say I was rejected. No feedback can be given. 
+
+They should at least give some feedback so that this assignment isn’t a complete waste of my time. Super disappointed 🙃",4,datascience,2020-12-05
+k7b4uz,Question about where to start,"Hey everyone
+
+Hope it's okay to post soliciting advice! 
+
+Anywho.. I work in education.. have a bachelor's and masters already. Not in data science though. I use a lot of data already and pretty standard statistics, but I'm interested in expanding data collection and analysis within my role. I've taken a few free courses on data science, machine learning, and basic python.  I think there is a lot of potential for implementation in education. 
+
+The problem is, I don't know where to start. What types of software should I use, how do I actually use machine learning algorithms? While I have some primary knowledge, I truly feel more confused than I did before I started. 
+
+I would really appreciate any direction/guidance/advice. Thank you!",0,datascience,2020-12-05
+k7azmq,Accepted to MS program,I was just accepted to the MS data analytics program I applied for last month. I graduated from the same school for my undergrad in economics. I’ve spent the last 10-15 years in operations and operations management. Any tips or advice before starting this program?,5,datascience,2020-12-05
+k7ailt,I have a Youtube channel where I analyze Internet and pop culture using data science,"I was tired of seeing channels that only post data science tutorials — I don't want to see ""How to Use a Random Forest model,"" I want to see an interesting application of a RF model that people of all levels can enjoy!
+
+If you're feeling the same way, you might enjoy my content. [My latest video](https://www.youtube.com/watch?v=VTU6Jla70VY) is about training a genre classification model to determine Corpse Husband's genre, but I've also [created a drinking game for the Presidential Debates](https://www.youtube.com/watch?v=75AQqX8W0Hc) using tf-idf and [an interactive map of TikTok mansions](https://www.youtube.com/watch?v=BlrsnoHYW_I). The tagline for my channel is that I answer questions that are ""mostly stupid, sometimes serious"" using data, and in that vein, I have videos analyzing [Sonic fan art](https://www.youtube.com/watch?v=x_XR-K1cL7w) as well as [COVID-19](https://www.youtube.com/watch?v=BGnMAvPjd0k).
+
+Sorry in advance for the self-promo nature of this post, but I thought some people here would at least appreciate the content or want to give me feedback (since I still am starting out as a content creator).",9,datascience,2020-12-05
+k79o6m,Accessible external data for model building,"I'm building out various ML models and am interested in bringing in external data to boost performance. 
+
+Are there any APIs / resources out there to ingest common trackers (ex. stock market, labor data, weather, etc.)  into my code?
+
+Instead of manually scraping this data, was hoping it may already have been solved for.",0,datascience,2020-12-05
+k790gy,mrtkp9993/DeepLearningExamples - Deep learning examples with Keras.,,12,datascience,2020-12-05
+k78iw0,Should I buy this laptop for data science practice?,"Hi all,
+
+Very quick question from a layman. I'm looking for a laptop for data science practice. I appreciate I can use cloud computing for the heavy stuff, but I'd still like something half decent if possible within my budget.
+
+I've done a lot of research and I've decided on either getting something like the laptop linked below, or just saving my money and getting something super thin.
+
+Any advice is greatly appreciated and thank you for your patience.
+
+https://www.ebay.co.uk/itm/Lenovo-Thinkpad-W530-15-6-Laptop-Core-i7-16GB-RAM-1-TB-NEW-SSD-QUADRO-1000/292743475536",0,datascience,2020-12-05
+k77zuv,Looking for recommended data analysis courses on Coursera,"Looking for recommended data analysis courses from Coursera
+
+In May I graduated with my Bachelors in Mathematics and want to pursue a career in data analytics. I took an Intro to Java course while I was in school. I want to do the self taught route using Coursera courses. Which Coursera courses do you recommend? I plan on taking the following courses
+
+SQL - [Databases and SQL for Data Science](https://www.coursera.org/learn/sql-data-science?ranMID=40328&amp;ranEAID=E7g%2FxDr%2FWGM&amp;ranSiteID=E7g_xDr_WGM-iqz9DVmdOHtOvyoR_05Slg&amp;siteID=E7g_xDr_WGM-iqz9DVmdOHtOvyoR_05Slg&amp;utm_content=2&amp;utm_medium=partners&amp;utm_source=linkshare&amp;utm_campaign=E7g%2FxDr%2FWGM)
+
+Tableau - [Data Visualization with Tableau Specialization](https://www.coursera.org/specializations/data-visualization?ranMID=40328&amp;ranEAID=E7g%2FxDr%2FWGM&amp;ranSiteID=E7g_xDr_WGM-z41KJM3h2YTNOqjkhIY.pA&amp;siteID=E7g_xDr_WGM-z41KJM3h2YTNOqjkhIY.pA&amp;utm_content=3&amp;utm_medium=partners&amp;utm_source=linkshare&amp;utm_campaign=E7g%2FxDr%2FWGM)
+
+Excel - [Introduction to Data Analysis Using Excel](https://www.coursera.org/learn/excel-data-analysis?ranMID=40328&amp;ranEAID=E7g%2FxDr%2FWGM&amp;ranSiteID=E7g_xDr_WGM-iKpMjd3UB4cvup_ARyeidA&amp;siteID=E7g_xDr_WGM-iKpMjd3UB4cvup_ARyeidA&amp;utm_content=2&amp;utm_medium=partners&amp;utm_source=linkshare&amp;utm_campaign=E7g%2FxDr%2FWGM)
+
+Python - [Python for Everybody Specialization](https://www.coursera.org/specializations/python?ranMID=40328&amp;ranEAID=E7g%2FxDr%2FWGM&amp;ranSiteID=E7g_xDr_WGM-15ao3eOPa0qEQSS3ysZ6nQ&amp;siteID=E7g_xDr_WGM-15ao3eOPa0qEQSS3ysZ6nQ&amp;utm_content=2&amp;utm_medium=partners&amp;utm_source=linkshare&amp;utm_campaign=E7g%2FxDr%2FWGM)
+
+I want to take Coursera courses because I live in New York and Coursera was given for free for unemployed people. You can check it out [here](https://www.governor.ny.gov/news/governor-cuomo-launches-free-online-platform-new-yorkers-learn-new-job-skills-earn-certificates).",0,datascience,2020-12-05
+k754dh,I need you to help with my first Kaggle Competition submission,"If you like my project please upvote, it will mean a lot to me, I just want to grow from here. [University Degree Necessary in Data Science?](https://www.kaggle.com/kingabzpro/university-degree-necessary-in-data-science) . Thank you everyone in advance.
+
+It's quite a simple project with a visual representation. I used the 2020 Kaggle data set to determine the importance of Getting a formal Degree.",4,datascience,2020-12-05
+k74r59,What is the main goal of assignment writing?,,0,datascience,2020-12-05
+k72zb5,Driving a car with genetic algorithm,,0,datascience,2020-12-05
+k71vhk,Graduate courses worth 1/2 credits,"So I found this Master of Applied Science (Data Science Specialization) at Colorado State University. There are 31 credits to be completed but most classes are worth 1 or 2 credits. Can someone explain why please?
+Here’s the link[Master in Applied Statistics](https://mas.colostate.edu/wp-content/uploads/sites/13/2020/02/2020-mas-brochure.pdf)",0,datascience,2020-12-05
+k6v9ve,Advice about moving out from Data Scientist position,"Hello!
+
+I'm currently working as Junior Data Scientist in the headquarters of a big multinational company for almost 3 years. It is my first job since I finished my masters in Computer Science, working on a project related to Data Visualisation and Machine Learning.
+
+During the first 2,5 years, I asked a lot my manager to join the projects related to Machine Learning, but ended up working a lot building dashboards - nothing against it, but the projects were basically migrating an Excel dashboard to a BI one, super boring. Apart from that, I have worked on a project which I needed to aggregate billions of records of a telemetry table to support stakeholders to analyse consumer usage of the appliances produced by their units - basically a Data Engineer/Software Engineer project.
+
+However, what I and many colleagues (including my manager) noticed that I have a big talent for communications. I'm able to communicate pretty well with stakeholders, understand their requirements and translate the findings into non-technical language. Now my current work is basically connect with stakeholders, understand their problems related to data, suggest solutions and tests with proof of concepts and create roadmaps for future DS projects with my team. I enjoy very much what I'm doing now and would prefer that way more that sitting for hours developing models or solutions, with minimal communication with the stakeholders, like my colleagues Data Scientists are doing in my team.
+
+Now I'm thinking about leaving my position of Data Scientist and have another role in which I would focus more on pre-deliverable phase of the projects. However, negotiations with my manager are not going so well as I'm struggling a bit to define my role: Is it Data Analyst, Business Analyst,...? Then what is the implications of moving out from Data Scientist position? Does it make sense to do this transition? My manager suggested that I could take a Project Manager position, but I don't feel that my profile fits with this role as I don't wanna leave entirely the development side. I would like to be this bridge between front and back office, which I can communicate with stakeholders about the problems, but still discuss about solutions in a technical way with my colleagues in my team.
+
+Hope I'm not being so fuzzy in my text, but I can do my best to clarify any questions on comments.",2,datascience,2020-12-05
+k6t3g7,How do you track your predictive modeling steps?,"Hello everyone,
+
+I currently work as a DS in healthcare. My team and I have been discussing best practices, and would like to begin tracking our steps when building a model. Nothing crazy; we would just like to keep better track of variable transformations, threshholding/outlier management, model parameter tuning, model comparisons, and so forth. All of the steps taken from the creation of your input dataset to a scored, final model. I wanted to reach out to this community to ask if anyone else tracks their predictive modelling steps in detail, and what templates or formats are used for this.",5,datascience,2020-12-05
+k6npmr,How relevant are complex math topics in industry,"I’m currently in a math based program and I spend time outside of school studying ML.
+Most of my courses right now are focused on Real and Complex Analysis, Measure Theory, Control Theory, Abstract Algebra... etc
+
+How often are these topics relevant in practice?
+For example, I’ve been reading some papers that utilize measure theory, symmetric functions... and the implementations of these papers are used in industry.
+But do the Data Scienctists that use these advanced models actually understand the full extent of these papers or just look at the results, glance at the theory and move on to implementation/experimentation?",1,datascience,2020-12-05
+k6m7dh,Looking for guidance on understanding if my organization is ready for machine learning,"I don't think we are, and i'm having a hard time explaining why and convincing my manager the same. I thought i'd ask for advice here from those who work for organizations that made the jump and those who work for organizations that ""thought"" they wanted ML work done and have seen negative ROI.  
+
+
+I work for a healthtech company and work on the analytics team. Our team builds ETL jobs and dashboards. Nobody on our team has a background in math, statistics, CS, SE etc and nobody has ever built a production model before. I took a 12-week DS bootcamp but that only gave me like a 30,000 foot view of ML.  
+
+
+We're doing our 2021 product roadmap and my director wants us to add a new feature for our customers to predict some outcomes for one of our apps. I'm trying to explain why we're not there yet, like the fact that our data infrastructure is undergoing a major overhaul and it's shaky AF, the fact that leadership won't let us hire an ML engineer but that we can ""take some of the 60 ML courses that AWS offers.  
+
+
+I see posts here all the time from disgruntled data scientists and ML engineers who complain about organizations wanting that information but not investing and understanding what it is, and is not. Or spending their time on the data engineering side of things and less time training and tuning models.  
+
+
+Don't get me wrong, I would love to dink around all day trying to train models. But we're not there yet in terms of data maturity. We're still in the phase of trying to understand what has happened ,never mind trying to show our customers the likelihood that specific events could happen.  
+
+
+Any advice on how I could lay this all out for my managers? Anyone else have experience with this?",1,datascience,2020-12-05
+k6icwu,You can learn Data Science on your own.,"Hey all. Just want to tell you, if you already have Bachelor or Masters and if you can manage studying on your own, then you needn't go for College degree of Data Science. There are lots of online courses, try learning through them and get your experience through project. 
+
+I came for an additional master after I already had one and I think I could have done better with job experience and self study.",384,datascience,2020-12-05
+k6co45,"At your company, do the business teams who collab with data scientists have a good understanding of commonly used business-y stats terms? When they hear ""significance"" or ""correlation,"" how do they interpret it? Any studies on interpretation of stats terms in business settings?","Anyone aware of any studies around how people without a stats background interpret statistical terms? I'm particularly interested in the interpretation by those who frequently hear/say these terms in a business setting, but who don't have a great understanding of stats.
+
+And a related discussion question: How big is the DS communication gap at your company? Which miscommunicated words have the most severe consequences? What kind of challenges arise because of the gap?",3,datascience,2020-12-05
+k6c7du,"Is anybody familiar with the term ""coverage"" in medical data?","I have a dataset about inpatient beds at hospitals for each state and the term that pops up a lot in the columns is ""coverage"". Does anybody know what that actually means? For instance, inpatient beds used coverage. That number is lower than inpatient beds used so it has to mean something special but I can't figure out what. Google keeps referring me to insurance.",0,datascience,2020-12-05
+k6a9rq,What are the common mistakes aspiring data scientists make?,,4,datascience,2020-12-05
+k69dh0,More senior position at a less prestigious company?,"I'm currently interviewing at another company where I am likely to get the job and a significant pay increase. I will essentially be moving from a mid level data engineering position to an engineering lead position as part of a rapidly growing data science team.
+
+However, I am hesitant to accept the offer because my current company (fortune 500 non-technology) has a better name in the field and much more job stability during the uncertainty of a pandemic. The new job would be at another non-tech company that has no reputation for software development or data science.
+
+At the same time, this other job is in the ideal city I have been trying to move to for almost a year. Also, I do like the job title and salary increase.",1,datascience,2020-12-05
+k68iii,What’s the best and/or fastest way for a 24y/o Data Analyst to move up the corporate ladder towards a Data related position?,"I’m feeling ambitious, looking for thoughts from you guys!",0,datascience,2020-12-05
+k63l45,"What visualisation tool to learn, considering previous very good MS SQL knowledge?","Basically, like title. I used to programm everything in MS SQL (reports, data selections, raw data for further analysis). But when I needed to visualize the cleaned / prepared data, I used Excel as it was the easiest way for me, taking the raw data already prepared in SQL.
+
+Now it is time for me to learn more and get to the next step of Data Analysis. If you were me and had the choice of one visualisation tool. Considering very good SQL knowledge, what would be logical choice?",0,datascience,2020-12-05
+k61xnx,How best to manage uncertainty of predictions?,"I have built a price prediction model , as well as quite a simple function that simulates a decision making based based on those predictions.
+
+Included in the data I have 95 and 50% confidence bounds, and it is multivariate, so includes the prices of other products related to the initial commodity, which can effect the initial commodities price.
+
+What are the some industry standards for managing the price uncertainty that exists in the predictions, from both a technical and business standpoint?
+
+Anything to point me in the right direction of managing price uncertainty in time-series forecasting would be very helpful.",1,datascience,2020-12-05

@@ -1,0 +1,467 @@
+comment_id,post_id,comment,upvotes
+geprwuz,k78f3a,"Correct me if I'm wrong but
+
+tl;dr it's Airflow, but better. According to Google.",1
+gepthve,k78f3a,"No, it’s for a different use case, namely bursty or low latency workflows, particularly serverless ones.",1
+genmj07,k6wwzr,"What kind of latency requirements do you have? Can you batch the items? Do you need to process them one by one? Do you have existing infrastructure (namely Kafka or similar) that you can take advantage of (without introducing some that heavy just for this use)?
+
+If you’re already using Kafka elsewhere, I’d leverage that. If you aren’t, and you can batch them, I’d write the data into a file in object storage, then execute a batch job that processes them all in a way that supports varying resource requirements. I’d suggest using Prefect for this, as you can utilize Dask to actually execute your items in parallel, and the longer tasks can continue to run uninterrupted. I would not use Airflow for your use case of many short tasks.
+
+Im not sure how Beam would do with model training, I’ve never considered it for that use case. I’m sure Beam would work well for scoring, and could operate in a streaming manner as well.",1
+gens0gi,k6wwzr,"Thanks for your reply.
+
+Well, currently the short predict tasks write the result into the database. That result triggers an event inside the application. I would say this should remain as real-time as possible. I think that answers your first three questions (low-ish latency, batching probably not feasible, generally one-by-one).
+
+We don't have existing infrastructure, unfortunately. Since I am seeing this as a fairly major change to what we have I am searching to see if/what we might be able to leverage to improve our process. As you say, we might just be introducing something heavy for just this...
+
+I do appreciate your suggestion and description for if batching were an option.
+
+To give you a general idea of what that 'real-time' flow is like: our customer is Company, and their users upload documents... Company sends documents to us, we analyze them in this queue, and send our result back to app A. Between user uploading the document and getting the result should be as fast as possible. Minutes can be ok, but longer and we get support tickets.
+
+The long tasks would involve a model training task involving a corpus of Company As documents.... These long tasks happen once every few days, triggered by an event but rate-limited.
+
+Anyway - the idea to break the tasks into two or more steps, persisting intermediate results, would allow us to use those intermediate results in some analysis, and also would cut down on re-calculation of those intermediate results during the long training tasks (data is processed from raw form when training).
+
+I get the sense that if we had the team and knowledge for it we might want to use Beam AND Airflow here... but I think that would be too much to chew until we need to scale that next big step.
+
+Thanks for your time.",1
+gephvos,k6wwzr,For short tasks I’d stay away from orchestration frameworks like Airflow and Prefect and instead look into a serverless option and it will scale to many small tasks much better. Since your workflow is relatively simple you could create some serverless functions for each progressing task and string then together with a serverless orchestration engine like AWS Step Functions or Google Cloud Workflows. Using beam is another serverless option (if you’re using Google Cloud Dataflow) and you could create a streaming job that pulls tasks from a queue and processes them. Dataflow can be setup to auto scale to meet the throughput of your queue. I don’t think Dataflow would perform nearly as well as the serverless function option though as I think processing uploaded files would be done a lot faster via the former.,1
+gemr6t8,k6s8xb,"Three observations after working with it for six months:
+
+* It's really elegant and simple to use - which could allow a very small team with little database experience to easily set up a database for analysis with very little effort.
+* Because it provide so few levers and knobs to control it, that means it's very easy to use.  Up until you inevitably hit some performance issues in which for example, the optimizer refuses to do the right thing.  At that point your only option is to pre-compute your queries, which can be time-consuming, may introduce their own performance challenges, and quickly cuts into any labor savings that you've gained by using such a simple database.
+* It's crushingly expensive - to such a degree that it jeopardizes Snowflake delivering any value over alternatives at all.   Seriously, if one has small to medium-sized data and even basic database skills then using something smaller like Postgres on amazon RDS is vastly cheaper and probably faster.   At larger scale presto (aka athena) using parquet files on Athena takes more work but can be shockingly cheap in comparison.",26
+gemt9zj,k6s8xb,"I think this is a great summary, but I really want to expand on the third bullet point and direct vs indirect costs. Everything I'm going to touch on here is based on the experience of building a data warehouse on AWS services (S3 for data lake, Redshift for warehouse) as well as a warehouse on Snowflake (Snowflake for both data lake and warehouse).
+
+One of the big things that Snowflake helps you get away from are indirect costs associated with running a data warehouse. Before Redshift Spectrum, you needed to maintain a way to ensure your warehouse didn't run out of disk space. Snowflake lets you separate compute and storage, which lets you also use it as a data lake (assuming your lake stores semi-structured data and not things like audio or video files).
+
+Going off the previous point, building an efficient data lake is hard. Getting your partitions right is a matter all on its own, so having Snowflake handle query optimization via the micropartitioning is a huge win, and largely saves the need for planning and maintaining of the data lake.
+
+I was the admin of my Redshift cluster, and I knew just enough to get by. I'm sure there was a way to ensure certain ELT jobs got certain amounts of computing power, but Snowflake allows a much easier UX for doing that (choosing warehouse size).
+
+I think ultimately it's a very hard comparison to make and get an accurate estimate of how much the total cost of ownership is, and it's something not to be weighed lightly. I think having very seasoned system architects involved in the discussion can really make the difference between using an on-prem solution, a cloud hosted but still kinda self managed solution like Redshift, or a fully cloud managed solution like Snowflake.",10
+gemzi5k,k6s8xb,"Yeah, at a certain price difference I can imagine paying more for a service, less for labor and that working well.
+
+But when you can easily spend $180k/year to host a tiny database with a few DBT-rebuilds a day and a bunch of users running queries, let alone what you will pay once you scale it up, then any benefit of the labor savings dries up pretty quickly.  In an example like this you could simple toss the data onto a postgres RDS instance that only costs maybe $24k/year and requires only slightly more administration than Snowflake.
+
+\*Possibly less\* since it's so much easier to get blazing fast response time from Postgres for smaller data volumes than it is for Snowflake.  For example, got a few tables with 50 million rows that you need to join together and then report on for an operational dashboard running every 5 minutes?  On snowflake that query might take 30 seconds if the data isn't cached on a compute node, and it will keep that node up 20% of the day at least.  On Postgres that query might run in 100 ms and will just be part of your monthly RDS cost.
+
+On Snowflake if you want faster performance you're generally stuck either paying for more compute capacity or spending the labor to build summary tables that pre-join the data for you.  Not a lot of options - and further eat into any savings you were hoping to achieve.",8
+gen5cv4,k6s8xb,"This is definitely good to know on the Snowflake pricing side of things. I can only speak for the rate my company pays for it, but our Snowflake instance has about 100TB of data in it, and we're running several ELT jobs an hour and (going to keep it vague) pay less than $600k / year. At our size, I consider this well worth the money, but if it does cost $180k / year for a smaller instance / contract, that's definitely a price tag that's worth investigating.
+
+You're spot on with Postgres being snappier on smaller data volumes, but that's what Postgres was designed for (and you're right to be using the right tool for the job). If you're needing real-time or real-timeish responses, one way to do that is have a Postgres DB that holds the summary table. This is a pattern that our company employs, and we drop/recreate the table every ~5 minutes as well. This Postgres DB powers an API used elsewhere in our data ecosystem, so we designed the table to be denormalized and heavily indexed for fast reads (without going down the route of putting proper caching in place with something like Redis).",6
+gen96p8,k6s8xb,Intrigued by your 600k comment. May I ask what is the rough size of the company you work for (without going into specifics) that supports spending this volume on a DWh? How big is the engineering team?,3
+gena3k7,k6s8xb,"Company size between 100 and 200 people, 3 data engineers, 13 other data team people (split between data science and data analysts). Very data driven company!",2
+genah5a,k6s8xb,"Thanks, this is not the answer I was expecting :)",2
+gen9cok,k6s8xb,"Yep - absolutely.  Then again the history of big data is a history of premature optimization ;-). Seriously, I can't number the times I've seen tiny data volumes on heavy infrastructure: cassandra, hbase, hadoop, snowflake, redshift, etc.
+
+And yeah - that strategy of keeping the data on something cheap &amp; simple like Postgres to start with and then migrate over time to keeping large volumes on something else and summary data on Postgres works great. 
+
+It would work even better if we have a great FDW solution so that we could just point users at Postgres and then postgres could reroute some queries for high-volume data to athena/snowflake/redshift/bigquery/etc as needed.    Not a perfect solution for truly adhoc queries, but can work well otherwise.",2
+geoha1d,k6s8xb,And yet our big query total cost is around 200k for the same data lake size. Of course our company is much larger and has the additional costs many engineers. Everything is the right tool for the job. There is no right answer,1
+gen8dy4,k6s8xb,"To come at it from a different side, it costs far less than a single machine in AWS for me without the admin overhead. I can easily chuck a few more terabytes in for testing and evaluating something on a larger warehouse while most queries run on cheaper one. I now can easily run joins that would either blow up in pg or I'm not smart enough to keep.feom blowing up.
+
+It's poor if you want to run simple things regularly, it's great for larger things less frequently.",1
+gemvwmp,k6s8xb,"Database administrators *HATE* him!
+
+But joking aside, very well put.",4
+gen3rkb,k6s8xb,"Wouldn’t s3+glue+Athena allow you to do the same thing? 
+Not saying that it snowflake isn’t a good lazy solution, just thinking it technically dumbs you down (no offense intended).",3
+gen5xge,k6s8xb,"There are a lot of combination of things that would allow you to do the same thing, so no offense taken! You absolutely could, or you could use an EMR clusters instead of Glue (using only Glue's metadata catalog instead of the data processing portion of the service), spot instances on EC2, or some other form of compute to do the actual processing. Part of the value add is that you don't need to _glue_ (yes pun intended) a bunch of services together to get a functional product, as well as deal with all the different services features / bugs.
+
+For instance, and I know this has changed since I did my eval, but I was initially looking at using this exact setup for doing data lake processing when I built out the lake on AWS, but Glue had a minimum billable time of 10 minutes per compute job OR per crawler run. With this pricing model, my small jobs would have basically drained my AWS budget for the month in 5 days (at the time I had ~3 large jobs, and a ton of small ones). On top of that, doing the actual development with Glue's compute environment was a giant pain since you couldn't use the dynamicframe libraries locally.
+
+So it goes back to the point of total cost of ownership. Is it worth the engineering time to connect all these services together, deal with monitoring all of them, debugging them or pay for a managed service. At the time I was on a small team, so we opted to consolidate our number of services used on AWS to a minimum to avoid the hassle.",4
+gepalfg,k6s8xb,"AWS released their Glue libs and now allows for a Docker local development. Will take some time to set this up (Docker in my case), as their Docker solution is geared towards notebooks (EDA) and not true Spark dev.",1
+genn8wv,k6s8xb,It's also worth noting that the Snowflake storage is immutable. Engineering that part is going to take a lot more effort than just separating the compute and storage.,1
+genjyu5,k6s8xb,"Don't the new RA nodes from Redshift let you separate compute and storage? I know with the DC ones, that each node gave you compute and 160GB of compressed storage.",1
+genn4dj,k6s8xb,"That's correct. However the minimum size is ra3.4xlarge and you need at least two. That means it'll cost you about $7 an hour to run a minimum configuration and there is a startup time. Snowflake warehouses take resources from a warm pool, so there is almost no startup time.",2
+gen7exb,k6s8xb,"To your last point let me try my best to describe an analogy:
+
+let’s say you need to store a treasure chest in a 10 feet deep hole. The arguably appropriate cost efficient solution is to use a shovel (AWS RDS, MySQL, Postgres). But rather than looking at shovel options you decide to look at an excavators (snowflake, AWS Redshift, Google Bigquery) as a potential solution. And come to the conclusion that an excavator is too expensive and shovels are way cheaper. Of course an excavator is going to be more expensive because it’s a tool that solves a different set of problems. It doesn’t make much sense to say it’s expensive relative to a shovel in such a scenario. Both tools serve a similar, yet different set of problems.",2
+geow3po,k6s8xb,AWS Redshift is a good middle ground on cost too. We refused to move to Snowflake in a previous job on those grounds.,2
+gep1tgx,k6s8xb,"after 2.5 years, on all levels of snowflake user (accountadmin)  
+
+1. Agree, just SQL. Snowflake concepts (they may come from other systems ) Staging (import/export) is super easy, time travel cloning ( not usable for all dataflows ) etc..
+
+
+2. Performance issues, little bit different opinion Just make warehouse bigger and it is faster, more users , just scale warehouse for parallel execution. Long as you do not expect make real-time streaming pipelines which have under 5min from app - &gt; snowflake table. What comes to SQL problems,yes i had few of those, they were complex queries , most of them were fixed bumping warehouse to one bigger. Of course, if your daily processing is hundreds of gigabytes per query you may know something i do not, but i have not gone over medium instance which still kep runtimes in ok limit.
+
+3. Money spend, depends. How much DBA/DE/whatever costs in our area vs. 12k per small instance for 24/7 ( i see that snowflake is active about 1/3 to 1/4 day). While at same time making storage non-issue and possibility to share databases  and project between users etc.
+ No experience about presto things. but snowflake needs one who knows about databases and how to google ( also know as senior dba). In theory anyone who knows sql can use it,too..  no idea what presto needs, or demands. If its self hosted, it need hardware and few admins to keep all running. But for right size company in right business it probably has it uses
+
+
+I consider one of the biggest advantages how simple snowflake is to use, while concepts may be hard to understand, it is. Want to share dataset between users, easy, grant that other group role access to yours database, want to recalculate whole s3 bucket full of parquet/json because initial import did not bring all attributes into snowflake, takes less that 10 commands , if it needs to be faster, just create new larger warehouse and use it, does not affect anything else (except money spend) 
+
+So i expect snowflake ( and other simple new cloud offerings) to grow in non-IT companies where biggest group of users are just report reader or management using some (cloud) reporting tool. For them savings on salary etc. is good reason to go that road, and in small dataset cases can do things in one hour or less time (import , compute ,export reports ( and reuse data on next day ))  
+
+other solutions are for companies who have big IT-teams and do business which heavily uses technology and need bigger part of data to be processes in ""realtime"" , so they can carry price of custom solutions for each problem or reusing parts of architecture for solving data problem in non organized manner.",1
+gepgydw,k6s8xb,"&gt;It's crushingly expensive - to such a degree that it jeopardizes Snowflake delivering any value over alternatives at all.
+
+That's really opposite to my experience with it.
+
+Ok, so I used Postgresql on RDS on a really small startup, and RDS was capable of handling that load of order flow and do the usual tracking and analytics stuff.
+
+Time for a full ETL pipeline run: ~1.5h, cost is a few hundred bucks per month (was hidden from me because the CTO managed AWS infrastructure and I only got the credentials to connect to services that I requested).
+
+Then I went to a mid-size retailer that has presence on a national level (about 100-1000 times more data depending on how you look at it). The same logic now couldn't even begin to work with what RDS was offering. We were renting out pretty beefy machines with fast sustained IO, and optimized the hell out of the settings, queries, and everything. It took a ton of time, but we did achieve amazing performance for the use case that we had. But it was still slow, compared to small startup on RDS.
+
+Time for a full ETL pipeline run: ~6h, cost ~7000$ per month for production and development infrastructure. Bulk of the cost was the always-on big servers, that were idle most of the time. Without them however, devs would sit idly a lot of the time waiting for other tasks to finish, and devs are more expensive.
+
+Then, I had the opportunity to do the same logic for a much larger retailer with an international presence and an order of magnitude more data. We went for Snowflake. We got more performance for less money than with the average retailer mentioned above, and it was running faster.
+
+Time for a full ETL pipeline run: ~3h, cost around 3000$ per month for production and development infrastructure that would scale automatically when needed only.
+
+The use case was the same everywhere. Track orders, returns, prepare datasets for analysis for product scope (product categories, supplier statistics, fulfillment details, etc), then combine it with web and app analytics data to link transactions and customers to visitors and their actions, in order to perform better marketing analyses (attribution models, some ML here with Shapley value), do some stuff for CRM (customer segmentation, retargetting campaigns), etc.",1
+gepsag9,k6s8xb,"Yeah, if you process 20 billion events in one massive batch, rather than in say 1-6000 daily micro-batches you end up blowing a lot of cash on mostly idle servers, and have terrible lengthy batch windows, and terrible lengthy error response times.  
+
+And of course, you could also ETL this volume within an MPP database.  It'll handle the scaling.  But it'll also cost *vastly* more than running 100s of separate processes on lambda, kubernetes or even just ec2 instances.  And it'll be slower.
+
+But at that size vanilla Postgres is mostly just useful for summary data - you can't load a single instance fast enough.  CitusDB, Redshift, Netezza, Snowflake, Terradata, DB2, Vertica, Hadoop, all can easily keep up with that load - but at high prices.  Or S3 and Presto/Athena maybe combined with postgres for summary data and then you can handle the volume and it's very inexpensive in comparison.",1
+gen435d,k6s8xb,"Snowflake is a game changer and its competitors are rushing to keep up. Keep in mind that Snowflakes competitors aren't Postgres, SQL Server, MySQL, but IBM Netezza, Amazon Redshift, and Google BigQuery. I'll call out a couple of big deal things.
+
+Snowflake's separation of compute and storage means that I can have independent warehouses of different sizes for loading data, transforming data, bi, and ad-hoc query. Not only can I size those differently, I can have different auto scaling rules for scale-out of those warehouses and different auto start/stop rules. That not only gives me greater cost management, it also allows me to avoid resource contention that you face with Netezza and Redshift. Netezza and Redshift mostly always on solution. Need more compute, Netezza is a lift and shift operation.
+
+Snowflake's immutable storage layer means I have automatic one day time travel. Dropped a table, no problem you can restore it. Want to go back 90 days, that's an option too. 
+
+Data sharing and the data market place. I can share a data source to another organization without actually shipping it, keep the data up to date, and they can access at the speed of local data.",10
+genlwwj,k6s8xb,"Yep - these are all great characteristics.  And if Snowflake cost 10% of what it costs then they would be compelling.  But at its current pricing level these aren't the elegant solutions that they sound like initially.
+
+For example, if you could keep a 10 TB database in Postgres for $2500/month rather than in Snowflake for $25,000/month and get better performance from Postgres - then it doesn't matter how fancy snowflake is.  At that price point it's irrelevant to 90% of its buyers - as they eventually discover.   Sure, Snowflake will scale much farther than Postgres, but that's a problem to solve when you need it - not when you've just got 500 GB or 3 TB of data.",4
+geno1us,k6s8xb,"You're comparing a Ford Ranger to a Mack Truck. You can put 10tb of data in Postgres, but you can't do fast aggregations on multi billion row tables. MPP database exist for a reason, and they can't be replaced by smaller transactional databases. If you're an enterprise doing advanced analytics, Postgres isn't going to cut it. But sure, don't buy a semi if you just need to haul around the occasional couch for a friend.",6
+genw2g2,k6s8xb,"Sure mpp databases are faster - they have been for 30 years.  But smp databases are often fast enough at a vastly lower price.
+
+If you're running a 64 core postgres instance with partitioned tables, indexes, 256 gb of memory and local ssd then you can run huge queries and aggregates.  That's equivalent to a ton of snowflake capacity.
+
+While you may outgrow that it's almost always best for someone to start there rather than buy more than what they need, have to cut costs elsewhere just so that they can swagger and boast about how big their servers are.",2
+gene7ts,k6s8xb,"Everyone has already mentioned the decoupling of storage and compute, virtual warehouses, time travel, and micro-partitioning, which are all excellent features that set Snowflake apart from the competition.
+
+As both a user of our DWH, I'll speak to its more generic qualities. It's fast, the SQL dialect is simple and feature-rich, it has (mostly) great APIs, and it's really easy for analysts to use, with a great built-in SQL runner.
+
+Analysts (writing dbt code) are at the point where they're setting cluster keys, parsing the query history, and scaling up and down warehouses based on a query's needs, because it's that simple to use. That may strike fear into the hearts of DBAs but with proper guidance, tooling, and monitoring, it needn't make you worry.
+
+Snowflake plays *very* nicely wit **dbt,** because of zero-copy cloning. You can spin up a copy of production within minutes and run all of your models/tests on it before merging.",4
+genzv98,k6s8xb,"I've been working in Snowflake for about two years now and primarily get new jobs solely because of my experience. So with that, I'm obviously biased, but I think it's changing the landscape of data engineering + data warehouses + other data-related concepts. Other commenters already touched upon the neat features and advantages that Snowflake brings to the table, so I won't dig into that.
+
+People say that Snowflake is expensive, but I usually find that because they don't take into consideration that you don't reallllly need a DBA if you use Snowflake. I'm a data engineer and I managed it at my previous places of employment, and things worked smoothly. And last time I checked, DBAs are expensive too. Not saying that DBAs are useless because of Snowflake, as we have one, but we get to take advantage of them in other areas because of how easy Snowflake is to manage.
+
+I think the downside is that people tend to sign up with Snowflake in a hurry, set things up without reading Snowflake's best practice documentation, and burn lots of credits because they thought that it'd be nice to have a warehouse sized ""large"" used as the main warehouse for queries. This happened to my previous employer and current employer, so naturally, those were the first things addressed when I started work. I personally find Snowflake not as expensive as people make them out to be once you fine tune the performance settings and whatnot.
+
+Lastly, Snowflake documentation is amazing. Previous job used both Snowflake and SQL Server, and I *hated* reading Microsoft documentation.  Snowflake's is probably the best I know of in the data world.",3
+geo124v,k6s8xb,"God I love Snowflake's documentation. 
+
+Our data engineering team is still managing our Snowflake environments because our DBA team 1, doesn't have the capacity right now to take on a new platform, and 2, its dead simple to manage. 
+
+I'm especially looking forward to the stuff coming out of this last summit with row level security and policy assignment based on tagging. That and when they finally get around to making roles assigned to a principal to be cumulative is when I will be at a point that we can actually templatize the administration of our data and potentially even tie it back to automatic assignments based on a user's role/title.",3
+geo1ubq,k6s8xb,"You'll 100% see growth, because those ease of use features is going to bring a lot of the older stone age orgs into new architectures that would have taken at least another 5 years to get there. For the shops that have mature data engineering practices, eh, you can probably do the same thing more cheaply (at least for sure on infrastructure costs) on other platforms, assuming you don't lose all those cost savings to the engineering time to initially set it up and maintain it. 
+
+The one thing others have glossed on that I think has the potentially to really pull in a lot of people is the data marketplace stuff. The idea of me being able to mash up /enrich my org's data with free or cheap external sources without actually having to move it into my systems is a pretty damn big deal in my mind. Just look at how much work there is FTPing flat files between companies in certain industries and you'll know why this will be a big deal for some.",4
+geo47xh,k6s8xb,"I think it's great and it's definitely a game changer. 
+
+However, I wholeheartedly believe that the devs were smoking something when they decided to implement stored procedures using javascript.",3
+geo299i,k6s8xb,Anyone know the easiest way to get exposure to Snowflake without your current job using it?,1
+geo4d9g,k6s8xb,Just get good at using free/open source databases. The Snowflake specific features can be learned in a weekend.,1
+gemgyum,k6qqrg,"Sometimes you just have to start small with something you're doing for work now. Since you know basic SQL, maybe run a query with Python. Figure out how to save the results to csv the next day, then schedule it the next day, then figure out how to insert those results in to another database next week. That is basic DE. 
+
+I think How to Automate the Boring Stuff is free or cheap on udemy. You'll learn things you can use today. Trying to learn complex things without a need is often a waste.",3
+gemhh0u,k6qqrg,"To piggy-back, in my experience it's very hard to learn anything without a specific goal or project in mind. +1 to Automate the Boring Stuff (it's a book, too; free online IIRC) as it contains a lot of common automations that can help you or at least show you what is possible. You could take that and try to apply it to tasks that you currently do at work.
+
+Edit: The above would be the ""engineer"" route. The other route is the analyst route; start learning how to analyze data (Excel, SQL) and try to get an analyst job. Then you can move into building models and go from there.",3
+gemm0tx,k6qqrg,Thanks . It’s true . From my experience I can understand what companies needed from de. How I can learn a lesson without implementing that. It’s like I can watch a driving tutorial in YouTube and can’t go for a drive in busy road right . My learning expecting it to be learning and implementing as well.,1
+gemsgb6,k6qqrg,What's your day job? Are you able to utilize any relevant skills or tools?,1
+gemsli3,k6qqrg,Not even 1% I can’t implement what I’ll learn. It’s very old support management.,1
+gemlqo9,k6qqrg,My confusion is the path of which resources to consume . I prefer videos than reading books . It’s been 10 years my learning on books has been stopped. Data engineering is my ultimate end goal . But without doing a daily job. I feel where should I implement prod ready cider. Since my exp is high . No one is expecting my scale to write basic code. Just wanted high level things from me for my exp. hence I want to become that level in two years with proper step by step tutorial etc....,1
+gelmvgs,k6m9o2,"Basically, you have to create a DAG in Apache airflow that runs this process step by step. In this case, each step could be a python/pyspark script. Aparte airflow has something called pythonOperator which allows you to do that. Then you define the downstream (sequence of execution for the scripts). Be sure to isolate particular tasks in each code script.",2
+gelnax8,k6m9o2,"Ok Thank you!  
+So these Data Sources mentioned in the JSON link should be downloaded independently right ?",2
+gelnzdr,k6m9o2,That's ambiguous since they don't mention whether you should scan manually or with a python script. I would go with the second just to be in the safe side and do the processing separately for each data source.,2
+gelo8gc,k6m9o2,"Alright! Sounds good.  
+If you look at the JSON file, it has link for every data source. I have to develop a script that can redirect itself to that data source link and download the data in my Local System.  
+
+
+Please feel free to correct me if I am wrong!",1
+gelog40,k6m9o2,I think you're right.,2
+gelomq5,k6m9o2,"Ok great! I am getting a good picture about the requirements and I will start doing this now.  
+
+
+Also, I have a Windows machine and I am trying to install Apache Airflow in my System but ... it is Windows machine!!",1
+gelpyr2,k6m9o2,"Just from the requirements, it looks like you have a lot of work cut out for you (although the project seems like it would be a lot of fun).
+
+From what you wrote (I have been typing for a while so forgive me if I’ve forgotten), it looks like they don’t specify if that initial JSON changes daily, or if they just want to look at the data sources daily—so do you need to set up an automated job to parse that json every day, or can you do it once and store the URLs in a separate table in the database, and look it up daily?
+
+Anyway, if you have to scrape it daily... After looking at the json file that they told you to go to, you’re going to have to think about a few things:
+
+1) do you want a separate task for cleaning the json (There are escape characters everywhere), or should that be combined in the download task
+
+2) each data source in that json file will probably need to be downloaded in its own task (should be done in parallel, look into how many workers in airflow you should use)
+
+3) Should you store some metadata about the data sources? (Maybe not if it’s not required, but it could show you’re thinking ahead)
+3a) if you do want to store metadata, should you use some xcoms to store metadata or store it in the same task as the parsing (of metadata) occurs
+
+I think your intuition is good on the overall gist of what they want you to do, but there are definitely nuances that they will be looking for! I hope it goes well! If you do well and have the time, you should write a blog or post something on your GitHub about the whole pipeline process! It would be interesting to see",2
+gelqzr4,k6m9o2,"Ok, I think that I have to set up an Automated job to parse JSON everyday and store the Data from these data sources in a Database. For the points mentioned above:
+
+1. I can make up a separate task to clean the JSON and then another script to download the file.
+2. Yes, and that too COVID-19 related date. I have to think about how can i filter out remaining data out of those COVID-19 Data.
+3. I will do this once I have the basic requirements completed; and I can do visualizations as well with this part.
+
+Let me know if I am thinking wrong or out of context. Also, please feel free to share any examples which can help me to get started with this. Examples of Reading and downloading Data from Data Sources mentioned in JSON and using Airflow : beginner guide; etc.",1
+geluy9t,k6m9o2,"Your thought process sounds right.
+
+As for tutorials on Airflow, I would start with the [Airflow tutorial](https://airflow.apache.org/docs/apache-airflow/stable/tutorial.html) if you've never used Airflow before. I'm not sure your time constraint on this, but because this field is generally new, you won't be able to find answers to everything you want to do on StackOverflow, so you will probably have to spend a lot of time reading.
+
+As someone mentioned above, you'll want to use `PythonOperator`s or `BashOperator`s for most of this. Airflow has a `PostgresOperator` that you can use to store the data in the database.
+
+I think your best bet right now is to start off using the [Docker version of Airflow](https://github.com/puckel/docker-airflow). Clone the repository and then follow the instructions there to get Airflow running; then work on the Airflow tutorial if it helps you learn about how to use the operators.
+
+The `dags/` folder is mainly what you should be working in (keep it simple for now!). The folder is mounted to the Docker container, so any changes you make there will be reflected within the container. Airflow has a setting to refresh DAGS by default every 30 seconds, so you never really need to start/stop the container.
+
+If you have any questions you can always PM me. I'm not the most experienced in Airflow, but I've done a few projects with it.",2
+gelvr75,k6m9o2,"Nice! This helps a lot and I thank you for extending your help for this. You can share your Repository for my lookup for Airflow projects and then by today afternoon, I will contact you regarding the Progress made so far. 
+
+If I am stuck anywhere, Maybe you could collaborate sometime this weekend or so.   
+Collaboration is voluntary basis, you helped enough so all good Sir!",1
+gem6dya,k6m9o2,"tips:
+1. separate ingest from processing into separate tasks
+2. parallelize as much as possible the task of downloading per-state data
+3. if json schema is the same of all states, have one task to process and ingest json into db, but run it async as soon as download step is finished
+4. do simple error checks, like how many entries were in raw json - vs how many rows were loaded into postgres. they should match 100%, otherwise there is a bug
+5. consider adding ReportDate date column and truncate data for today's ReportDate before ingestion, to make sure that you don't have duplicate data in case your dag is accidentally ran twice/100 times - this is called idempotence
+6. if schema is the same for all states - consider loading into one large table, but add clustered index by StateName,ReportDate",2
+gelqxr1,k6kgak,Why OnPrem CDH only??  Lots of people are running CDH/HDP/CDP in the Cloud,2
+gelrizm,k6kgak,Yea I forgot about CDH or hdp on cloud.sorry bout that,1
+gel95no,k6jkyj,focus on soft skills this weekend. try to come up with succinct talking points of projects you’ve done or teams you’ve worked with. in my experience final interviews show if you’re a good person to work with rather than someone who can memorize algorithms,5
+geoftws,k6jkyj,"There's no telling whether the interview will skew toward technical or cultural questions. I've had a few interviews where all they asked is what tools we used at my current job, then just asked generic personality questions. I think you should be ready to explain why you decided on a career change into DE, and a good company will recognize that you're capable of learning on the job. Worst case, even if you don't get this job, you'll still be better prepared next time you interview.",1
+gel9biz,k6hyla,Thank you for this! I'm in the process of evaluating tools for a similar purpose and I was bummed by the lack of high-level comparisons like this to get a feel of what's being used in the industry and their basic differences.,3
+gelte43,k6hyla,"Thank you for your feedback!  
+Glad to hear it helps",2
+gelj1qt,k6hyla,"I'm doing something similar for my company! Thanks for the overview. Seems to be a bigger space than I've thought.
+
+Currently, we are looking at SageMaker. It seems to fit into the same place as bentoML and Seldon Core and also a more native fit into our cloud environments (AWS). Did you consider it? How does it compare? If considered, why wasn't it chosen compared to the Seldon?",1
+geluf6v,k6hyla,"Great question!
+
+Probably it's a good thing to highlight it in the article, that all the considered solutions are open source.
+
+Now regarding your question: it's part of a bigger discussion of considering open source vs. managed solutions. In a nutshell the consideration for that decision would be along the lines of:
+
+* Pricing
+* Your staff's skill level and capacity
+* Vendor locking vs. Cloud agnostic
+
+For this specific project the preference was for open source solutions. That's why Amazon SageMaker wasn't considered, although it could be a great solution for other cases.",3
+gelw2o7,k6hyla,"I've been working on this same problem, and have looked at all the same tools and ultimately opted to deploy fastapi applications as knative services.  For us, uniformity of applications (we also do lots of non-ML microservices) was more important and none of these tools felt like they offered much other than simplifying the process a bit.
+
+You might also be interested in Cortex if you're running on AWS. I'm on GCP so I've never evaluated it, but I think it looks nifty.
+
+The problem that I wish these tools would solve is GPU-sharing among inference servers. As far as I know only NVIDIA's Triton Inference Server does this now, but the learning curve is steep and flexibility is questionable.",1
+geop5we,k6hyla,"I found out the **Kubeflow** and **Seldon Core** for large size company that runs many ML models and DL models because of the resource overhead and effort overhead for these projects it's a good idea to use **ONNX** instead.
+
+[https://onnx.ai/](https://onnx.ai/)",1
+gekhp9c,k69kgd,Thanks for the share. Both fascinating products - Purview will be interesting to see how much it supports for connectors into AWS.,4
+gelmmy8,k69kgd,Nice video [overview of Purview](https://youtu.be/xgABjnuPMWM),2
+gemtlg6,k69kgd, Enterprise data catalog from informatica is much mature product,1
+gek91cm,k67u5d,"I believe you need to return the `execute` method call in your function, so something like
+
+```
+def task_fail_slack_alert(context):
+     failed_alert = SlackWebhookOperator(
+     task_id=context.get('task_instance').task_id,
+     webhook_token=os.environ.get('SLACK_URL'),
+     channel=get_channel_name(),
+     text=""""""
+        TEST
+      """""".format(
+     task=context.get('task_instance').task_id,
+     dag=context.get('task_instance').dag_id,
+     ti=context.get('task_instance'),
+     exec_date=context.get('execution_date'),
+     log_url=context.get('task_instance').log_url,))
+     return failed_alert.execute(context=context)
+```
+
+As a side note, you can probably rewrite your `get_channel_name` function to something like
+
+```
+def get_channel_name():
+    env_channel_map = {
+        ""prod"": ""#airflow_alerts"",
+        ""dev"": ""#airflow_alerts_dev""
+        ""local"": ""#airflow_alerts_local""
+    }
+    return env_channel_map[Variable.get('env', 'local')]
+
+```",1
+gelluwd,k67u5d,"Oh yes, sorry for the indent error I had it correctly in my code, return was within the function.",1
+gehwn97,k5zz4q,"If you're using Airflow, why not make the first task in the Airflow DAG run that GitLab create query? You might need to change it from CREATE -&gt; CREATE IF NOT EXISTS. I've done the same thing in the past as you where we keep all table scripts in a git repo. CI runs and uploads all the scripts to a cloud storage bucket where a data pipeline can use them.
+
+For derived tables and views I'd recommend dbt.
+
+I hadn't heard of yoyo-migrations but it looks good. I've use alembic, Django, and Rail's ActiveRecord all for database migrations and they've all been great. They are mostly limited to relational databases and do not have any support for data warehouses though. I think alembic can be used with Redshift and Flyway supports Redshift and Snowflake. It might be possible to make a yoyo migration per table and hook that into Airflow but that sounds kind of messy. Keeping this up to date with your data pipelines sounds challenging and I'm not sure of a clean situation here.",4
+gejki5m,k5zz4q,"dbt, dbt!",1
+gehsly2,k5w5z3,"All cloud providers have solution libraries, for instance AWS has [https://d1.awsstatic.com/whitepapers/architecture/wellarchitected-Analytics-Lens.pdf](https://d1.awsstatic.com/whitepapers/architecture/wellarchitected-Analytics-Lens.pdf), GCP  [https://cloud.google.com/solutions/smart-analytics](https://cloud.google.com/solutions/smart-analytics).",8
+gejag13,k5w5z3,I really like the way AWS presents the info!,1
+geifq54,k5w5z3,"Would that be somehow related?
+
+[https://azurecharts.com/solutions](https://azurecharts.com/solutions)
+
+To explore it, just click a few components &amp; select a solution from the dropdown menu.",7
+gejf62x,k5w5z3,"This is fantastic, thanks for sharing!",2
+gehujjg,k5w5z3,This is going to entirely depend on context. You can do everything in SQL Server with SSIS (especially if you have $$$$ to fork over to MS).  There are other contexts where an RDBMS is woefully inappropriate entirely for your usecase.,4
+gejh4ah,k5w5z3,"This study may give you a good reference:
+https://a16z.com/2020/10/15/the-emerging-architectures-for-modern-data-infrastructure/",6
+gehkika,k5w5z3,"New tools come out every couple of months, so it's hard to keep a good catalog up to date while also learning the tools and (hopefully) earning a paycheck.  For me, Medium does a decent job of publicizing which new tools are coming out, and publishing articles with links to githubs that show possible patterns you might use with them.  Data diversity is being overtaken by tooling diversity.",6
+gei9eu4,k5w5z3,"Maybe Data Kitchen, I've not gone deep into the tech for it but it's like a DAG of DAGs. Basically you can orchestrate over multiple tools as 'recipes'/flows in 'kitchens'/orchestration groups.
+
+It looks promising but have to dig through the marketing and copious cooking references.",2
+gehk20l,k5ti0y,"Go with many events in 1 file. S3 pricing will add up QUICK if you have a single event per file.
+
+Historically I’ve done daily partitions with great success, but in that use case I wasn’t dealing with large enough volume that scanning an entire days data was the end of the world, especially if you’re writing parquet files because then you’re only scanning footers (unless the data you’re interested in is in that block of course). As for the size of each file within in the partition, I aim for 500MB per file if the partitions are large enough that require splitting them into multiple files.
+
+Before selecting a file format, look at row vs column oriented storage. Assuming you want column oriented, I’d suggest parquet. Last I saw, ORC was actually faster in a lot of common use cases, but parquet has been adopted by a lot of larger companies as the go to. If you’re looking at row oriented, I prefer JSON. It’s more verbose and slower than CSV, but if you’ve ever needed to handle non compatible schema migrations with CSV files, you’ll get why I prefer JSON.",3
+gekidf4,k5ti0y,"Thank you for your insights. Given I want to use Parquet format as it's more common, how would you approach the data ingestion? Would you go for a lambda, that does this transformation to parquet + storing in S3, Firehose or some other solution?",1
+gekj2nb,k5ti0y,"All depends on your requirements tbh, but Firehose is about as easy as it gets if you can make it work, and it handles transforming the data format for you, which is also nice.
+
+Basically avoid building custom stuff at this layer, since you’re likely wanting to just ingest data and save it, then you can do any transformations after the data has already been saved.",2
+geh4maf,k5ti0y,For better perofrmance file sizes should be b8g enought like 64 mb. Depending on the data you can have hourly partitions or daily whetever suits. Also think about going a way ahead and build a warehouse with higher granularity,2
+gejgjbi,k5styq,"I'd say yes to your question and you should include them in your job search. Why not apply to them? Worst case they don't get back, best case they hire you",1
+geg08vb,k5n3gk,"I feel ya mate. I am a DE myself and any job interview is basically learning tech u havent worked with bcos ""That Tech is the base of all the new tech"". For any interview you need to know 5 damn things :-  
+1) python leetcode  
+2) SQL leetcode  
+3) Big DATA FunDaMenTaLs  
+4) Data modelling or warehousing  
+5) Cloud services  
+Thats a lot of shit to remember before an interview.",28
+gegwgeb,k5n3gk,"Does a DE need leetcode level Python? Please elaborate. Leetcode python is heavy on the Algorithms and it feels super tough to me.
+
+Would love to find out if there’s a list of questions from leetcode which is relevant to DE.
+
+PS: Finished leetcode SQL \m/",3
+geh66z6,k5n3gk,"No you don't for the job, you only need to know data structures, loops, and how to structure a code with functions, modules, classes. The hard part is learning about the gazillion of libraries and data tools so you can pick the right ones to solve the use case efficiently.
+
+But you may need it for companies that want to filter candidates mindlessly because it's supposedly ""objective"".
+It's quite similar to how schools will filter candidates with mathematics when the output job doesn't actually need most of it.",3
+geg0y05,k5n3gk,"wow, that is what I figured.. insane.",2
+gefxcf4,k5n3gk,"You'll probably need more than minimal SQL knowledge. I kind of cheat a lot of the time by watching a video or review the documentation of something like Airflow, say I'm aware of it and give a brief explanation of what it is in an interview. I try to be honest with what I know and just be positive about learning new stuff. For the most part SQL, Python, any cloud platform and Linux are the basics. Other things can be learned on the job with that base since something like Airflow can schedule a bash/Python job with a Python config on a linux VM to pull or insert data in to the cloud with SQL.
+
+Most jobs don't expect you to be a master of every data tool because tools change all the time. Once you understand one like Airflow, then the learning curve for something like Azure Data Factory is less steep.",17
+gegdaj4,k5n3gk,"I’m glad you mentioned Linux. I used Linux for years before I got into data so I’m pretty fluent, and I’m surprised you don’t see it in many JDs. I almost want to put on my resume “ask me about Linux!” lol",7
+gefzbdh,k5n3gk,"Personally, I wouldn't use Airflow's S3 operator (I'm assuming you mean an S3 operator).   I'd use a Python Operator and Boto3.   
+
+It actually sounds like that is a microcosm of your problem.  You don't need to spend 2 months learning Airflow.  You need to solve a problem, in this case, sending files to S3 on a schedule.  Part of engineering is knowing what you don't need to know.  It might take you a day to set up Airflow and then another day to figure out how to upload a file to S3 with Python. And then some amount of time to create some tests to verify your logic and develop whatever your specific requirement are, relative to the complexity of the task.  You don't need to know every quirk of Airflow. 
+
+If you don't like learning how systems interconnect, managing systems (or docker/kubernetes),  you might want to switch paths to an analyst, architect, or developer. Usually, you can spend more time focusing on specific tools rather than having a beginner or intermediate level of understanding of a lot of tools. Although you might find it difficult to avoid containerization, but a lot of companies also have senior people who are at least nominally responsible for helping new employees get used to their systems.",13
+geg1qmy,k5n3gk,"&gt;don't like learning how systems interconnect
+
+
+&gt;architect
+
+Huh",12
+geg2w83,k5n3gk,Meant database architecture. Not systems architecture.  You still work with systems obviously but you're going way deep into one aspect rather than tying a bunch of services together.,3
+geg3vg7,k5n3gk,"Gotcha, my bad :)",3
+gegdvmm,k5n3gk,"Nah, that was my bad. Its an engineering sub, the default assumption is very reasonably not ""Database arcthiect"" lol",4
+geg0o0k,k5n3gk,"Interesting.  If I was more comfortable taking that approach (learning just enough to get the job done) I think I may be much further along and less stressed.  However, how do I go about avoiding showcasing a project (pipeline) where I have tools that I am not familiar with.  
+
+For example, in a previous project, I've spun up a HDFS docker container and have sent files to it.  I looked up the entire process up on Google and so I really don't know much about Hadoop or other ways I can use it.  I feel like i would get burned if i brought that project up during an interview.  
+
+This is what leads me into needing to learn Airflow inside out just to pull a file from the internet to an S3 bucket. 
+
+Thoughts?",1
+geg9iv2,k5n3gk,"&gt; Interesting. If I was more comfortable taking that approach (learning just enough to get the job done) I think I may be much further along and less stressed. However, how do I go about avoiding showcasing a project (pipeline) where I have tools that I am not familiar with.
+
+Well, not all jobs are purpose fit, unfortunately.  But you might consider reframing your perspective. Perhaps it would be better to go in depth with a tool you do like.  You mentioned you wanted to get quite good at working with databases.  Knowing an intermediate amount of Python and Postgres is going to take you an enormous distance.  And like I mentioned above, knowing when you can stop because you have the tools you need to solve your problem is a great skill.
+
+&gt; For example, in a previous project, I've spun up a HDFS docker container and have sent files to it. I looked up the entire process up on Google and so I really don't know much about Hadoop or other ways I can use it. I feel like i would get burned if i brought that project up during an interview.
+
+Maybe.  If you were looking for a Hadoop job that required a senior Hadoop person... probably.  But there is absolutely nothing wrong with bringing it up in the right context.  ""I used HDFS for purpose X, the reason it was chosen was Y, etc."" If you are pressed on details, you would just say that you ahven't used the tech in awhile and if you were to be greeted with project Y you might choose technology Z.  HDFS is usually distributed so you can tailor a job search so you wont' be asked the question or asked in a meaningful way. For example, if you're applying for a SQL Server DBA, you might get asked about it; knowing it might help get the job because you have exposure to it, but wouldn't be central to the interview.
+
+Similarly, why would someone ask you about Airflow?  There's no harm in saying, ""We used it for this narrow scope, so I am familiar with that scope."" In other words, if you're pressed for why you chose the tech, just be honest! ""We chose it because we needed something to schedule tasks and it is a commonly used software.""  If you get asked a specific detail you can acknowledge that you aren't familiar with all the facets of it.  Usually these types of questions are approached from a behvarioal standpoint.  ""Tell me about at time you did X."" type questions.  If you want to be an Airflow expert, there's nothing wrong with that. It's a great tool.  But you'll get to be there if you keep up at the field.  It's way better to naturally need to use something, learn how that works, and then later you'll know the existence of some other part of that tool and can gauge if you want to try something new based on the previous experience.",3
+gefvio5,k5n3gk,"i think you’re completely right that without first checking out the trees in some detail, seeing the forest as a coherent whole is difficult if not
+impossible. at some stage you will need to join a data team where you have a business purpose and put these tools to the test, combined with your current learnings things will start to fall into place on the high level
+
+as long as you are upfront about your skills and demonstrate enthusiasm, in the current market shortage for DEs you should be able to find a paid position to continue your career in this track imo",12
+gegsjj9,k5n3gk,"Hi, I'm a junior DE before that I was backend dev and I don't think I'm the right person to answer this but I'm going to share my mentality and I hope this be of help 😊.
+
+There a lot of big data tools that essentially do the same jobs. Just foucs on two or three that make up a whole DE workflow and relevant to your job, so you can get any task done efficiently(I think DataCamp Data Engineer Career Track demonstrates this perfectly). Every now and then try to pick up a tool and learn just the surface about it, build something simple with it and don't waste your time learning tools you know that your industry won't use. for example in my country most of the tech companies don't work with GCP or AWS. As good as these tools I know that I would not easily find a job if I only knew these. Don't frustrate yourself too much and don't burn your brain in the process.
+
+When I first hired I was introduced to set of tools that I knew nothing about but after two month I got the hang of it(I know that my backend dev background helped my alot here but still I think the essentials will help you alot). So focus on the essentials know your Python and SQL. Take it easy but not too easy 😅 and don't push yourself too hard. 
+
+I'm still new to the field and I'm still learning and I know the feeling of being lost sometimes it good because it's shows you where you need to focus but be wise about it and best of luck 👍🏻.",5
+geg1tnj,k5n3gk,"Are you me? let me know if you want to connect via discord, seems like we’re near the same level!",4
+gegilrv,k5n3gk,I'm down for this discord considering I feel the same way and have been feeling a bit down on the creativity!,1
+gegemk2,k5n3gk,"I think most of us have experienced similar frustrations when we first start. On your final note regarding Airflow, If I could offer one piece of advice: Try to build your own operators out from scratch. There's a million custom operators within the Airflow code-base (e.g. AWS, GCP, Azure, etc.), and they all stem from Airflow's Base operators. Instead of trying to abstract the task at hand using these operators, try to build out your own custom ones, simply using Python operator, which I found to be a valuable learning experience. Use the raw S3 API to do the file transfers, handle the creds and authentication yourself. The code will take longer to write, and you'll likely even refactor it a year from now, but it will  most definitely allow you to gain a better understanding of how the tool works.",3
+gei2mqt,k5n3gk,"Shit that will never go away:
+
+- Math
+- CS theory
+- Management skills
+- People skills etc.
+- Other stuff you can grab a book about from 1932 and it's still relevant to today.
+
+Shit that won't go away for a very long time, 10+ years:
+
+- Python
+- SQL
+- Java
+- C/C++
+- Javascript
+- R
+- Linux
+- Postgres/MySQL
+- Web (Html, css, apache/ngix, REST api's etc)
+- Shell scripting, makefiles, rsync, ssh stuff
+- Networking, OS stuff, compilers etc.
+- Other stuff that has been around for 10+ years and still is super popular
+
+Shit that will probably still be there in 3 years:
+
+- Docker
+- Spark
+- Kafka
+- Airflow
+- AWS/Azure/GCP
+- Other stuff that literally everyone uses right now.
+
+You need a balance between the eternal stuff (grabbing a book about database design from 1992), the long-term stuff (python, shell scripting, linux stuff, old but popular software) and the ""super hot right now"" stuff.
+
+I'd say 60% hands-on doing, 40% theory (youtube, tutorials, documentation, books etc). I'd personally put in 33% into learning the math and the foundational theory, 33% into learning old school stuff that isn't going anywhere and 33% into the hottest stuff to land you an interview by playing the buzzword bingo.
+
+The hottest stuff will probably be obsolete in 3 years (some hipster-level shit might be obsolete in 6 months). The old school stuff won't last you your entire career (people don't write BASIC and Perl that much anymore).
+
+If you're in college, spend 90% on fundamental eternal stuff and 10% on the old school stuff. Don't learn any modern stuff. I learned a whole bunch of modern tech in college that was obsolete by the time I graduated.",3
+geg2yaz,k5n3gk,"Learn paradigmas, not tools and you work wont be tool dependent.",4
+geg4wac,k5n3gk,Same boat! Frustrating thing is that even after Masters and all the knowledge for de I have to go back to learn inverting a binary tree for hackerrank challenges.,2
+gegpfqi,k5n3gk,"The crazy thing is (on top of needing to know advanced SQL, systems design and big data fundamentals) for the python data structures/algo aspects of the interviews, the questions can range from any difficulty from a super easy question like inverting a binary tree to an insanely complex graph problem. Usually they are LC mediums but it can literally be ANY topic  (hashmaps, linkedlist, heap, merge sort, bubble sort, stack, queue, BST, dynamic programming... list goes on forever lol). Oh and don’t forget, you also absolutely need to explain time and space complexities for the algorithms you write. And if it’s not efficient, they will try to hint for you to improve your solution so that you can get it at better than O(n^2) time. But obviously all the above only applies if you are applying to a unicorn/faang tier tech company. On the flip side, the hiring standard for companies outside of tech for SWE and DE relative to tech unicorn tier/faang is honestly embarrassing.",1
+gega9rh,k5n3gk,"Self learning-wise, have you considered tying it together into a project? It's the stories you tell that can win over the decision-makers in an interview (provided you can pass muster on the technical). My first ever personal project I deployed my own Spark and Kafka clusters in EC2 instances, and every interview I was asked why I wouldn't have considered using EMR or Glue. This was for learning so I stuck to first principles, I'd say, and focus on the fact that I've delivered a data product with the choices I've made.
+
+We all know the person with 100% alignment on technological experience will NEVER come interview for us -- if so, our stack is boring af and we should feel bad. So, I ask the questions to see the interview's thought process in pushing a project through.
+
+Besides, if you're pushing a project through, it justifies all the rabbit holes we go down because there's a reason for it.",2
+gegv7ip,k5n3gk,"I'm in the same boat, I'm pretty the lone data guy in my team...",1
+gehq26i,k5n3gk,"I can see from some previous posts you’re kind of being blasted with a mountain of new things to learn. Try making a project that encompasses a lot of these skills and you’ll learn how this stuff works.
+
+Here’s an example project: write a piece of software that takes a csv, does some operation (can be etl, or just some aggregate calculation), saves the results somewhere.
+
+Then wrap the service using docker and run it in a local container.
+
+Now, we can use some mocking services to mock out the file movement through some cloud service. I like moto, but there are other options available.
+
+Now, for saving the results you can spin up a local database and try to write to that.
+
+Basically my suggestion is to mock out / use containers to not spend any money upfront on cloud services. Lots of aws services can be mocked out via running containers locally.
+
+Lmk if you need more explanation, communication is def not my strong point.",1
+gegjp4c,k5n3gk,"At junior level and venting already.... it seems like you might need to have another chat with yourself about ""loving data engineering.""  The boat don't right itself, shipmate.",-4
+gegzhth,k5l7af,"by a new system I'm assuming you are referring to either hdfs or any cloud bucket.
+
+look for apache nifi, pretty solid tool. takes care of scheduling, monitoring and data consistency.
+
+if you are looking for some transformations on the fly, spark would be a good solution.
+
+and sqoop if you just want a solid data dumping tool.
+
+cheers mate.",1
+gehkedp,k5l7af,"Don't do it yourself, especially if it is a live database that cannot afford downtime. Use a managed service to migrate your legacy databases like [AWS DMS](https://aws.amazon.com/dms/) or [Google Cloud Database Migration](https://cloud.google.com/solutions/database-migration)",1
+gee058t,k5ctt1,you've already posted this [https://www.reddit.com/r/dataengineering/comments/k4x8mv/may\_be\_a\_dumb\_question\_but\_is\_snowflake\_hive/](https://www.reddit.com/r/dataengineering/comments/k4x8mv/may_be_a_dumb_question_but_is_snowflake_hive/),5
+gedjkze,k56ist,What is Microsoft's answer to Google BigQuery?,1
+gedmaz1,k56ist,"Since this is during work hours, will there be VODs available to watch later if we sign up?",1
+gee06qn,k56ist,"Good question, I will check with the technical team to see if they can record and will follow up on that.",1
