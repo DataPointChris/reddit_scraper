@@ -1,0 +1,309 @@
+post_id,post_title,post_body,upvotes,subreddit,date
+k6xurg,My first text editor!,"This is my first python text editor! It is still in development so i'm going to add more features later.
+
+Github repo: [https://github.com/sertdfyguhi/disk](https://github.com/sertdfyguhi/disk)",2,python,2020-12-04
+k6wro6,Saturday megathread: Share your resources!,"Found a neat resource related to Python over the past week? Looking for a resource to explain a certain topic?
+
+Use this thread to chat about and share Python resources!",0,python,2020-12-04
+k6ve2e,Python Code Rot and Bad Patches: The Blender Game Engine,,0,python,2020-12-04
+k6se53,"Translate a video to any language using Python, Wav2Lip and Google Wavenet",,4,python,2020-12-04
+k6s58r,I made a simple game studio debugger using Dear PyGui's new experimental Window Docking Feature to debug a first game render loop!,"I made a [simple game example](https://github.com/Pcothren/DearPyGui-Examples/blob/main/special%20callbacks/render_callback.py) using only [Dear PyGui's](https://hoffstadt.github.io/DearPyGui/index.html) baked in tools (logger, metrics, profiler, themes, stylings) and GUI items to see when collisions are occur on the walls of the window! This required simple knowledge of how game render loops happen, some basic collision math, and a canvas with drawing items. I believe anyone can do this example!
+
+The new experimental docking feature really makes it look nice! The docking feature is lacking programmatic layouts so windows will have to be set each time the app/game is made but it does become useful when long game/app testing sessions are happening! 
+
+I also took this opportunity to so off some styling features! Thanks for watching and reading!  
+Video Below!
+
+https://reddit.com/link/k6s58r/video/rfv6qixn28361/player",17,python,2020-12-04
+k6ru7q,txtmarker: Highlight text in documents,,2,python,2020-12-04
+k6phha,[Guide] How to simulate ABSOLUTE mouse movement using python-uinput,"( I hope this becomes visible to search engines so people will find this guide )
+
+The first (and maybe fastest) choice with virtual input using Python is `python-uinput`, and it offers a simple example on how to easily move the mouse cursor (https://github.com/tuomasjjrasanen/python-uinput).
+
+However, that movement is only **relative**, implied by the `REL_X`/`REL_Y` names. For the uninitiated, relative means moving the mouse to a position relative to its current location.
+
+In my search to find a way to do **absolute** mouse movement with this module, I came across these three pages that offered important information on it: 
+ 
+- https://answers.launchpad.net/python-uinput/+question/185890
+- *especially* https://stackoverflow.com/questions/49500388/cant-write-touch-events-to-uinput-using-python-uinput
+- https://stackoverflow.com/questions/59468535/setting-absolute-cursor-position-using-python-uvdev
+
+Absolute movement is when your mouse moves to a position relative to an area, as opposed to relative to itself. For example `100,100` is the center of a `200x200` area. In this case, an area will most likely be your monitor.
+
+# How to simulate absolute mouse movement with `python-uinput`:
+
+First, we have to talk about how ""screen space"" is calculated on Linux. The whole ""screen space"" is a rectangle that is just big enough to contain all connected monitors. That means that a setup with one monitor with the size of `1280x720` will have a total ""screen space"" of `1280x720`. A setup with two monitors, `1366x768` and `1440x900` side-by-side will be `2806x900`. This, of course, changes if you have one monitor on top of another or one monitor is higher than the one next to it etc.
+
+Oh, and keep in mind that `y` is counted top-to-bottom (0 at the top and 900 at the bottom). 
+
+Now, the important thing to know about `python-uinput` that it registers input events on the `uinput` device, which includes mouse movement. Quoting from the Launchpad page, ""Xorg does not assign mouse handlers for absolute axis devices by default."" That means that we have to do it ourselves, and thankfully, `python-uinput` provides a helpful feature:
+
+&gt; Line 183 in \_\_init.py\_\_: `                absmin, absmax, absfuzz, absflat = ev_spec[2:]`
+
+All we have to do is add a tuple to an argument that involves mouse movement events, such as `ABS_X` and `ABS_Y`:
+
+```
+device = uinput.device([uinput.ABS_X + (0, 255, 0, 0), uinput.ABS_Y + (0, 255, 0, 0)])
+```
+
+The first two numbers in the tuple are the most important for most applications, since they dictate the range for each axis. 
+
+How does this tie into the ""screen space"" thing? **The size of the ""screen space"" is what we can use as a range for `ABS_X` and `ABS_Y`.**
+
+That also means that we can define an area, say in a monitor, by mapping (or scaling) a range `0 to monitor_sizex` to `monitor_topleft_x to monitor_topright_x` (same with y). Meaning that `0,0`, is the top-left of the monitor, `1440,900` is the bottom-right and so on. (I will not show an example of that since there are many out there)
+
+## Example
+
+### Create ranges for `ABS_X` and `ABS_Y` that correspond to a single `1280x720` display, and moves the mouse to `10,10`.
+        
+    import uinput
+    import time
+    
+    device_events = (
+    	uinput.ABS_X + (0, 1280, 0, 0),
+    	uinput.ABS_Y + (0, 720, 0, 0),
+    )
+    
+    with uinput.Device(device_events) as device:
+    	time.sleep(1)
+    	device.emit(uinput.ABS_X, 10)
+    	device.emit(uinput.ABS_Y, 10)
+
+Notice that we use `time.sleep(1)` before doing anything with the device. That is a weird quirk with uinput where it won't initialize completely instantly, and we must wait a little bit before doing anything. You can make that delay shorter if you like.",8,python,2020-12-04
+k6oqb9,Python podcasts,"Hey guys, just wanted to ask what python podcasts do you listen to. I recently started listening to podcasts would love some python content or programming in general.
+
+If you have any suggestions please do share. Thank You.",5,python,2020-12-04
+k6omrw,Handling Files in Python 🐍,,0,python,2020-12-04
+k6olxz,How I made an Among Us Bot perform hard tasks using OpenCV and Tesseract! [BEGINNER FRIENDLY],,43,python,2020-12-04
+k6o6gf,A practical beginner's tutorial to Python's asyncio,,3,python,2020-12-04
+k6ma9g,Python Library suggestions,"Please I am putting together the best python libraries under categories on [PythonStacks](https://www.pythonstacks.com/) . Please check it out and give suggestions on any category or library you think should be there.
+
+Thank You in advance.",1,python,2020-12-04
+k6m107,Split a PDF file into individual PDFs using Python (and PyPDF2 library),,9,python,2020-12-04
+k6lh35,JSONtoPydantic - Generate Pydantic Models from JSON in the browser,"[https://jsontopydantic.com](https://jsontopydantic.com)
+
+Hi there! I built this over the weekend and figured someone other than myself might find it useful. 
+
+Like many who work with REST APIs in Python, I've recently fallen in love with Pydantic. If you haven't heard of Pydantic, it's a data validation and parsing library that makes working with JSON in Python quite pleasant. 
+
+I needed a quick way to generate a Pydantic model from any given sample of JSON, and hacked together this application to do so. You can paste in a valid JSON string, and you'll get a valid Pydantic model back. 
+
+This is helpful if you're working with poorly documented APIs, really big objects, or have lots of edge cases to catch.
+
+Check it out and let me know what you think! 
+
+Code -&gt; [https://github.com/brokenloop/jsontopydantic](https://github.com/brokenloop/jsontopydantic)",33,python,2020-12-04
+k6l3jh,Small easy Image Resizer for web uploads,"Hello, this is the first post I make about something I have programmed.
+
+I made a small python script to resize the size of an image (KB, MB, ...) to fit the size restrictions of some webpages. Have you ever tried to upload a profile picture and got rejected because it was &gt; 1 MB? This is a quick solution to that problem.
+
+I know it is not the best or most efficient way to do it but it is simple. I am not a professional programmer either.
+
+You can find the source code in my GitHub.
+
+[https://github.com/Migran99/Python/tree/master/ImageResizer](https://github.com/Migran99/Python/tree/master/ImageResizer)
+
+    import os
+    import argparse
+    from PIL import Image
+    from io import BytesIO
+    import math
+    
+    unitdef = {'MB': 1000000, 'KB': 1000, 'GB': 1000000000, 'B': 1}
+    
+    parser = argparse.ArgumentParser(description='Downgrade image to fit web-size requirements')
+    parser.add_argument('path',metavar='p',type=str)
+    parser.add_argument('size',metavar='s',type=float)
+    parser.add_argument('units',metavar='u',type=str)
+    
+    arguments = parser.parse_args()
+    
+    size_ob = arguments.size
+    scale = unitdef[arguments.units.upper()]
+    
+    fill_color = 255
+    
+    myimage = Image.open(arguments.path)
+    if myimage.mode in ('RGBA', 'LA'):
+        background = Image.new(myimage.mode[:-1], myimage.size, fill_color)
+        background.paste(myimage, myimage.split()[-1])
+        myimage = background
+    
+    img_file = BytesIO()
+    myimage.save(img_file,'jpeg')
+    size = img_file.tell()/scale
+    
+    width, height = myimage.size
+    
+    print('Size of the current picture: ',size, arguments.units.upper())
+    
+    while(size &gt; size_ob):
+        img_file.seek(0)
+        width, height = myimage.size
+        width = math.floor(0.99*width)
+        height = math.floor(0.99*height)
+        myimage = myimage.resize([width,height])
+        myimage.save(img_file,'jpeg')
+        size = img_file.tell()/scale
+        print('Resized: ',size, arguments.units.upper())
+    
+    print('New size of the picture: ', size, arguments.units.upper())
+    myimage.save('output.jpeg')",2,python,2020-12-04
+k6ksu6,"Introducing ArtLine, Create Amazing line art portraits.","**Introducing ArtLine, Create Amazing line art portraits from photos.**
+
+The project is done on [Fast.ai](https://Fast.ai), python library.
+
+https://preview.redd.it/e0r8wjbq86361.jpg?width=666&amp;format=pjpg&amp;auto=webp&amp;s=5f7fc2ec7defd43da7b9216e6259561fa94dbcc7
+
+&amp;#x200B;
+
+https://preview.redd.it/eb6pn8ap86361.jpg?width=788&amp;format=pjpg&amp;auto=webp&amp;s=962445f73a261478865058a874eee63259bb9fa1
+
+Github link  
+
+[https://github.com/vijishmadhavan/ArtLine](https://github.com/vijishmadhavan/ArtLine)
+
+&amp;#x200B;
+
+**Gist of the Project**
+
+Technical Details
+
+* **Self-Attention Generative Adversarial Network** ([https://arxiv.org/abs/1805.08318](https://arxiv.org/abs/1805.08318)). Generator is pretrained UNET with spectral normalization and self-attention. Something that I got from Jason Antic's DeOldify([https://github.com/jantic/DeOldify](https://github.com/jantic/DeOldify)), this made a huge difference, all of a sudden I started getting proper details around the facial features.
+* **Progressive Growing of GANs** ([https://arxiv.org/abs/1710.10196](https://arxiv.org/abs/1710.10196)). Progressive GANS takes this idea of gradually increasing the image size, In this project the image size were gradually increased and learning rates were adjusted. Thanks to fast.ai for intrdoucing me to Progressive GANS, this helped in generating high quality output.
+* **Generator Loss** : Perceptual Loss/Feature Loss based on VGG16. ([https://arxiv.org/pdf/1603.08155.pdf](https://arxiv.org/pdf/1603.08155.pdf)).
+
+**Surprise!! No critic,No GAN. GAN did not make much of a difference so I was happy with No GAN.**",12,python,2020-12-04
+k6kj92,Mastering code by Bruce Lee,,0,python,2020-12-04
+k6k4tw,"Improve your Python programming skills with Pydon'ts -- short, to-the-point and meaningful tips to help you write more Pythonic code.",,0,python,2020-12-04
+k6jpg3,Build a sentiment comparation engine,,2,python,2020-12-04
+k6in34,I used the new york times covid tracker and matplotlib to make a COVID tracking program for my county,"https://github.com/Fitzy1293/Berkshire-County-Covid.
+
+[This is what is plots](https://raw.githubusercontent.com/Fitzy1293/Berkshire-County-Covid/master/COVID_plots.png)
+
+It basically just curls the covid API from the NYT an calculates the difference between days to plot those diffs.
+
+For anyone curious the endpoint is here https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv. It's 30.5 MB, and you can't make requests to different endpoints, it's just a file. For this I have a -getdata argument that you would only use once a day when you need to download the file.
+
+Right now it curls and greps Berkshire county, but a little smarter regex (the csv includes unique ids for counties so you could just reference yours like that) could extend it to any county. There's only one Berkshire so it's fine for this project.
+
+You could easily extend this to just create a new plot for every county in the country.
+
+I have github ssh setup which means I can automate commits. Maybe I could do a cron job that runs the program, and updates the markdown table in the README, then commits it - at a certain time every day. 
+
+The image would be updated when the program is ran but the markdown table I made with an online tool. 
+
+I'd have to automate that too, but that's probably just removing the old table and echoing in a program that does csv to md table formatting . Then it truly would be a ""tracker"".
+
+The code - 
+
+    #!/bin/env python3
+    
+    #![Imgur](https://i.imgur.com/CrzzuEZ.png)
+    
+    from pprint import pprint
+    import os
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import matplotlib.gridspec as gridspec
+    import sys
+    
+    def berkshireRows(file): # Parses CSVs
+        head = ['date','county','state','fips','cases','deaths']
+    
+        file = open(file, 'r').read().splitlines()
+        rows =  [head] + [i.rstrip(',').split(',')  for i in file if i.split(',')[1]=='Berkshire']
+    
+        return rows
+    
+    def rowStr(rows):
+        returnRows = []
+    
+        previous = rows[1]
+        for i in rows[2:]:
+            row = ['-'.join(i[0].split('-')[1:] + [i[0].split('-')[0]])]
+            caseDiff = f'{i[-2]} ==&gt; diff={int(i[-2]) - int(previous[-2])}'
+            deathDiff = f'{i[-1]} ==&gt; diff={int(i[-1]) - int(previous[-1])}'
+    
+            row.extend((caseDiff, deathDiff))
+            returnRows.append(row)
+            previous = i
+    
+        return returnRows
+    
+    def plotCovid(rows):
+        cases = [int(i[-2]) for i in rows[1:]]
+        deaths = [int(i[-1]) for i in rows[1:]]
+        date = '/'.join(rows[-1][0].split('-')[1:] + [rows[-1][0].split('-')[0]])
+    
+    
+        # Create 2x2 sub plots
+        gs = gridspec.GridSpec(2, 2)
+    
+        fig = plt.figure()
+    
+        ax1 = fig.add_subplot(gs[0, 1]) # row 0, col 0
+        ax1.plot(cases, 'r.-')
+        ax1.set(xlabel='Days since 3/8/2020', ylabel='Cases',
+               title='Berkshire County, MA - COVID-19 cases')
+    
+        ax2 = fig.add_subplot(gs[1, 1]) # row 0, col 1
+        ax2.plot(deaths, 'm.')
+        ax2.set(xlabel='Days since 3/8/2020', ylabel='Total deaths',
+               title='Berkshire County, MA - COVID-19 deaths')
+        ax2.plot([0,1])
+    
+        ax3 = fig.add_subplot(gs[:, 0]) # row 1, span all columns
+        ax3.plot(cases, 'r')
+        ax3.plot(deaths, 'm')
+        plt.fill_between(np.arange(0, len(cases)), deaths, cases,
+                     facecolor=""orange"", # The fill color
+                     color='r',       # The outline color
+                     alpha=0.2)
+        plt.fill_between(np.arange(0, len(cases)), deaths,
+                     facecolor=""orange"", # The fill color
+                     color='m',       # The outline color
+                     alpha=0.2)
+    
+        ax3.set(xlabel='Days since 3/8/2020', ylabel='COVID-19 cases and deaths',
+               title=f'COVID-19 Tracking\nBerkshire County, MA\n3/8/2020 - {date}')
+    
+    
+        fig.set_size_inches(15, 15)
+        plt.savefig(""COVID_plots.png"", dpi = 100)
+    
+    
+    
+    if __name__ == '__main__':
+        if '-getdata' in sys.argv:
+            os.system('curl ""https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv"" | grep Berkshire &gt; Berkshire_County_nytimes.csv')
+            print('Curling NY times COVID-19 CSV')
+    
+        curledCsv = 'Berkshire_County_nytimes.csv'
+        rows = berkshireRows(curledCsv)
+        plotCovid(rows)
+    
+    
+        finalRows = [['Date', 'Cases', 'Deaths']] + [i for i in reversed(rowStr(rows))]
+    
+        outputCsv = f'All_Berkshire_Data_Provided--{finalRows[1][0]}.csv'
+        with open(outputCsv, 'w+') as f:
+            for i in finalRows:
+                f.write(','.join(i))
+                f.write('\n')",395,python,2020-12-04
+k6hxyd,Text Splash Screen in real time with Python Tkinter,,14,python,2020-12-04
+k6hx81,"Pyjamas, a free 24h online Python by conference runs this saturday (Dec 5th) from 8 UTC","If you have nothing to do this weekend: There's this year's Pyjamas running from 8 UTC and there will be 24 hours of Python related talks you can watch and discuss.
+
+Free tickets and schedule are at [https://pyjamas.live/](https://pyjamas.live/)",42,python,2020-12-04
+k6ho4g,windows-py-internal-audio,"Made a simple script that autodetects the virtual device of audio output and opens a stream using PyAudio loopback to listen to the output. You can just run the script and have a stream of audio coming directly from the system, then you can use it for visualization or analysis.    
+
+
+Project:
+
+[windows-py-internal-audio](https://github.com/omega0verride/windows-py-internal-audio)  
+
+
+Using:  
+[pyaudio\_portaudio](https://github.com/intxcc/pyaudio_portaudio/releases/)",1,python,2020-12-04
+k6hjra,Scrape Beautifully With Beautiful Soup In Python,,1,python,2020-12-04
+k6hiy8,ccie18643/PyTCP PyTCP is an attempt to create fully functional TCP/IP stack in Python,,6,python,2020-12-04

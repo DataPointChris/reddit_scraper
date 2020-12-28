@@ -4,12 +4,14 @@
   <br>
 </h1>
 
+
 ## Features
 
 * Scrapes a single or list of subreddits using a simple configuration file.
 * Option to include post comments
 * Saves data as CSV, SQLite (Postgres, MongoDB, MySQL, S3 frameworks included but not fully functioning)
 * Easily run scraper on a schedule.
+
 
 ## Installation
 
@@ -24,18 +26,15 @@ Using Pip
 
     pip install -r requirements.txt
 
+
 ## How To Use
 
-    python scraper.py --config scraper_configs/python_test.ini
+    python scraper.py --config scraper_configs/example.ini
 
 Using Pipenv
 
-    pipenv run python scraper.py --config scraper_configs/python_test.ini
+    pipenv run python scraper.py --config scraper_configs/example.ini
 
-
-### Output to Log File
-
-    python scraper.py --config scraper_configs/python_test.ini &>> python_test/scraper.log
 
 ## Requirements
 
@@ -44,18 +43,10 @@ requests
 tqdm
 
 
-## Credits
-
-- https://www.datacamp.com/community/tutorials/scraping-reddit-python-scrapy
-- https://www.osrsbox.com/blog/2019/03/18/watercooler-scraping-an-entire-subreddit-2007scape/
-- https://data-flair.training/blogs/python-switch-case/
-- https://jaxenter.com/implement-switch-case-statement-python-138315.html
-- https://www.journaldev.com/15642/python-switch-case
-
-
 ## License
 
 [MIT](https://tldrlegal.com/license/mit-license)
+
 
 ## Future Improvements
 

@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "/Users/chris/.local/share/virtualenvs/reddit_scraper-NSO9rF_J"
+    "python.pythonPath": ".venv/bin/python",
+    "python.poetryPath": "/Users/chris/.poetry/bin/poetry"
+
 }

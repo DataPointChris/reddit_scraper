@@ -2,14 +2,14 @@ import argparse
 import configparser
 import datetime
 import os
+import sqlite3
 import time
 from pathlib import PurePath
+from sqlite3 import Error
 
 import pandas as pd
 import requests
 from tqdm import tqdm
-
-import databases
 
 headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
            'accept-encoding': 'gzip, deflate, sdch, br',
@@ -34,7 +34,7 @@ class RedditScraper:
     include_comments : bool, default=True
         Whether to include comments for each post
 
-    save_method: string, default='csv'
+    save_method : string, default='csv'
         Save location (and method)
     """
 
@@ -45,7 +45,7 @@ class RedditScraper:
         self.include_comments = include_comments
         self.save_method = save_method
         self.date = str(datetime.datetime.now().date())
-        self.project_directory = PurePath(__file__).parent / self.project_name
+        self.project_directory = PurePath(__file__).parent / 'scraped' / self.project_name
         if not os.path.exists(self.project_directory):
             os.makedirs(self.project_directory)
 
@@ -169,15 +169,19 @@ class RedditScraper:
         return (posts_df, None)
 
     def save_to_csv(self, df, table_name, subreddit):
-        csv_path = self.project_directory / 'csv'
+        csv_path = self.project_directory / 'data' / 'csv'
         if not os.path.exists(csv_path):
             os.makedirs(csv_path)
         df.to_csv(f'{csv_path}/{self.date}_{subreddit}_{table_name}.csv', index=False)
 
     def save_to_sqlite(self, df, table_name, subreddit):
-        db = databases.Sqlite()
-        connection = db.create_connection(
-            f'{self.project_directory}/{self.project_name}.sqlite')
+        sqlite_path = self.project_directory / 'data'
+        if not os.path.exists(sqlite_path):
+            os.makedirs(sqlite_path)
+        try:
+            connection = sqlite3.connect(f'{sqlite_path}/{self.project_name}.sqlite')
+        except Error as e:
+            print(f"Connection error: {e}")
         cursor = connection.cursor()
 
         if table_name == 'posts':
@@ -219,22 +223,6 @@ class RedditScraper:
         print('Data saved to sqlite database successfully')
         connection.close()
 
-    def save_to_postgres(self, df, table_name):
-        return 'save to postgres'
-        # not implemented
-
-    def save_to_mongo(self, df, table_name):
-        return 'save to mongo'
-        # not implemented
-
-    def save_to_mysql(self, df, table_name):
-        return 'save to mysql'
-        # not implemented
-
-    def save_to_s3(self, df, table_name):
-        return 'save to S3'
-        # not implemented
-
     def save_choice(self, df, choice, table_name, subreddit):
         '''
         Choice to save the scraped dataframe.
@@ -243,11 +231,7 @@ class RedditScraper:
         '''
         save_options = {
             'csv': self.save_to_csv,
-            'sqlite': self.save_to_sqlite,
-            'postgres': self.save_to_postgres,
-            'mongo': self.save_to_mongo,
-            'mysql': self.save_to_mysql,
-            's3': self.save_to_s3
+            'sqlite': self.save_to_sqlite
         }
         save_function = save_options.get(choice, self.save_to_csv)
         return save_function(df, table_name, subreddit)
@@ -262,10 +246,10 @@ def main():
         print(f'Scraping "{sub}" subreddit')
         posts_df, comments_df = scraper.scrape_subreddit(sub)
         print(f'Saving {sub} posts data to {save_method}')
-        scraper.save_choice(posts_df, save_method, table_name='posts', subreddit=sub)
+        scraper.save_choice(df=posts_df, choice=save_method, table_name='posts', subreddit=sub)
         if include_comments:
             print(f'Saving {sub} comments data to {save_method}')
-            scraper.save_choice(comments_df, save_method, table_name='comments', subreddit=sub)
+            scraper.save_choice(df=comments_df, choice=save_method, table_name='comments', subreddit=sub)
     print('PROGRAM FINISHED')
 
 
