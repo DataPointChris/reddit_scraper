@@ -13,6 +13,7 @@ scikit-learn = "^0.23.2"
 xgboost = "^1.2.1"
 tqdm = "^4.54.1"
 ipython = "^7.19.0"
+boto3 = "^1.16.44"
 
 [tool.poetry.dev-dependencies]
 
